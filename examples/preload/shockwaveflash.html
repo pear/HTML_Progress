@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="index,nofollow" >
+<meta name="keywords" content"="HTML_Progress, HTTP_Request, preload, progress meter" />
+<meta name="description" content"="HTML_Progress in action with HTTP_Request" />
+<meta name="author" content="Laurent Laville" />
+<title>PEAR::HTML::Progress example: Listener usage with HTTP_Request</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="../index.html"><img src="../images/home.gif" alt="Examples TOC"/>examples</a></p>
+
+<h1><span class="chapter">Preload Shockwave Flash object </span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#render">Render options<a>
+<li><a href="#source">PHP source syntax highlight<a>
+<li><a href="#run">Play demo<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="../images/info.gif"/> Introduction</h2>
+		
+<p>This example requires :
+<ul>
+<li>PEAR::HTTP_Request 1.2.2 or better (see source at line 14).</li>
+<li>PEAR::HTML_Progress 1.1 or better (see source at line 16).</li>
+</ul>
+</p>
+
+<p>Be aware that:
+<ul>
+<li>HTTP_Request has dependencies (Net_URL 1.0.12+, Net_Socket 1.0.2+) </li>
+</ul>
+</p>
+
+<hr/>
+<p><b>This example will display a basic progress bar while retrieving a large file.</b></p>
+
+<p>We have created a Request/Listener class HTTP_Request_DownloadListener on lines 18 to 104.
+In this Listener, a progress bar was integrated on lines 78 to 84. It's a basic progress bar
+with only one render option changed (animation speed).</p>
+
+<p>On lines 90 and 92 the progress bar is updated depending of the data size already received.</p>
+
+<p>Media file is identify by URL defined at line 106.</p>
+
+<p>When the shockwave flash object is fully loaded, page sw4p.html is shown on lines 115 to 117.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="../images/config.gif"/>&nbsp;Render options </h2>
+
+Animation speed is set to 10 (see source at line 79).
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="source">
+<h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
+<a target="_blank" href="../highlighter.php?file=preload/shockwaveflash.php">Open</a> source listing in a new window.
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="run">
+<h2><img src="../images/run.gif"/>&nbsp;Play demo</h2>
+<p><a href="shockwaveflash.php">Run</a> the script.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>
