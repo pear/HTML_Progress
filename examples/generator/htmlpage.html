@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="index,nofollow" />
+<meta name="keywords" content"="HTML_Progress, generator, progress meter" />
+<meta name="description" content"="HTML_Progress_Generator is an interactive tools to create your own progress bar" />
+<meta name="author" content="Laurent Laville" />
+<title>PEAR::HTML::Progress example: HTMLPage ProgressBar Generator</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="../index.html"><img src="../images/home.gif" alt="Examples TOC"/>examples</a></p>
+
+<h1><span class="chapter">HTMLPage ProgressBar Generator</span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Ouput</a>
+<li><a href="#source">PHP source syntax highlight<a>
+<li><a href="#run">Play generator<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="../images/info.gif"/> Introduction</h2>
+		
+<p>This example requires :
+<ul>
+<li>PEAR::HTML_Progress_Generator 1.2.0RC3 or better (see source at line 12).</li>
+</ul>
+</p>
+
+<p>Be aware that:
+<ul>
+<li>HTML_Progress_Generator has dependencies (HTML_CSS 0.3.4+, HTML_QuickForm 3.1.1+, HTML_QuickForm_Controller 0.9.3+) </li>
+</ul>
+</p>
+
+<hr/>
+<p><b>This example will run a ProgressBar Controller Wizard using the HTMLPage QF rendering.
+It will help you to create your own progress bar. You may even save the CSS and/or PHP code at end !</b></p>
+	
+<p>Few lines of code are necessary to run this generator. 
+First we start a session at line 14 (to keep data), then we create a HTML_Progress_Generator 
+instance at line 16 without options, and finally run the controller wizard itself at line 17.</p>
+
+<p>Difference from previous example is to use the HTMLPage QF rendering as ActionDisplay 
+(see line 12).</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="../images/config.gif"/>&nbsp;Render options </h2>
+
+Uses defaults:
+<ul>
+<li><b>Controller name</b> = ProgressGenerator</li>
+<li><b>preview Action </b> = ActionPreview => HTML/Progress/generator/preview.php</li>
+<li><b>process Action </b> = ActionProcess => HTML/Progress/generator/process.php</li>
+</ul>
+
+Display render is overloaded by :
+<ul>
+<li><b>display Action </b> = ActionDisplay => HTML/Progress/generator/HTMLPage.php</li>
+</ul>
+As we still use the default class name 'ActionDisplay', no need to tell it with the second
+parameter of HTML_Progress_Generator class constructor. 
+<br/>
+See a script example of <a target="_blank" href="../highlighter.php?file=generator/custom.php">how to customize</a> 
+all actions (preview, display, process).
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="../images/image.gif"/>&nbsp;Output</h2>
+<h3>Screenshot </h3>
+<p><img src="../screenshots/generator_standard.png"/></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="source">
+<h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
+<a target="_blank" href="../highlighter.php?file=generator/htmlpage.php">Open</a> source listing in a new window.
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="run">
+<h2><img src="../images/run.gif"/>&nbsp;Play generator</h2>
+<p><a href="htmlpage.php">Run</a> the script.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>

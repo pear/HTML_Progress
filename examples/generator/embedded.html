@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="index,nofollow" />
+<meta name="keywords" content"="HTML_Progress, generator, progress meter, template engine" />
+<meta name="description" content"="HTML_Progress_Generator is an interactive tools to create your own progress bar" />
+<meta name="author" content="Laurent Laville" />
+<title>PEAR::HTML::Progress example: Embedded ProgressBar Generator</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="../index.html"><img src="../images/home.gif" alt="Examples TOC"/>examples</a></p>
+
+<h1><span class="chapter">Embedded ProgressBar Generator</span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Ouput</a>
+<li><a href="#source">PHP source syntax highlight<a>
+<li><a href="#run">Play generator<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="../images/info.gif"/> Introduction</h2>
+		
+<p>This example requires :
+<ul>
+<li>PEAR::HTML_Progress_Generator 1.2.0RC3 or better (see source at line 12).</li>
+</ul>
+</p>
+
+<p>Be aware that:
+<ul>
+<li>HTML_Progress_Generator has dependencies (HTML_CSS 0.3.4+, HTML_QuickForm 3.1.1+, HTML_QuickForm_Controller 0.9.3+) </li>
+</ul>
+</p>
+
+<hr/>
+<p><b>This example will run a custom ProgressBar Controller Wizard integrated in your own
+existing pages. As other examples it will help you to create your own progress bar. 
+You may even save the CSS and/or PHP code at end !</b></p>
+
+<p>This example will show you how to customize all actions (display, preview, process).
+We will use IT template engine family, but you may use engine such as Smarty or even many others.</p>
+
+<p>At line 12 is included the IT template engine ressource for default class name 'ActionDisplay'.</p>
+
+<p>But we have choosen to include the generator in our own pages (itdynamic_generator.html)
+set at line 43.</p>
+
+<p>For preview tab, we have to make it ourself. This is done on lines 46 to 57. 
+CSS and Javascript code required for progress bar are merge into html page on lines 49 to 53.</p>
+
+<p>The progress bar generated with all your options at line 47 is finally included into html page
+on lines 55, 56.</p>
+
+<p>On lines 84 to 208, class MyProcessHandler is defined to replace default 'ActionProcess',
+that will help you to download the file that contents your progress bar PHP/CSS code
+(see option 'text/php' at line 172, rather than default 'text/plain').</p>
+ 
+<p>Don't forget also on lines 88 to 90 code to manage action when user click on Cancel button.</p> 
+
+<p>And finally, the generator is create at lines 213 to 216, and run on line 218.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="../images/config.gif"/>&nbsp;Render options </h2>
+
+Uses defaults:
+<ul>
+<li><b>preview Action </b> = ActionPreview => HTML/Progress/generator/preview.php</li>
+</ul>
+
+and replace :
+<ul>
+<li><b>Controller name</b> = PBwizard</li>
+<li><b>display Action </b> = MyDisplayHandler => class on lines 34 to 68</li>
+<li><b>process Action </b> = MyProcessHandler => class on lines 84 to 208</li>
+</ul>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="../images/image.gif"/>&nbsp;Output</h2>
+<h3>Screenshot </h3>
+<p><img src="../screenshots/generator_embedded.png"/></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="source">
+<h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
+<a target="_blank" href="../highlighter.php?file=generator/embedded.php">Open</a> source listing in a new window.
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="run">
+<h2><img src="../images/run.gif"/>&nbsp;Play generator</h2>
+<p><a href="embedded.php">Run</a> the script.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>

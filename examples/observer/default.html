@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="index,nofollow" />
+<meta name="keywords" content"="HTML_Progress, observer, progress meter" />
+<meta name="description" content"="HTML_Progress logs all changes in its observer pattern" />
+<meta name="author" content="Laurent Laville" />
+<title>PEAR::HTML::Progress example: Default ProgressBar Observer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="../index.html"><img src="../images/home.gif" alt="Examples TOC"/>examples</a></p>
+
+<h1><span class="chapter">Default ProgressBar Observer </span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Output</a>
+<li><a href="#source">PHP source syntax highlight<a>
+<li><a href="#run">Play demo<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="../images/info.gif"/> Introduction</h2>
+		
+<p>This example requires :
+<ul>
+<li>PEAR::HTML_Progress 1.2.0RC3 or better (see source at lines 11, 12).</li>
+</ul>
+</p>
+
+<hr/>
+<p><b>This example will run a ProgressBar in determinate mode that will log into
+a flat file ('progress_observer.log') each changes.</b></p>
+
+<p>Here are the contents of that file :
+<form>
+<textarea readOnly="true" rows="12" cols="80" wrap="virtual">
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:10;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:20;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:30;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:40;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:50;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:60;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:70;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:80;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:90;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:100;} 
+</textarea>
+</form>
+	
+<p>A default progress bar observer is created at line 21, and attached at line 23	
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="../images/config.gif"/>&nbsp;Render options </h2>
+
+<pre>
+speed = 100 is set at line 16 
+</pre>
+<div class="fig">HTML_Progress::setAnimSpeed()</div>
+<pre>
+increment = 10 is set at line 18
+</pre>
+<div class="fig">HTML_Progress::setIncrement()</div>
+<pre>
+border painted with all default options at line 17 (color=black, shape=solid). 
+Set size to 2 pixels at line 30.
+</pre>
+<div class="fig">HTML_Progress::setBorderPainted()</div>
+<div class="fig">HTML_Progress_UI::setBorderAttributes()</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="../images/image.gif"/>&nbsp;Output</h2>
+<h3>Screenshot </h3>
+<p><img src="../screenshots/observer_standard.png"/></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="source">
+<h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
+<a target="_blank" href="../highlighter.php?file=observer/default.php">Open</a> source listing in a new window.
+
+<p>[<a href="#top">Top</a>]</p>
+
+<a name="run">
+<h2><img src="../images/run.gif"/>&nbsp;Play demo</h2>
+<p><a href="default.php">Run</a> the script.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>

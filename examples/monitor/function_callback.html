@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="index,nofollow" />
+<meta name="keywords" content"="HTML_Progress, indeterminate, progress meter, monitor" />
+<meta name="description" content"="HTML_Progress_Monitor in indeterminate mode with function callback" />
+<meta name="author" content="Laurent Laville" />
+<title>PEAR::HTML::Progress example: Indeterminate Monitor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="../index.html"><img src="../images/home.gif" alt="Examples TOC"/>examples</a></p>
+
+<h1><span class="chapter">Indeterminate Monitor </span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Ouput</a>
+<li><a href="#source">PHP source syntax highlight<a>
+<li><a href="#run">Play demo<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="../images/info.gif"/> Introduction</h2>
+		
+<p>This example requires :
+<ul>
+<li>PEAR::HTML_Progress_Monitor 1.2.0RC3 or better (see source at line 12).</li>
+</ul>
+</p>
+
+<p>Be aware that:
+<ul>
+<li>HTML_Progress_Monitor has dependencies (HTML_CSS 0.3.4+, HTML_QuickForm 3.1.1+) </li>
+</ul>
+</p>
+
+<hr/>
+<p><b>This example will run a simple ProgressBar Monitor, with a function user callback. 
+Its starts in indeterminate mode then switch back in determinate mode.</b></p> 
+
+<p>Color scheme came from a UI pre-set model (class) called Progress_ITDynamic,
+defined on lines 14 to 25.</p>
+
+<p>The user callback defined on lines 27 to 47, and attached on progress bar at line 54, 
+will run progress bar until its reached 60 then switch back to determinate mode to complete process.
+All 10%, we will echo result on monitor.</p>
+	
+<p>QF renderer rules are defined on lines 91 to 103.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="../images/config.gif"/>&nbsp;Render options </h2>
+
+Here are the progress attributes:
+<pre>
+background-color = #EEE
+</pre>
+<div class="fig">HTML_Progress_UI::setProgressAttributes()</div>
+
+Here are the progress string attributes:
+<pre>
+color            = navy
+background-color = #EEE
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+Here are the progress cells attributes:
+<pre>
+inactive-color = #FFF
+active-color   = #444444
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="../images/image.gif"/>&nbsp;Output</h2>
+<h3>Screenshot </h3>
+<p><img src="../screenshots/monitor_function_callback.png"/></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="source">
+<h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
+<a target="_blank" href="../highlighter.php?file=monitor/function_callback.php">Open</a> source listing in a new window.
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="run">
+<h2><img src="../images/run.gif"/>&nbsp;Play demo</h2>
+<p><a href="function_callback.php">Run</a> the script.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+</body>
+</html>

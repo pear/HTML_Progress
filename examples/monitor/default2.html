@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="index,nofollow" />
+<meta name="keywords" content"="HTML_Progress, monitor, quickform, progress meter" />
+<meta name="description" content"="HTML_Progress_Monitor run a bar inside a quickform window" />
+<meta name="author" content="Laurent Laville" />
+<title>PEAR::HTML::Progress example: Logs ProgressBar Monitor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="../index.html"><img src="../images/home.gif" alt="Examples TOC"/>examples</a></p>
+
+<h1><span class="chapter">Logs ProgressBar Monitor</span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Ouput</a>
+<li><a href="#source">PHP source syntax highlight<a>
+<li><a href="#run">Play demo<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="../images/info.gif"/> Introduction</h2>
+		
+<p>This example requires :
+<ul>
+<li>PEAR::HTML_Progress_Monitor 1.2.0RC3 or better (see source at line 11).</li>
+</ul>
+</p>
+
+<p>Be aware that:
+<ul>
+<li>HTML_Progress_Monitor has dependencies (HTML_CSS 0.3.4+, HTML_QuickForm 3.1.1+) </li>
+<li>This example requires PEAR::Log (1.8.0+) </li>
+</ul>
+</p>
+
+<hr/>
+<p><b>This example will logs a default ProgressBar Monitor, and 
+used a default QuickForm renderer without any form template customizations. </b></p>
+
+<p>User callback 'logger' (defined on lines 13 to 23) which write into a file through PEAR::Log
+was attached on progress bar at line 26.</p>
+
+<p>Here are the contents of that PEAR::Log file :
+<form>
+<textarea readOnly="true" rows="10" cols="80" wrap="virtual">
+Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 1 %
+Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 2 %
+Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 3 %
+Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 4 %
+Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 5 %
+Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 6 %
+Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 7 %
+Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 8 %
+Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 9 %
+Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 10 %
+Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 11 %
+Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 12 %
+Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 13 %
+Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 14 %
+Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 15 %
+Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 16 %
+Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 17 %
+Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 18 %
+Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 19 %
+Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 20 %
+Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 21 %
+Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 22 %
+Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 23 %
+Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 24 %
+Jun 06 19:38:41 127.0.0.1 [info] 25 % has been reached
+Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 26 %
+Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 27 %
+Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 28 %
+Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 29 %
+Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 30 %
+Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 31 %
+Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 32 %
+Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 33 %
+Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 34 %
+Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 35 %
+Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 36 %
+Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 37 %
+Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 38 %
+Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 39 %
+Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 40 %
+Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 41 %
+Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 42 %
+Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 43 %
+Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 44 %
+Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 45 %
+Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 46 %
+Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 47 %
+Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 48 %
+Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 49 %
+Jun 06 19:38:43 127.0.0.1 [info] 50 % has been reached
+Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 51 %
+Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 52 %
+Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 53 %
+Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 54 %
+Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 55 %
+Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 56 %
+Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 57 %
+Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 58 %
+Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 59 %
+Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 60 %
+Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 61 %
+Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 62 %
+Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 63 %
+Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 64 %
+Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 65 %
+Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 66 %
+Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 67 %
+Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 68 %
+Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 69 %
+Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 70 %
+Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 71 %
+Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 72 %
+Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 73 %
+Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 74 %
+Jun 06 19:38:45 127.0.0.1 [info] 75 % has been reached
+Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 76 %
+Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 77 %
+Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 78 %
+Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 79 %
+Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 80 %
+Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 81 %
+Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 82 %
+Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 83 %
+Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 84 %
+Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 85 %
+Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 86 %
+Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 87 %
+Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 88 %
+Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 89 %
+Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 90 %
+Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 91 %
+Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 92 %
+Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 93 %
+Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 94 %
+Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 95 %
+Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 96 %
+Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 97 %
+Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 98 %
+Jun 06 19:38:48 127.0.0.1 [debug] Progress ... 99 %
+Jun 06 19:38:48 127.0.0.1 [info] 100 % has been reached
+</textarea>
+</form>
+	
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="../images/config.gif"/>&nbsp;Render options </h2>
+
+None. All default values are used.
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="../images/image.gif"/>&nbsp;Output</h2>
+<h3>Screenshot </h3>
+<p><img src="../screenshots/monitor_default1.png"/></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="source">
+<h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
+<a target="_blank" href="../highlighter.php?file=monitor/default2.php">Open</a> source listing in a new window.
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="run">
+<h2><img src="../images/run.gif"/>&nbsp;Play demo</h2>
+<p><a href="default2.php">Run</a> the script.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>

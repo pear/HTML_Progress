@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="index,nofollow" />
+<meta name="keywords" content"="HTML_Progress, observer, progress meter" />
+<meta name="description" content"="HTML_Progress_Observer allow to handle 2 bars master and slave" />
+<meta name="author" content="Laurent Laville" />
+<title>PEAR::HTML::Progress example: Complex ProgressBar Observer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="index.html"><img src="../images/home.gif" alt="Examples TOC"/>examples</a></p>
+
+<h1><span class="chapter">Complex ProgressBar Observer </span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Output</a>
+<li><a href="#source">PHP source syntax highlight<a>
+<li><a href="#run">Play demo<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="../images/info.gif"/> Introduction</h2>
+		
+<p>This example requires :
+<ul>
+<li>PEAR::HTML_Progress 1.2.0RC3 or better (see source at lines 12, 13).</li>
+</ul>
+</p>
+
+<hr/>
+<p><b>This example will run a complex observer mechanism which run two progress bar. 
+At each full loop of first bar, second bar is increment until this last one reach 100%.</b></p>
+
+<p>All explains are in source code comments. Just a big warning: NEVER forget the line 145.</p>
+	
+<p>[<a href="#top">Top</a>]</p>
+
+		
+<a name="render">
+<h2><img src="../images/config.gif"/>&nbsp;Render options </h2>
+
+Here are options to build the 1st progress bar :
+<pre>
+background-color = #e0e0e0
+</pre>
+<div class="fig">HTML_Progress_UI::setProgressAttributes()</div>
+
+Here are options to build the 1st progress bar string :
+<pre>
+valign           = left
+color            = red
+background-color = lightblue
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+
+Here are options to build the 2nd progress bar border :
+<pre>
+width = 1
+style = solid
+color = navy
+</pre>
+<div class="fig">HTML_Progress_UI::setBorderAttributes()</div>
+
+Here are options to build the 2nd progress bar cell :
+<pre>
+active-color   = #3874B4
+inactive-color = #EEEECC
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+Here are options to build the 2nd progress bar string :
+<pre>
+width            = 100
+align            = center
+valign           = right
+color            = yellow
+background-color = lightblue
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="../images/image.gif"/>&nbsp;Output</h2>
+<h3>Screenshot </h3>
+<p><img src="../screenshots/observer_complex.png"/></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="source">
+<h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
+<a target="_blank" href="../highlighter.php?file=observer/complex.php">Open</a> source listing in a new window.
+
+<p>[<a href="#top">Top</a>]</p>
+
+<a name="run">
+<h2><img src="../images/run.gif"/>&nbsp;Play demo</h2>
+<p><a href="complex.php">Run</a> the script.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>
