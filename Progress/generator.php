@@ -112,14 +112,14 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
         $this->_progress = new HTML_Progress($errorPrefs);
 
         if (!is_string($controllerName)) {
-            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$controllerName',
                       'was' => gettype($controllerName),
                       'expected' => 'string',
                       'paramnum' => 1));
 
         } elseif (!is_array($attributes)) {
-            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$attributes',
                       'was' => gettype($attributes),
                       'expected' => 'array',
@@ -228,14 +228,14 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
     function createTabs(&$page, $attributes = null)
     {
         if (!is_a($page, 'HTML_QuickForm_Page')) {
-            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$page',
                       'was' => gettype($page),
                       'expected' => 'HTML_QuickForm_Page object',
                       'paramnum' => 1));
 
         } elseif (!is_array($attributes) && !is_string($attributes) && !is_null($attributes)) {
-            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$attributes',
                       'was' => gettype($attributes),
                       'expected' => 'array | string',
@@ -270,21 +270,21 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
     function createButtons(&$page, $buttons, $attributes = null)
     {
         if (!is_a($page, 'HTML_QuickForm_Page')) {
-            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$page',
                       'was' => gettype($page),
                       'expected' => 'HTML_QuickForm_Page object',
                       'paramnum' => 1));
 
         } elseif (!is_array($buttons)) {
-            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$buttons',
                       'was' => gettype($buttons),
                       'expected' => 'array',
                       'paramnum' => 2));
 
         } elseif (!is_array($attributes) && !is_string($attributes) && !is_null($attributes)) {
-            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$attributes',
                       'was' => gettype($attributes),
                       'expected' => 'array | string',
@@ -328,14 +328,14 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
     function enableButton(&$page, $events = array()) 
     {
         if (!is_a($page, 'HTML_QuickForm_Page')) {
-            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$page',
                       'was' => gettype($page),
                       'expected' => 'HTML_QuickForm_Page object',
                       'paramnum' => 1));
 
         } elseif (!is_array($events)) {
-            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$events',
                       'was' => gettype($events),
                       'expected' => 'array',
@@ -374,14 +374,14 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
     function disableButton(&$page, $events = array()) 
     {
         if (!is_a($page, 'HTML_QuickForm_Page')) {
-            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$page',
                       'was' => gettype($page),
                       'expected' => 'HTML_QuickForm_Page object',
                       'paramnum' => 1));
 
         } elseif (!is_array($events)) {
-            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$events',
                       'was' => gettype($events),
                       'expected' => 'array',
