@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.2 $ -->
 
 <refentry id="{@id}">
 
@@ -6,46 +8,19 @@
   <refpurpose>technical background informations </refpurpose>
  </refnamediv>
 
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <copyright>
-    <year>2003</year>
-    <year>2004</year>
-    <holder>
-     <author>
-      <firstname>Laurent</firstname>
-      <surname>Laville</surname>
-     </author>
-    </holder>
-   </copyright>
-   <releaseinfo>HTML_Progress 1.2.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+ <para>
+  In this chapter you can discusses others ressources such as how to get and install
+  HTML_Progress components.
+ </para>
 
- {@toc}
-
- <refsect1 id="{@id install}">
-  <title>Installing</title>
-  <orderedlist>
-    <listitem><para>Setup the PEAR package manager (if you haven't got it already) - 
-     see {@link http://pear.php.net/manual/en/installation.getting.php Getting the manager}
-     (command line version) - or
-     {@link http://www.phpkitchen.com/article.php?story=20021201062516970 Getting Up and Running with the PEAR Web Installer}
-     (web package manager).
-     </para>
-    </listitem>
-    <listitem><para>Type <emphasis>pear install HTML_Progress</emphasis> 
-     (using the command line manager)</para></listitem>
-    <listitem><para>PEAR::HTML_Progress is now installed</para></listitem>
+ <refsect2 id="{@id toc}">
+  <title>Table of Contents</title>
+  <para>
+  <orderedlist numeration="upperalpha">
+    <listitem>{@tutorial A_install.pkg Installation} </listitem>
+    <listitem>{@tutorial B_migration12.pkg Migration to version 1.2} </listitem>
   </orderedlist>
- </refsect1>
-
- <refsect1 id="{@id howto-make-phpdoc}">
-  <title>How to make this documentation</title>
-   <para>
-    Behind the scene, there is <emphasis>phpDocumentor</emphasis> that help to build this
-    fantastic documentation.
-   </para>
- </refsect1>
-
+  </para>
+ </refsect2>
+ 
 </refentry>
