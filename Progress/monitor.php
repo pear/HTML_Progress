@@ -83,15 +83,6 @@ class HTML_Progress_Monitor
      */
     var $_callback = null;
 
-    /**
-     * Package name used by PEAR_ErrorStack functions
-     *
-     * @var        string
-     * @since      1.0
-     * @access     private
-     */
-    var $_package;
-
     
     /**
      * Constructor Summary
@@ -117,35 +108,26 @@ class HTML_Progress_Monitor
      *
      * @param      string    $formName      (optional) Name of monitor dialog box (QuickForm)
      * @param      array     $attributes    (optional) List of renderer options
+     * @param      array     $errorPrefs    (optional) Hash of params to configure error handler
      *
      * @since      1.0
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      */
-    function HTML_Progress_Monitor($formName = 'ProgressMonitor', $attributes = array())
+    function HTML_Progress_Monitor($formName = 'ProgressMonitor', $attributes = array(), $errorPrefs = array())
     {
-        $args = func_get_args();
-        $num_args = func_num_args();
-
-        if ($num_args > 2) {
-            $errorPrefs = func_get_arg($num_args - 1);
-            if (!is_array($errorPrefs)) {
-                $errorPrefs = array();
-            }
-            HTML_Progress::_initErrorStack($errorPrefs);
-        } else {        	
-            HTML_Progress::_initErrorStack();
-        }
+        $bar = new HTML_Progress($errorPrefs);
+        $this->_progress = $bar;
 
         if (!is_string($formName)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$formName',
                       'was' => gettype($formName),
                       'expected' => 'string',
                       'paramnum' => 1));
 
         } elseif (!is_array($attributes)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$attributes',
                       'was' => gettype($attributes),
                       'expected' => 'array',
@@ -176,7 +158,6 @@ class HTML_Progress_Monitor
         $this->_form->addGroup($buttons, 'buttons', '', '&nbsp;', false);
       
         // default embedded progress element with look-and-feel
-        $bar = new HTML_Progress();
         $this->setProgressElement($bar);
 
         $str =& $this->_form->getElement('progressStatus');
@@ -197,7 +178,7 @@ class HTML_Progress_Monitor
     function notify($event)
     {
         if (!is_array($event)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$event',
                       'was' => gettype($event),
                       'expected' => 'array',
@@ -321,7 +302,7 @@ class HTML_Progress_Monitor
     function setProgressElement($bar)
     {
         if (!is_a($bar, 'HTML_Progress')) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$bar',
                       'was' => gettype($bar),
                       'expected' => 'HTML_Progress object',
@@ -372,15 +353,18 @@ class HTML_Progress_Monitor
         $js = "
 function setStatus(pString)
 {
-        if (isDom)
-            prog = document.getElementById('status');
-        if (isIE)
-            prog = document.all['status'];
-        if (isNS4)
-            prog = document.layers['status'];
-	if (prog != null) 
-	    prog.innerHTML = pString;
-}";
+    if (isDom) {
+        prog = document.getElementById('status');
+    } else if (isIE) {
+        prog = document.all['status'];
+    } else if (isNS4) {
+        prog = document.layers['status'];
+    }
+    if (prog != null)  {
+	prog.innerHTML = pString;
+    }
+}
+";
         return $this->_progress->getScript() . $js;
     }
 
@@ -408,7 +392,7 @@ function setStatus(pString)
     function accept(&$renderer)
     {
         if (!is_a($renderer, 'HTML_QuickForm_Renderer')) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$renderer',
                       'was' => gettype($renderer),
                       'expected' => 'HTML_QuickForm_Renderer object',
@@ -440,14 +424,14 @@ function setStatus(pString)
     function setCaption($caption = '&nbsp;', $args = array() )
     {
         if (!is_string($caption)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$caption',
                       'was' => gettype($caption),
                       'expected' => 'string',
                       'paramnum' => 1));
 
         } elseif (!is_array($args)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$args',
                       'was' => gettype($args),
                       'expected' => 'array',
