@@ -119,10 +119,11 @@ if (isset($_GET['ID'])) {
             $progress->incValue();
         } while(1);
     }
-    if ($stop == 'error') {
-        echo '<b>File was not uploaded !</b>';
-    } else {
+    if ($stop == 'done') {
         echo '<b>Upload Complete...</b>';
+    } else {
+        echo '<b>File was not uploaded !</b>';
+        echo '<br/><font size="1">'.$stop.'</font>';
     }
 }	
 ?>
