@@ -1,4 +1,4 @@
-<!-- $Revision: 1.1 $ -->
+<!-- $Revision: 1.2 $ -->
 
 <refentry id="{@id}">
 
@@ -93,7 +93,7 @@ do {
    <para>
     This new API allows to replace a do-while loop as in above example.
     Its also allows to call a user-callback defined by {@tutorial progress.setprogresshandler.pkg}
-    and manage both progress meter mode (determinate and indetermiante).
+    and manage both progress meter mode (determinate and indeterminate).
    </para>
   </refsect2>
 
@@ -103,6 +103,9 @@ do {
      These new API allows to catch HTML_Progress internal errors more easily. 
      See {@tutorial part2-errorhandling.pkg} for details.
     </para>
+    <simpara>
+     {@example haserrors.php}
+    </simpara>
   </refsect2>
  </refsect1>
 
