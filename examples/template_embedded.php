@@ -19,7 +19,7 @@ $tpl->loadTemplateFile('installing.html');
         
 $vars = array (	
     "L_SETUP_APP_TITLE"    => "SW4P",
-    "L_APPNAME"            => "My Template Sample",
+    "L_APPNAME"            => basename(__FILE__),
     "L_APPCOPYRIGHT"       => "&copy 2003 SW4P Team ",
 );
 $tpl->setVariable($vars);
