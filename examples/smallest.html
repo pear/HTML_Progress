@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="author" content="Laurent Laville" />
+<title>PEAR/HTML/Progress-Class Examples: Smallest</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="index.html"><img src="images/home.gif" alt="Examples TOC"/>examples TOC</a></p>
+
+<h1><span class="chapter">Smallest </span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#script">PHP script<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Output</a>
+<li><a href="#run">Play full example<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="images/info.gif"/> Introduction</h2>
+		
+<p>This example will run the smallest ProgressBar, you can build.</p>
+
+<p>Percent text info is right aligned on 50 pixels width area 
+at right side of the progress bar (default).</p>
+	
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="script">
+<h2><img src="images/source.gif"/>&nbsp;PHP script</h2>
+
+<p>Build the progress bar</p>
+<pre>
+<font color="#007700">require_once </font><font color="#DD0000">'HTML/Progress.php'</font><font color="#007700">;
+
+</font><font color="#0000BB">$bar </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">();
+</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">);
+</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setBorderPainted</font><font color="#007700">(</font><font color="#0000BB">true</font><font color="#007700">);
+
+</font><font color="#0000BB">$ui </font><font color="#007700">=&amp; </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getUI</font><font color="#007700">();
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setCellAttributes</font><font color="#007700">(</font><font color="#DD0000">'active-color=#970038 inactive-color=#FFDDAA width=7 height=12'</font><font color="#007700">);
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setBorderAttributes</font><font color="#007700">(</font><font color="#DD0000">'width=1'</font><font color="#007700">);
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setStringAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'font-size' </font><font color="#007700">=&gt; </font><font color="#0000BB">10</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'background-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#C3C6C3'
+</font><font color="#007700">));
+</font>
+</pre>
+
+<p>Loop to run the progress</p>
+<pre>
+<font color="#000000">
+<font color="#007700">do {
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">display</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() == </font><font color="#0000BB">1</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// the progress bar has reached 100%
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// your user-process should be put HERE !
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">incValue</font><font color="#007700">();
+} while(</font><font color="#0000BB">1</font><font color="#007700">);
+</font>
+</font>
+</pre>
+		
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="images/config.gif"/>&nbsp;Render options </h2>
+
+Here are options to build the progress bar cells :
+<pre>
+active-color   = #970038
+inactive-color = #FFDDAA
+width          = 7
+height         = 12
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+Here are options to build the progress bar border :
+<pre>
+width = 1
+</pre>
+<div class="fig">HTML_Progress_UI::setBorderAttributes()</div>
+
+Here are options to build the progress bar string (percent text info):
+<pre>
+font-size        = 10
+background-color = #C3C6C3
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="images/image.gif"/>&nbsp;Output</h2>
+		
+<h3>Screenshot </h3>
+
+<p><img src="screenshots/smallest.png"/></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="run">
+<h2><img src="images/run.gif"/>&nbsp;Play full example</h2>
+
+<p><a href="smallest.php">Run</a> the script below :</p>
+
+<pre class="code">
+<font color="#000000">
+<font color="#0000BB">&lt;?php 
+</font><font color="#007700">require_once </font><font color="#DD0000">'HTML/Progress.php'</font><font color="#007700">;
+
+</font><font color="#0000BB">$bar </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">();
+</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">);
+</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setBorderPainted</font><font color="#007700">(</font><font color="#0000BB">true</font><font color="#007700">);
+
+</font><font color="#0000BB">$ui </font><font color="#007700">=&amp; </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getUI</font><font color="#007700">();
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setCellAttributes</font><font color="#007700">(</font><font color="#DD0000">'active-color=#970038 inactive-color=#FFDDAA width=7 height=12'</font><font color="#007700">);
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setBorderAttributes</font><font color="#007700">(</font><font color="#DD0000">'width=1'</font><font color="#007700">);
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setStringAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'font-size' </font><font color="#007700">=&gt; </font><font color="#0000BB">10</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'background-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#C3C6C3'
+</font><font color="#007700">));
+</font><font color="#0000BB">?&gt;
+</font>&lt;!DOCTYPE html
+&nbsp;&nbsp;&nbsp;&nbsp;PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;
+&lt;head&gt;
+&lt;title&gt;Smallest Progress example&lt;/title&gt;
+&lt;style type="text/css"&gt;
+&lt;!--
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getStyle</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>
+body {
+&nbsp;&nbsp;&nbsp;&nbsp;background-color: #C3C6C3;
+&nbsp;&nbsp;&nbsp;&nbsp;color: #000000;
+&nbsp;&nbsp;&nbsp;&nbsp;font-family: Verdana, Arial;
+}
+// --&gt;
+&lt;/style&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getScript</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+<font color="#0000BB">&lt;?php 
+</font><font color="#007700">echo </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">toHtml</font><font color="#007700">(); 
+
+do {
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">display</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() == </font><font color="#0000BB">1</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// the progress bar has reached 100%
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">incValue</font><font color="#007700">();
+} while(</font><font color="#0000BB">1</font><font color="#007700">);
+</font><font color="#0000BB">?&gt;
+</font>
+&lt;/body&gt;
+&lt;/html&gt;</font>
+</pre>
+<div class="fig">href:&nbsp; ./smallest.php</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>

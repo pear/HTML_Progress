@@ -1,4 +1,5 @@
 <?php
+@include '../../include_path.php';
 /**
  * Simple Default Monitor ProgressBar example.
  *
@@ -12,15 +13,11 @@ require_once 'HTML/Progress/monitor.php';
 
 $monitor = new HTML_Progress_Monitor();
 
-// As there is no action (callback) defined, animation will be so fast
-// that we must make it slower to see something. 1000 === sleep(1) 
-$monitor->setAnimSpeed(100);
+$bar =& $monitor->getProgressElement();
+$bar->setAnimSpeed(100);
+$bar->setIncrement(10);
 ?>
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html>
 <head>
 <title>ProgressBar Monitor - Default renderer </title>
 <style type="text/css">
@@ -39,21 +36,15 @@ $monitor->setAnimSpeed(100);
 </script>
 </head>
 <body>
-
-<h1>Standard Monitor</h1>
-<p>Used default QuickForm renderer without any form template customizations. 
-No user callback defined.</p>
+<h1><?php echo basename(__FILE__); ?></h1>
 
 <?php 
-// Display progress monitor dialog box
 echo $monitor->toHtml();
-
 
 $monitor->run();   
 ?>
 
 <p>&lt;&lt; <a href="index.html">Back examples TOC</a></p>
-<p><b><i>href: examples/<?php echo basename(__FILE__); ?></i></b></p>
 
 </body>
 </html>

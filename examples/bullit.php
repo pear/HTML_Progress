@@ -1,4 +1,5 @@
 <?php 
+@include '../../include_path.php';
 /**
  * Natural Horizontal plain ProgressBar example.
  * See also ProgressMaker usage with pre-set UI model 'Bullit'.
@@ -8,9 +9,10 @@
  * @package    HTML_Progress
  */
 
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setIncrement(10);
 $bar->setBorderPainted(true);
 
@@ -24,7 +26,6 @@ $ui->setStringAttributes(array(
 	'background-color' => '#C3C6C3',
 	'valign' => 'top'
 ));
-
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

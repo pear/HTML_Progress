@@ -1,4 +1,5 @@
 <?php 
+include '../../include_path.php';
 /**
  * Complex Monitor ProgressBar example.
  *

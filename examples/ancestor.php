@@ -1,4 +1,5 @@
 <?php 
+@include '../../include_path.php';
 /**
  * Basic Horizontal ProgressBar v0.5 style example.
  * See also ProgressMaker usage with pre-set UI model 'Ancestor'.
@@ -8,20 +9,16 @@
  * @package    HTML_Progress
  */
 
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setIncrement(10);
 
 $ui =& $bar->getUI();
 $ui->setStringAttributes('width=60 font-size=14 align=center');
-
 ?>
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html>
 <head>
 <title>Ancestor Progress example</title>
 <style type="text/css">

@@ -1,4 +1,5 @@
 <?php 
+@include '../../include_path.php';
 /**
  * Observer ProgressBar example. Uses a custom observer class
  * that handled progress of the second bar.
@@ -8,8 +9,8 @@
  * @package    HTML_Progress
  */
 
-require_once ('HTML/Progress.php');
-require_once ('HTML/Progress/observer.php');
+require_once 'HTML/Progress.php';
+require_once 'HTML/Progress/observer.php';
 
 // 1. Defines ProgressBar observer
 class Bar1Observer extends HTML_Progress_Observer
@@ -45,10 +46,12 @@ class Bar1Observer extends HTML_Progress_Observer
 
 // 2. Creates ProgressBar
 $bar1 = new HTML_Progress(HTML_PROGRESS_BAR_VERTICAL);
+$bar1->setAnimSpeed(100);
 $bar1->setIncrement(10);
 $bar1->setIdent('PB1');
 
 $bar2 = new HTML_Progress(HTML_PROGRESS_BAR_VERTICAL);
+$bar2->setAnimSpeed(100);
 $bar2->setIncrement(25);
 $bar2->setIdent('PB2');
 $bar2->setBorderPainted(true);
@@ -96,7 +99,6 @@ $ui2->setStringAttributes(array(
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>Complex Observer ProgressBar example</title>

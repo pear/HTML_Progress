@@ -1,4 +1,5 @@
 <?php 
+@include '../../include_path.php';
 /**
  * Natural Horizontal ProgressBar example with JavaScript customization.
  * See also ProgressMaker usage with pre-set UI model 'BlueSandPlus'.
@@ -8,9 +9,10 @@
  * @package    HTML_Progress
  */
 
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setIncrement(10);
 $bar->setBorderPainted(true);
 
@@ -29,7 +31,6 @@ foreach (range(3,6) as $index) {
 foreach (range(7,9) as $index) {
     $ui->setCellAttributes('color=orange', $index);
 }
-
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

@@ -1,4 +1,5 @@
 <?php 
+@include '../../include_path.php';
 /**
  * Observer ProgressBar example. Uses a custom observer class.
  * 
@@ -7,8 +8,8 @@
  * @package    HTML_Progress
  */
 
-require_once ('HTML/Progress.php');
-require_once ('HTML/Progress/observer.php');
+require_once 'HTML/Progress.php';
+require_once 'HTML/Progress/observer.php';
 
 // 1. Defines ProgressBar observer
 class MyObserver extends HTML_Progress_Observer
@@ -42,6 +43,7 @@ class MyObserver extends HTML_Progress_Observer
 
 // 2. Creates ProgressBar
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setIncrement(5);
 
 // 3. Creates and attach a listener 
@@ -57,13 +59,8 @@ if (!$ok) {
 $ui = $bar->getUI();
 $ui->setStringAttributes('color = red');
 $ui->setComment('Simple Observer ProgressBar example');
-
 ?>
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html>
 <head>
 <title>Simple Observer ProgressBar example</title>
 <style type="text/css">

@@ -1,4 +1,5 @@
 <?php 
+@include '../../include_path.php';
 /**
  * Multiple Vertical ProgressBar example.
  * 
@@ -7,9 +8,10 @@
  * @package    HTML_Progress
  */
 
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar1 = new HTML_Progress(HTML_PROGRESS_BAR_VERTICAL);
+$bar1->setAnimSpeed(100);
 $bar1->setIdent('PB1');
 $bar1->setIncrement(10);
 $bar1->setBorderPainted(true);
@@ -29,6 +31,7 @@ $ui1->setStringAttributes(array(
 
 
 $bar2 = new HTML_Progress(HTML_PROGRESS_BAR_VERTICAL);
+$bar2->setAnimSpeed(100);
 $bar2->setIdent('PB2');
 $bar2->setIncrement(5);
 $bar2->setBorderPainted(true);
@@ -45,7 +48,6 @@ $ui2->setStringAttributes(array(
 	'align' => 'center', 
 	'valign' => 'bottom'
 ));
-
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

@@ -1,4 +1,5 @@
 <?php 
+@include '../../include_path.php';
 /**
  * Natural Horizontal with background images ProgressBar example.
  * See also ProgressMaker usage with pre-set UI model 'BgImages'.
@@ -8,29 +9,29 @@
  * @package    HTML_Progress
  */
 
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setIncrement(10);
 $bar->setBorderPainted(true);
 
 $ui =& $bar->getUI();
 $ui->setCellAttributes(array(
-	'active-color' => '#000084',
-	'inactive-color' => '#3A6EA5',
-	'width' => 25,
-	'spacing' => 0,
-	'background-image' => 'download.gif'
+    'active-color' => '#000084',
+    'inactive-color' => '#3A6EA5',
+    'width' => 25,
+    'spacing' => 0,
+    'background-image' => 'download.gif'
 ));
 $ui->setBorderAttributes('width=1 style=inset color=white');
 $ui->setStringAttributes(array(
-        'width' => 60,
-	'font-size' => 10,
-	'background-color' => '#C3C6C3',
-	'align' => 'center',
-	'valign' => 'left'
+    'width' => 60,
+    'font-size' => 10,
+    'background-color' => '#C3C6C3',
+    'align' => 'center',
+    'valign' => 'left'
 ));
-
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

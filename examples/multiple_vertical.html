@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="author" content="Laurent Laville" />
+<title>PEAR/HTML/Progress-Class Examples: two vertical progress bars</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="index.html"><img src="images/home.gif" alt="Examples TOC"/>examples TOC</a></p>
+
+<h1><span class="chapter">Two vertical progress bars </span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#script">PHP script<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Output</a>
+<li><a href="#run">Play full example<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="images/info.gif"/> Introduction</h2>
+		
+<p>This example will run a more than once progress bar at same time. 
+It will show two vertical progress bar running in opposite sides (down to up and reverse)
+with different increment step.
+</p>
+	
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="script">
+<h2><img src="images/source.gif"/>&nbsp;PHP script</h2>
+
+<p>Build the first progress bar</p>
+<pre>
+<font color="#000000">
+<font color="#0000BB">&lt;?php
+
+$bar1 </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">(</font><font color="#0000BB">HTML_PROGRESS_BAR_VERTICAL</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setIdent</font><font color="#007700">(</font><font color="#DD0000">'PB1'</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setBorderPainted</font><font color="#007700">(</font><font color="#0000BB">true</font><font color="#007700">);
+
+</font><font color="#0000BB">?&gt;</font>
+</font>
+</pre>
+
+<p>Build the second progress bar</p>
+<pre>
+<font color="#000000">
+<font color="#0000BB">&lt;?php
+
+$bar2 </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">(</font><font color="#0000BB">HTML_PROGRESS_BAR_VERTICAL</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setIdent</font><font color="#007700">(</font><font color="#DD0000">'PB2'</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">5</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setBorderPainted</font><font color="#007700">(</font><font color="#0000BB">true</font><font color="#007700">);
+
+</font><font color="#0000BB">?&gt;</font>
+</font>
+</pre>
+
+		
+<p>Loop to run both progress bars</p>
+<pre>
+<font color="#000000">
+<font color="#0000BB">&lt;?php
+
+</font><font color="#007700">do {
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">display</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">display</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() == </font><font color="#0000BB">1</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// the progress bar has reached 100%
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() &lt; </font><font color="#0000BB">1</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">incValue</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">incValue</font><font color="#007700">();
+} while(</font><font color="#0000BB">1</font><font color="#007700">);
+
+</font><font color="#0000BB">?&gt;</font>
+</font>
+</pre>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="images/config.gif"/>&nbsp;Render options </h2>
+
+Here are options to build the 1st progress bar cells (count=15 filled in natural way):
+<pre>
+active-color   = #970038
+inactive-color = #FFDDAA
+width          = 50
+height         = 13
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+Here are options to build the 1st progress bar border :
+<pre>
+width = 1
+color = #000000
+</pre>
+<div class="fig">HTML_Progress_UI::setBorderAttributes()</div>
+
+Here are options to build the 1st progress bar string :
+<pre>
+font-size        = 8
+color            = #FF0000
+background-color = #C3C6C3
+align            = center
+valign           = bottom
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+
+
+Here are options to build the 2nd progress bar cells (count=15 filled in reverse way):
+<pre>
+active-color   = #3874B4
+inactive-color = #FFDDAA
+width          = 50
+height         = 13
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+Here are options to build the 2nd progress bar border :
+<pre>
+width = 1
+style = dashed
+color = #000000
+</pre>
+<div class="fig">HTML_Progress_UI::setBorderAttributes()</div>
+
+Here are options to build the 2nd progress bar string :
+<pre>
+font-size        = 8
+color            = navy
+background-color = #C3C6C3
+align            = center
+valign           = bottom
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="images/image.gif"/>&nbsp;Output</h2>
+		
+<h3>Screenshot </h3>
+
+<p><img src="screenshots/vumeter.png"/></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="run">
+<h2><img src="images/run.gif"/>&nbsp;Play full example</h2>
+
+<p><a href="multiple_vertical.php">Run</a> the script below :</p>
+
+<pre class="code">
+<font color="#000000">
+<font color="#0000BB">&lt;?php 
+</font><font color="#007700">require_once </font><font color="#DD0000">'HTML/Progress.php'</font><font color="#007700">;
+
+</font><font color="#0000BB">$bar1 </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">(</font><font color="#0000BB">HTML_PROGRESS_BAR_VERTICAL</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setIdent</font><font color="#007700">(</font><font color="#DD0000">'PB1'</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setBorderPainted</font><font color="#007700">(</font><font color="#0000BB">true</font><font color="#007700">);
+
+</font><font color="#0000BB">$ui1 </font><font color="#007700">=&amp; </font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">getUI</font><font color="#007700">();
+</font><font color="#0000BB">$ui1</font><font color="#007700">-&gt;</font><font color="#0000BB">setFillWay</font><font color="#007700">(</font><font color="#DD0000">'natural'</font><font color="#007700">);
+</font><font color="#0000BB">$ui1</font><font color="#007700">-&gt;</font><font color="#0000BB">setCellCount</font><font color="#007700">(</font><font color="#0000BB">15</font><font color="#007700">);
+</font><font color="#0000BB">$ui1</font><font color="#007700">-&gt;</font><font color="#0000BB">setCellAttributes</font><font color="#007700">(</font><font color="#DD0000">'active-color=#970038 inactive-color=#FFDDAA width=50 height=13'</font><font color="#007700">);
+</font><font color="#0000BB">$ui1</font><font color="#007700">-&gt;</font><font color="#0000BB">setBorderAttributes</font><font color="#007700">(</font><font color="#DD0000">'width=1 color=#000000'</font><font color="#007700">);
+</font><font color="#0000BB">$ui1</font><font color="#007700">-&gt;</font><font color="#0000BB">setStringAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'font-size' </font><font color="#007700">=&gt; </font><font color="#0000BB">8</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#FF0000'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'background-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#C3C6C3'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'align' </font><font color="#007700">=&gt; </font><font color="#DD0000">'center'</font><font color="#007700">, 
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'valign' </font><font color="#007700">=&gt; </font><font color="#DD0000">'bottom'
+</font><font color="#007700">));
+
+
+</font><font color="#0000BB">$bar2 </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">(</font><font color="#0000BB">HTML_PROGRESS_BAR_VERTICAL</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setIdent</font><font color="#007700">(</font><font color="#DD0000">'PB2'</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">5</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setBorderPainted</font><font color="#007700">(</font><font color="#0000BB">true</font><font color="#007700">);
+
+</font><font color="#0000BB">$ui2 </font><font color="#007700">=&amp; </font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">getUI</font><font color="#007700">();
+</font><font color="#0000BB">$ui2</font><font color="#007700">-&gt;</font><font color="#0000BB">setFillWay</font><font color="#007700">(</font><font color="#DD0000">'reverse'</font><font color="#007700">);
+</font><font color="#0000BB">$ui2</font><font color="#007700">-&gt;</font><font color="#0000BB">setCellCount</font><font color="#007700">(</font><font color="#0000BB">15</font><font color="#007700">);
+</font><font color="#0000BB">$ui2</font><font color="#007700">-&gt;</font><font color="#0000BB">setCellAttributes</font><font color="#007700">(</font><font color="#DD0000">'active-color=#3874B4 inactive-color=#FFDDAA width=50 height=13'</font><font color="#007700">);
+</font><font color="#0000BB">$ui2</font><font color="#007700">-&gt;</font><font color="#0000BB">setBorderAttributes</font><font color="#007700">(</font><font color="#DD0000">'width=1 style=dashed color=#000000'</font><font color="#007700">);
+</font><font color="#0000BB">$ui2</font><font color="#007700">-&gt;</font><font color="#0000BB">setStringAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'font-size' </font><font color="#007700">=&gt; </font><font color="#0000BB">8</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'navy'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'background-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#C3C6C3'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'align' </font><font color="#007700">=&gt; </font><font color="#DD0000">'center'</font><font color="#007700">, 
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'valign' </font><font color="#007700">=&gt; </font><font color="#DD0000">'bottom'
+</font><font color="#007700">));
+</font><font color="#0000BB">?&gt;
+</font>&lt;!DOCTYPE html
+&nbsp;&nbsp;&nbsp;&nbsp;PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;
+&lt;head&gt;
+&lt;title&gt;Multiple Vertical ProgressBar example&lt;/title&gt;
+&lt;style type="text/css"&gt;
+&lt;!--
+<font color="#0000BB">&lt;?php 
+</font><font color="#007700">echo </font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">getStyle</font><font color="#007700">();
+echo </font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">getStyle</font><font color="#007700">();
+</font><font color="#0000BB">?&gt;
+</font>
+body {
+&nbsp;&nbsp;&nbsp;&nbsp;background-color: #C3C6C3;
+&nbsp;&nbsp;&nbsp;&nbsp;color: #000000;
+&nbsp;&nbsp;&nbsp;&nbsp;font-family: Verdana, Arial;
+}
+
+table.container {
+&nbsp;&nbsp;&nbsp;&nbsp;border: 1;
+&nbsp;&nbsp;&nbsp;&nbsp;border-color: navy;
+&nbsp;&nbsp;&nbsp;&nbsp;border-style: dotted;
+&nbsp;&nbsp;&nbsp;&nbsp;cell-spacing: 4;
+&nbsp;&nbsp;&nbsp;&nbsp;cell-padding: 10;
+&nbsp;&nbsp;&nbsp;&nbsp;width: 25%;
+// --&gt;
+&lt;/style&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">getScript</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table class="container"&gt;
+&lt;tr&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;td width="50%" align="center"&gt;
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">toHTML</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;td width="50%" align="center"&gt;
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">toHTML</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+<font color="#0000BB">&lt;?php 
+
+</font><font color="#007700">do {
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">display</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">display</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() == </font><font color="#0000BB">1</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// the progress bar has reached 100%
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() &lt; </font><font color="#0000BB">1</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">incValue</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">incValue</font><font color="#007700">();
+} while(</font><font color="#0000BB">1</font><font color="#007700">);
+</font><font color="#0000BB">?&gt;
+</font>
+&lt;/body&gt;
+&lt;/html&gt;</font>
+</pre>
+<div class="fig">href:&nbsp; ./multiple_vertical.php</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>

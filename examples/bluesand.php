@@ -1,4 +1,5 @@
 <?php 
+@include '../../include_path.php';
 /**
  * Natural Horizontal ProgressBar example with blue skin.
  * See also ProgressMaker usage with pre-set UI model 'BlueSand'.
@@ -8,9 +9,10 @@
  * @package    HTML_Progress
  */
 
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setIncrement(10);
 $bar->setBorderPainted(true);
 
@@ -18,7 +20,6 @@ $ui =& $bar->getUI();
 $ui->setCellAttributes('active-color=#3874B4 inactive-color=#EEEECC width=10');
 $ui->setBorderAttributes('width=1 color=navy');
 $ui->setStringAttributes('width=60 font-size=14 background-color=#EEEEEE align=center');
-
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

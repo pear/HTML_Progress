@@ -1,4 +1,5 @@
 <?php 
+@include '../../include_path.php';
 /**
  * Horizontal no String ProgressBar example.
  * 
@@ -7,19 +8,15 @@
  * @package    HTML_Progress
  */
 
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setIncrement(10);
 $bar->setStringPainted(true);   // get space for the string
 $bar->setString('');            // but don't paint it
-
 ?>
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html>
 <head>
 <title>Horizontal no String ProgressBar example</title>
 <style type="text/css">

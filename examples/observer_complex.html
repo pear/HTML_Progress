@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="author" content="Laurent Laville" />
+<title>PEAR/HTML/Progress-Class Examples: Complex Observer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="index.html"><img src="images/home.gif" alt="Examples TOC"/>examples TOC</a></p>
+
+<h1><span class="chapter">Complex Observer </span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#script">PHP script<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Output</a>
+<li><a href="#run">Play full example<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="images/info.gif"/> Introduction</h2>
+		
+<p>This example will run a complex observer mechanism which run two progress bar. 
+At each full loop of first bar, second bar is increment until this last one reach 100%.
+</p>
+	
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="script">
+<h2><img src="images/source.gif"/>&nbsp;PHP script</h2>
+
+<p>Build the first progress bar</p>
+<pre>
+<font color="#000000">
+<font color="#0000BB">&lt;?php
+
+$bar1 </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">(</font><font color="#0000BB">HTML_PROGRESS_BAR_VERTICAL</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setIdent</font><font color="#007700">(</font><font color="#DD0000">'PB1'</font><font color="#007700">);
+
+</font><font color="#0000BB">?&gt;</font>
+</font>
+</pre>
+
+<p>Build the second progress bar</p>
+<pre>
+<font color="#000000">
+<font color="#0000BB">&lt;?php
+
+$bar2 </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">(</font><font color="#0000BB">HTML_PROGRESS_BAR_VERTICAL</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">25</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setIdent</font><font color="#007700">(</font><font color="#DD0000">'PB2'</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setBorderPainted</font><font color="#007700">(</font><font color="#0000BB">true</font><font color="#007700">);
+
+</font><font color="#0000BB">?&gt;</font>
+</font>
+</pre>
+
+<p>Create and attach the listener</p>
+<pre>
+<font color="#000000">
+<font color="#0000BB">&lt;?php
+
+</font><font color="#007700">class </font><font color="#0000BB">Bar1Observer </font><font color="#007700">extends </font><font color="#0000BB">HTML_Progress_Observer
+</font><font color="#007700">{
+&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">Bar1Observer</font><font color="#007700">()
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">HTML_Progress_Observer</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">notify</font><font color="#007700">(</font><font color="#0000BB">$event</font><font color="#007700">)
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;global </font><font color="#0000BB">$bar2</font><font color="#007700">;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">is_array</font><font color="#007700">(</font><font color="#0000BB">$event</font><font color="#007700">)) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$log </font><font color="#007700">= isset(</font><font color="#0000BB">$event</font><font color="#007700">[</font><font color="#DD0000">'log'</font><font color="#007700">]) ? </font><font color="#0000BB">$event</font><font color="#007700">[</font><font color="#DD0000">'log'</font><font color="#007700">] : </font><font color="#DD0000">"undefined event id."</font><font color="#007700">;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$val </font><font color="#007700">= isset(</font><font color="#0000BB">$event</font><font color="#007700">[</font><font color="#DD0000">'value'</font><font color="#007700">]) ? </font><font color="#0000BB">$event</font><font color="#007700">[</font><font color="#DD0000">'value'</font><font color="#007700">] : </font><font color="#DD0000">"unknown value"</font><font color="#007700">;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (</font><font color="#0000BB">strtolower</font><font color="#007700">(</font><font color="#0000BB">$log</font><font color="#007700">)) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#DD0000">'incvalue'</font><font color="#007700">:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// if you want to do special on each step of progress bar1; it's here !!!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">break;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#DD0000">'setvalue'</font><font color="#007700">:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$val </font><font color="#007700">== </font><font color="#0000BB">0</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// updates $bar2 because $bar1 has completed a full loop
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">incValue</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">display</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+
+</font><font color="#0000BB">$observer </font><font color="#007700">= new </font><font color="#0000BB">Bar1Observer</font><font color="#007700">();
+
+</font><font color="#0000BB">$ok </font><font color="#007700">= </font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">addListener</font><font color="#007700">(</font><font color="#0000BB">$observer</font><font color="#007700">);
+if (!</font><font color="#0000BB">$ok</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;die (</font><font color="#DD0000">"Cannot add a valid listener to progress bar !"</font><font color="#007700">);
+}
+
+</font><font color="#0000BB">?&gt;</font>
+</font>
+</pre>
+		
+<p>Loop to run both progress bars</p>
+<pre>
+<font color="#000000">
+<font color="#0000BB">&lt;?php
+</font><font color="#007700">do {
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">display</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() == </font><font color="#0000BB">1</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setValue</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">);&nbsp;&nbsp;</font><font color="#FF8000">// the 1st progress bar has reached 100%, do a new loop
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">} else {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">incValue</font><font color="#007700">();&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// updates 1st progress bar
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}
+} while(</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() &lt; </font><font color="#0000BB">1</font><font color="#007700">);
+</font><font color="#0000BB">?&gt;</font>
+</font>
+</pre>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="images/config.gif"/>&nbsp;Render options </h2>
+
+Here are options to build the 1st progress bar :
+<pre>
+background-color = #e0e0e0
+</pre>
+<div class="fig">HTML_Progress_UI::setProgressAttributes()</div>
+
+Here are options to build the 1st progress bar string :
+<pre>
+valign           = left
+color            = red
+background-color = lightblue
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+
+Here are options to build the 2nd progress bar border :
+<pre>
+width = 1
+style = solid
+color = navy
+</pre>
+<div class="fig">HTML_Progress_UI::setBorderAttributes()</div>
+
+Here are options to build the 2nd progress bar cell :
+<pre>
+active-color   = #3874B4
+inactive-color = #EEEECC
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+Here are options to build the 2nd progress bar string :
+<pre>
+width            = 100
+align            = center
+valign           = right
+color            = yellow
+background-color = lightblue
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="images/image.gif"/>&nbsp;Output</h2>
+		
+<h3>Screenshot </h3>
+
+<p><img src="screenshots/observer_complex.png"/></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="run">
+<h2><img src="images/run.gif"/>&nbsp;Play full example</h2>
+
+<p><a href="observer_complex.php">Run</a> the script below :</p>
+
+<pre class="code">
+<font color="#000000">
+<font color="#0000BB">&lt;?php 
+</font><font color="#007700">require_once </font><font color="#DD0000">'HTML/Progress.php'</font><font color="#007700">;
+require_once </font><font color="#DD0000">'HTML/Progress/observer.php'</font><font color="#007700">;
+
+</font><font color="#FF8000">// 1. Defines ProgressBar observer
+</font><font color="#007700">class </font><font color="#0000BB">Bar1Observer </font><font color="#007700">extends </font><font color="#0000BB">HTML_Progress_Observer
+</font><font color="#007700">{
+&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">Bar1Observer</font><font color="#007700">()
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">HTML_Progress_Observer</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">notify</font><font color="#007700">(</font><font color="#0000BB">$event</font><font color="#007700">)
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;global </font><font color="#0000BB">$bar2</font><font color="#007700">;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">is_array</font><font color="#007700">(</font><font color="#0000BB">$event</font><font color="#007700">)) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$log </font><font color="#007700">= isset(</font><font color="#0000BB">$event</font><font color="#007700">[</font><font color="#DD0000">'log'</font><font color="#007700">]) ? </font><font color="#0000BB">$event</font><font color="#007700">[</font><font color="#DD0000">'log'</font><font color="#007700">] : </font><font color="#DD0000">"undefined event id."</font><font color="#007700">;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$val </font><font color="#007700">= isset(</font><font color="#0000BB">$event</font><font color="#007700">[</font><font color="#DD0000">'value'</font><font color="#007700">]) ? </font><font color="#0000BB">$event</font><font color="#007700">[</font><font color="#DD0000">'value'</font><font color="#007700">] : </font><font color="#DD0000">"unknown value"</font><font color="#007700">;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (</font><font color="#0000BB">strtolower</font><font color="#007700">(</font><font color="#0000BB">$log</font><font color="#007700">)) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#DD0000">'incvalue'</font><font color="#007700">:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// if you want to do special on each step of progress bar1; it's here !!!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">break;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#DD0000">'setvalue'</font><font color="#007700">:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$val </font><font color="#007700">== </font><font color="#0000BB">0</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// updates $bar2 because $bar1 has completed a full loop
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">incValue</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">display</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+
+</font><font color="#FF8000">// 2. Creates ProgressBar
+</font><font color="#0000BB">$bar1 </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">(</font><font color="#0000BB">HTML_PROGRESS_BAR_VERTICAL</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">);
+</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setIdent</font><font color="#007700">(</font><font color="#DD0000">'PB1'</font><font color="#007700">);
+
+</font><font color="#0000BB">$bar2 </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">(</font><font color="#0000BB">HTML_PROGRESS_BAR_VERTICAL</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">25</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setIdent</font><font color="#007700">(</font><font color="#DD0000">'PB2'</font><font color="#007700">);
+</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">setBorderPainted</font><font color="#007700">(</font><font color="#0000BB">true</font><font color="#007700">);
+
+</font><font color="#FF8000">// 3. Creates and attach a listener
+</font><font color="#0000BB">$observer </font><font color="#007700">= new </font><font color="#0000BB">Bar1Observer</font><font color="#007700">();
+
+</font><font color="#0000BB">$ok </font><font color="#007700">= </font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">addListener</font><font color="#007700">(</font><font color="#0000BB">$observer</font><font color="#007700">);
+if (!</font><font color="#0000BB">$ok</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;die (</font><font color="#DD0000">"Cannot add a valid listener to progress bar !"</font><font color="#007700">);
+}
+
+</font><font color="#FF8000">// 4. Changes look-and-feel of ProgressBar
+</font><font color="#0000BB">$ui1 </font><font color="#007700">=&amp; </font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">getUI</font><font color="#007700">();
+</font><font color="#0000BB">$ui1</font><font color="#007700">-&gt;</font><font color="#0000BB">setComment</font><font color="#007700">(</font><font color="#DD0000">'Complex Observer ProgressBar example'</font><font color="#007700">);
+</font><font color="#0000BB">$ui1</font><font color="#007700">-&gt;</font><font color="#0000BB">setTabOffset</font><font color="#007700">(</font><font color="#0000BB">1</font><font color="#007700">);
+</font><font color="#0000BB">$ui1</font><font color="#007700">-&gt;</font><font color="#0000BB">setProgressAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'background-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#e0e0e0'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font color="#0000BB">$ui1</font><font color="#007700">-&gt;</font><font color="#0000BB">setStringAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'valign' </font><font color="#007700">=&gt; </font><font color="#DD0000">'left'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'color'&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'red'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'background-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'lightblue'
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">));
+
+</font><font color="#0000BB">$ui2 </font><font color="#007700">=&amp; </font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">getUI</font><font color="#007700">();
+</font><font color="#0000BB">$ui2</font><font color="#007700">-&gt;</font><font color="#0000BB">setTabOffset</font><font color="#007700">(</font><font color="#0000BB">1</font><font color="#007700">);
+</font><font color="#0000BB">$ui2</font><font color="#007700">-&gt;</font><font color="#0000BB">setBorderAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'width' </font><font color="#007700">=&gt; </font><font color="#0000BB">1</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'style' </font><font color="#007700">=&gt; </font><font color="#DD0000">'solid'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'navy'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">));
+</font><font color="#0000BB">$ui2</font><font color="#007700">-&gt;</font><font color="#0000BB">setCellAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'active-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#3874B4'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'inactive-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#EEEECC'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font color="#0000BB">$ui2</font><font color="#007700">-&gt;</font><font color="#0000BB">setStringAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'width'&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'100'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'align'&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'center'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'valign' </font><font color="#007700">=&gt; </font><font color="#DD0000">'right'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'color'&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'yellow'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'background-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'lightblue'
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">));
+</font><font color="#0000BB">?&gt;
+</font>&lt;!DOCTYPE html
+&nbsp;&nbsp;&nbsp;&nbsp;PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;
+&lt;head&gt;
+&lt;title&gt;Complex Observer ProgressBar example&lt;/title&gt;
+&lt;style type="text/css"&gt;
+&lt;!--
+<font color="#0000BB">&lt;?php
+</font><font color="#007700">echo </font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">getStyle</font><font color="#007700">();
+echo </font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">getStyle</font><font color="#007700">();
+</font><font color="#0000BB">?&gt;
+</font>table.container {
+&nbsp;&nbsp;&nbsp;&nbsp;background-color: lightblue;
+&nbsp;&nbsp;&nbsp;&nbsp;border: 2;
+&nbsp;&nbsp;&nbsp;&nbsp;border-color: navy;
+&nbsp;&nbsp;&nbsp;&nbsp;border-style: dashed;
+&nbsp;&nbsp;&nbsp;&nbsp;cell-spacing: 4;
+&nbsp;&nbsp;&nbsp;&nbsp;cell-padding: 8;
+&nbsp;&nbsp;&nbsp;&nbsp;width: 50%;
+}
+// --&gt;
+&lt;/style&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">getScript</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table class="container"&gt;
+&lt;tr&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;td width="25%" align="center"&gt;
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">toHTML</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;td width="25%" align="center"&gt;
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">toHTML</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+<font color="#0000BB">&lt;?php
+</font><font color="#007700">do {
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">display</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() == </font><font color="#0000BB">1</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">setValue</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">);&nbsp;&nbsp;</font><font color="#FF8000">// the 1st progress bar has reached 100%, do a new loop
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">} else {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar1</font><font color="#007700">-&gt;</font><font color="#0000BB">incValue</font><font color="#007700">();&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// updates 1st progress bar
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}
+} while(</font><font color="#0000BB">$bar2</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() &lt; </font><font color="#0000BB">1</font><font color="#007700">);
+</font><font color="#0000BB">?&gt;
+</font>
+&lt;/body&gt;
+&lt;/html&gt;</font>
+</pre>
+<div class="fig">href:&nbsp; ./observer_complex.php</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>

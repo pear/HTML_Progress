@@ -1,4 +1,5 @@
 <?php 
+@include '../../include_path.php';
 /**
  * 20 cells Reverse Horizontal ProgressBar example with JavaScript customization.
  * 
@@ -7,9 +8,10 @@
  * @package    HTML_Progress
  */
 
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setIncrement(5);
 $bar->setBorderPainted(true);
 
@@ -30,7 +32,6 @@ foreach (range(3,6) as $index) {
 foreach (range(7,9) as $index) {
     $ui->setCellAttributes('color=white ', $index);
 }
-
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

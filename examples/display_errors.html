@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="author" content="Laurent Laville" />
+<title>PEAR/HTML/Progress-Class Examples: Browser screen logger</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="index.html"><img src="images/home.gif" alt="Examples TOC"/>examples TOC</a></p>
+
+<h1><span class="chapter">Browser screen logger </span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#script">PHP script<a>
+<li><a href="#output">Output</a>
+<li><a href="#run">Play full example<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="images/info.gif"/> Introduction</h2>
+		
+<p>This example will show you how errors could be logged.</p>
+<p>An error was volontary made on call of <b>setAnimSpeed()</b> method.
+By default if you don't specify any logger, a <b>display</b> driver will be added with options below:
+<ul>
+<li>default context callback:  PEAR_ErrorStack::getFileLine()
+<li>message callback: HTML_Progress::_msgCallback()
+</ul>
+
+<p>To set any logger, it should be defined as an array and given as the last parameter
+of HTML_Progress class constructor.</p>
+<p>Array format :
+<pre>
+  array(
+   'display_errors' = 'on' | 'off',
+   'log_errors' = 'on' | 'off',
+   'msgCallback' = valid callback for PEAR_ErrorStack,
+   'contextCallback' = valid callback for PEAR_ErrorStack 
+   'handler' => array(
+                  PEAR::Log driverName => array(
+                    'name' => PEAR::Log driver name
+                    'ident' => PEAR::Log driver identification string
+                    'conf' => array( PEAR::Log driver configure options ),
+                    'level' => PEAR::Log driver error level
+                      ),
+                  ...
+  )
+</pre>
+</p>
+
+<h3>display_errors</h3>
+<p>
+Print out errors (as a part of the output).  For production web sites,
+you're strongly encouraged to turn this feature off, and use error logging
+instead.  Keeping display_errors enabled on a production web site
+may reveal security information to end users, such as file paths on your Web
+server, your database schema or other information.
+</p>
+
+<h3>log_errors</h3>
+<p>
+Log errors into a log file (server-specific log, stderr, syslog ...)
+As stated above, you're strongly advised to use error logging in place of
+error displaying on production web sites.
+</p>
+
+<p>So, if you want to turn OFF all output errors, then you may write:
+<pre>
+<font color="#000000">
+<font color="#0000BB">&lt;?php 
+</font><font color="#007700">require_once </font><font color="#DD0000">'HTML/Progress.php'</font><font color="#007700">;
+
+</font><font color="#0000BB">$logger </font><font color="#007700">= array();
+</font><font color="#0000BB">$logger</font><font color="#007700">[</font><font color="#DD0000">'display_errors'</font><font color="#007700">] = </font><font color="#DD0000">'off'</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// turn off browser screen output
+</font><font color="#0000BB">$logger</font><font color="#007700">[</font><font color="#DD0000">'log_errors'</font><font color="#007700">] = </font><font color="#DD0000">'off'</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// turn off all PEAR::Log drivers output
+
+</font><font color="#0000BB">$bar </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">(</font><font color="#0000BB">$logger</font><font color="#007700">);
+...
+</font><font color="#0000BB">?&gt;
+</font>
+</font>
+</pre>
+</p>	
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="script">
+<h2><img src="images/source.gif"/>&nbsp;PHP script</h2>
+
+<p>Set the PEAR::Log Display driver and its config options </p>
+<pre>
+<font color="#000000">
+<font color="#0000BB">&lt;?php 
+</font><font color="#007700">require_once </font><font color="#DD0000">'HTML/Progress.php'</font><font color="#007700">;
+
+</font><font color="#0000BB">$logger </font><font color="#007700">= array();
+</font><font color="#0000BB">$logger</font><font color="#007700">[</font><font color="#DD0000">'handler'</font><font color="#007700">][</font><font color="#DD0000">'display'</font><font color="#007700">] = array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'conf' </font><font color="#007700">=&gt; array(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'printf' </font><font color="#007700">=&gt; </font><font color="#DD0000">'&lt;b&gt;%s&lt;/b&gt;: %s &lt;br/&gt;'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">. </font><font color="#DD0000">'&lt;font color="blue"&gt;'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">. </font><font color="#DD0000">'[class="%s" method="%s" file="%s" line="%s"]'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">. </font><font color="#DD0000">'&lt;/font&gt;'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'ereg' </font><font color="#007700">=&gt; </font><font color="#DD0000">'in (.*)::(.*) \(file (.*) at line (.*)\)'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">)
+);
+
+</font><font color="#0000BB">$bar </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">(</font><font color="#0000BB">$logger</font><font color="#007700">);
+...
+</font><font color="#0000BB">?&gt;</font>
+</font>
+</pre>
+		
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="images/image.gif"/>&nbsp;Output</h2>
+		
+<h3>Browser </h3>
+<p><font size="1">
+<b>Critical </b>: invalid input, parameter #1 "$delay" was expecting "integer", instead got "string"
+<br/><font color="blue">
+[class="html_progress" method="setanimspeed" file="E:\EasyPHP\php\PEAR\HTML\Progress.php" line="874"]
+</font>
+</font></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="run">
+<h2><img src="images/run.gif"/>&nbsp;Full example</h2>
+
+<!--
+<p><a href="display_errors.php">Run</a> the script below :</p>
+-->
+
+<pre class="code">
+<font color="#000000">
+<font color="#0000BB">&lt;?php 
+</font><font color="#007700">require_once </font><font color="#DD0000">'HTML/Progress.php'</font><font color="#007700">;
+
+</font><font color="#0000BB">$logger </font><font color="#007700">= array();
+</font><font color="#0000BB">$logger</font><font color="#007700">[</font><font color="#DD0000">'handler'</font><font color="#007700">][</font><font color="#DD0000">'display'</font><font color="#007700">] = array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'conf' </font><font color="#007700">=&gt; array(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'printf' </font><font color="#007700">=&gt; </font><font color="#DD0000">'&lt;b&gt;%s&lt;/b&gt;: %s &lt;br/&gt;'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">. </font><font color="#DD0000">'&lt;font color="blue"&gt;'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">. </font><font color="#DD0000">'[class="%s" method="%s" file="%s" line="%s"]'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">. </font><font color="#DD0000">'&lt;/font&gt;'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'ereg' </font><font color="#007700">=&gt; </font><font color="#DD0000">'in (.*)::(.*) \(file (.*) at line (.*)\)'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">)
+);
+
+</font><font color="#0000BB">$bar </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">(</font><font color="#0000BB">$logger</font><font color="#007700">);
+</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#DD0000">'100'</font><font color="#007700">);
+</font><font color="#0000BB">?&gt;
+</font>&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;FileLogger Progress example&lt;/title&gt;
+&lt;style type="text/css"&gt;
+&lt;!--
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getStyle</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>
+body {
+&nbsp;&nbsp;&nbsp;&nbsp;background-color: #EEEEEE;
+&nbsp;&nbsp;&nbsp;&nbsp;color: #000000;
+&nbsp;&nbsp;&nbsp;&nbsp;font-family: Verdana, Arial;
+}
+// --&gt;
+&lt;/style&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getScript</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+<font color="#0000BB">&lt;?php 
+</font><font color="#007700">echo </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">toHtml</font><font color="#007700">(); 
+
+do {
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">display</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() == </font><font color="#0000BB">1</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// the progress bar has reached 100%
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">incValue</font><font color="#007700">();
+} while(</font><font color="#0000BB">1</font><font color="#007700">);
+</font><font color="#0000BB">?&gt;
+</font>
+&lt;/body&gt;
+&lt;/html&gt;</font>
+</pre>
+<div class="fig">href:&nbsp; ./display_errors.php</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>

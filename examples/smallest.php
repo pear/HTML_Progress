@@ -1,4 +1,5 @@
 <?php 
+@include '../../include_path.php';
 /**
  * Natural Horizontal smallest ProgressBar example.
  * See also ProgressMaker usage with pre-set UI model 'Smallest'.
@@ -8,9 +9,10 @@
  * @package    HTML_Progress
  */
 
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setIncrement(10);
 $bar->setBorderPainted(true);
 
@@ -21,7 +23,6 @@ $ui->setStringAttributes(array(
 	'font-size' => 10,
 	'background-color' => '#C3C6C3'
 ));
-
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

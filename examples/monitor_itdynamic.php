@@ -1,4 +1,5 @@
 <?php
+@include '../../include_path.php';
 /**
  * Monitor example using ITDynamic QF renderer, and 
  * a class-method as user callback.
@@ -24,12 +25,12 @@ $monitor = new HTML_Progress_Monitor('frmMonitor5', array(
     'button' => array('style' => 'width:80px;')
     )
 );
-$monitor->setAnimSpeed(100);
 $monitor->setProgressHandler(array('my2ClassHandler','my1Method'));
 
 // Attach a progress ui-model (see file progressModels.php for attributes definition)
 $progress = new HTML_Progress();
 $progress->setUI('Progress_ITDynamic');
+$progress->setAnimSpeed(50);
 $monitor->setProgressElement($progress);
 
 // can use either HTML_Template_Sigma or HTML_Template_ITX
@@ -59,5 +60,4 @@ $tpl->show();
 $monitor->run();   
 
 echo '<p>&lt;&lt; <a href="index.html">Back examples TOC</a></p>';
-echo '<p><b><i>href: examples/'.basename(__FILE__).'</i></b></p>';
 ?>

@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="author" content="Laurent Laville" />
+<title>PEAR/HTML/Progress-Class Examples: Circle Back</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="index.html"><img src="images/home.gif" alt="Examples TOC"/>examples TOC</a></p>
+
+<h1><span class="chapter">Circle Back</span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#script">PHP script<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Output</a>
+<li><a href="#run">Play full example<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="images/info.gif"/> Introduction</h2>
+		
+<p>This example will run a circle (size:100x100) filled in reverse way.</p>
+<p>There are 10 cells with :
+<ul>
+<li>active-color = #FF0000 (red)
+<li>inactive-color = #000080 (navy)
+<li>spacing = 0
+</ul>
+Percent text info is right aligned on a 100 pixels width area,
+at right side of circle.</p>
+	
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="script">
+<h2><img src="images/source.gif"/>&nbsp;PHP script</h2>
+
+<p>Build the progress bar</p>
+<pre>
+<font color="#007700">require_once </font><font color="#DD0000">'HTML/Progress.php'</font><font color="#007700">;
+
+</font><font color="#0000BB">$bar </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">(</font><font color="#0000BB">HTML_PROGRESS_CIRCLE</font><font color="#007700">);
+</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">);
+
+</font><font color="#0000BB">$ui </font><font color="#007700">=&amp; </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getUI</font><font color="#007700">();
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setfillway</font><font color="#007700">(</font><font color="#DD0000">'reverse'</font><font color="#007700">);
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setStringAttributes</font><font color="#007700">(</font><font color="#DD0000">'font-size=20 width=100'</font><font color="#007700">);
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setCellAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'width' </font><font color="#007700">=&gt; </font><font color="#0000BB">100</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'height' </font><font color="#007700">=&gt; </font><font color="#0000BB">100</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'spacing' </font><font color="#007700">=&gt; </font><font color="#0000BB">0</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'inactive-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'navy'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'active-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'red'
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">)
+);
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">drawCircleSegments</font><font color="#007700">(</font><font color="#DD0000">'temp'</font><font color="#007700">, </font><font color="#DD0000">'cb%s.png'</font><font color="#007700">);
+</font>
+</pre>
+
+<p>Loop to run the progress</p>
+<pre>
+<font color="#000000">
+<font color="#007700">do {
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">display</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() == </font><font color="#0000BB">1</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// the progress bar has reached 100%
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// your user-process should be put HERE !
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">incValue</font><font color="#007700">();
+} while(</font><font color="#0000BB">1</font><font color="#007700">);
+</font>
+</font>
+</pre>
+		
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="images/config.gif"/>&nbsp;Render options </h2>
+
+Here are options to build this progress bar string (percent text info):
+<pre>
+font-size = 20
+width     = 100
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+Here are options to build the progress bar cells :
+<pre>
+width          = 100
+height         = 100
+spacing        = 0
+inactive-color = navy
+active-color   = red
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="images/image.gif"/>&nbsp;Output</h2>
+		
+<h3>Screenshots </h3>
+
+<p>
+<img src="screenshots/cb010.png"/>
+<img src="screenshots/cb060.png"/>
+<img src="screenshots/cb100.png"/>
+</p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="run">
+<h2><img src="images/run.gif"/>&nbsp;Play full example</h2>
+
+<p><a href="circleback.php">Run</a> the script below :</p>
+
+<pre class="code">
+<font color="#000000">
+<font color="#0000BB">&lt;?php 
+</font><font color="#007700">require_once </font><font color="#DD0000">'HTML/Progress.php'</font><font color="#007700">;
+
+</font><font color="#0000BB">$bar </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">(</font><font color="#0000BB">HTML_PROGRESS_CIRCLE</font><font color="#007700">);
+</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">);
+
+</font><font color="#0000BB">$ui </font><font color="#007700">=&amp; </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getUI</font><font color="#007700">();
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setfillway</font><font color="#007700">(</font><font color="#DD0000">'reverse'</font><font color="#007700">);
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setStringAttributes</font><font color="#007700">(</font><font color="#DD0000">'font-size=20 width=100'</font><font color="#007700">);
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setCellAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'width' </font><font color="#007700">=&gt; </font><font color="#0000BB">100</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'height' </font><font color="#007700">=&gt; </font><font color="#0000BB">100</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'spacing' </font><font color="#007700">=&gt; </font><font color="#0000BB">0</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'inactive-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'navy'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'active-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'red'
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">)
+);
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">drawCircleSegments</font><font color="#007700">(</font><font color="#DD0000">'temp'</font><font color="#007700">, </font><font color="#DD0000">'cb%s.png'</font><font color="#007700">);
+</font><font color="#0000BB">?&gt;</font>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Custom Circle Reverse ProgressBar example&lt;/title&gt;
+&lt;style type="text/css"&gt;
+&lt;!--
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getStyle</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>
+body {
+&nbsp;&nbsp;&nbsp;&nbsp;background-color: #FFFFFF;
+&nbsp;&nbsp;&nbsp;&nbsp;color: #000000;
+&nbsp;&nbsp;&nbsp;&nbsp;font-family: Verdana, Arial;
+}
+// --&gt;
+&lt;/style&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">getScript</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+<font color="#0000BB">&lt;?php 
+</font><font color="#007700">echo </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">toHtml</font><font color="#007700">(); 
+
+do {
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">display</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() == </font><font color="#0000BB">1</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// the progress bar has reached 100%
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">incValue</font><font color="#007700">();
+} while(</font><font color="#0000BB">1</font><font color="#007700">);
+
+</font><font color="#0000BB">?&gt;
+</font>
+&lt;/body&gt;
+&lt;/html&gt;</font>
+</pre>
+<div class="fig">href:&nbsp; ./circleback.php</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="author" content="Laurent Laville" />
+<title>PEAR/HTML/Progress-Class Examples: Indeterminate</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="index.html"><img src="images/home.gif" alt="Examples TOC"/>examples TOC</a></p>
+
+<h1><span class="chapter">Indeterminate </span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#script">PHP script<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Output</a>
+<li><a href="#run">Play full example<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="images/info.gif"/> Introduction</h2>
+		
+<p>This example will run a ProgressBar Monitor in indeterminate mode then switch
+back to determinate mode when reached a limit-level (value=240).</p>
+	
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="script">
+<h2><img src="images/source.gif"/>&nbsp;PHP script</h2>
+
+<p>Build the progress bar</p>
+<pre>
+<font color="#FF8000">// Attach a progress bar custom model
+</font><font color="#0000BB">$progress </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">();
+</font><font color="#0000BB">$ui </font><font color="#007700">= &amp; </font><font color="#0000BB">$progress</font><font color="#007700">-&gt;</font><font color="#0000BB">getUI</font><font color="#007700">();
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setProgressAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'background-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#e0e0e0'
+</font><font color="#007700">));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setStringAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'color'&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'#996'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'background-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#CCCC99'
+</font><font color="#007700">));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setCellAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'active-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#996'
+</font><font color="#007700">));
+
+</font><font color="#0000BB">$progress</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$progress</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">);
+</font><font color="#0000BB">$progress</font><font color="#007700">-&gt;</font><font color="#0000BB">setStringPainted</font><font color="#007700">(</font><font color="#0000BB">true</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// get space for the string
+</font><font color="#0000BB">$progress</font><font color="#007700">-&gt;</font><font color="#0000BB">setString</font><font color="#007700">(</font><font color="#DD0000">""</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// but don't paint it
+</font><font color="#0000BB">$progress</font><font color="#007700">-&gt;</font><font color="#0000BB">setIndeterminate</font><font color="#007700">(</font><font color="#0000BB">true</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// Progress start in indeterminate mode
+</font>
+</pre>
+
+<p>User-Callback with rule to switch progress mode (indeterminate -> determinate)</p>
+<pre>
+<font color="#007700">function </font><font color="#0000BB">myProgressHandler</font><font color="#007700">(</font><font color="#0000BB">$progressValue</font><font color="#007700">, &amp;</font><font color="#0000BB">$obj</font><font color="#007700">)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;static </font><font color="#0000BB">$c</font><font color="#007700">;
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;if (!isset(</font><font color="#0000BB">$c</font><font color="#007700">)) { 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$c </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$c </font><font color="#007700">+= </font><font color="#0000BB">16</font><font color="#007700">;
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">setCaption</font><font color="#007700">(</font><font color="#DD0000">"completed $c out of 400"</font><font color="#007700">);
+
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar </font><font color="#007700">=&amp; </font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">getProgressElement</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* rules to determine when switch back from indeterminate to determinate mode */
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">if (</font><font color="#0000BB">$c </font><font color="#007700">&gt;= </font><font color="#0000BB">240 </font><font color="#007700">&amp;&amp; </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">isIndeterminate</font><font color="#007700">()) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setIndeterminate</font><font color="#007700">(</font><font color="#0000BB">false</font><font color="#007700">);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setString</font><font color="#007700">(</font><font color="#0000BB">null</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// show percent-info
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setValue</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() == </font><font color="#0000BB">1</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">isIndeterminate</font><font color="#007700">()) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setValue</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setString</font><font color="#007700">(</font><font color="#DD0000">''</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// hide percent-info
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+</font>
+</pre>
+		
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="images/config.gif"/>&nbsp;Render options </h2>
+
+Here are options to build this progress bar :
+<pre>
+background-color = #e0e0e0
+</pre>
+<div class="fig">HTML_Progress_UI::setProgressAttributes()</div>
+
+Here are options to build this progress bar string (percent text info):
+<pre>
+color            = #996
+background-color = #CCCC99
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+Here are options to build the progress bar cells :
+<pre>
+active-color   = #996
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="images/image.gif"/>&nbsp;Output</h2>
+		
+<h3>Screenshot </h3>
+
+<p><img src="screenshots/indeterminate.png"/></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="run">
+<h2><img src="images/run.gif"/>&nbsp;Play full example</h2>
+
+<p><a href="indeterminate.php">Run</a> the script below :</p>
+
+<pre class="code">
+<font color="#000000">
+<font color="#0000BB">&lt;?php 
+</font><font color="#007700">require_once (</font><font color="#DD0000">'HTML/Progress/monitor.php'</font><font color="#007700">);
+
+
+function </font><font color="#0000BB">myProgressHandler</font><font color="#007700">(</font><font color="#0000BB">$progressValue</font><font color="#007700">, &amp;</font><font color="#0000BB">$obj</font><font color="#007700">)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;static </font><font color="#0000BB">$c</font><font color="#007700">;
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;if (!isset(</font><font color="#0000BB">$c</font><font color="#007700">)) { 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$c </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$c </font><font color="#007700">+= </font><font color="#0000BB">16</font><font color="#007700">;
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">setCaption</font><font color="#007700">(</font><font color="#DD0000">"completed $c out of 400"</font><font color="#007700">);
+
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar </font><font color="#007700">=&amp; </font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">getProgressElement</font><font color="#007700">();
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* rules to determine when switch back from indeterminate to determinate mode */
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">if (</font><font color="#0000BB">$c </font><font color="#007700">&gt;= </font><font color="#0000BB">240 </font><font color="#007700">&amp;&amp; </font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">isIndeterminate</font><font color="#007700">()) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setIndeterminate</font><font color="#007700">(</font><font color="#0000BB">false</font><font color="#007700">);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setString</font><font color="#007700">(</font><font color="#0000BB">null</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// show percent-info
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setValue</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">getPercentComplete</font><font color="#007700">() == </font><font color="#0000BB">1</font><font color="#007700">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">isIndeterminate</font><font color="#007700">()) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setValue</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bar</font><font color="#007700">-&gt;</font><font color="#0000BB">setString</font><font color="#007700">(</font><font color="#DD0000">''</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// hide percent-info
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+
+</font><font color="#0000BB">$monitor </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress_Monitor</font><font color="#007700">(</font><font color="#DD0000">'frmMonitor'</font><font color="#007700">, 
+&nbsp;&nbsp;&nbsp;&nbsp;array( </font><font color="#DD0000">'button' </font><font color="#007700">=&gt; array(</font><font color="#DD0000">'style' </font><font color="#007700">=&gt; </font><font color="#DD0000">'width:80px;'</font><font color="#007700">) )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'title'&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'Progress ...' </font><font color="#007700">)
+);
+
+</font><font color="#FF8000">// your custom user process goes here !
+</font><font color="#0000BB">$monitor</font><font color="#007700">-&gt;</font><font color="#0000BB">setProgressHandler</font><font color="#007700">(</font><font color="#DD0000">'myProgressHandler'</font><font color="#007700">);
+
+</font><font color="#FF8000">// Attach a progress bar custom model
+</font><font color="#0000BB">$progress </font><font color="#007700">= new </font><font color="#0000BB">HTML_Progress</font><font color="#007700">();
+</font><font color="#0000BB">$ui </font><font color="#007700">= &amp; </font><font color="#0000BB">$progress</font><font color="#007700">-&gt;</font><font color="#0000BB">getUI</font><font color="#007700">();
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setProgressAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'background-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#e0e0e0'
+</font><font color="#007700">));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setStringAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'color'&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'#996'</font><font color="#007700">,
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'background-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#CCCC99'
+</font><font color="#007700">));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font color="#0000BB">$ui</font><font color="#007700">-&gt;</font><font color="#0000BB">setCellAttributes</font><font color="#007700">(array(
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'active-color' </font><font color="#007700">=&gt; </font><font color="#DD0000">'#996'
+</font><font color="#007700">));
+
+</font><font color="#0000BB">$progress</font><font color="#007700">-&gt;</font><font color="#0000BB">setAnimSpeed</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">);
+</font><font color="#0000BB">$progress</font><font color="#007700">-&gt;</font><font color="#0000BB">setIncrement</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">);
+</font><font color="#0000BB">$progress</font><font color="#007700">-&gt;</font><font color="#0000BB">setStringPainted</font><font color="#007700">(</font><font color="#0000BB">true</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// get space for the string
+</font><font color="#0000BB">$progress</font><font color="#007700">-&gt;</font><font color="#0000BB">setString</font><font color="#007700">(</font><font color="#DD0000">""</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// but don't paint it
+</font><font color="#0000BB">$progress</font><font color="#007700">-&gt;</font><font color="#0000BB">setIndeterminate</font><font color="#007700">(</font><font color="#0000BB">true</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// Progress start in indeterminate mode
+</font><font color="#0000BB">$monitor</font><font color="#007700">-&gt;</font><font color="#0000BB">setProgressElement</font><font color="#007700">(</font><font color="#0000BB">$progress</font><font color="#007700">);
+</font><font color="#0000BB">?&gt;</font>
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Indeterminate Mode Progress example&lt;/title&gt;
+&lt;style type="text/css"&gt;
+&lt;!--
+.progressStatus {
+&nbsp;&nbsp;&nbsp;&nbsp;color:#000000; 
+&nbsp;&nbsp;&nbsp;&nbsp;font-size:10px;
+}
+
+body {
+&nbsp;&nbsp;&nbsp;&nbsp;background-color: #444444;
+&nbsp;&nbsp;&nbsp;&nbsp;color: #EEEEEE;
+&nbsp;&nbsp;&nbsp;&nbsp;font-family: Verdana, Arial;
+}
+
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$monitor</font><font color="#007700">-&gt;</font><font color="#0000BB">getStyle</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>// --&gt;
+&lt;/style&gt;
+&lt;script type="text/javascript"&gt;
+&lt;!--
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$monitor</font><font color="#007700">-&gt;</font><font color="#0000BB">getScript</font><font color="#007700">(); </font><font color="#0000BB">?&gt;
+</font>//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+<font color="#0000BB">&lt;?php 
+$renderer </font><font color="#007700">=&amp; </font><font color="#0000BB">HTML_QuickForm</font><font color="#007700">::</font><font color="#0000BB">defaultRenderer</font><font color="#007700">();
+</font><font color="#0000BB">$renderer</font><font color="#007700">-&gt;</font><font color="#0000BB">setFormTemplate</font><font color="#007700">(</font><font color="#DD0000">'
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;table width="450" border="0" cellpadding="3" cellspacing="2" bgcolor="#CCCC99"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;form{attributes}&gt;{content}
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/table&gt;
+'</font><font color="#007700">);
+</font><font color="#0000BB">$renderer</font><font color="#007700">-&gt;</font><font color="#0000BB">setHeaderTemplate</font><font color="#007700">(</font><font color="#DD0000">'
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;td style="white-space:nowrap;background:#996;color:#ffc;" align="left" colspan="2"&gt;&lt;b&gt;{header}&lt;/b&gt;&lt;/td&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;
+'</font><font color="#007700">);
+</font><font color="#0000BB">$monitor</font><font color="#007700">-&gt;</font><font color="#0000BB">accept</font><font color="#007700">(</font><font color="#0000BB">$renderer</font><font color="#007700">);
+
+</font><font color="#FF8000">// Display progress monitor dialog box
+</font><font color="#007700">echo </font><font color="#0000BB">$renderer</font><font color="#007700">-&gt;</font><font color="#0000BB">toHtml</font><font color="#007700">();
+
+
+</font><font color="#0000BB">$monitor</font><font color="#007700">-&gt;</font><font color="#0000BB">run</font><font color="#007700">();&nbsp;&nbsp;&nbsp;
+</font><font color="#0000BB">?&gt;
+</font>
+&lt;/body&gt;
+&lt;/html&gt;</font>
+</pre>
+<div class="fig">href:&nbsp; ./indeterminate.php</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>

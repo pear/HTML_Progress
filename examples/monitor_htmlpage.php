@@ -1,4 +1,5 @@
 <?php 
+@include '../../include_path.php';
 /**
  * PEAR::HTML_Page package made it easy to build
  * a very simple ProgressBar Monitor.
@@ -23,7 +24,9 @@ $p->setTitle("PEAR::HTML_Progress - Simple Monitor demo");
 $p->setMetaData("author", "Laurent Laville");
 
 $progressMonitor = new HTML_Progress_Monitor();
-$progressMonitor->setAnimSpeed(100);
+
+$bar =& $progressMonitor->getProgressElement();
+$bar->setAnimSpeed(50);
 
 $p->addStyleDeclaration(
     $progressMonitor->getStyle()
@@ -39,9 +42,6 @@ $p->addBodyContent(
     );
 $p->addBodyContent(
     '<p>&lt;&lt; <a href="index.html">Back examples TOC</a></p>'
-    );
-$p->addBodyContent(
-    '<p><b><i>href: examples/'.basename(__FILE__).'</i></b></p>'
     );
 $p->display();
 
