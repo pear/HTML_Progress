@@ -205,13 +205,4 @@
   </para>
  </refsect1>
 
- <refsect1 id="{@id rfc}">
-  <title>Request For Comments</title>
-  <para>
-   Please help me to improve future editions of this documentation by reporting any errors, 
-   inaccuracies, bugs, misleading or confusing statements, and plain old typos that you find.
-   {@link mailto:pear@laurent-laville.org}
-  </para>
- </refsect1>
-
 </refentry>
