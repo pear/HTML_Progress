@@ -45,7 +45,12 @@ class HTML_Progress_TestCase_UI_getCellAttributes extends PHPUnit_TestCase
 
     function _methodExists($name) 
     {
-        if (in_array(strtolower($name), get_class_methods($this->ui))) {
+        if (substr(PHP_VERSION,0,1) < '5') {
+            $n = strtolower($name);
+        } else {
+            $n = $name;
+        }
+        if (in_array($n, get_class_methods($this->ui))) {
             return true;
         }
         $this->assertTrue(false, 'method '. $name . ' not implemented in ' . get_class($this->ui));
