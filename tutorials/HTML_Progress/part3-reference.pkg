@@ -6,22 +6,6 @@
   <refpurpose>this reference describes every API in the HTML_Progress package</refpurpose>
  </refnamediv>
 
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <copyright>
-    <year>2003</year>
-    <year>2004</year>
-    <holder>
-     <author>
-      <firstname>Laurent</firstname>
-      <surname>Laville</surname>
-     </author>
-    </holder>
-   </copyright>
-   <releaseinfo>HTML_Progress 1.2.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
-
  {@toc}
 
  <refsect1 id="{@id common-ref}">
@@ -78,7 +62,7 @@
   <title>Observer Pattern Reference</title>
   <para>
    <para>
-    The <emphasis>HTML_Progress_Observer</emphasis> class provides an implementation 
+    The <classname>HTML_Progress_Observer</classname> class provides an implementation 
     of the observer pattern.
     In the content of the HTML_Progress package, it provides a mechanism by which you can 
     examine special event as it is happened. This allows the implementation of special behavior.
@@ -95,7 +79,7 @@
   <title>Mathematical Reference</title>
   <para>
    <para>
-    Default mathematical model (<emphasis>HTML_Progress_DM</emphasis> class) handles 
+    Default mathematical model (<classname>HTML_Progress_DM</classname> class) handles 
     a common progress bar with a minimum and initial value sets to 0, a maximum set to 100, 
     and an increment set to 1.
    </para>
@@ -118,7 +102,7 @@
   <title>Graphical Reference</title>
   <para>
    <para>
-    The <emphasis>HTML_Progress_UI</emphasis> class provides methods for
+    The <classname>HTML_Progress_UI</classname> class provides methods for
     html code display and element attributes handling.
     You can overload it with {@link HTML_Progress::setUI} method.
   </para>
@@ -151,7 +135,7 @@
   <title>Data Model</title>
   <para>
    <para>
-    The <emphasis>HTML_Progress_DM</emphasis> class 
+    The <classname>HTML_Progress_DM</classname> class 
     handles any mathematical issues arising from assigning faulty values.
     You can overload it with {@link HTML_Progress::setDM} method.
    </para>
@@ -174,6 +158,31 @@
   <title>Package HTML_Progress Constants</title>
   <para>
    {@tutorial progress.constants.pkg All Contants} defined in and used by HTML_Progress
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id monitor-ref}">
+  <title>Monitor Functions</title>
+  <para>
+   <para>
+    <classname>HTML_Progress_Monitor</classname> class allows to execute a process 
+    while display a progress bar inside a dialog box. 
+   </para>
+   <itemizedlist>
+    <listitem>{@tutorial monitor.notify.pkg HTML_Progress_Monitor::notify} </listitem>
+    <listitem>{@tutorial monitor.setprogresshandler.pkg HTML_Progress_Monitor::setProgressHandler} </listitem>
+    <listitem>{@tutorial monitor.callprogresshandler.pkg HTML_Progress_Monitor::callProgressHandler} </listitem>
+    <listitem>{@tutorial monitor.isstarted.pkg HTML_Progress_Monitor::isStarted} </listitem>
+    <listitem>{@tutorial monitor.iscanceled.pkg HTML_Progress_Monitor::isCanceled} </listitem>
+    <listitem>{@tutorial monitor.run.pkg HTML_Progress_Monitor::run} </listitem>
+    <listitem>{@tutorial monitor.setprogresselement.pkg HTML_Progress_Monitor::setProgressElement} </listitem>
+    <listitem>{@tutorial monitor.getprogresselement.pkg HTML_Progress_Monitor::getProgressElement} </listitem>
+    <listitem>{@tutorial monitor.getstyle.pkg HTML_Progress_Monitor::getStyle} </listitem>
+    <listitem>{@tutorial monitor.getscript.pkg HTML_Progress_Monitor::getScript} </listitem>
+    <listitem>{@tutorial monitor.tohtml.pkg HTML_Progress_Monitor::toHtml} </listitem>
+    <listitem>{@tutorial monitor.accept.pkg HTML_Progress_Monitor::accept} </listitem>
+    <listitem>{@tutorial monitor.setcaption.pkg HTML_Progress_Monitor::setCaption} </listitem>
+   </itemizedlist>
   </para>
  </refsect1>
 
