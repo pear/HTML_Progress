@@ -1,0 +1,99 @@
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname>Observer pattern</refname>
+  <refpurpose>implementation of the observer pattern</refpurpose>
+ </refnamediv>
+
+ {@toc}
+
+ <refsect1 id="{@id intro}">
+  <title>Introduction</title>
+  <para>
+   The <classname>HTML_Progress_Observer</classname> class provides an implementation 
+   of the observer pattern. In the content of the HTML_Progress package, they provide a mechanism 
+   which you can examine each important event as it is happened. 
+   This allows the implementation of special behaviour based on the value of the progress element.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id useit}">
+  <title>Basic concept</title>
+  <para>
+   Creating a progress observer involves implementing a subclass of the 
+   <classname>HTML_Progress_Observer</classname> class. The subclass must override the base class 
+   <emphasis>HTML_Progress_Observer::notify</emphasis> method. This method is passed a hash 
+   containing event name and progress value.
+  </para>
+  <para>
+   Now we will learn how to catch and manage specific events and respond to them
+   in a specific way.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id useit}">
+  <title>Using Progress Observers</title>
+  <para>
+   <refsect2 id="{@id observer-basic}">
+    <title>Basic Observer</title>
+    <para>
+     If you creates an instance <classname>HTML_Progress_Observer</classname> class without 
+     subclass, then default behaviour is to to write events (setminimum, setmaximum, setvalue) 
+     into a file <filename>progress_observer.log</filename> in current directory.
+     <simpara>
+      This file contains for each event observed a PHP serialize ({@link http://www.php.net/manual/en/function.serialize.php})
+      output result.
+     </simpara>
+    </para>
+    <example><title>Basic Observer</title>
+     {@example observer_basic.php}
+    </example>
+    <para>
+     Example above produces such results:
+     <screen>
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:10;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:20;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:30;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:40;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:50;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:60;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:70;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:80;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:90;} 
+a:2:{s:3:"log";s:8:"incValue";s:5:"value";i:100;} 
+     </screen>
+    </para>
+   </refsect2>
+   <refsect2 id="{@id observer-complex}">
+    <title>Complex Observer</title>
+    <para>
+     In this example, we will produces a dual progress meter which will simulate
+     a software installation. One progress bar (left side) for each file copy, and one progress
+     bar (right side) for global progress.
+     On each left bar loop (100%), right bar will be increased by 25%.
+     <simpara>
+      Example below will display something like :
+     </simpara>
+     <figure>
+      <graphic fileref="../media/screenshots/observer_complex.png"></graphic>      
+     </figure>
+     <example><title>Complex Observer </title>
+     {@example observer_complex.php}
+    </example>
+     Lets considers the most important lines:
+     <simpara>
+      The do-while loop (<emphasis>lines 128 to 135</emphasis>) manage the reinitialization
+      of left bar PB1 when this one reachs 100%.
+     </simpara>
+     <simpara>
+      Changes on right bar PB2 are made by notify method of <classname>Bar1Observer</classname> 
+      class when event catched is "setValue" and value is equal zero (<emphasis>lines 24 to 27</emphasis>), 
+      raised by {@tutorial dm.setvalue.pkg} method on <emphasis>line 131</emphasis>.
+     </simpara>
+    </para>
+   </refsect2>
+  </para>
+ </refsect1>
+
+</refentry>
