@@ -1,26 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision $ -->
 
 <refentry id="{@id}">
 
  <refnamediv>
-  <refname>My first Progress Meter</refname>
-  <refpurpose>your first step in the HTML_Progress World</refpurpose>
+  <refname>Your first Progress Meter</refname>
+  <refpurpose>first steps in the HTML_Progress World</refpurpose>
  </refnamediv>
-
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <copyright>
-    <year>2003</year>
-    <year>2004</year>
-    <holder>
-     <author>
-      <firstname>Laurent</firstname>
-      <surname>Laville</surname>
-     </author>
-    </holder>
-   </copyright>
-   <releaseinfo>HTML_Progress 1.2.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
 
  <para>
    We will start by creating a very simple progress meter. Copy the following code to a file, 

@@ -6,22 +6,6 @@
   <refpurpose>how to control your progress meter </refpurpose>
  </refnamediv>
 
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <copyright>
-    <year>2003</year>
-    <year>2004</year>
-    <holder>
-     <author>
-      <firstname>Laurent</firstname>
-      <surname>Laville</surname>
-     </author>
-    </holder>
-   </copyright>
-   <releaseinfo>HTML_Progress 1.2.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
-
  <para>
   You have a long task to execute, and you want to display a progress meter that show the
   progress of the task. How can you do it ? 
