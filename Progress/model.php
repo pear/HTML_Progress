@@ -29,7 +29,7 @@
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  */
 
-require_once ('Config.php');
+require_once 'Config.php';
 
 class HTML_Progress_Model extends HTML_Progress_UI
 {
@@ -55,30 +55,24 @@ class HTML_Progress_Model extends HTML_Progress_UI
      */
     function HTML_Progress_Model($file, $type)
     {
-        $this->_package = 'HTML_Progress_Model';
-        $stack =& Error_Stack::singleton($this->_package);
-        $messages = HTML_Progress::_getErrorMessage();
-        $stack->setErrorMessageTemplate($messages);
-        $stack->setDefaultLogger($this);
+        $this->_package = 'HTML_Progress';
 
         if (!file_exists($file)) {
-            $trace = debug_backtrace();
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$file',
                       'was' => $file,
                       'expected' => 'file exists',
-                      'paramnum' => 1), $trace);
+                      'paramnum' => 1));
         }
 
         $conf = new Config();
 
         if (!$conf->isConfigTypeRegistered($type)) {
-            $trace = debug_backtrace();
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$type',
                       'was' => $type,
                       'expected' => implode (" | ", array_keys($GLOBALS['CONFIG_TYPES'])),
-                      'paramnum' => 2), $trace);
+                      'paramnum' => 2));
         }
 
         $data = $conf->parseConfig($file, $type);
