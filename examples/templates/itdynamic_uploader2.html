@@ -1,0 +1,70 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Web-FTP Uploader with ProgressBar - ITDynamic renderer </title>
+<style type="text/css">
+<!--
+th {
+	font-family: sans-serif;
+	font-size: small;
+	color: #FFF;
+	background-color: #AAA;
+}
+.maintable {
+	background-color: lightblue;
+	border: 2;
+	border-color: navy;
+	border-style: dashed;
+	width: 400px;
+}
+.progressStatus {
+	color: navy; 
+	font-size:12px;
+	font-weight: bold;
+}
+{qf_style}
+//-->
+</style>
+<script type="text/javascript">
+<!--
+{qf_script}
+//-->
+</script>
+</head>
+<body>
+
+<form {qf_attributes}>
+<!-- BEGIN qf_hidden_block -->
+<div style="display: none;">
+  <!-- BEGIN qf_hidden_loop -->{qf_hidden}<!-- END qf_hidden_loop -->
+</div>
+<!-- END qf_hidden_block -->
+
+<table class="maintable">
+<tr>
+<td width="50%" align="center" valign="top">
+<!-- BEGIN qf_main_loop -->
+<!-- BEGIN qf_element -->{qf_element}<!-- END qf_element -->
+<!-- END qf_main_loop -->
+</td>
+<!-- BEGIN qf_buttons -->
+<td width="50%" align="center" valign="top"><!-- BEGIN qf_buttons_loop -->
+  <!-- BEGIN qf_buttons_element -->{qf_element}<br/><br/><!-- END qf_buttons_element -->
+<!-- END qf_buttons_loop --></td>
+<!-- END qf_buttons -->
+</tr>
+</table>
+
+</form>
+
+<!-- BEGIN qf_errors -->
+<!-- BEGIN qf_error_loop -->
+{qf_error}<br/>
+<!-- END qf_error_loop -->
+<!-- END qf_errors -->
+
+</body>
+</html>
