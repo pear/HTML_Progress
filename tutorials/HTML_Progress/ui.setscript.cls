@@ -63,6 +63,7 @@
 require_once ('HTML/Progress.php');
 
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setIncrement(10);
 $bar->setBorderPainted(true);
 
@@ -110,7 +111,7 @@ body {
 }
 // -->
 </style>
-<script type="text/javascript" src="<?php echo $ui->getScript(); ?>"></script>
+<script type="text/javascript" src="<?php echo $bar->getScript(); ?>"></script>
 </head>
 <body>
 

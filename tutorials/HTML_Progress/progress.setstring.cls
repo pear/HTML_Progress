@@ -59,6 +59,7 @@
 require_once ('HTML/Progress.php');
 
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setIncrement(5);
 $bar->setStringPainted(true);          // get space for the string
 $bar->setString('');                   // but don't paint it
@@ -81,7 +82,7 @@ $ui->setStringAttributes('width=350 align=left');
 </style>
 <script type="text/javascript">
 <!--
-<?php echo $ui->getScript(); ?>
+<?php echo $bar->getScript(); ?>
 //-->
 </script>
 </head>

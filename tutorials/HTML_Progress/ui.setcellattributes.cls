@@ -91,6 +91,7 @@
 require_once ('HTML/Progress.php');
 
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setIncrement(10);
 $bar->setBorderPainted(true);
 
@@ -114,7 +115,7 @@ $ui->setStringAttributes('width=60 font-size=14 background-color=#EEEEEE align=c
 </style>
 <script type="text/javascript">
 <!--
-<?php echo $ui->getScript(); ?>
+<?php echo $bar->getScript(); ?>
 //-->
 </script>
 </head>
