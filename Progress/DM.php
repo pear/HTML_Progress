@@ -108,7 +108,7 @@ class HTML_Progress_DM
     function HTML_Progress_DM()
     {
         // if you've not yet created an instance of html_progress
-        if (!$GLOBALS['_HTML_PROGRESS_DEFAULT_ERRORCALLBACK']) {
+        if (!$GLOBALS['_HTML_PROGRESS_CALLBACK_ERRORHANDLER']) {
             // init default error handling system,
             HTML_Progress::_initErrorHandler();
         }

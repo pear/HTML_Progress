@@ -201,7 +201,7 @@ class HTML_Progress_UI extends HTML_Common
     function HTML_Progress_UI()
     {
         // if you've not yet created an instance of html_progress
-        if (!$GLOBALS['_HTML_PROGRESS_DEFAULT_ERRORCALLBACK']) {
+        if (!$GLOBALS['_HTML_PROGRESS_CALLBACK_ERRORHANDLER']) {
             // init default error handling system,
             HTML_Progress::_initErrorHandler();
         }
@@ -511,7 +511,7 @@ class HTML_Progress_UI extends HTML_Common
      * @since      1.0
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
-     * @see        getCellAttributes()
+     * @see        getCellAttributes(), getCellCount()
      * @tutorial   ui.setcellattributes.pkg
      */
     function setCellAttributes($attributes, $cell = null)
@@ -522,21 +522,21 @@ class HTML_Progress_UI extends HTML_Common
                     array('var' => '$cell',
                           'was' => gettype($cell),
                           'expected' => 'integer',
-                          'paramnum' => 1));
+                          'paramnum' => 2));
 
             } elseif ($cell < 0) {
                 return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                     array('var' => '$cell',
                           'was' => $cell,
                           'expected' => 'positive',
-                          'paramnum' => 1));
+                          'paramnum' => 2));
 
             } elseif ($cell > $this->getCellCount()) {
                 return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                     array('var' => '$cell',
                           'was' => $cell,
                           'expected' => 'less or equal '.$this->getCellCount(),
-                          'paramnum' => 1));
+                          'paramnum' => 2));
             }
 
             $this->_updateAttrArray($this->_progress['cell'][$cell], $this->_parseAttributes($attributes));
@@ -635,14 +635,14 @@ class HTML_Progress_UI extends HTML_Common
                         array('var' => '$pos[0]',
                               'was' => $pos[0],
                               'expected' => 'coordinate less than grid height',
-                              'paramnum' => 2));
+                              'paramnum' => 3));
                 }
                 if ($pos[1] >= $xgrid) {
                     return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                         array('var' => '$pos[1]',
                               'was' => $pos[1],
                               'expected' => 'coordinate less than grid width',
-                              'paramnum' => 1));
+                              'paramnum' => 3));
                 }
             }
         }
@@ -703,7 +703,7 @@ class HTML_Progress_UI extends HTML_Common
      * @return     void
      * @since      1.0
      * @access     public
-     * @see        getBorderAttributes()
+     * @see        getBorderAttributes(), HTML_Progress::setBorderPainted()
      * @tutorial   ui.setborderattributes.pkg
      */
     function setBorderAttributes($attributes)
@@ -771,7 +771,7 @@ class HTML_Progress_UI extends HTML_Common
      * @return     void
      * @since      1.0
      * @access     public
-     * @see        getStringAttributes()
+     * @see        getStringAttributes(), HTML_Progress::setStringPainted()
      * @tutorial   ui.setstringattributes.pkg
      */
     function setStringAttributes($attributes)
@@ -870,54 +870,54 @@ var cellCount = %cellCount%;
 
 function setprogress(pIdent, pValue, pString, pDeterminate)
 {
-        if (isDom) {
-            prog = document.getElementById(pIdent+'%installationProgress%');
-        } else if (isIE) {
-            prog = document.all[pIdent+'%installationProgress%'];
-        } else if (isNS4) {
-            prog = document.layers[pIdent+'%installationProgress%'];
+    if (isDom) {
+        prog = document.getElementById(pIdent+'%installationProgress%');
+    } else if (isIE) {
+        prog = document.all[pIdent+'%installationProgress%'];
+    } else if (isNS4) {
+        prog = document.layers[pIdent+'%installationProgress%'];
+    }
+    if (prog != null) {
+        prog.innerHTML = pString;
+    }
+    if (pValue == pDeterminate) {
+        for (i=0; i < cellCount; i++) {
+            showCell(i, pIdent, "hidden");	
         }
-        if (prog != null) {
-            prog.innerHTML = pString;
-        }
-        if (pValue == pDeterminate) {
-            for (i=0; i < cellCount; i++) {
-                showCell(i, pIdent, "hidden");	
-            }
-        }
-        if ((pDeterminate > 0) && (pValue > 0)) {
-            i = (pValue-1) % cellCount;
+    }
+    if ((pDeterminate > 0) && (pValue > 0)) {
+        i = (pValue-1) % cellCount;
+        showCell(i, pIdent, "visible");	
+    } else {
+        for (i=pValue-1; i >=0; i--) {
             showCell(i, pIdent, "visible");	
-        } else {
-            for (i=pValue-1; i >=0; i--) {
-                showCell(i, pIdent, "visible");	
-            }
         }
+    }
+}
+
+function setVisibility(pElement, pVisibility)
+{
+    if (isDom) {
+        document.getElementById(pElement).style.visibility = pVisibility;
+    } else if (isIE) {
+        document.all[pElement].style.visibility = pVisibility;
+    } else if (isNS4) {
+        document.layers[pElement].style.visibility = pVisibility;
+    }
 }
 
 function showCell(pCell, pIdent, pVisibility)
 {
-        if (isDom) {
-            document.getElementById(pIdent+'%progressCell%'+pCell+'A').style.visibility = pVisibility;
-        } else if (isIE) {
-            document.all[pIdent+'%progressCell%'+pCell+'A'].style.visibility = pVisibility;
-        } else if (isNS4) {
-            document.layers[pIdent+'%progressCell%'+pCell+'A'].style.visibility = pVisibility;
-        }
+    setVisibility(pIdent+'%progressCell%'+pCell+'A', pVisibility);
 }
 
 function hideProgress(pIdent)
 {
-        if (isDom) {
-            document.getElementById(pIdent+'progress').style.visibility = 'hidden';
-        } else if (isIE) {
-            document.all[pIdent+'progress'].style.visibility = 'hidden';
-        } else if (isNS4) {
-            document.layers[pIdent+'progress'].style.visibility = 'hidden';
-        }
-        for (i=0; i < cellCount; i++) {
-            showCell(i, pIdent, "hidden");	
-        }
+    setVisibility(pIdent+'progress', 'hidden');
+
+    for (i=0; i < cellCount; i++) {
+        showCell(i, pIdent, "hidden");	
+    }
 }
 
 JS;
@@ -982,7 +982,7 @@ JS;
      */
     function &getStyle()
     {
-        include_once ('HTML/CSS.php');
+        include_once 'HTML/CSS.php';
         
         $progressAttr = $this->getProgressAttributes();
         $borderAttr = $this->getBorderAttributes();
@@ -1054,11 +1054,27 @@ JS;
      * @param      string    $fileMask      (optional) sprintf format for pictures filename
      *
      * @return     array
-     * @since      1.2.0
+     * @since      1.2.0RC1
      * @access     public
+     * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      */
     function drawCircleSegments($dir = '.', $fileMask = 'c%s.png')
     {
+        if (!is_string($dir)) {
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$dir',
+                      'was' => gettype($dir),
+                      'expected' => 'string',
+                      'paramnum' => 1));
+
+        } elseif (!is_string($fileMask)) {
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$fileMask',
+                      'was' => gettype($fileMask),
+                      'expected' => 'string',
+                      'paramnum' => 2));
+        }
+
         include_once 'Image/Color.php';
 
         $cellAttr  = $this->getCellAttributes();
@@ -1067,15 +1083,13 @@ JS;
         $h = $cellAttr['height'];
         $s = $cellAttr['spacing'];
         $c = intval(360 / $cellCount);
+        $cx = floor($w / 2);
         if (fmod($w,2) == 0) {
-            $cx = floor($w / 2) - 0.5;
-        } else {
-            $cx = floor($w / 2);
+            $cx = $cx - 0.5;
         }
+        $cy = floor($h / 2);
         if (fmod($h,2) == 0) {
-            $cy = floor($h / 2) - 0.5;
-        } else {
-            $cy = floor($h / 2);
+            $cy = $cy - 0.5;
         }
             
         $image = imagecreate($w, $h);
