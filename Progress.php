@@ -169,6 +169,18 @@ class HTML_Progress
      */
     var $_package;
 
+    /**
+     * Delay in milisecond before each progress cells display.
+     * 1000 ms === sleep(1)
+     * <strong>usleep()</strong> function does not run on Windows platform.
+     *
+     * @var        integer
+     * @since      1.1
+     * @access     private
+     * @see        setAnimSpeed()
+     */
+    var $_anim_speed = 0;
+
 
     /**
      * Constructor Summary
@@ -782,6 +794,42 @@ class HTML_Progress
     }
 
     /**
+     * Set the sleep delay in milisecond before each progress cells display.
+     *
+     * @param      integer   $delay         Delay in milisecond.
+     *
+     * @return     void
+     * @since      1.1
+     * @access     public
+     * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
+     */
+    function setAnimSpeed($delay)
+    {
+        if (!is_int($delay)) {
+            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                array('var' => '$delay',
+                      'was' => gettype($delay),
+                      'expected' => 'integer',
+                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+
+        } elseif ($delay < 0) {
+            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                array('var' => '$delay',
+                      'was' => $delay,
+                      'expected' => 'greater than zero',
+                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+
+        } elseif ($delay > 1000) {
+            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                array('var' => '$delay',
+                      'was' => $delay,
+                      'expected' => 'less or equal 1000',
+                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+        }
+        $this->_anim_speed = $delay;
+    }
+
+    /**
      * Get the cascading style sheet to put inline on HTML document
      *
      * @return     string
@@ -834,6 +882,7 @@ class HTML_Progress
         $_structure['borderpainted'] = $this->isBorderPainted();
         $_structure['stringpainted'] = $this->isStringPainted();
         $_structure['string'] = $this->_progressString;
+        $_structure['animspeed'] = $this->_anim_speed;
         $_structure['ui']['classID'] = get_class($ui);
         $_structure['ui']['orientation'] = $ui->getOrientation();
         $_structure['ui']['fillway'] = $ui->getFillWay();
@@ -991,6 +1040,9 @@ class HTML_Progress
             $determinate = 0;
 	}
         $bar .= '<script type="text/javascript">self.setprogress("'.$progressId.'",'.((int) $progress).',"'.$this->getString().'",'.$determinate.'); </script>';
+
+        // sleep a bit ...
+        for ($i=0; $i<($this->_anim_speed*1000); $i++) { }
 
         echo $bar;
         ob_start();
