@@ -25,11 +25,10 @@ class HTML_Progress_TestCase_getDM extends PHPUnit_TestCase
     function setUp()
     {
         error_reporting(E_ALL);
-        $this->errorThrown = false;
-        set_error_handler(array(&$this, 'errorHandler'));
 
-        $this->progress = new HTML_Progress();
-        Error_Raise::setContextGrabber($this->progress->_package, array('Error_Util', '_getFileLine'));
+        $logger['display_errors'] = 'off';                      // don't use PEAR::Log display driver
+        $logger['msgCallback'] = array(&$this, '_msgCallback'); // remove file&line context in error message
+        $this->progress = new HTML_Progress($logger);
     }
 
     function tearDown()
@@ -51,12 +50,23 @@ class HTML_Progress_TestCase_getDM extends PHPUnit_TestCase
         return false;
     }
 
-    function errorHandler($errno, $errstr, $errfile, $errline) {
-        //die("$errstr in $errfile at line $errline");
-        $this->errorThrown = true;
-        $this->assertTrue(false, $errstr);
+    function _msgCallback(&$stack, $err)
+    {
+        $message = call_user_func_array(array(&$stack, 'getErrorMessage'), array(&$stack, $err));
+        return $message;
     }
-   
+
+    function _getResult()
+    {
+        $s = &PEAR_ErrorStack::singleton('HTML_Progress');
+        if ($s->hasErrors()) {
+            $err = $s->pop();
+            $this->assertTrue(false, $err['message']);
+        } else {
+            $this->assertTrue(true);
+	}
+    }
+
     /**
      * TestCases for method getDM.
      *
@@ -81,5 +91,4 @@ class HTML_Progress_TestCase_getDM extends PHPUnit_TestCase
         $this->assertSame($this->progress->_DM, $dm);
     }
 }
-
 ?>

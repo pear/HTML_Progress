@@ -1,13 +1,13 @@
 <?php
 /**
- * API setDM Unit tests for HTML_Progress class.
+ * API setModel Unit tests for HTML_Progress class.
  * 
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
  */
 
-class HTML_Progress_TestCase_setDM extends PHPUnit_TestCase
+class HTML_Progress_TestCase_setModel extends PHPUnit_TestCase
 {
     /**
      * HTML_Progress instance
@@ -16,7 +16,7 @@ class HTML_Progress_TestCase_setDM extends PHPUnit_TestCase
      */
     var $progress;
 
-    function HTML_Progress_TestCase_setDM($name)
+    function HTML_Progress_TestCase_setModel($name)
     {
         $this->PHPUnit_TestCase($name);
     }
@@ -67,39 +67,34 @@ class HTML_Progress_TestCase_setDM extends PHPUnit_TestCase
     }
 
     /**
-     * TestCases for method setDM.
+     * TestCases for method setModel.
      *
      */
-    function test_setDM_fail_no_class()
+    function test_setModel_fail_no_file()
     {
-        if (!$this->_methodExists('setDM')) {
+        if (!$this->_methodExists('setModel')) {
             return;
         }
-        $this->progress->setDM('timer');
+        $this->progress->setModel('progress360.php', 'phpArray');
         $this->_getResult();
     }
 
-    function test_setDM()
+    function test_setModel_fail_invalid_filetype()
     {
-        if (!$this->_methodExists('setDM')) {
+        if (!$this->_methodExists('setModel')) {
             return;
         }
-        $this->progress->setDM('download');
+        $this->progress->setModel('ancestor.ini', 'simpleXML');
         $this->_getResult();
     }
-}
 
-class timer
-{
-    function timer()
+    function test_setModel()
     {
-    }
-}
-
-class download extends HTML_Progress_DM
-{
-    function download()
-    {
+        if (!$this->_methodExists('setModel')) {
+            return;
+        }
+        $this->progress->setModel('ancestor.ini', 'iniCommented');
+        $this->_getResult();
     }
 }
 ?>

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * API setStringPainted Unit tests for HTML_Progress class.
  * 
@@ -24,12 +23,12 @@ class HTML_Progress_TestCase_setStringPainted extends PHPUnit_TestCase
 
     function setUp()
     {
-        error_reporting(E_ALL);
-        $this->errorThrown = false;
-        set_error_handler(array(&$this, 'errorHandler'));
+        error_reporting(E_ALL & ~E_NOTICE);
 
-        $this->progress = new HTML_Progress();
-        Error_Raise::setContextGrabber($this->progress->_package, array('Error_Util', '_getFileLine'));
+        $logger['display_errors'] = 'off';                        // don't use PEAR::Log display driver
+        $logger['msgCallback'] = array(&$this, '_msgCallback');   // remove file&line context in error message
+        $logger['pushCallback'] = array(&$this, '_pushCallback'); // don't die when an exception is thrown
+        $this->progress = new HTML_Progress($logger);
     }
 
     function tearDown()
@@ -51,10 +50,26 @@ class HTML_Progress_TestCase_setStringPainted extends PHPUnit_TestCase
         return false;
     }
 
-    function errorHandler($errno, $errstr, $errfile, $errline) {
-        //die("$errstr in $errfile at line $errline");
-        $this->errorThrown = true;
-        $this->assertTrue(false, $errstr);
+    function _msgCallback(&$stack, $err)
+    {
+        $message = call_user_func_array(array(&$stack, 'getErrorMessage'), array(&$stack, $err));
+        return $message;
+    }
+
+    function _pushCallback($err)
+    {
+        // don't die if the error is an exception (as default callback)
+    }
+
+    function _getResult()
+    {
+        $s = &PEAR_ErrorStack::singleton('HTML_Progress');
+        if ($s->hasErrors()) {
+            $err = $s->pop();
+            $this->assertTrue(false, $err['message']);
+        } else {
+            $this->assertTrue(true);
+	}
     }
    
     /**
@@ -67,6 +82,7 @@ class HTML_Progress_TestCase_setStringPainted extends PHPUnit_TestCase
             return;
         }
         $this->progress->setStringPainted('');
+        $this->_getResult();
     }
 
     function test_setStringPainted()
@@ -75,9 +91,7 @@ class HTML_Progress_TestCase_setStringPainted extends PHPUnit_TestCase
             return;
         }
         $this->progress->setStringPainted(true);
-
-        $this->assertFalse($this->errorThrown, 'error thrown');
+        $this->_getResult();
     }
 }
-
 ?>

@@ -45,22 +45,31 @@ $title = 'PhpUnit test run, HTML_Progress class';
 <h2>Tests</h2>
 	<?php
 	$testcases = array(
-   	    'HTML_Progress_TestCase_DM',
-    	    'HTML_Progress_TestCase_UI_setOrientation',
-    	    'HTML_Progress_TestCase_UI_setFillWay',
-    	    'HTML_Progress_TestCase_UI_setCellCount',
-    	    'HTML_Progress_TestCase_UI_setCellAttributes',
-    	    'HTML_Progress_TestCase_UI_setScript',
     	    'HTML_Progress_TestCase_setIndeterminate',
             'HTML_Progress_TestCase_setBorderPainted',
             'HTML_Progress_TestCase_setStringPainted',
-            'HTML_Progress_TestCase_getString',
-            'HTML_Progress_TestCase_getDM',
             'HTML_Progress_TestCase_setDM',
-            'HTML_Progress_TestCase_getUI',
             'HTML_Progress_TestCase_setUI',
+            'HTML_Progress_TestCase_setModel',
+            'HTML_Progress_TestCase_setAnimSpeed',
             'HTML_Progress_TestCase_addListener',
-            'HTML_Progress_TestCase_removeListener'
+            'HTML_Progress_TestCase_removeListener',
+
+    	    'HTML_Progress_TestCase_UI_setOrientation',
+    	    'HTML_Progress_TestCase_UI_setFillWay',
+    	    'HTML_Progress_TestCase_UI_setCellCount',
+    	    'HTML_Progress_TestCase_UI_getCellAttributes',
+    	    'HTML_Progress_TestCase_UI_setCellAttributes',
+    	    'HTML_Progress_TestCase_UI_setCellCoordinates',
+    	    'HTML_Progress_TestCase_UI_getBorderAttributes',
+    	    'HTML_Progress_TestCase_UI_getStringAttributes',
+    	    'HTML_Progress_TestCase_UI_getProgressAttributes',
+    	    'HTML_Progress_TestCase_UI_setScript',
+
+   	    'HTML_Progress_TestCase_DM_setMinimum',
+   	    'HTML_Progress_TestCase_DM_setMaximum',
+   	    'HTML_Progress_TestCase_DM_setIncrement',
+   	    'HTML_Progress_TestCase_DM_setValue'
 	);
 
 	

@@ -1,13 +1,13 @@
 <?php
 /**
- * API setDM Unit tests for HTML_Progress class.
+ * API getStringAttributes Unit tests for HTML_Progress_UI class.
  * 
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
  */
 
-class HTML_Progress_TestCase_setDM extends PHPUnit_TestCase
+class HTML_Progress_TestCase_UI_getStringAttributes extends PHPUnit_TestCase
 {
     /**
      * HTML_Progress instance
@@ -15,8 +15,9 @@ class HTML_Progress_TestCase_setDM extends PHPUnit_TestCase
      * @var        object
      */
     var $progress;
+    var $ui;
 
-    function HTML_Progress_TestCase_setDM($name)
+    function HTML_Progress_TestCase_UI_getStringAttributes($name)
     {
         $this->PHPUnit_TestCase($name);
     }
@@ -25,9 +26,11 @@ class HTML_Progress_TestCase_setDM extends PHPUnit_TestCase
     {
         error_reporting(E_ALL & ~E_NOTICE);
 
-        $logger['display_errors'] = 'off';                      // don't use PEAR::Log display driver
-        $logger['msgCallback'] = array(&$this, '_msgCallback'); // remove file&line context in error message
+        $logger['display_errors'] = 'off';                        // don't use PEAR::Log display driver
+        $logger['msgCallback'] = array(&$this, '_msgCallback');   // remove file&line context in error message
+        $logger['pushCallback'] = array(&$this, '_pushCallback'); // don't die when an exception is thrown
         $this->progress = new HTML_Progress($logger);
+        $this->ui =& $this->progress->getUI();
     }
 
     function tearDown()
@@ -42,10 +45,10 @@ class HTML_Progress_TestCase_setDM extends PHPUnit_TestCase
 
     function _methodExists($name) 
     {
-        if (in_array(strtolower($name), get_class_methods($this->progress))) {
+        if (in_array(strtolower($name), get_class_methods($this->ui))) {
             return true;
         }
-        $this->assertTrue(false, 'method '. $name . ' not implemented in ' . get_class($this->progress));
+        $this->assertTrue(false, 'method '. $name . ' not implemented in ' . get_class($this->ui));
         return false;
     }
 
@@ -55,6 +58,11 @@ class HTML_Progress_TestCase_setDM extends PHPUnit_TestCase
         return $message;
     }
 
+    function _pushCallback($err)
+    {
+        // don't die if the error is an exception (as default callback)
+    }
+  
     function _getResult()
     {
         $s = &PEAR_ErrorStack::singleton('HTML_Progress');
@@ -67,39 +75,25 @@ class HTML_Progress_TestCase_setDM extends PHPUnit_TestCase
     }
 
     /**
-     * TestCases for method setDM.
+     * TestCases for method getStringAttributes.
      *
      */
-    function test_setDM_fail_no_class()
+    function test_getStringAttributes_fail_no_boolean()
     {
-        if (!$this->_methodExists('setDM')) {
+        if (!$this->_methodExists('getStringAttributes')) {
             return;
         }
-        $this->progress->setDM('timer');
+        $this->ui->getStringAttributes('');
         $this->_getResult();
     }
 
-    function test_setDM()
+    function test_getStringAttributes()
     {
-        if (!$this->_methodExists('setDM')) {
+        if (!$this->_methodExists('getStringAttributes')) {
             return;
         }
-        $this->progress->setDM('download');
+        $this->ui->getStringAttributes(true);
         $this->_getResult();
-    }
-}
-
-class timer
-{
-    function timer()
-    {
-    }
-}
-
-class download extends HTML_Progress_DM
-{
-    function download()
-    {
     }
 }
 ?>

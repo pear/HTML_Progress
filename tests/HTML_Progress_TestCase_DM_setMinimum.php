@@ -1,13 +1,13 @@
 <?php
 /**
- * API setCellAttributes Unit tests for HTML_Progress_UI class.
+ * API setMinimum Unit tests for HTML_Progress_DM class.
  * 
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
  */
 
-class HTML_Progress_TestCase_UI_setCellAttributes extends PHPUnit_TestCase
+class HTML_Progress_TestCase_DM_setMinimum extends PHPUnit_TestCase
 {
     /**
      * HTML_Progress instance
@@ -15,9 +15,9 @@ class HTML_Progress_TestCase_UI_setCellAttributes extends PHPUnit_TestCase
      * @var        object
      */
     var $progress;
-    var $ui;
+    var $dm;
 
-    function HTML_Progress_TestCase_UI_setCellAttributes($name)
+    function HTML_Progress_TestCase_DM_setMinimum($name)
     {
         $this->PHPUnit_TestCase($name);
     }
@@ -30,7 +30,7 @@ class HTML_Progress_TestCase_UI_setCellAttributes extends PHPUnit_TestCase
         $logger['msgCallback'] = array(&$this, '_msgCallback');   // remove file&line context in error message
         $logger['pushCallback'] = array(&$this, '_pushCallback'); // don't die when an exception is thrown
         $this->progress = new HTML_Progress($logger);
-        $this->ui =& $this->progress->getUI();
+        $this->dm =& $this->progress->getDM();
     }
 
     function tearDown()
@@ -45,10 +45,10 @@ class HTML_Progress_TestCase_UI_setCellAttributes extends PHPUnit_TestCase
 
     function _methodExists($name) 
     {
-        if (in_array(strtolower($name), get_class_methods($this->ui))) {
+        if (in_array(strtolower($name), get_class_methods($this->dm))) {
             return true;
         }
-        $this->assertTrue(false, 'method '. $name . ' not implemented in ' . get_class($this->ui));
+        $this->assertTrue(false, 'method '. $name . ' not implemented in ' . get_class($this->dm));
         return false;
     }
 
@@ -62,7 +62,7 @@ class HTML_Progress_TestCase_UI_setCellAttributes extends PHPUnit_TestCase
     {
         // don't die if the error is an exception (as default callback)
     }
-  
+
     function _getResult()
     {
         $s = &PEAR_ErrorStack::singleton('HTML_Progress');
@@ -75,42 +75,42 @@ class HTML_Progress_TestCase_UI_setCellAttributes extends PHPUnit_TestCase
     }
 
     /**
-     * TestCases for method setCellAttributes.
+     * TestCases for method setMinimum.
      *
      */
-    function test_setCellAttributes_fail_no_integer()
+    function test_setMinimum_fail_no_integer()
     {
-        if (!$this->_methodExists('setCellAttributes')) {
+        if (!$this->_methodExists('setMinimum')) {
             return;
         }
-        $this->ui->setCellAttributes('','');
+        $this->dm->setMinimum('');
         $this->_getResult();
     }
 
-    function test_setCellAttributes_fail_no_positive()
+    function test_setMinimum_fail_no_positive()
     {
-        if (!$this->_methodExists('setCellAttributes')) {
+        if (!$this->_methodExists('setMinimum')) {
             return;
         }
-        $this->ui->setCellAttributes('',-1);
+        $this->dm->setMinimum(-1);
         $this->_getResult();
     }
 
-    function test_setCellAttributes_fail_invalid_cellindex()
+    function test_setMinimum_fail_greater_max()
     {
-        if (!$this->_methodExists('setCellAttributes')) {
+        if (!$this->_methodExists('setMinimum')) {
             return;
         }
-        $this->ui->setCellAttributes('',11);
+        $this->dm->setMinimum(500);
         $this->_getResult();
     }
 
-    function test_setCellAttributes()
+    function test_setMinimum()
     {
-        if (!$this->_methodExists('setCellAttributes')) {
+        if (!$this->_methodExists('setMinimum')) {
             return;
         }
-        $this->ui->setCellAttributes('color = #FF0000');
+        $this->dm->setMinimum(10);
         $this->_getResult();
     }
 }

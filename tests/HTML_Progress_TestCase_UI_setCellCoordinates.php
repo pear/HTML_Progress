@@ -1,13 +1,13 @@
 <?php
 /**
- * API setCellAttributes Unit tests for HTML_Progress_UI class.
+ * API setCellCoordinates Unit tests for HTML_Progress_UI class.
  * 
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
  */
 
-class HTML_Progress_TestCase_UI_setCellAttributes extends PHPUnit_TestCase
+class HTML_Progress_TestCase_UI_setCellCoordinates extends PHPUnit_TestCase
 {
     /**
      * HTML_Progress instance
@@ -17,7 +17,7 @@ class HTML_Progress_TestCase_UI_setCellAttributes extends PHPUnit_TestCase
     var $progress;
     var $ui;
 
-    function HTML_Progress_TestCase_UI_setCellAttributes($name)
+    function HTML_Progress_TestCase_UI_setCellCoordinates($name)
     {
         $this->PHPUnit_TestCase($name);
     }
@@ -75,42 +75,42 @@ class HTML_Progress_TestCase_UI_setCellAttributes extends PHPUnit_TestCase
     }
 
     /**
-     * TestCases for method setCellAttributes.
+     * TestCases for method setCellCoordinates.
      *
      */
-    function test_setCellAttributes_fail_no_integer()
+    function test_setCellCoordinates_fail_no_integer()
     {
-        if (!$this->_methodExists('setCellAttributes')) {
+        if (!$this->_methodExists('setCellCoordinates')) {
             return;
         }
-        $this->ui->setCellAttributes('','');
+        $this->ui->setCellCoordinates('',2);
         $this->_getResult();
     }
 
-    function test_setCellAttributes_fail_no_positive()
+    function test_setCellCoordinates_fail_no_positive()
     {
-        if (!$this->_methodExists('setCellAttributes')) {
+        if (!$this->_methodExists('setCellCoordinates')) {
             return;
         }
-        $this->ui->setCellAttributes('',-1);
+        $this->ui->setCellCoordinates(-1,4);
         $this->_getResult();
     }
 
-    function test_setCellAttributes_fail_invalid_cellindex()
+    function test_setCellCoordinates_fail_too_small()
     {
-        if (!$this->_methodExists('setCellAttributes')) {
+        if (!$this->_methodExists('setCellCoordinates')) {
             return;
         }
-        $this->ui->setCellAttributes('',11);
+        $this->ui->setCellCoordinates(1,2);
         $this->_getResult();
     }
 
-    function test_setCellAttributes()
+    function test_setCellCoordinates()
     {
-        if (!$this->_methodExists('setCellAttributes')) {
+        if (!$this->_methodExists('setCellCoordinates')) {
             return;
         }
-        $this->ui->setCellAttributes('color = #FF0000');
+        $this->ui->setCellCoordinates(5,5);
         $this->_getResult();
     }
 }

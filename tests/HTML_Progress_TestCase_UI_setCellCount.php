@@ -1,5 +1,4 @@
 <?php
-
 /**
  * API setCellCount Unit tests for HTML_Progress_UI class.
  * 
@@ -11,10 +10,11 @@
 class HTML_Progress_TestCase_UI_setCellCount extends PHPUnit_TestCase
 {
     /**
-     * HTML_Progress_UI instance
+     * HTML_Progress instance
      *
      * @var        object
      */
+    var $progress;
     var $ui;
 
     function HTML_Progress_TestCase_UI_setCellCount($name)
@@ -24,17 +24,18 @@ class HTML_Progress_TestCase_UI_setCellCount extends PHPUnit_TestCase
 
     function setUp()
     {
-        error_reporting(E_ALL);
-        $this->errorThrown = false;
-        set_error_handler(array(&$this, 'errorHandler'));
+        error_reporting(E_ALL & ~E_NOTICE);
 
-        $this->ui = new HTML_Progress_UI();
-        Error_Raise::setContextGrabber($this->ui->_package, array('Error_Util', '_getFileLine'));
+        $logger['display_errors'] = 'off';                        // don't use PEAR::Log display driver
+        $logger['msgCallback'] = array(&$this, '_msgCallback');   // remove file&line context in error message
+        $logger['pushCallback'] = array(&$this, '_pushCallback'); // don't die when an exception is thrown
+        $this->progress = new HTML_Progress($logger);
+        $this->ui =& $this->progress->getUI();
     }
 
     function tearDown()
     {
-        unset($this->ui);
+        unset($this->progress);
     }
 
     function _stripWhitespace($str)
@@ -51,10 +52,26 @@ class HTML_Progress_TestCase_UI_setCellCount extends PHPUnit_TestCase
         return false;
     }
 
-    function errorHandler($errno, $errstr, $errfile, $errline) {
-        //die("$errstr in $errfile at line $errline");
-        $this->errorThrown = true;
-        $this->assertTrue(false, $errstr);
+    function _msgCallback(&$stack, $err)
+    {
+        $message = call_user_func_array(array(&$stack, 'getErrorMessage'), array(&$stack, $err));
+        return $message;
+    }
+
+    function _pushCallback($err)
+    {
+        // don't die if the error is an exception (as default callback)
+    }
+  
+    function _getResult()
+    {
+        $s = &PEAR_ErrorStack::singleton('HTML_Progress');
+        if ($s->hasErrors()) {
+            $err = $s->pop();
+            $this->assertTrue(false, $err['message']);
+        } else {
+            $this->assertTrue(true);
+	}
     }
    
     /**
@@ -67,6 +84,7 @@ class HTML_Progress_TestCase_UI_setCellCount extends PHPUnit_TestCase
             return;
         }
         $this->ui->setCellCount('');
+        $this->_getResult();
     }
 
     function test_setCellCount_fail_less_1()
@@ -75,6 +93,7 @@ class HTML_Progress_TestCase_UI_setCellCount extends PHPUnit_TestCase
             return;
         }
         $this->ui->setCellCount(0);
+        $this->_getResult();
     }
 
     function test_setCellCount_horizontal_valid_width()
@@ -110,5 +129,4 @@ class HTML_Progress_TestCase_UI_setCellCount extends PHPUnit_TestCase
         $this->assertFalse($this->errorThrown, 'error thrown');
     }
 }
-
 ?>

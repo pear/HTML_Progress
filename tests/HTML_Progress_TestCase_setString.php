@@ -1,13 +1,14 @@
 <?php
+
 /**
- * API setDM Unit tests for HTML_Progress class.
+ * API setString Unit tests for HTML_Progress class.
  * 
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
  */
 
-class HTML_Progress_TestCase_setDM extends PHPUnit_TestCase
+class HTML_Progress_TestCase_setString extends PHPUnit_TestCase
 {
     /**
      * HTML_Progress instance
@@ -16,14 +17,14 @@ class HTML_Progress_TestCase_setDM extends PHPUnit_TestCase
      */
     var $progress;
 
-    function HTML_Progress_TestCase_setDM($name)
+    function HTML_Progress_TestCase_setString($name)
     {
         $this->PHPUnit_TestCase($name);
     }
 
     function setUp()
     {
-        error_reporting(E_ALL & ~E_NOTICE);
+        error_reporting(E_ALL);
 
         $logger['display_errors'] = 'off';                      // don't use PEAR::Log display driver
         $logger['msgCallback'] = array(&$this, '_msgCallback'); // remove file&line context in error message
@@ -67,39 +68,34 @@ class HTML_Progress_TestCase_setDM extends PHPUnit_TestCase
     }
 
     /**
-     * TestCases for method setDM.
+     * TestCases for method setString.
      *
      */
-    function test_setDM_fail_no_class()
+    function test_setString_fail()
     {
-        if (!$this->_methodExists('setDM')) {
+        if (!$this->_methodExists('setString')) {
             return;
         }
-        $this->progress->setDM('timer');
-        $this->_getResult();
+        $this->progress->setStringPainted(false);
+        $str = '"Receiving 1 out of 5"';
+        $this->progress->setString($str);
+        $percent = $this->progress->getString();
+
+        $this->assertEquals($str, '"'.$percent.'"');
     }
 
-    function test_setDM()
+    function test_setString()
     {
-        if (!$this->_methodExists('setDM')) {
+        if (!$this->_methodExists('setString')) {
             return;
         }
-        $this->progress->setDM('download');
-        $this->_getResult();
+        $this->progress->setStringPainted(true);
+        $str = '"Receiving 1 out of 5"';
+        $this->progress->setString($str);
+        $percent = $this->progress->getString();
+
+        $this->assertEquals($str, $percent);
     }
 }
 
-class timer
-{
-    function timer()
-    {
-    }
-}
-
-class download extends HTML_Progress_DM
-{
-    function download()
-    {
-    }
-}
 ?>

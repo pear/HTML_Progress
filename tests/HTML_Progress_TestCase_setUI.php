@@ -1,5 +1,4 @@
 <?php
-
 /**
  * API setUI Unit tests for HTML_Progress class.
  * 
@@ -24,12 +23,11 @@ class HTML_Progress_TestCase_setUI extends PHPUnit_TestCase
 
     function setUp()
     {
-        error_reporting(E_ALL);
-        $this->errorThrown = false;
-        set_error_handler(array(&$this, 'errorHandler'));
+        error_reporting(E_ALL & ~E_NOTICE);
 
-        $this->progress = new HTML_Progress();
-        Error_Raise::setContextGrabber($this->progress->_package, array('Error_Util', '_getFileLine'));
+        $logger['display_errors'] = 'off';                      // don't use PEAR::Log display driver
+        $logger['msgCallback'] = array(&$this, '_msgCallback'); // remove file&line context in error message
+        $this->progress = new HTML_Progress($logger);
     }
 
     function tearDown()
@@ -51,12 +49,23 @@ class HTML_Progress_TestCase_setUI extends PHPUnit_TestCase
         return false;
     }
 
-    function errorHandler($errno, $errstr, $errfile, $errline) {
-        //die("$errstr in $errfile at line $errline");
-        $this->errorThrown = true;
-        $this->assertTrue(false, $errstr);
+    function _msgCallback(&$stack, $err)
+    {
+        $message = call_user_func_array(array(&$stack, 'getErrorMessage'), array(&$stack, $err));
+        return $message;
     }
-   
+
+    function _getResult()
+    {
+        $s = &PEAR_ErrorStack::singleton('HTML_Progress');
+        if ($s->hasErrors()) {
+            $err = $s->pop();
+            $this->assertTrue(false, $err['message']);
+        } else {
+            $this->assertTrue(true);
+	}
+    }
+
     /**
      * TestCases for method setUI.
      *
@@ -67,6 +76,7 @@ class HTML_Progress_TestCase_setUI extends PHPUnit_TestCase
             return;
         }
         $this->progress->setUI('progress360');
+        $this->_getResult();
     }
 
     function test_setUI()
@@ -75,8 +85,7 @@ class HTML_Progress_TestCase_setUI extends PHPUnit_TestCase
             return;
         }
         $this->progress->setUI('progress180');
-
-        $this->assertFalse($this->errorThrown, 'error thrown');
+        $this->_getResult();
     }
 }
 
@@ -93,5 +102,4 @@ class progress180 extends HTML_Progress_UI
     {
     }
 }
-
 ?>
