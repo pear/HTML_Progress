@@ -37,7 +37,7 @@ $tpl =& new HTML_Template_ITX('./templates');
 // $tpl =& new HTML_Template_Sigma('./templates');
 
 
-$tpl->loadTemplateFile('itdynamic.html');
+$tpl->loadTemplateFile('itdynamic_monitor.html');
 
 $tpl->setVariable(array(
     'qf_style'  => "body {font-family: Verdana, Arial; } \n" . $monitor->getStyle(),
