@@ -45,6 +45,7 @@ $title = 'PhpUnit test run, HTML_Progress class';
 	<?php
 	$testcases = array(
             'HTML_Progress_TestCase_addListener',
+   	    'HTML_Progress_TestCase_DM_new',
    	    'HTML_Progress_TestCase_DM_setIncrement',
    	    'HTML_Progress_TestCase_DM_setMaximum',
    	    'HTML_Progress_TestCase_DM_setMinimum',
@@ -65,6 +66,7 @@ $title = 'PhpUnit test run, HTML_Progress class';
     	    'HTML_Progress_TestCase_UI_getCellAttributes',
     	    'HTML_Progress_TestCase_UI_getProgressAttributes',
     	    'HTML_Progress_TestCase_UI_getStringAttributes',
+   	    'HTML_Progress_TestCase_UI_new',
     	    'HTML_Progress_TestCase_UI_setCellAttributes',
     	    'HTML_Progress_TestCase_UI_setCellCoordinates',
     	    'HTML_Progress_TestCase_UI_setCellCount',
