@@ -1,5 +1,23 @@
 $Id$
 
+-------------------------Release 1.2.0RC2---------------------
+2004-05-05  Laurent Laville <pear@laurent-laville.org>
+    * The second release candidate of HTML_Progress 1.2.0
+      is finally published on PEAR website.
+    * PHPUnit testcases are PEAR_ErrorStack fully compatible
+
+2004-05-05  Laurent Laville <pear@laurent-laville.org>
+    * added more check on parameters of method setCellCoordinates
+    * cleensweep on HTML_Progress_Model class error manager
+
+2004-05-04  Laurent Laville <pear@laurent-laville.org>
+    * added option '_pushCallback' (see PEAR_ErrorStack)
+      on HTML_Progress stack initialization
+
+2004-05-01  Laurent Laville <pear@laurent-laville.org>
+    * Fixed the square background shadow problem
+      when using circle, ellipse shapes family
+
 -------------------------Release 1.2.0RC1---------------------
 2004-04-18  Laurent Laville <pear@laurent-laville.org>
     * The first release candidate of HTML_Progress 1.2.0
