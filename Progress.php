@@ -108,7 +108,7 @@ define('HTML_PROGRESS_ERRORSTACK_LOG', 3);
 define('HTML_PROGRESS_ERRORSTACK_IGNORE', 4);
 /**
  * If this is returned, then the error will only be logged, but not pushed
- * onto the error stack because the script will die.
+ * onto the error stack because will halt script execution.
  */
 define('HTML_PROGRESS_ERRORSTACK_LOGANDDIE', 5);
 /**#@-*/
@@ -140,23 +140,23 @@ define('HTML_PROGRESS_LOG_TYPE_FILE',    3);
  * This will be used to generate the error message
  * from the error code.
  * 
- * @global     false|string|array      $GLOBALS['_HTML_PROGRESS_DEFAULT_MSGCALLBACK']
+ * @global     false|string|array      $GLOBALS['_HTML_PROGRESS_CALLBACK_MESSAGE']
  * @since      1.2.0
  * @access     private
  * @see        HTML_Progress::_initErrorHandler
  */
-$GLOBALS['_HTML_PROGRESS_DEFAULT_MSGCALLBACK'] = false;
+$GLOBALS['_HTML_PROGRESS_CALLBACK_MESSAGE'] = false;
 
 /**
  * Global error context callback.
  * This will be used to generate the error context for an error.
  * 
- * @global     false|string|array      $GLOBALS['_HTML_PROGRESS_DEFAULT_CONTEXTCALLBACK']
+ * @global     false|string|array      $GLOBALS['_HTML_PROGRESS_CALLBACK_CONTEXT']
  * @since      1.2.0
  * @access     private
  * @see        HTML_Progress::_initErrorHandler
  */
-$GLOBALS['_HTML_PROGRESS_DEFAULT_CONTEXTCALLBACK'] = false;
+$GLOBALS['_HTML_PROGRESS_CALLBACK_CONTEXT'] = false;
 
 /**
  * Global error push callback.
@@ -164,23 +164,23 @@ $GLOBALS['_HTML_PROGRESS_DEFAULT_CONTEXTCALLBACK'] = false;
  * The return value will be used to determine whether to allow 
  * an error to be pushed or logged.
  * 
- * @global     false|string|array      $GLOBALS['_HTML_PROGRESS_DEFAULT_PUSHCALLBACK']
+ * @global     false|string|array      $GLOBALS['_HTML_PROGRESS_CALLBACK_PUSH']
  * @since      1.2.0
  * @access     private
  * @see        HTML_Progress::_initErrorHandler
  */
-$GLOBALS['_HTML_PROGRESS_DEFAULT_PUSHCALLBACK'] = false;
+$GLOBALS['_HTML_PROGRESS_CALLBACK_PUSH'] = false;
 
 /**
  * Global error handler callback.
  * This will handle any errors raised by this package.
  * 
- * @global     false|string|array      $GLOBALS['_HTML_PROGRESS_DEFAULT_ERRORCALLBACK']
+ * @global     false|string|array      $GLOBALS['_HTML_PROGRESS_CALLBACK_ERRORHANDLER']
  * @since      1.2.0
  * @access     private
  * @see        HTML_Progress::_initErrorHandler
  */
-$GLOBALS['_HTML_PROGRESS_DEFAULT_ERRORCALLBACK'] = false;
+$GLOBALS['_HTML_PROGRESS_CALLBACK_ERRORHANDLER'] = false;
 
 /**
  * Global associative array of key-value pairs 
@@ -1352,7 +1352,11 @@ class HTML_Progress
     }
 
     /**
-     * Default user callback when none are defined
+     * Default user callback when none are defined.
+     * Delay execution of progress meter for the given number of milliseconds.
+     *
+     * NOTE: The function {@link http://www.php.net/manual/en/function.usleep.php}
+     *       did not work on Windows systems until PHP 5.0.0
      *
      * @return     void
      * @since      1.2.0RC3
@@ -1361,8 +1365,14 @@ class HTML_Progress
      */
     function sleep()
     {
-        // sleep a bit ...
-        for ($i=0; $i<($this->getAnimSpeed()*1000); $i++) { }
+        // convert delay from milliseconds to microseconds
+        $usecs = $this->getAnimSpeed()*1000; 
+        
+        if ((substr(PHP_OS, 0, 3) == 'WIN') && (substr(PHP_VERSION,0,1) < '5') ){
+            for ($i=0; $i<$usecs; $i++) { }
+        } else {
+            usleep($usecs);
+	}
     }
 
     /**
@@ -1885,30 +1895,30 @@ class HTML_Progress
     {
         // error message mapping callback
         if (isset($prefs['message_callback']) && is_callable($prefs['message_callback'])) {
-            $GLOBALS['_HTML_PROGRESS_DEFAULT_MSGCALLBACK'] = $prefs['message_callback'];
+            $GLOBALS['_HTML_PROGRESS_CALLBACK_MESSAGE'] = $prefs['message_callback'];
         } else {
-            $GLOBALS['_HTML_PROGRESS_DEFAULT_MSGCALLBACK'] = array('HTML_Progress', '_msgCallback');
+            $GLOBALS['_HTML_PROGRESS_CALLBACK_MESSAGE'] = array('HTML_Progress', '_msgCallback');
         }
 
         // error context mapping callback
         if (isset($prefs['context_callback']) && is_callable($prefs['context_callback'])) {
-            $GLOBALS['_HTML_PROGRESS_DEFAULT_CONTEXTCALLBACK'] = $prefs['context_callback'];
+            $GLOBALS['_HTML_PROGRESS_CALLBACK_CONTEXT'] = $prefs['context_callback'];
         } else {
-            $GLOBALS['_HTML_PROGRESS_DEFAULT_CONTEXTCALLBACK'] = array('HTML_Progress', '_getBacktrace');
+            $GLOBALS['_HTML_PROGRESS_CALLBACK_CONTEXT'] = array('HTML_Progress', '_getBacktrace');
         }
 
         // determine whether to allow an error to be pushed or logged
         if (isset($prefs['push_callback']) && is_callable($prefs['push_callback'])) {
-            $GLOBALS['_HTML_PROGRESS_DEFAULT_PUSHCALLBACK'] = $prefs['push_callback'];
+            $GLOBALS['_HTML_PROGRESS_CALLBACK_PUSH'] = $prefs['push_callback'];
         } else {
-            $GLOBALS['_HTML_PROGRESS_DEFAULT_PUSHCALLBACK'] = array('HTML_Progress', '_handleError');
+            $GLOBALS['_HTML_PROGRESS_CALLBACK_PUSH'] = array('HTML_Progress', '_handleError');
         }
 
         // default error handler will use PEAR_Error
         if (isset($prefs['error_handler']) && is_callable($prefs['error_handler'])) {
-            $GLOBALS['_HTML_PROGRESS_DEFAULT_ERRORCALLBACK'] = $prefs['error_handler'];
+            $GLOBALS['_HTML_PROGRESS_CALLBACK_ERRORHANDLER'] = $prefs['error_handler'];
         } else {
-            $GLOBALS['_HTML_PROGRESS_DEFAULT_ERRORCALLBACK'] = array('HTML_Progress', '_errorHandler');
+            $GLOBALS['_HTML_PROGRESS_CALLBACK_ERRORHANDLER'] = array('HTML_Progress', '_errorHandler');
         }
 
         // only a display handler is set by default with specific settings
@@ -2014,9 +2024,11 @@ class HTML_Progress
                               $err['context']);
 
         if (isset($err['context'])) {
-            $file = $err['context']['file'];
-            $line = $err['context']['line'];
-            $func = $err['context']['class'].'::'.$err['context']['function'];
+            $file  = $err['context']['file'];
+            $line  = $err['context']['line'];
+            $func  = $err['context']['class'];
+            $func .= $err['context']['type'];
+            $func .= $err['context']['function'];
         }
 
         $display_errors = ini_get('display_errors');
@@ -2143,20 +2155,25 @@ class HTML_Progress
      *
      * @param      integer   $code       Error code.
      * @param      string    $level      The error level of the message. 
-     *                                   Valid are PEAR_LOG_* constants
      * @param      array     $params     Associative array of error parameters
      *
-     * @return     false|PEAR_Error      clone of PEAR_ErrorStack instance,
+     * @return     NULL|PEAR_Error       PEAR_Error instance,
      *                                   with context info if PHP 4.3.0+
      * @since      1.2.0RC1
      * @access     public
      * @static
+     * @see        hasErrors(), getError()
      */
     function raiseError($code, $level, $params)
     {
+        // obey at protocol
+        if (error_reporting() == 0) {
+            return; 
+        }
+
         // grab error context
-        $context = call_user_func($GLOBALS['_HTML_PROGRESS_DEFAULT_CONTEXTCALLBACK']);
-       
+        $context = call_user_func($GLOBALS['_HTML_PROGRESS_CALLBACK_CONTEXT']);
+
         // save error
         $time = explode(' ', microtime());
         $time = $time[1] + $time[0];
@@ -2170,11 +2187,11 @@ class HTML_Progress
                );
 
         // set up the error message, if necessary
-        $err['message'] = call_user_func($GLOBALS['_HTML_PROGRESS_DEFAULT_MSGCALLBACK'], $err);
+        $err['message'] = call_user_func($GLOBALS['_HTML_PROGRESS_CALLBACK_MESSAGE'], $err);
 
         $push = $log = true;
         $die = false;
-        $action = call_user_func($GLOBALS['_HTML_PROGRESS_DEFAULT_PUSHCALLBACK'], $err);
+        $action = call_user_func($GLOBALS['_HTML_PROGRESS_CALLBACK_PUSH'], $err);
 
         switch($action){
             case HTML_PROGRESS_ERRORSTACK_IGNORE: 
@@ -2198,8 +2215,8 @@ class HTML_Progress
             array_unshift($GLOBALS['_HTML_PROGRESS_ERRORSTACK'], $err);
         }
         if ($log) {
-            // standard PEAR error
-            $e = call_user_func($GLOBALS['_HTML_PROGRESS_DEFAULT_ERRORCALLBACK'], $err);
+            // default callback returns a PEAR_Error object
+            $e = call_user_func($GLOBALS['_HTML_PROGRESS_CALLBACK_ERRORHANDLER'], $err);
         }
         if ($die) {
             die();
@@ -2208,12 +2225,13 @@ class HTML_Progress
     }
 
     /**
-     * Determine whether there are any errors on the HTML_Progress stack
+     * Determine whether there are errors into the HTML_Progress stack
      *
-     * @return     boolean
+     * @return     integer
      * @since      1.2.0RC3
      * @access     public
      * @static
+     * @see        getError(), raiseError()
      */
     function hasErrors()
     {
@@ -2227,6 +2245,7 @@ class HTML_Progress
      * @since      1.2.0RC3
      * @access     public
      * @static
+     * @see        hasErrors(), raiseError()
      */
     function getError()
     {
