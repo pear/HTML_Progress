@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
-<!-- $Revision: 1.3 $ -->
+<!-- $Revision: 1.4 $ -->
 
 <refentry id="{@id}">
 
@@ -122,9 +122,9 @@
 
  <refsect1 id="{@id example}">
   <title>Example</title>
-  <para>
+  <example>
    {@example setmaximum.php}
-  </para>
+  </example>
  </refsect1>
 
 </refentry>

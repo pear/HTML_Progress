@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
-<!-- $Revision: 1.3 $ -->
+<!-- $Revision: 1.4 $ -->
 
 <refentry id="{@id}">
 
@@ -199,14 +199,16 @@
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
-   Example below (that requires HTML_Progress >= 1.2.0RC3) will produced a progress bar 
-   with custom bluesand cells (see line 10).
-   <para>
-    <example>
-     <graphic fileref="../media/screenshots/bluesand.png"></graphic>
-    </example>
-   </para>
-   {@example setcellattributes.php}
+   <simpara>
+    Example below (that requires HTML_Progress >= 1.2.0RC3) will produced a progress bar 
+    with custom bluesand cells (see line 10).
+   </simpara>
+   <figure>
+    <graphic fileref="../media/screenshots/bluesand.png"></graphic>
+   </figure>
+   <example>
+    {@example setcellattributes.php}
+   </example>
   </para>
  </refsect1>
 

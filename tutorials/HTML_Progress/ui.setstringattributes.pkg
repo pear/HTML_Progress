@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
-<!-- $Revision: 1.3 $ -->
+<!-- $Revision: 1.4 $ -->
 
 <refentry id="{@id}">
 
@@ -168,14 +168,16 @@ $ui->setStringAttributes('id="myPBstring"');
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
-   Example below will produced a progress bar with a custom style string. 
-   It's a static example, the progress bar will not run.
-   <para>
-    <example>
-     <graphic fileref="../media/screenshots/redsandback.png"></graphic>
-    </example>
-   </para>
-   {@example setstringattributes.php}
+   <simpara>
+    Example below will produced a progress bar with a custom style string. 
+    It's a static example, the progress bar will not run.
+   </simpara>
+   <figure>
+    <graphic fileref="../media/screenshots/redsandback.png"></graphic>
+   </figure>
+   <example>
+    {@example setstringattributes.php}
+   </example>
   </para>
  </refsect1>
 

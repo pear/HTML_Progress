@@ -46,17 +46,17 @@
    On left frame we find a form used to select what package the user want to download.
    On right frame we show an horizontal progress bar with results of download process. 
    </para>
-   <formalpara><title>Code listing 2.2: a package select-download demonstration</title>
+   <example><title>Code listing 2.2: a package select-download demonstration</title>
     {@example listing-2.2.html}
-   </formalpara>
+   </example>
    <para>
     Here is the main page: a frameset which contains the two frames : 
     Left (see code listing 2.2.1) and 
     Right (see code listing 2.2.2).
    </para>
-   <formalpara><title>Code listing 2.2.1: a package selection</title>
+   <example><title>Code listing 2.2.1: a package selection</title>
     {@example listing-2.2.1.php}
-   </formalpara>
+   </example>
    <para>
     The form that allows to select what package to download, was built with help 
     of {@link http://pear.php.net/package/HTML_QuickForm PEAR::HTML_QuickForm} package. 
@@ -86,9 +86,9 @@
      and refresh the progress bar at <emphasis>line 40</emphasis>.
     </para>
    </para>
-   <formalpara><title>Code listing 2.2.2: slave-progress pattern</title>
+   <example><title>Code listing 2.2.2: slave-progress pattern</title>
     {@example listing-2.2.2.php}
-   </formalpara>
+   </example>
    <para>
     There are not so many changes on this script since {@tutorial part2-firstprogressmeter.pkg}.
     You may notice at least four important differences.
@@ -111,9 +111,9 @@
    (while you determines the length of the task), and then switch back in determinate mode 
    to finish the works.
   </para>
-  <formalpara><title>Code listing 2.3: master-progress pattern</title>
+  <example><title>Code listing 2.3: master-progress pattern</title>
    {@example listing-2.3.php}
-  </formalpara>
+  </example>
   <para>
    The user callback 'myProgressHandler' defined on <emphasis>lines 4 thru 30</emphasis>,
    present the user-task. We informs HTML_Progress at <emphasis>line 50</emphasis> to use

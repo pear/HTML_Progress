@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
-<!-- $Revision: 1.3 $ -->
+<!-- $Revision: 1.4 $ -->
 
 <refentry id="{@id}">
 
@@ -55,8 +55,12 @@
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
-   Example below will give you the number of cell defined in this progress bar:
-   {@example getcellcount.php}
+   <simpara>
+    Example below will give you the number of cell defined in this progress bar:
+   </simpara>
+   <example>
+    {@example getcellcount.php}
+   </example>
   </para>
  </refsect1>
 

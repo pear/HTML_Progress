@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
-<!-- $Revision: 1.3 $ -->
+<!-- $Revision: 1.4 $ -->
 
 <refentry id="{@id}">
 
@@ -52,8 +52,10 @@
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
-   This example will print the list of cell coordinates for a square 3x3 progress meter,
-   defined as below:
+   <simpara>
+    This example will print the list of cell coordinates for a square 3x3 progress meter,
+    defined as below:
+   </simpara>
    <para>
    <table frame="all">
     <tgroup cols="3">
@@ -100,10 +102,12 @@
     </tgroup>
    </table>
    </para>
-   <example>
+   <figure>
     <graphic fileref="../media/screenshots/square.png"></graphic>
+   </figure>
+   <example>
+    {@example getcellcoordinates.php}
    </example>
-   {@example getcellcoordinates.php}
   </para>
  </refsect1>
 

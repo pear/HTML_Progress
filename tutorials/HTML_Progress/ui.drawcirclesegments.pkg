@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
-<!-- $Revision: 1.2 $ -->
+<!-- $Revision: 1.3 $ -->
 
 <refentry id="{@id}">
 
@@ -122,13 +122,15 @@
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
-   Example below will produced picture segments for a plain circle progress meter.
-   <para>
-    <example>
-     <graphic fileref="../media/screenshots/circle080.png"></graphic>
-    </example>
-   </para>
-   {@example drawcirclesegments.php}
+   <simpara>
+    Example below will produced picture segments for a plain circle progress meter.
+   </simpara>
+   <figure>
+    <graphic fileref="../media/screenshots/circle080.png"></graphic>
+   </figure>
+   <example>
+    {@example drawcirclesegments.php}
+   </example>
   </para>
  </refsect1>
 

@@ -25,14 +25,14 @@
  <para>
    We will start by creating a very simple progress meter. Copy the following code to a file, 
    give it a .php extension, and display it in your browser.
-   <formalpara><title>code listing 2.1: a very simple progress meter</title>
+   <example><title>code listing 2.1: a very simple progress meter</title>
     {@example listing-2.1.php}
-   </formalpara>
+   </example>
    Loading this file in your browser will simply show something like that after few seconds :
    <para>
-    <example>
+    <figure>
      <graphic fileref="../media/screenshots/scratch21.png"/>
-    </example>
+    </figure>
    </para>
    <para>
     Not particulary exciting, but this does show that HTML_Progress is installed correctly 

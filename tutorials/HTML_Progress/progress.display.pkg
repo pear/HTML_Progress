@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
-<!-- $Revision: 1.1 $ -->
+<!-- $Revision: 1.2 $ -->
 
 <refentry id="{@id}">
 
@@ -54,8 +54,12 @@
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
-   Example below is an easy way to show some screenshots of progress meter.
-   {@example display.php}
+   <simpara>
+    Example below is an easy way to show some screenshots of progress meter.
+   </simpara>
+   <example>
+    {@example display.php}
+   </example>
   </para>
  </refsect1>
 

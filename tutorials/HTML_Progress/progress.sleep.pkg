@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
-<!-- $Revision: 1.1 $ -->
+<!-- $Revision: 1.2 $ -->
 
 <refentry id="{@id}">
 
@@ -73,9 +73,13 @@
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
-   Example below (that requires HTML_Progress >= 1.2.0RC3) demonstrates usage of 
-   a simple user callback (lines 10 to 13, and 18), which only wait 1 second (line 16).
-   {@example sleep.php}
+   <simpara>
+    Example below (that requires HTML_Progress >= 1.2.0RC3) demonstrates usage of 
+    a simple user callback (lines 10 to 13, and 18), which only wait 1 second (line 16).
+   </simpara>
+   <example>
+    {@example sleep.php}
+   </example>
   </para>
  </refsect1>
 

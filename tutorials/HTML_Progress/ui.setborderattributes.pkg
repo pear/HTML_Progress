@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
-<!-- $Revision: 1.3 $ -->
+<!-- $Revision: 1.4 $ -->
 
 <refentry id="{@id}">
 
@@ -147,14 +147,16 @@ $ui->setBorderAttributes('class="myProgressBorder"');
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
-   Example below will produced a progress bar with a solid navy border.
-   It's a static example, the progress bar will not run.
-   <para>
-    <example>
-     <graphic fileref="../media/screenshots/border2.png"></graphic>
-    </example>
-   </para>
-   {@example setborderattributes.php}
+   <simpara>
+    Example below will produced a progress bar with a solid navy border.
+    It's a static example, the progress bar will not run.
+   </simpara>
+   <figure>
+    <graphic fileref="../media/screenshots/border2.png"></graphic>
+   </figure>
+   <example>
+    {@example setborderattributes.php}
+   </example>
   </para>
  </refsect1>
 
