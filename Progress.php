@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------+
-// | PHP Version 4                                                        |
+// | PEAR :: HTML :: Progress                                             |
 // +----------------------------------------------------------------------+
 // | Copyright (c) 1997-2004 The PHP Group                                |
 // +----------------------------------------------------------------------+
@@ -50,7 +50,7 @@ define ('HTML_PROGRESS_BAR_VERTICAL',   2);
  * Progress Bar shape types
  *
  * @var        integer
- * @since      1.2.0
+ * @since      1.2.0RC1
  */
 define ('HTML_PROGRESS_POLYGONAL',      3);
 define ('HTML_PROGRESS_CIRCLE',         4);
@@ -78,7 +78,7 @@ define ('HTML_PROGRESS_ERROR_INVALID_CALLBACK',-101);
  * that may be removed at any time from a future version
  *
  * @var        integer
- * @since      1.2.0
+ * @since      1.2.0RC1
  */
 define ('HTML_PROGRESS_DEPRECATED',            -102);
 
@@ -200,7 +200,17 @@ class HTML_Progress
      */
     var $_anim_speed;
 
+    /**
+     * Callback, either function name or array(&$object, 'method')
+     *
+     * @var        mixed
+     * @since      1.2.0RC3
+     * @access     private
+     * @see        setProgressHandler()
+     */
+    var $_callback = null;
 
+    
     /**
      * Constructor Summary
      *
@@ -842,7 +852,7 @@ class HTML_Progress
      * Returns delay execution of the progress bar
      *
      * @return     integer
-     * @since      1.2.0
+     * @since      1.2.0RC1
      * @access     public
      * @see        setAnimSpeed()
      * @tutorial   progress.getanimspeed.pkg
@@ -905,7 +915,7 @@ class HTML_Progress
         $lnEnd = $ui->_getLineEnd();
         
         $css =& $ui->getStyle();
-        $style = $css->toString();
+        $style = $lnEnd . $css->toString();
         $style = preg_replace("/".$lnEnd."\./", ".".$this->getIdent()." .", $style);
 
         return $style;
@@ -994,7 +1004,7 @@ class HTML_Progress
             $strHtml .= $tabs . "<!-- $comment -->" . $lnEnd;
         }
 
-        $strHtml .= $tabs . "<div class=\"".$this->getIdent()."\">" . $lnEnd;
+        $strHtml .= $tabs . "<div id=\"".$this->getIdent()."_progress\" class=\"".$this->getIdent()."\">" . $lnEnd;
         $strHtml .= $tabs . "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">" . $lnEnd;
         $progressId = $this->getIdent().'_';
 
@@ -1118,11 +1128,113 @@ class HTML_Progress
 	}
         $bar .= '<script type="text/javascript">self.setprogress("'.$progressId.'",'.((int) $progress).',"'.$this->getString().'",'.$determinate.'); </script>';
 
-        // sleep a bit ...
-        for ($i=0; $i<($this->getAnimSpeed()*1000); $i++) { }
-
         echo $bar;
         ob_start();
+    }
+
+    /**
+     * Hides the progress bar.
+     *
+     * @return     void
+     * @since      1.2.0RC3
+     * @access     public
+     */
+    function hide()
+    {
+        $ui = $this->getUI();
+        $lnEnd = $ui->_getLineEnd();
+        $progressId = $this->getIdent().'_';
+
+        if (function_exists('ob_get_clean')) {
+            $bar  = ob_get_clean();      // use for PHP 4.3+
+        } else {
+            $bar  = ob_get_contents();   // use for PHP 4.2+
+            ob_end_clean();
+        }
+        $bar .= $lnEnd;
+        $bar .= '<script type="text/javascript">self.hideProgress("'.$progressId.'"); </script>';
+        echo $bar;
+    }
+
+    /**
+     * Default user callback when none are defined
+     *
+     * @return     void
+     * @since      1.2.0RC3
+     * @access     public
+     * @see        getAnimSpeed(), setAnimSpeed(), process()
+     */
+    function sleep()
+    {
+        // sleep a bit ...
+        for ($i=0; $i<($this->getAnimSpeed()*1000); $i++) { }
+    }
+
+    /**
+     * Sets the user callback function that execute all actions pending progress
+     *
+     * @param      mixed     $handler       Name of function or a class-method.
+     *
+     * @return     void
+     * @since      1.2.0RC3
+     * @access     public
+     * @throws     HTML_PROGRESS_ERROR_INVALID_CALLBACK
+     * @see        process()
+     */
+    function setProgressHandler($handler)
+    {
+        if (!is_callable($handler)) {
+            return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_CALLBACK, 'warning',
+                array('var' => '$handler',
+                      'element' => 'valid Class-Method/Function',
+                      'was' => 'element',
+                      'paramnum' => 1));
+        }
+        $this->_callback = $handler;
+    }
+
+    /**
+     * Performs the progress actions
+     *
+     * @return     void
+     * @since      1.2.0RC3
+     * @access     public
+     * @see        sleep()
+     */
+    function process()
+    {
+        if (!$this->_callbackExists($this->_callback)) {
+            // when there is no valid user callback then default is to sleep a bit ...
+            $this->sleep();
+        } else {
+            call_user_func($this->_callback, $this->getValue(), &$this);
+        }
+    }
+
+    /**
+     * Runs the progress bar (both modes: indeterminate and determinate),
+     * and execute all actions defined in user callback identified by 
+     * method setProgressHandler.
+     *
+     * @return     void
+     * @since      1.2.0RC3
+     * @access     public
+     * @see        process(), setProgressHandler()
+     */
+    function run() 
+    {
+        do {
+            $this->display();
+            $this->process();
+            if ($this->getPercentComplete() == 1) {
+                if ($this->isIndeterminate()) {
+                    $this->setValue(0);
+                } else {
+                    return;
+                }
+            }
+            $this->incValue();
+        } while(1);
     }
 
     /**
@@ -1390,7 +1502,7 @@ class HTML_Progress
      * Returns a polygonal progress structure as HTML.
      *
      * @return     string                   Polygonal HTML Progress 
-     * @since      1.2.0
+     * @since      1.2.0RC1
      * @access     private
      */
     function _getProgressPolygonal_toHtml()
@@ -1468,7 +1580,7 @@ class HTML_Progress
      * Returns a circle progress structure as HTML.
      *
      * @return     string                   Circle HTML Progress 
-     * @since      1.2.0
+     * @since      1.2.0RC1
      * @access     private
      */
     function _getProgressCircle_toHtml()
@@ -1523,12 +1635,32 @@ class HTML_Progress
     }
 
     /**
+     * Checks for callback function existance
+     *
+     * @param      mixed     $callback      a callback, like one used by call_user_func()
+     *
+     * @return     boolean
+     * @since      1.2.0RC3
+     * @access     private
+     */
+    function _callbackExists($callback)
+    {
+        if (is_string($callback)) {
+            return function_exists($callback);
+        } elseif (is_array($callback) && is_object($callback[0])) {
+            return method_exists($callback[0], $callback[1]);
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Initialize Error Stack engine
      *
      * @param      array     $prefs         hash of params for PEAR::Log object list
      *
      * @return     void
-     * @since      1.2.0
+     * @since      1.2.0RC1
      * @access     private
      */
     function _initErrorStack($prefs = array())
@@ -1593,7 +1725,7 @@ class HTML_Progress
      * @param      array     $err           current error with context info 
      *
      * @return     string
-     * @since      1.2.0
+     * @since      1.2.0RC1
      * @access     private
      */
     function _msgCallback(&$stack, $err)
@@ -1639,7 +1771,7 @@ class HTML_Progress
      * Default internal error handler
      * Dies if the error is an exception (and would have died anyway)
      *
-     * @since      1.2.0
+     * @since      1.2.0RC2
      * @access     private
      */
     function _handleError($err)
@@ -1659,21 +1791,47 @@ class HTML_Progress
      * @param      string    $level      The error level of the message. 
      *                                   Valid are PEAR_LOG_* constants
      * @param      array     $params     Associative array of error parameters
-     * @param      array     $trace      Error context info (see debug_backtrace() contents)
+     * @param      boolean   $msg        Static error message
      *
      * @return     array     PEAR_ErrorStack instance. And with context info (if PHP 4.3+)
-     * @since      1.2.0
+     * @since      1.2.0RC1
      * @access     public
      */
-    function raiseError($code, $level, $params)
+    function raiseError($code, $level, $params, $msg = false)
     {
         if (function_exists('debug_backtrace')) {
             $trace = debug_backtrace();     // PHP 4.3+
         } else {
             $trace = null;                  // PHP 4.1.x, 4.2.x (no context info available)
         }
-        $err = PEAR_ErrorStack::staticPush($this->_package, $code, $level, $params, false, false, $trace);
+        $err = PEAR_ErrorStack::staticPush($this->_package, $code, $level, $params, $msg, false, $trace);
         return $err;
+    }
+
+    /**
+     * Determine whether there are any errors on the HTML_Progress stack
+     *
+     * @return     boolean
+     * @since      1.2.0RC3
+     * @access     public
+     */
+    function hasErrors()
+    {
+        $s = &PEAR_ErrorStack::singleton($this->_package);
+        return $s->hasErrors();
+    }
+
+    /**
+     * Pop an error off of the HTML_Progress stack
+     * 
+     * @return     false|array
+     * @since      1.2.0RC3
+     * @access     public
+     */
+    function getError()
+    {
+        $s = &PEAR_ErrorStack::singleton($this->_package);
+        return $s->pop();
     }
 }    
 ?>

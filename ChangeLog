@@ -1,5 +1,24 @@
 $Id$
 
+-------------------------Release 1.2.0RC3---------------------
+2004-07-04  Laurent Laville <pear@laurent-laville.org>
+    * The third release candidate of HTML_Progress 1.2.0
+      is finally published on PEAR website.
+
+2004-06-27  Laurent Laville <pear@laurent-laville.org>
+    * adds new method HTML_Progress::hide()
+    * fixed missing css class (progress id.)
+      in HTML_Progress::getStyle() method
+
+2004-06-12  Laurent Laville <pear@laurent-laville.org>
+    * adds new methods 
+      HTML_Progress::hasErrors() and HTML_Progress::getError()
+    * adds $msg parameter on HTML_Progress::raiseError() method
+
+2004-06-05  Laurent Laville <pear@laurent-laville.org>
+    * adds 4 new methods in HTML_Progress class
+      - process(), sleep(), run(), setProgressHandler()
+
 -------------------------Release 1.2.0RC2---------------------
 2004-05-05  Laurent Laville <pear@laurent-laville.org>
     * The second release candidate of HTML_Progress 1.2.0

@@ -21,9 +21,9 @@ If you need more detailed help, check out INSTALL
 Release Notes
 ********************************************************************************
 
-Release notes for the newest version are in Release-1.2.0RC2
+Release notes for the newest version are in Release-1.2.0RC3
 
-1.2.0RC2 is out, a beta bugfix release
+1.2.0RC3 is out, a beta bugfix release
 
 To learn how to do, read online APIdoc and tutorials in many formats at 
 http://pear.laurent-laville.org/HTML/Progress/apidoc/
@@ -35,7 +35,7 @@ http://pear.php.net/bugs/search.php?cmd=display&status=Open&bug_type[]=HTML_Prog
 
 
 ********************************************************************************
-How To generate the API doc and tutorials (made with phpDocumentor 1.2.3)
+How To generate the API doc and tutorials (made with phpDocumentor 1.3.0RC3)
 ********************************************************************************
 Guide is based on "HTML:frames:DOM/earthli" converter
 
@@ -95,7 +95,7 @@ Project page: 	http://pear.laurent-laville.org/HTML/Progress
 Documentation:  http://pear.laurent-laville.org/HTML/Progress/apidoc/
 
 
-HTML_Progress 1.2 is released under the PHP License version 3.0, text is in
+HTML_Progress 1.2.0 is released under the PHP License version 3.0, text is in
 LICENSE file
 
 
@@ -152,9 +152,10 @@ Improvement since version 1.1
   
 Features since version 1.2
   - new shapes (square, rectangle, polygonal, circle, ellipse)
+  - new api error methods management (hasError, getError)
 
 Improvement since version 1.2
-  - Used now the NET_Ftp package rather than previous private solution
+  - HTML_Progress_Uploader was removed from package 
   - Error_Raise was replaced by PEAR_ErrorStack, the new error manager included in PEAR 1.3.1
 
 
@@ -173,5 +174,7 @@ Thanks to Greg Beaver for warning about Call-time pass-by-reference has been dep
 Thanks to Stefan Neufeind for his enhancement-proposal to keep compatibility with Opera6
 Thanks to Christian Wenz to help me to fix javascript errors on IE4 and NS4 browsers
 Thanks to Olivier Hondermarck to help me to fix a progress circle css problem (www.toutjavascript.com)
+Thanks to Juan Camilo who allow me to learn SOAP
+Thanks to Marlon Brandao who help me to debug my http file upload form examples
 
 Special Thanks to Rasmus Lerdorf, without him PHP and all this universe won't be! 
