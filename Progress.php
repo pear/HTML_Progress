@@ -983,7 +983,6 @@ class HTML_Progress
 	}
         $bar .= '<script type="text/javascript">self.setprogress("'.$progressId.'",'.((int) $progress).',"'.$this->getString().'",'.$determinate.'); </script>';
 
-        sleep(1);
         echo $bar;
         ob_start();
     }
