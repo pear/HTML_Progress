@@ -1,0 +1,69 @@
+$Id$
+
+HTML_Progress Version 0.5.0
+********************************************************************************
+http://farell.free.fr
+Laurent Laville <laurent.laville@worldonline.fr>
+********************************************************************************
+********************************************************************************
+
+The SW4P team would like to announce the release of HTML_Progress 0.5.0
+This release assume to be the final stable version, and all known bugs fixed.
+
+
+----------
+IMPORTANT:
+
+HTML_Progress 0.5.0 requires PHP version 4.1.0 and PEAR 1.1 or greater.
+There are also some dependencies with others PEAR packages, so 
+HTML_Progress 0.5.0 requires :
+- HTML_Common 1.2 or greater          http://pear.php.net/package-info.php?package=HTML_Common
+- HTML_Page 2.0 or greater            http://pear.php.net/package-info.php?package=HTML_Page
+- HTML_CSS 0.2.0 or greater           http://pear.php.net/package-info.php?package=HTML_CSS
+----------
+
+A full listing of all closed bugs and feature requests can be found in the 
+next section of the notes
+
+HTML_Progress 0.5.0 is ready for production, download it and try 
+the most advanced solution for PHP loading bar today to help me
+find the last hidden bugs.
+
+
+********************************************************************************
+No bugs found since first public PEAR release with version 0.4.2
+
+
+********************************************************************************
+Changes in version 0.5.0
+
+- javascript is now embedded in core HTML_Progress class (thanks Yavor Shahpasov)
+- override javascript code is allow with external file
+
+
+News features in version 0.5.0
+
+- new class HTML_Progress_Bar_Horizontal to build horizontal loading bar
+  in natural (left to right) or reverse (right to left) order.
+- new class HTML_Progress_Bar_Vertical to build vertical loading bar
+  in natural (down to up) or reverse (up to down) order.
+
+********************************************************************************
+
+
+The documentation has been updated for this release you can view it at
+http://farell.free.fr/en/pear/sources/HTML_Progress/docs/
+or in the distribution in the docs directory
+
+The changelog is available in the tarball, or online at 
+http://farell.free.fr/en/pear/sources/HTML_Progress/Changelog
+
+You can download the newest version from 
+http://farell.free.fr/en/pear/sources/HTML_Progress/
+
+And of course you can reach the webpage at 
+http://farell.free.fr/en/pear/sources/HTML_Progress/
+
+
+Enjoy !
+-Laurent Laville <laurent.laville@worldonline.fr>

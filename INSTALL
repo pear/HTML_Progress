@@ -1,0 +1,17 @@
+$Id$
+
+HTML_Progress Installation instructions
+------------------------------------------
+
+HTML_Progress is very easy to install. If you are a PEAR user, use
+the common command line :
+    pear install <package>
+    
+Where <package> could ba something like 'HTML_Progress-1.0.tgz'
+
+Pre-requires:
+You should have installed PEAR 1.2 or better on your php system.
+For more informations, please visit Website of PEAR at http://pear.php.net
+If you're newbie, don't forget to read the FAQ at http://pear.php.net/manual/en/faq.php
+
+Don't forget to "pear install" mandatory packages dependencies and some additionals ones.

@@ -1,0 +1,70 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Template Progress example</title>
+<link rel="stylesheet" href="./template.css" type="text/css">
+<style type="text/css">
+<!--
+{L_STYLESHEET}
+
+body {
+	background-color: #444444;
+	color: white;
+	font-family: Verdana, Arial;
+}
+a:link, a:visited, a:active {
+	color: yellow;
+}
+// -->
+</style>
+<script type="text/javascript">
+<!--
+{L_JAVASCRIPT}
+//-->
+</script>
+</head>
+<body>
+
+<h1>{L_APPNAME}</h1>
+
+<div id="MainWindow">
+
+<form {form_attributes}>
+
+<div id="WizardCaption">
+<h2>
+<img src="./cross.png" align="right">
+{L_SETUP_APP_TITLE}
+</h2>
+</div>    
+
+<div id="WizardBody">
+<div id="WizardImage">
+<img src="./wizard.png"><br />
+</div>
+<div id="WizardForm">
+<br /><p>{L_PROGRESS_BAR}</p>
+<p><fieldset>
+<p>{form_border_label}&nbsp;{form_border_html}</p>
+<p>{form_color_label}&nbsp;{form_color_html}</p>
+</fieldset></p>
+</div>
+</div>
+
+<div id="WizardCommand">
+{form_launch_html}
+</div>    
+
+</form>
+
+</div>
+
+<div id="Copyright">
+{L_APPCOPYRIGHT}
+</div>
+
+</body>
+</html>

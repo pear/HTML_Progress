@@ -1,0 +1,74 @@
+$Id$
+
+HTML_Progress Version 0.6.0
+********************************************************************************
+http://pear.laurent-laville.org
+Laurent Laville <pear@laurent-laville.org>
+********************************************************************************
+********************************************************************************
+
+The SW4P team would like to announce the release of HTML_Progress 0.6.0
+This release assume to be the final stable version, and all known bugs fixed.
+
+
+----------
+IMPORTANT:
+
+HTML_Progress 0.6.0 requires PHP version 4.1.0 and PEAR 1.2 or greater.
+There are also some dependencies with others PEAR packages, so 
+HTML_Progress 0.6.0 requires :
+- HTML_Common 1.2 or greater          http://pear.php.net/package-info.php?package=HTML_Common
+- HTML_Page 2.0 or greater            http://pear.php.net/package-info.php?package=HTML_Page
+- HTML_CSS 0.2.0 or greater           http://pear.php.net/package-info.php?package=HTML_CSS
+----------
+
+A full listing of all closed bugs and feature requests can be found in the 
+next section of the notes
+
+HTML_Progress 0.6.0 is ready for production, download it and try 
+the most advanced solution for PHP loading bar today to help me
+find the last hidden bugs.
+
+
+********************************************************************************
+No bugs found since first public PEAR release with version 0.4.2
+
+
+********************************************************************************
+Changes in version 0.6.0
+
+- setProgress API has been removed, due to dupplicate usage 
+  with display(n,"set") method
+- Javascript improvement was made on suggestion of Stefan Neufeind
+- CSS improvement was made on suggestion of Stefan Neufeind
+- Compatibility with Opera6 is now half supported (proposal of Stefan Neufeind)
+- new API setPage to fix warning "Call-time pass-by-reference has been deprecated" 
+  on class-constructor (thanks to Greg Beaver)
+- all bar element size are now exclusively in pixel; 
+  suppress suffix 'px' on attributes values
+
+News features in version 0.6.0
+
+- optional message line come with progress status.
+- percent text info is now floating all around the progress bar
+- scale can be change (default is 100)
+- legend of percent text info can be change (default is "%")
+- progress bar will now take by default the optimized size (height, width)
+- define font-size and color of each cell with new API setCell
+
+********************************************************************************
+
+
+The documentation has been updated for this release you can view it at
+http://pear.laurent-laville.org/HTML/Progress/docs/
+or in the distribution in the docs directory
+
+The changelog is available in the tarball, or online at 
+http://pear.laurent-laville.org/HTML/Progress/Changelog
+
+You can download the newest version from the webpage
+http://pear.laurent-laville.org/HTML/Progress
+
+
+Enjoy !
+-Laurent Laville <pear@laurent-laville.org>
