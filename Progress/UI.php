@@ -1002,12 +1002,10 @@ JS;
         }
         $css->setSameStyle('.'.$cellAttr['class'].'A', '.'.$cellAttr['class'].'I');
 
-        if ($orient == HTML_PROGRESS_CIRCLE) {
-            $css->setStyle('.'.$cellAttr['class'].'I', 'background-color', $cellAttr['background-color']);
-        } else {
+        if ($orient !== HTML_PROGRESS_CIRCLE) {
             $css->setStyle('.'.$cellAttr['class'].'I', 'background-color', $cellAttr['inactive-color']);
+            $css->setStyle('.'.$cellAttr['class'].'A', 'background-color', $cellAttr['active-color']);
         }
-        $css->setStyle('.'.$cellAttr['class'].'A', 'background-color', $cellAttr['active-color']);
         $css->setStyle('.'.$cellAttr['class'].'A', 'visibility', 'hidden');
 
         if (isset($cellAttr['background-image'])) {
