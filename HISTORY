@@ -131,3 +131,13 @@ HTML_Progress_Monitor (v2)
          function toHtml()
 1.1      function accept(&$renderer)
 1.1      function setCaption($caption = '&nbsp;', $args = array() )
+
+===============================================================================
+HTML_Progress_Generator
+===============================================================================
+1.1      function HTML_Progress_Generator($controllerName = 'ProgressGenerator', $attributes = array(), $errorPrefs = array())
+1.1      function createTabs(&$page, $attributes = null)
+1.1      function createButtons(&$page, $buttons, $attributes = null)
+1.1      function enableButton(&$page, $events = array()) 
+1.1      function disableButton(&$page, $events = array()) 
+1.1      function createProgressBar()
