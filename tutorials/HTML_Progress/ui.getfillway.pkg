@@ -1,42 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.3 $ -->
+
 <refentry id="{@id}">
+
  <refnamediv>
-  <refname>getFillWay Manual</refname>
+  <refname><function>HTML_Progress_UI::getFillWay</function></refname>
   <refpurpose>returns the fill way of the progress bar</refpurpose>
  </refnamediv>
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <author>
-    by Laurent Laville
-    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
-   </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+
  <refsect1 id="{@id synopsis}">
   <title>Synopsis</title>
-  <para><emphasis>string</emphasis> <important>getFillWay</important>()</para>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress/UI.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>string <function>HTML_Progress_UI::getFillWay</function></funcdef>
+    <void/>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
  </refsect1>
+
  <refsect1 id="{@id description}">
   <title>Description</title>
-  <para>The <emphasis>getFillWay()</emphasis> method is used to know how the progress bar
-   is filled.
-   It could be <emphasis>natural</emphasis> (left to right for horizontal progress bar),
-   (down to up for vertical progress bar) or <emphasis>reverse</emphasis> 
-   (right to left for horizontal progress bar), (up to down for vertical progress bar).
-  </para>
- </refsect1>
- <refsect1 id="{@id example}">
-  <title>Example</title>
   <para>
-   {@example getfillway.php}
-   <para>Output will display string(7) "reverse".</para>
+   This method is used to know how the progress meter is filled.
   </para>
  </refsect1>
- <refsect1 id="{@id seealso}">
-  <title>See Also</title>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.0 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>   
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
   <para>
    {@tutorial ui.setfillway.pkg}
   </para>
  </refsect1>
+
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   {@example getfillway.php}
+  </para>
+ </refsect1>
+
 </refentry>

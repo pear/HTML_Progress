@@ -1,65 +1,118 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.2 $ -->
+
 <refentry id="{@id}">
+
  <refnamediv>
-  <refname>setDM Manual</refname>
-  <refpurpose>sets new instance of HTML_Progress_DM object</refpurpose>
+  <refname><function>HTML_Progress::setDM</function></refname>
+  <refpurpose>sets the new instance of HTML_Progress_DM object</refpurpose>
  </refnamediv>
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <author>
-    by Laurent Laville
-    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
-   </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+
  <refsect1 id="{@id synopsis}">
   <title>Synopsis</title>
-  <para><emphasis>void</emphasis> <important>setDM</important>($model)</para>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <funcsynopsis>
+    <funcsynopsisinfo>
+     require_once 'HTML/Progress.php'; 
+    </funcsynopsisinfo>
+    <funcprototype>
+     <funcdef>void <function>HTML_Progress::setDM</function></funcdef>
+     <paramdef>string <parameter>$model</parameter></paramdef>
+    </funcprototype>
+   </funcsynopsis>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
  </refsect1>
- <refsect1 id="{@id attributes}">
-  <title>Attributes</title>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   This method is used to set the new instance of HTML_Progress_DM object 
+   used to manage mathematical data model.
+  </para>
+  <simpara>
+   <emphasis>$model</emphasis> is the name of a class (that must exists) 
+   which inherit from HTML_Progress_DM.
+  </simpara>
+ </refsect1>
+
+ <refsect1 id="{@id parameter}">
+  <title>Parameter</title>
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      <type>string</type>
+      <parameter>$model</parameter>
+     </term>
+     <listitem>
+      <para>
+       a classname that will replace the default HTML_Progress_DM object.
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id throws}">
+  <title>Throws</title>
   <para>
    <table frame="all">
-    <tgroup cols="3">
-    <thead align="center">
+    <title>Possible PEAR_Error values</title>
+    <tgroup cols="4">
+     <thead>
       <row>
-       <entry><important>Name</important></entry>
-       <entry><important>Type</important></entry>
-       <entry><important>Default</important></entry>
+       <entry>Error level</entry>
+       <entry>Error code</entry>
+       <entry>Error message</entry>
+       <entry>Solution</entry>
       </row>
-    </thead>
-    <tbody>
-     <row>
-      <entry><emphasis>model</emphasis></entry>
-      <entry>string                    </entry>
-      <entry>n/a                       </entry>
-     </row>
-    </tbody>
+     </thead>
+     <tbody>
+      <row>
+       <entry>error</entry>
+       <entry><constant>HTML_PROGRESS_ERROR_INVALID_INPUT</constant></entry>
+       <entry>invalid input, parameter #1 "<parameter>$model</parameter>" was expecting "class defined"</entry>
+       <entry>Defines the new class </entry>
+      </row>
+      <row>
+       <entry>error</entry>
+       <entry><constant>HTML_PROGRESS_ERROR_INVALID_INPUT</constant></entry>
+       <entry>invalid input, parameter #1 "<parameter>$model</parameter>" was expecting "HTML_Progress_DM extends"</entry>
+       <entry>Fixed the inheritance of the new class</entry>
+      </row>
+     </tbody>
     </tgroup>
    </table>
   </para>
  </refsect1>
- <refsect1 id="{@id description}">
-  <title>Description</title>
-  <para>The <emphasis>setDM()</emphasis> method is used to set new instance
-   of HTML_Progress_DM object used to manage mathematical data model.
-  </para>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.0 )
+  </simpara>
   <para>
-   <emphasis>$model</emphasis> is the name of a class (that must exists) 
-   which is an extends of HTML_Progress_DM.
+   <important>
+    This function can not be called statically.
+   </important>
   </para>
  </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial progress.getdm.pkg}
+  </para>
+ </refsect1>
+
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
    {@example setdm.php}
   </para>
  </refsect1>
- <refsect1 id="{@id seealso}">
-  <title>See Also</title>
-  <para>
-   {@tutorial progress.getdm.pkg}
-  </para>
- </refsect1>
+
 </refentry>

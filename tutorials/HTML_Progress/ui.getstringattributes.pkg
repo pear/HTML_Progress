@@ -1,92 +1,111 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.3 $ -->
+
 <refentry id="{@id}">
+
  <refnamediv>
-  <refname>getStringAttributes Manual</refname>
+  <refname><function>HTML_Progress_UI::getStringAttributes</function></refname>
   <refpurpose>returns attributes list of the progress bar string</refpurpose>
  </refnamediv>
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <author>
-    by Laurent Laville
-    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
-   </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+
  <refsect1 id="{@id synopsis}">
   <title>Synopsis</title>
-  <para><emphasis>mixed</emphasis> <important>getStringAttributes</important>( $asString )</para>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress/UI.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>mixed <function>HTML_Progress_UI::getStringAttributes</function></funcdef>
+    <paramdef>bool <parameter><optional>$asString = FALSE</optional></parameter></paramdef>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
  </refsect1>
- <refsect1 id="{@id attributes}">
-  <title>Attributes</title>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   This method is used to retrieve string attributes of a progress meter.
+  </para>
+  <simpara>
+   Ouput can be an array or a string depending of the <parameter>$asString</parameter>
+   parameter value. Default behavior will return an associative array.
+  </simpara>
+ </refsect1>
+
+ <refsect1 id="{@id parameter}">
+  <title>Parameter</title>
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      <type>boolean</type>
+      <parameter>$asString</parameter>
+     </term>
+     <listitem>
+      <para>
+       whether to return the attributes list as string.
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id throws}">
+  <title>Throws</title>
   <para>
    <table frame="all">
-    <tgroup cols="3">
-    <thead align="center">
+    <title>Possible PEAR_Error values</title>
+    <tgroup cols="4">
+     <thead>
       <row>
-       <entry><important>Name</important></entry>
-       <entry><important>Type</important></entry>
-       <entry><important>Default</important></entry>
+       <entry>Error level</entry>
+       <entry>Error code</entry>
+       <entry>Error message</entry>
+       <entry>Solution</entry>
       </row>
-    </thead>
-    <tbody>
-     <row>
-      <entry><emphasis>asString</emphasis></entry>
-      <entry>boolean                      </entry>
-      <entry>false                        </entry>
-     </row>
-    </tbody>
+     </thead>
+     <tbody>
+      <row>
+       <entry>exception</entry>
+       <entry><constant>HTML_PROGRESS_ERROR_INVALID_INPUT</constant></entry>
+       <entry>invalid input, parameter #1 "<parameter>$asString</parameter>" was expecting "boolean"</entry>
+       <entry>Fixed the cast of parameter</entry>
+      </row>
+     </tbody>
     </tgroup>
    </table>
   </para>
  </refsect1>
- <refsect1 id="{@id description}">
-  <title>Description</title>
-  <para>The <emphasis>getStringAttributes()</emphasis> method is used to retrieve attributes
-   of a progress bar string. Ouput could be an array or a string.
-  </para>
- </refsect1>
- <refsect1 id="{@id example}">
-  <title>Example</title>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.0 )
+  </simpara>
   <para>
-   Example below will show you the attributes definition of a progress bar string in two formats:
-   array (default) and string.
-   {@example getstringattributes.php}
-   <para>Output 1.</para>
-   <example>
-   <![CDATA[
-array(8) {
-  ["id"]=>
-  string(20) "installationProgress"
-  ["width"]=>
-  int(50)
-  ["font-family"]=>
-  string(37) "Verdana, Arial, Helvetica, sans-serif"
-  ["font-size"]=>
-  int(12)
-  ["color"]=>
-  string(7) "#000000"
-  ["background-color"]=>
-  string(7) "#FFFFFF"
-  ["align"]=>
-  string(5) "right"
-  ["valign"]=>
-  string(5) "right"
-}
-   ]]>
-   </example>
-   <para>Output 2.</para>
-   <example>
-   <![CDATA[
-string(176) " id="installationProgress" width="50" font-family="Verdana, Arial, Helvetica, sans-serif" font-size="12" color="#000000" background-color="#FFFFFF" align="right" valign="right""
-   ]]>
-   </example>
+   <important>
+    This function can not be called statically.
+   </important>   
   </para>
  </refsect1>
- <refsect1 id="{@id seealso}">
-  <title>See Also</title>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
   <para>
    {@tutorial ui.setstringattributes.pkg}
   </para>
  </refsect1>
+
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will show you the string attributes list of a progress meter in two formats:
+   array (default) and string.
+   {@example getstringattributes.php}
+  </para>
+ </refsect1>
+
 </refentry>

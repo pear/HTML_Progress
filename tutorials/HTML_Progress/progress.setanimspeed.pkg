@@ -1,62 +1,122 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.3 $ -->
+
 <refentry id="{@id}">
+
  <refnamediv>
-  <refname>setAnimSpeed Manual</refname>
-  <refpurpose>set the delay progress bar execution for the given number of miliseconds</refpurpose>
+  <refname><function>HTML_Progress::setAnimSpeed</function></refname>
+  <refpurpose>sets the delay execution in milliseconds of the progress meter</refpurpose>
  </refnamediv>
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <author>
-    by Laurent Laville
-    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
-   </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.1</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+
  <refsect1 id="{@id synopsis}">
   <title>Synopsis</title>
-  <para><emphasis>void</emphasis> <important>setAnimSpeed</important>( $delay )</para>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>void <function>HTML_Progress::setAnimSpeed</function></funcdef>
+    <paramdef>int <parameter>$delay</parameter></paramdef>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
  </refsect1>
- <refsect1 id="{@id attributes}">
-  <title>Attributes</title>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   This method is used to set progress meter delay execution in milliseconds.
+  </para>
+  <simpara>
+   Default value is zero (no delay).
+  </simpara>
+ </refsect1>
+
+ <refsect1 id="{@id parameter}">
+  <title>Parameter</title>
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      <type>int</type>
+      <parameter>$delay</parameter>
+     </term>
+     <listitem>
+      <para>
+       the delay execution in milliseconds of the progress meter 
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id throws}">
+  <title>Throws</title>
   <para>
    <table frame="all">
-    <tgroup cols="3">
-    <thead align="center">
+    <title>Possible PEAR_Error values</title>
+    <tgroup cols="4">
+     <thead>
       <row>
-       <entry><important>Name</important></entry>
-       <entry><important>Type</important></entry>
+       <entry>Error level</entry>
+       <entry>Error code</entry>
+       <entry>Error message</entry>
+       <entry>Solution</entry>
       </row>
-    </thead>
-    <tbody>
-     <row>
-      <entry><emphasis>delay</emphasis></entry>
-      <entry>integer                   </entry>
-     </row>
-    </tbody>
+     </thead>
+     <tbody>
+      <row>
+       <entry>exception</entry>
+       <entry><constant>HTML_PROGRESS_ERROR_INVALID_INPUT</constant></entry>
+       <entry>Parameter #1 "<parameter>$delay</parameter>" is not an integer</entry>
+       <entry>Fixed the cast of parameter</entry>
+      </row>
+      <row>
+       <entry>error</entry>
+       <entry><constant>HTML_PROGRESS_ERROR_INVALID_INPUT</constant></entry>
+       <entry>invalid input, parameter #1 "<parameter>$delay</parameter>" was expecting "greater than zero"</entry>
+       <entry>Expected an integer between zero and 1000</entry>
+      </row>
+      <row>
+       <entry>error</entry>
+       <entry><constant>HTML_PROGRESS_ERROR_INVALID_INPUT</constant></entry>
+       <entry>invalid input, parameter #1 "<parameter>$delay</parameter>" was expecting "less or equal 1000"</entry>
+       <entry>Expected an integer between zero and 1000</entry>
+      </row>
+     </tbody>
     </tgroup>
    </table>
   </para>
  </refsect1>
- <refsect1 id="{@id description}">
-  <title>Description</title>
-  <para>The <emphasis>setAnimSpeed()</emphasis> method delays progress bar execution 
-   for the given number of <emphasis>$delay</emphasis> miliseconds.
-   Default value is zero (no delay).
-  </para>
- </refsect1>
- <refsect1 id="{@id example}">
-  <title>Example</title>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.1 )
+  </simpara>
   <para>
-   Example below will produced a progress bar with a delay progress bar
-   execution equivalent to 1 second.
-   {@example setanimspeed.php}
+   <important>
+    This function can not be called statically.
+   </important>
   </para>
  </refsect1>
- <refsect1 id="{@id seealso}">
-  <title>See Also</title>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
   <para>
    {@tutorial progress.getanimspeed.pkg}
   </para>
  </refsect1>
+
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below (that requires HTML_Progress >= 1.2.0RC3) will produced a progress bar 
+   with a delay excecution equivalent to half of a second (see especially line 5).
+   {@example setanimspeed.php}
+  </para>
+ </refsect1>
+
 </refentry>

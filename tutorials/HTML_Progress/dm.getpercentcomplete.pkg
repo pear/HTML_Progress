@@ -1,39 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.3 $ -->
+
 <refentry id="{@id}">
+
  <refnamediv>
-  <refname>getPercentComplete Manual</refname>
-  <refpurpose>returns the percent complete for the progress bar</refpurpose>
+  <refname><function>HTML_Progress::getPercentComplete</function></refname>
+  <refpurpose>returns the percent complete of the progress meter</refpurpose>
  </refnamediv>
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <author>
-    by Laurent Laville
-    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
-   </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+
  <refsect1 id="{@id synopsis}">
   <title>Synopsis</title>
-  <para><emphasis>float</emphasis> <important>getPercentComplete</important>()</para>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>float <function>HTML_Progress::getPercentComplete</function></funcdef>
+    <void/>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
  </refsect1>
+
  <refsect1 id="{@id description}">
   <title>Description</title>
-  <para>The <emphasis>getPercentComplete()</emphasis> method is used to retrieve
-   degree of completion from 0.00 to 1.00
+  <para>
+   This method is used to retrieve degree of completion from 0.00 to 1.00
   </para>
  </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.0 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
+  </para>
+  <para>
+   <note>
+    This method is also a wrapper for <emphasis>HTML_Progress_DM::getPercentComplete</emphasis>.
+   </note>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial dm.getvalue.pkg},
+   {@tutorial dm.getmaximum.pkg}
+  </para>
+ </refsect1>
+
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
    {@example getpercentcomplete.php}
   </para>
  </refsect1>
- <refsect1 id="{@id seealso}">
-  <title>See Also</title>
-  <para>
-   {@tutorial dm.getvalue.pkg},
-   {@tutorial dm.getmaximum.pkg}
-  </para>
- </refsect1>
+
 </refentry>

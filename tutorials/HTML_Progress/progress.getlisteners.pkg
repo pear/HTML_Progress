@@ -1,60 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.3 $ -->
+
 <refentry id="{@id}">
+
  <refnamediv>
-  <refname>getListeners Manual</refname>
-  <refpurpose>returns a list of current listeners attached on the progress bar</refpurpose>
+  <refname><function>HTML_Progress::getListeners</function></refname>
+  <refpurpose>returns a list of current listeners attached on the progress meter</refpurpose>
  </refnamediv>
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <author>
-    by Laurent Laville
-    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
-   </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+
  <refsect1 id="{@id synopsis}">
   <title>Synopsis</title>
-  <para><emphasis>boolean</emphasis> <important>removeListener</important>( $observer )</para>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <funcsynopsis>
+    <funcsynopsisinfo>
+     require_once 'HTML/Progress.php'; 
+    </funcsynopsisinfo>
+    <funcprototype>
+     <funcdef>array <function>HTML_Progress::getListeners</function></funcdef>
+     <void/>
+    </funcprototype>
+   </funcsynopsis>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
  </refsect1>
- <refsect1 id="{@id attributes}">
-  <title>Attributes</title>
-  <para>
-   <table frame="all">
-    <tgroup cols="3">
-    <thead align="center">
-      <row>
-       <entry><important>Name</important></entry>
-       <entry><important>Type</important></entry>
-      </row>
-    </thead>
-    <tbody>
-     <row>
-      <entry><emphasis>observer</emphasis></entry>
-      <entry>object                       </entry>
-     </row>
-    </tbody>
-    </tgroup>
-   </table>
-  </para>
- </refsect1>
+
  <refsect1 id="{@id description}">
   <title>Description</title>
-  <para>The <emphasis>getListeners()</emphasis> method is used to know what are
-   the listeners attached on a progress bar. 
+  <para>
+   This method is used to know what are the listeners object attached on a progress meter. 
   </para>
  </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.0 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial progress.addlistener.pkg},
+   {@tutorial progress.removelistener.pkg}
+  </para>
+ </refsect1>
+
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
    {@example getlisteners.php}
   </para>
  </refsect1>
- <refsect1 id="{@id seealso}">
-  <title>See Also</title>
-  <para>
-   {@tutorial progress.addlistener.pkg},
-   {@tutorial progress.removelistener.pkg}
-  </para>
- </refsect1>
+
 </refentry>

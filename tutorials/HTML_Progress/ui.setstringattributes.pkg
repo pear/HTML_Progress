@@ -1,80 +1,135 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.3 $ -->
+
 <refentry id="{@id}">
+
  <refnamediv>
-  <refname>setStringAttributes Manual</refname>
-  <refpurpose>defines look and feel of the progress bar string</refpurpose>
+  <refname><function>HTML_Progress_UI::setStringAttributes</function></refname>
+  <refpurpose>sets the look and feel of the progress meter string</refpurpose>
  </refnamediv>
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <author>
-    by Laurent Laville
-    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
-   </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+
  <refsect1 id="{@id synopsis}">
   <title>Synopsis</title>
-  <para><emphasis>void</emphasis> <important>setStringAttributes</important>( $attributes )</para>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <funcsynopsis>
+    <funcsynopsisinfo>
+     require_once 'HTML/Progress/UI.php'; 
+    </funcsynopsisinfo>
+    <funcprototype>
+     <funcdef>void <function>HTML_Progress_UI::setStringAttributes</function></funcdef>
+     <paramdef>mixed <parameter>$attributes</parameter></paramdef>
+    </funcprototype>
+   </funcsynopsis>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
  </refsect1>
- <refsect1 id="{@id attributes}">
-  <title>Attributes</title>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
   <para>
-   <table frame="all">
-    <tgroup cols="3">
-    <thead align="center">
-      <row>
-       <entry><important>Name</important></entry>
-       <entry><important>Type</important></entry>
-       <entry><important>Default</important></entry>
-      </row>
-    </thead>
-    <tbody>
-     <row>
-      <entry><emphasis>attributes</emphasis></entry>
-      <entry>array                          </entry>
-      <entry>
-       <itemizedlist>
-        <listitem>id => installationProgress  </listitem>
-        <listitem>width => 50                 </listitem>
-        <listitem>font-family => Verdana, Arial, Helvetica, sans-serif </listitem>
-        <listitem>font-size => 12             </listitem>
-        <listitem>color => #000000            </listitem>
-        <listitem>background-color => #FFFFFF </listitem>
-        <listitem>align => right ( left, center ) </listitem>
-        <listitem>for horizontal bar:         </listitem>
-        <itemizedlist>
-         <listitem>valign => right (left, top, bottom)    </listitem>
-        </itemizedlist>
-        <listitem>for vertical bar:           </listitem>
-        <itemizedlist>
-         <listitem>valign => bottom (top, left, right)    </listitem>
-        </itemizedlist>
-       </itemizedlist>
-      </entry>
-     </row>
-    </tbody>
-    </tgroup>
-   </table>
+   This method is used to give a look and feel, such as alignment, size and color, 
+   to the progress meter string.
   </para>
   <para>
    <emphasis>$attributes</emphasis> is an associative array or string of HTML tag attributes.
   </para>
  </refsect1>
- <refsect1 id="{@id description}">
-  <title>Description</title>
-  <para>The <emphasis>setStringAttributes()</emphasis> method is used to give a look and feel,
-   such as alignment, size and color, to the progress bar string.
+
+ <refsect1 id="{@id parameter}">
+  <title>Parameter</title>
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      <type>mixed</type>
+      <parameter>$attributes</parameter>
+     </term>
+     <listitem>
+      <para>
+       the new string attributes of the progress meter.
+      </para>
+      <para>
+       <table frame="all">
+        <title>Key-values allowed are:</title>
+        <tgroup cols="3">
+        <thead align="center">
+          <row>
+           <entry><emphasis>Attribute</emphasis></entry>
+           <entry><emphasis>Format</emphasis></entry>
+           <entry><emphasis>Default value</emphasis></entry>
+          </row>
+        </thead>
+        <tbody>
+         <row>
+          <entry>id </entry>
+          <entry>string </entry>
+          <entry>installationProgress </entry>
+         </row>
+         <row>
+          <entry>width </entry>
+          <entry>integer </entry>
+          <entry>50 </entry>
+         </row>
+         <row>
+          <entry>font-family </entry>
+          <entry>string </entry>
+          <entry>Verdana, Arial, Helvetica, sans-serif </entry>
+         </row>
+         <row>
+          <entry>font-size </entry>
+          <entry>integer </entry>
+          <entry>12 </entry>
+         </row>
+         <row>
+          <entry>color </entry>
+          <entry>string </entry>
+          <entry>#000000 </entry>
+         </row>
+         <row>
+          <entry>background-color </entry>
+          <entry>string </entry>
+          <entry>#FFFFFF </entry>
+         </row>
+         <row>
+          <entry>align </entry>
+          <entry>string </entry>
+          <entry>right </entry>
+         </row>
+         <row>
+          <entry>valign </entry>
+          <entry>string </entry>
+          <entry>HB=right, VB=bottom (HB:Horizontal Bar, VB:Vertical Bar)</entry>
+         </row>
+        </tbody>
+        </tgroup>
+       </table>
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.0 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
   </para>
   <para>
-  <tip><title></title>
-   You may also used an existing StyleSheet and a CSS id with pre-defined style.
-   For example:
-   <para>
-   <programlisting>
-   <![CDATA[
+   <tip>
+    You may also used an existing StyleSheet and a CSS class-selector with pre-defined style.
+    For example:
+    <para>
+    <programlisting role="php">
+    <![CDATA[
 <?php
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
 // specify a user-ident (instead of the auto-generated value)
@@ -83,36 +138,45 @@ $bar->setStringPainted(true);
 
 $ui =& $bar->getUI();
 $ui->setStringAttributes('id="myPBstring"');
-...
 ?>
-   ]]>
-   </programlisting>
-   <example>
-   <![CDATA[
-<!-- custom stylesheet -->
-...
+    ]]>
+    </programlisting>
+    could be replaced by:
+    <screen>
+&lt;style type="text/css">
+&lt;!--
 .myPB .myPBstring { width: 100px; background-color: lightyellow; color: black; }
-...
-   ]]>
-   </example>
+// -->
+&lt;/style>
+    </screen>
    </para>
-   <para><graphic fileref="../media/screenshots/string1.png"></graphic></para>
+   <para>
+    <graphic fileref="../media/screenshots/string1.png"></graphic>
+   </para>
   </tip>
   </para>
  </refsect1>
- <refsect1 id="{@id example}">
-  <title>Example</title>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
   <para>
-   Example below will produced a progress bar with a custom style string. It's a static example, 
-   the progress bar will not run.
-   <para><graphic fileref="../media/screenshots/redsandback.png"></graphic></para>
-   {@example setstringattributes.php}
-  </para>
- </refsect1>
- <refsect1 id="{@id seealso}">
-  <title>See Also</title>
-  <para>
+   {@tutorial ui.getstringattributes.pkg},
    {@tutorial progress.setstringpainted.pkg}
   </para>
  </refsect1>
+
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will produced a progress bar with a custom style string. 
+   It's a static example, the progress bar will not run.
+   <para>
+    <example>
+     <graphic fileref="../media/screenshots/redsandback.png"></graphic>
+    </example>
+   </para>
+   {@example setstringattributes.php}
+  </para>
+ </refsect1>
+
 </refentry>

@@ -1,104 +1,161 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.3 $ -->
+
 <refentry id="{@id}">
+
  <refnamediv>
-  <refname>setBorderAttributes Manual</refname>
+  <refname><function>HTML_Progress_UI::setBorderAttributes</function></refname>
   <refpurpose>defines look and feel of the progress bar border</refpurpose>
  </refnamediv>
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <author>
-    by Laurent Laville
-    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
-   </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+
  <refsect1 id="{@id synopsis}">
   <title>Synopsis</title>
-  <para><emphasis>void</emphasis> <important>setBorderAttributes</important>( $attributes )</para>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <funcsynopsis>
+    <funcsynopsisinfo>
+     require_once 'HTML/Progress/UI.php'; 
+    </funcsynopsisinfo>
+    <funcprototype>
+     <funcdef>void <function>HTML_Progress_UI::setBorderAttributes</function></funcdef>
+     <paramdef>mixed <parameter>$attributes</parameter></paramdef>
+    </funcprototype>
+   </funcsynopsis>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
  </refsect1>
- <refsect1 id="{@id attributes}">
-  <title>Attributes</title>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
   <para>
-   <table frame="all">
-    <tgroup cols="3">
-    <thead align="center">
-      <row>
-       <entry><important>Name</important></entry>
-       <entry><important>Type</important></entry>
-       <entry><important>Default</important></entry>
-      </row>
-    </thead>
-    <tbody>
-     <row>
-      <entry><emphasis>attributes</emphasis></entry>
-      <entry>array                          </entry>
-      <entry>
-       <itemizedlist>
-        <listitem>class => progressBarBorder  </listitem>
-        <listitem>width => 0                  </listitem>
-        <listitem>style => solid (dashed, dotted, inset, outset) </listitem>
-        <listitem>color => #000000            </listitem>
-       </itemizedlist>
-      </entry>
-     </row>
-    </tbody>
-    </tgroup>
-   </table>
+   This method is used to give a look and feel, such as size, style and color, 
+   to the border of a progress meter.
   </para>
   <para>
    <emphasis>$attributes</emphasis> is an associative array or string of HTML tag attributes.
   </para>
  </refsect1>
- <refsect1 id="{@id description}">
-  <title>Description</title>
-  <para>The <emphasis>setBorderAttributes()</emphasis> method is used to give a look and feel,
-   such as size, style and color, to the progress bar border.
+
+ <refsect1 id="{@id parameter}">
+  <title>Parameter</title>
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      <type>mixed</type>
+      <parameter>$attributes</parameter>
+     </term>
+     <listitem>
+      <para>
+       the new border attributes of the progress meter.
+      </para>
+      <para>
+       <table frame="all">
+        <title>Key-values allowed are:</title>
+        <tgroup cols="3">
+        <thead align="center">
+          <row>
+           <entry><emphasis>Attribute</emphasis></entry>
+           <entry><emphasis>Format</emphasis></entry>
+           <entry><emphasis>Default value</emphasis></entry>
+          </row>
+        </thead>
+        <tbody>
+         <row>
+          <entry>class </entry>
+          <entry>string </entry>
+          <entry>progressBarBorder </entry>
+         </row>
+         <row>
+          <entry>width </entry>
+          <entry>integer </entry>
+          <entry>0 </entry>
+         </row>
+         <row>
+          <entry>style </entry>
+          <entry>string </entry>
+          <entry>solid </entry>
+         </row>
+         <row>
+          <entry>color </entry>
+          <entry>string </entry>
+          <entry>#000000 </entry>
+         </row>
+        </tbody>
+        </tgroup>
+       </table>
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.0 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
   </para>
   <para>
-  <tip><title></title>
-   You may also used an existing StyleSheet and a CSS class-selector with pre-defined style.
-   For example:
-   <para>
-   <programlisting role="php">
-   <![CDATA[
+   <tip>
+    You may also used an existing StyleSheet and a CSS class-selector with pre-defined style.
+    For example:
+    <para>
+    <programlisting role="php">
+    <![CDATA[
 <?php
-...
+require_once 'HTML/Progress.php';
+
+$bar = new HTML_Progress();
 // specify a user-ident (instead of the auto-generated value)
 $bar->setIdent('PB1');  
-...
+
 $ui =& $bar->getUI();
 $ui->setBorderAttributes('class="myProgressBorder"');
-...
 ?>
-   ]]>
-   </programlisting>
-   <example>
-   <![CDATA[
-<!-- custom stylesheet -->
-...
+    ]]>
+    </programlisting>
+    could be replaced by:
+    <screen>
+&lt;style type="text/css">
+&lt;!--
 .PB1 .myProgressBar { border: 3px dotted #0000FF; }
-...
-   ]]>
-   </example>
+// -->
+&lt;/style>
+    </screen>
    </para>
-   <para><graphic fileref="../media/screenshots/border3.png"></graphic></para>
+   <para>
+    <graphic fileref="../media/screenshots/border3.png"></graphic>
+   </para>
   </tip>
   </para>
  </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial ui.getborderattributes.pkg},
+   {@tutorial progress.setborderpainted.pkg}
+  </para>
+ </refsect1>
+
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
-   Example below will produced a progress bar with a solid navy border. It's a static example, 
-   the progress bar will not run.
-   <para><graphic fileref="../media/screenshots/border2.png"></graphic></para>
+   Example below will produced a progress bar with a solid navy border.
+   It's a static example, the progress bar will not run.
+   <para>
+    <example>
+     <graphic fileref="../media/screenshots/border2.png"></graphic>
+    </example>
+   </para>
    {@example setborderattributes.php}
   </para>
  </refsect1>
- <refsect1 id="{@id seealso}">
-  <title>See Also</title>
-  <para>
-   {@tutorial progress.setborderpainted.pkg} 
-  </para>
- </refsect1>
+
 </refentry>

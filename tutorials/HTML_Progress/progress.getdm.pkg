@@ -1,38 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.2 $ -->
+
 <refentry id="{@id}">
+
  <refnamediv>
-  <refname>getDM Manual</refname>
-  <refpurpose>returns instance of HTML_Progress_DM object</refpurpose>
+  <refname><function>HTML_Progress::getDM</function></refname>
+  <refpurpose>returns instance of current HTML_Progress_DM object</refpurpose>
  </refnamediv>
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <author>
-    by Laurent Laville
-    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
-   </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+
  <refsect1 id="{@id synopsis}">
   <title>Synopsis</title>
-  <para><emphasis>object</emphasis> <important>getDM</important>()</para>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>object &amp;<function>HTML_Progress::getDM</function></funcdef>
+    <void/>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
  </refsect1>
+
  <refsect1 id="{@id description}">
   <title>Description</title>
-  <para>The <emphasis>getDM()</emphasis> method is used to retrieve instance
-   of current HTML_Progress_DM object used to manage mathematical data model.
+  <para>
+   This method is used to retrieve instance of current HTML_Progress_DM object 
+   used to manage mathematical data model.
   </para>
  </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.0 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial progress.setdm.pkg}
+  </para>
+ </refsect1>
+
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
    {@example getdm.php}
   </para>
  </refsect1>
- <refsect1 id="{@id seealso}">
-  <title>See Also</title>
-  <para>
-   {@tutorial progress.setdm.pkg}
-  </para>
- </refsect1>
+
 </refentry>

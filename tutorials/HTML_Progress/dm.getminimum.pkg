@@ -1,39 +1,67 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.3 $ -->
+
 <refentry id="{@id}">
+
  <refnamediv>
-  <refname>getMinimum Manual</refname>
-  <refpurpose>returns the progress bar's minimum value</refpurpose>
+  <refname><function>HTML_Progress::getMinimum</function></refname>
+  <refpurpose>returns the progress meter minimum value</refpurpose>
  </refnamediv>
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <author>
-    by Laurent Laville
-    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
-   </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+
  <refsect1 id="{@id synopsis}">
   <title>Synopsis</title>
-  <para><emphasis>integer</emphasis> <important>getMinimum</important>()</para>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>int <function>HTML_Progress::getMinimum</function></funcdef>
+    <void/>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
  </refsect1>
+
  <refsect1 id="{@id description}">
   <title>Description</title>
-  <para>The <emphasis>getMinimum()</emphasis> method is used to retrieve the 
-   minimal value in the mathematical model of the progress bar.
+  <para>
+   This method is used to retrieve the minimal value in the mathematical model of the progress meter.
+  </para>
+  <simpara>
    The default value is set to zero.
+  </simpara>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.0 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
+  </para>
+  <para>
+   <note>
+    This method is also a wrapper for <emphasis>HTML_Progress_DM::getMinimum</emphasis>.
+   </note>
   </para>
  </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial dm.setminimum.pkg}
+  </para>
+ </refsect1>
+
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
    {@example getminimum.php}
   </para>
  </refsect1>
- <refsect1 id="{@id seealso}">
-  <title>See Also</title>
-  <para>
-   {@tutorial dm.setminimum.pkg}
-  </para>
- </refsect1>
+
 </refentry>

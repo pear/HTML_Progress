@@ -1,67 +1,121 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.3 $ -->
+
 <refentry id="{@id}">
+
  <refnamediv>
-  <refname>setCellCount Manual</refname>
-  <refpurpose>defines the number of cell in a progress bar</refpurpose>
+  <refname><function>HTML_Progress_UI::setCellCount</function></refname>
+  <refpurpose>sets the new number of cell in a progress bar</refpurpose>
  </refnamediv>
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <author>
-    by Laurent Laville
-    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
-   </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+
  <refsect1 id="{@id synopsis}">
   <title>Synopsis</title>
-  <para><emphasis>void</emphasis> <important>setCellCount</important>( $cells )</para>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <funcsynopsis>
+    <funcsynopsisinfo>
+     require_once 'HTML/Progress/UI.php'; 
+    </funcsynopsisinfo>
+    <funcprototype>
+     <funcdef>void <function>HTML_Progress_UI::setCellCount</function></funcdef>
+     <paramdef>int <parameter>$cells</parameter></paramdef>
+    </funcprototype>
+   </funcsynopsis>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
  </refsect1>
- <refsect1 id="{@id attributes}">
-  <title>Attributes</title>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   This method is used to set the new number of cell in the progress bar.
+  </para>
+ </refsect1>
+ 
+ <refsect1 id="{@id parameter}">
+  <title>Parameter</title>
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      <type>integer</type>
+      <parameter>$cells</parameter>
+     </term>
+     <listitem>
+      <para>
+       the new count of cell in the progress bar.
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id throws}">
+  <title>Throws</title>
   <para>
    <table frame="all">
-    <tgroup cols="3">
-    <thead align="center">
+    <title>Possible PEAR_Error values</title>
+    <tgroup cols="4">
+     <thead>
       <row>
-       <entry><important>Name</important></entry>
-       <entry><important>Type</important></entry>
-       <entry><important>Default</important></entry>
+       <entry>Error level</entry>
+       <entry>Error code</entry>
+       <entry>Error message</entry>
+       <entry>Solution</entry>
       </row>
-    </thead>
-    <tbody>
-     <row>
-      <entry><emphasis>cells</emphasis></entry>
-      <entry>integer                   </entry>
-      <entry>10                        </entry>
-     </row>
-    </tbody>
+     </thead>
+     <tbody>
+      <row>
+       <entry>exception</entry>
+       <entry><constant>HTML_PROGRESS_ERROR_INVALID_INPUT</constant></entry>
+       <entry>invalid input, parameter #1 "<parameter>$cells</parameter>" was expecting "integer"</entry>
+       <entry>Fixed the cast of parameter</entry>
+      </row>
+      <row>
+       <entry>error</entry>
+       <entry><constant>HTML_PROGRESS_ERROR_INVALID_INPUT</constant></entry>
+       <entry>invalid input, parameter #1 "<parameter>$cells</parameter>" was expecting "greater or equal 1"</entry>
+       <entry>Give an integer greater than one</entry>
+      </row>
+     </tbody>
     </tgroup>
    </table>
   </para>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.0 )
+  </simpara>
   <para>
-   <emphasis>$cells</emphasis> is an integer with a minimum of 1, but as no maximum limit.
+   <important>
+    This function can not be called statically.
+   </important>
   </para>
  </refsect1>
- <refsect1 id="{@id description}">
-  <title>Description</title>
-  <para>The <emphasis>setCellCount()</emphasis> method is used to set the count of cell
-   in the progress bar.
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial ui.getcellcount.pkg}
   </para>
  </refsect1>
+
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
-   Example below will produced a progress bar with less than 10 default cells. 
+   Example below (that requires HTML_Progress >= 1.2.0RC3) will produced a progress bar 
+   with less than ten default cells (see line 11). 
    It's a dynamic example, the progress bar will run.
-   <para><graphic fileref="../media/screenshots/redsandback.png"></graphic></para>
+   <para>
+    <example>
+     <graphic fileref="../media/screenshots/redsandback.png"></graphic>
+    </example>
+   </para>
    {@example setcellcount.php}
   </para>
  </refsect1>
- <refsect1 id="{@id seealso}">
-  <title>See Also</title>
-  <para>
-   {@tutorial ui.setcellattributes.pkg}
-  </para>
- </refsect1>
+
 </refentry>

@@ -1,28 +1,64 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.3 $ -->
+
 <refentry id="{@id}">
+
  <refnamediv>
-  <refname>getStyle Manual</refname>
-  <refpurpose>returns cascading style sheet HTML_CSS object</refpurpose>
+  <refname><function>HTML_Progress_UI::getStyle</function></refname>
+  <refpurpose>returns instance of HTML_CSS object</refpurpose>
  </refnamediv>
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <author>
-    by Laurent Laville
-    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
-   </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+
  <refsect1 id="{@id synopsis}">
   <title>Synopsis</title>
-  <para><emphasis>object</emphasis> <important>getStyle</important>()</para>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress/UI.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>string &amp;<function>HTML_Progress_UI::getStyle</function></funcdef>
+    <void/>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
  </refsect1>
+
  <refsect1 id="{@id description}">
   <title>Description</title>
-  <para>The <emphasis>getStyle()</emphasis> method is used to retrieve style sheet 
-   required to run properly the progress bar.
+  <para>
+   This method is used to retrieve the cascading style sheet required to run properly 
+   the progress meter.
   </para>
  </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 0.2, HTML_CSS )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>   
+  </para>
+  <para>
+   <note>
+    You can also call the HTML_Progress::getStyle method, that will retrieve the same
+    style sheet in plain text (all styles prefixed by the progress meter identification class).
+   </note>   
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial ui.getprogressattributes.pkg}, 
+   {@tutorial ui.getborderattributes.pkg},
+   {@tutorial ui.getstringattributes.pkg},
+   {@tutorial ui.getcellattributes.pkg}
+  </para>
+ </refsect1>
+
  <refsect1 id="{@id example}">
   <title>Example</title>
   <para>
@@ -30,13 +66,5 @@
    {@example getstyle.php}
   </para>
  </refsect1>
- <refsect1 id="{@id seealso}">
-  <title>See Also</title>
-  <para>
-   {@tutorial ui.setprogressattributes.pkg}, 
-   {@tutorial ui.setborderattributes.pkg},
-   {@tutorial ui.setstringattributes.pkg},
-   {@tutorial ui.setcellattributes.pkg}
-  </para>
- </refsect1>
+
 </refentry>
