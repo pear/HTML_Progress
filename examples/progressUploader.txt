@@ -1,0 +1,78 @@
+============================
+   HTML_Progress_Uploader
+============================
+
+  version    $Id$
+  author     Laurent Laville <pear@laurent-laville.org>
+  package    HTML_Progress
+  license    http://www.php.net/license/3_0.txt  PHP License 3.0
+
+             ----------------------------
+
+An example of frontend solution to use the class HTML_Progress_Uploader
+of the package HTML_Progress.
+
+The HTML_Progress_Uploader class provides a GUI interface
+(with progress bar) to manage files to upload to a 
+ftp server via your web browser.
+But it does not provides a full GUI interface to select
+the files to move on the ftp server.
+
+
+Requirements:
+=*=*=*=*=*=*=
+- PHP 4.3.0 or greater
+- ftp loaded extension 
+
+
+Dependencies:
+=*=*=*=*=*=*=
+- HTML_QuickForm 3.1.1 or greater              http://pear.php.net/HTML_QuickForm
+
+
+Files contents:
+=*=*=*=*=*=*=*=
+- uploader1.php     the QuickForm GUI to select files to upload
+- uploader2.php     the QuickForm GUI to show progress bar pending file upload operation
+- form_output.php   the GUI form output renders (colors, sizes ...)
+
+
+How its works:
+=*=*=*=*=*=*=*
+
+Point your web browser to first page 'uploader1.php'. It will display 
+a dialog box with 10 choices to select file. 
+It you want more or less choice, edit file 'uploader1.php' at line 18.
+
+When you've selected all your files, clic on 'Submit' button to validate
+the form.
+On the user-callback 'myProcess' function, only not empty file entry are 
+wrote on a session. Then a redirection to file 'uploader2.php' show the
+progress bar, and wait your order yo upload the files to the ftp server.
+
+Clic on 'Upload' to begin process. It will stop at end of files move, and 
+display the message "All files were move on to {your_server}" if all was ok.
+
+Valid extension file are given at line 44 of file 'uploader2.php'.
+By default, only extensions below are allowed:
+'jpg', 'jpeg', 'gif', 'png', 'pdf', 'tar', 'zip', 'gz'
+
+Your FTP account (user, password, hostname) should be filled and valid
+at line 15 of file 'uploader2.php'.
+The server destination directory should exists, and have rights to write,
+because HTML_Progress_Uploader won't create it.
+
+The process begin when user clic on 'Upload' button, then (on file uploader2.php) :
+- setFiles() (line 82) declare all files to move on server
+- logon() (line 85) we will connect to server: $ftp['host'] and login as user: $ftp['user']
+- moveTo() (line 93) move each file and display an indeterminate progress bar
+
+When transfer is completed, then :
+- logoff() (line 109) disconnect from ftp server
+- remove all session datas (lines 111, 112) 
+
+
+You want to change the dialog box and progress bar presentation:
+=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+To change color and size pattern for both forms, edit file 'form_output.php'.
+The progress bar graphical attributes are locate on file 'uploader2.php' at lines 38, 39, 40.
