@@ -22,7 +22,7 @@
  * to any of your xhtml document.
  * You should have a browser that accept DHTML feature.
  *
- * @version    1.0
+ * @version    1.1
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @access     public
  * @category   HTML
@@ -53,6 +53,15 @@ define ('HTML_PROGRESS_BAR_VERTICAL',   2);
  * @since      1.0
  */
 define ('HTML_PROGRESS_ERROR_INVALID_INPUT',   -100);
+
+/**
+ * Basic error code that indicate a wrong callback definition.
+ * Allows only function or class-method structure. 
+ *
+ * @var        integer
+ * @since      1.1
+ */
+define ('HTML_PROGRESS_ERROR_INVALID_CALLBACK',-101);
 
 
 class HTML_Progress
@@ -315,7 +324,7 @@ class HTML_Progress
      */
     function apiVersion()
     {
-        return 1.0;
+        return 1.1;
     }
 
     /**
@@ -1263,7 +1272,11 @@ class HTML_Progress
                 'invalid input, parameter #%paramnum% '
                     . '"%var%" was expecting '
                     . '"%expected%", instead got "%was%"',
-        );
+            HTML_PROGRESS_ERROR_INVALID_CALLBACK =>
+                'invalid callback, parameter #%paramnum% '
+                    . '"%var%" expecting %element%,'
+                    . ' instead got "%was%" does not exists',
+      );
         if (isset($messages[$code])) {
             $message = $messages[$code];
         } else {
@@ -1272,5 +1285,4 @@ class HTML_Progress
         return Error_Raise::sprintfErrorMessageWithState($message, $args, $state);
     }
 }
-
 ?>
