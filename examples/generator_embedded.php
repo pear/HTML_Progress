@@ -1,4 +1,5 @@
 <?php
+@include '../../include_path.php';
 /**
  * How to embedded HTML_Progress_Generator into existing html page
  * and allows php/css source-code download.

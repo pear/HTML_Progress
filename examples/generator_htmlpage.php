@@ -1,4 +1,5 @@
 <?php
+@include '../../include_path.php';
 /**
  * Generator usage example using HTMLPage renderer.
  *
