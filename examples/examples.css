@@ -68,6 +68,15 @@ pre.code {
 	border: 1px solid red;
 }
 
+pre.out { 
+	font-family: Arial, Verdana; 
+	font-size: 12px;
+	background-color: #EEEEEE; 
+	color: black; 
+	padding: 4px; 
+	border: 1px solid red;
+}
+
 div.fig { 
 	font-weight: bold; 
 	font-size: 9px; 

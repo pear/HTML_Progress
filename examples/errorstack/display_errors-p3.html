@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="index,nofollow" />
+<meta name="keywords" content"="HTML_Progress, PEAR_Error, API error, progress meter" />
+<meta name="description" content="all API HTML_Progress errors are sent to browser" />
+<meta name="author" content="Laurent Laville" />
+<title>PEAR::HTML::Progress example: Display handler - part 3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="../index.html"><img src="../images/home.gif" alt="Examples TOC"/>examples</a></p>
+
+<h1><span class="chapter">Display handler - part 3.</span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Ouput</a>
+<li><a href="#source">PHP source syntax highlight<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="../images/info.gif"/> Introduction</h2>
+		
+<p>This example requires :
+<ul>
+<li>PEAR::HTML_Progress 1.2.0 or better.</li>
+<li>PEAR.</li>
+</ul>
+</p>
+
+<hr/>
+<p><b>This example will show you how to ignore logging system for all html_progress errors.
+But we keep errors into stack.</b></p>
+
+<p>An error was volontary made on call of <b>setAnimSpeed</b> method (line 15).
+As it's an API error, default is to return error after it was raised, so only lines 23 thru 29 
+will be executed.</p>
+<p>As we've decided to use our own error handler (lines 4 thru 11, and 12), 
+variable $e (line15) will contains NULL and no more a PEAR_Error object as default.</p>
+
+
+<h3>display_errors</h3>
+<p>
+Print out errors (as a part of the output).  For production web sites,
+you're strongly encouraged to turn this feature off, and use error logging
+instead.  Keeping display_errors enabled on a production web site
+may reveal security information to end users, such as file paths on your Web
+server, your database schema or other information.
+</p>
+
+<table class="hl-table" width="100%">
+<tr>
+<td class="hl-gutter" align="right" valign="top" style="width:4ex;">1</td>
+<td class="hl-main" valign="top">
+<span class="hl-inlinetags">&lt;?php  </span><span class="hl-identifier">ini_set</span><span class="hl-brackets">(</span><span class="hl-quotes">'</span><span class="hl-string">display_errors</span><span class="hl-quotes">'</span><span class="hl-code">, </span><span class="hl-reserved">false</span><span class="hl-brackets">)</span><span class="hl-code">;  </span><span class="hl-inlinetags">?&gt;</span>
+</td>
+</tr>
+</table>
+
+<h3>log_errors</h3>
+<p>
+Log errors into a log file (server-specific log, stderr, syslog ...)
+As stated above, you're strongly advised to use error logging in place of
+error displaying on production web sites.
+</p>
+
+<table class="hl-table" width="100%">
+<tr>
+<td class="hl-gutter" align="right" valign="top" style="width:4ex;">1</td>
+<td class="hl-main" valign="top">
+<span class="hl-inlinetags">&lt;?php  </span><span class="hl-identifier">ini_set</span><span class="hl-brackets">(</span><span class="hl-quotes">'</span><span class="hl-string">log_errors</span><span class="hl-quotes">'</span><span class="hl-code">, </span><span class="hl-reserved">true</span><span class="hl-brackets">)</span><span class="hl-code">;  </span><span class="hl-inlinetags">?&gt;</span>
+</td>
+</tr>
+</table>
+
+
+<a name="render">
+<h2><img src="../images/config.gif"/>&nbsp;Render options </h2>
+<p>Default options below are used :</p>
+<ul>
+<li><b>message_callback</b> : callback HTML_Progress::_msgCallback()
+<li><b>context_callback</b> : callback HTML_Progress::_getBacktrace()
+<li><b>push_callback</b> : callback HTML_Progress::_handleError() [log and die if error is an exception]
+<li><b>handler</b>/<b>display</b>/conf/lineFormat : '&lt;b>%1$s&lt;/b>: %2$s %3$s'
+<li><b>handler</b>/<b>display</b>/conf/contextFormat : ' in &lt;b>%3$s&lt;/b> (file &lt;b>%1$s&lt;/b> at line &lt;b>%2$s&lt;/b>)'
+</ul>
+
+<p>Only option changed is :</p>
+<ul>
+<li><b>error_handler</b> : callback _errorHandler() [do not use PEAR_Error; no logs]
+</ul>
+
+Legend for <b>lineFormat</b>:
+<ul type="square">
+<li>1$ = error level 
+<li>2$ = message body 
+<li>3$ = error context (class/method/file/line)
+</ul>
+Legend for <b>contextFormat</b>:
+<ul type="square">
+<li>1$ = filename
+<li>2$ = line number
+<li>3$ = class and method names
+</ul>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="../images/image.gif"/>&nbsp;Output</h2>
+<p><font size="1">
+<pre class="out">
+<pre>
+Array
+(
+    [code] => -100
+    [params] => Array
+        (
+            [var] => $delay
+            [was] => 10000
+            [expected] => less or equal 1000
+            [paramnum] => 1
+        )
+
+    [package] => HTML_Progress
+    [level] => error
+    [time] => 1091649873.02
+    [context] => Array
+        (
+            [file] => d:\php\pear\html_progress\examples\errorstack\secure\display_errors-p3.php
+            [line] => 15
+            [function] => setanimspeed
+            [class] => html_progress
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 10000
+                )
+
+        )
+
+    [message] => invalid input, parameter #1 "$delay" was expecting "less or equal 1000", instead got "10000"
+)
+</pre>
+<font size="5"><b>Catch HTML_Progress error</b></font>
+</pre>
+
+</font>
+</font></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="source">
+<h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
+<a target="_blank" href="../highlighter.php?file=./errorstack/secure/display_errors-p3.php">Open</a> source listing in a new window.
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>
