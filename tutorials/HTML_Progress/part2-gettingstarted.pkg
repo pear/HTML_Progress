@@ -1,0 +1,44 @@
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname>Getting Started</refname>
+  <refpurpose>learn all features of HTML_Progress package</refpurpose>
+ </refnamediv>
+
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <copyright>
+    <year>2003</year>
+    <year>2004</year>
+    <holder>
+     <author>
+      <firstname>Laurent</firstname>
+      <surname>Laville</surname>
+     </author>
+    </holder>
+   </copyright>
+   <releaseinfo>HTML_Progress 1.2.0</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+
+ <para>
+  This tutorial takes you through several tasks which provide an overview of 
+  how to use HTML_Progress 1.x to its fullest. 
+ </para>
+ <para>
+  You will learn how to:
+  <itemizedlist>
+   <listitem>Create a <emphasis>simple progress meter</emphasis> from scratch, 
+    with {@tutorial part2-firstprogressmeter.pkg}. 
+   </listitem>
+   <listitem>Control a long task running with the <emphasis>master and slave</emphasis> pattern. 
+    Use or not the {@tutorial part2-progresshandler.pkg} feature.
+   </listitem>
+   <listitem><emphasis>Handle error</emphasis> both simple and advanced with the new 
+    {@tutorial part2-errorhandling.pkg error-handling plug-in}. 
+   </listitem>
+  </itemizedlist>
+ </para>
+
+</refentry>
