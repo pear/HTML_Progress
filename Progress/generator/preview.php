@@ -59,6 +59,7 @@ class ActionPreview extends HTML_QuickForm_Action
             if ($percent == 1) {
                 break;   // the progress bar has reached 100%
             }
+            $bar->sleep();
             $bar->incValue();
         } while(1);
     }
