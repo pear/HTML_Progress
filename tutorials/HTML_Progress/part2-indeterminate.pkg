@@ -23,7 +23,7 @@
   </para>
  </refsect1>
 
- <refsect1 id="{@id useit}">
+ <refsect1 id="{@id basic-indeterminate}">
   <title>Using Indeterminate Mode without Progress Monitor</title>
   <para>
    <figure>
@@ -58,7 +58,7 @@
   </simpara>
  </refsect1>
 
- <refsect1 id="{@id useit}">
+ <refsect1 id="{@id monitor-indeterminate}">
   <title>Using Indeterminate Mode with Progress Monitor</title>
   <para>
    <figure>
