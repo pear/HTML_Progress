@@ -1,0 +1,128 @@
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname>Monitoring functions v2</refname>
+  <refpurpose>displays a progress bar inside a dialog box </refpurpose>
+ </refnamediv>
+
+ {@toc}
+
+ <refsect1 id="{@id intro}">
+  <title>Introduction</title>
+  <para>
+   On February 15, 2004 and for release 1.1 of HTML_Progress, the <classname>HTML_Progress_Monitor</classname> 
+   class improved a lot. Features are :
+   <itemizedlist>
+    <listitem>both modes determinate/indeterminate supported for the progress meter </listitem>
+    <listitem>easy communication with your user-process </listitem>
+    <listitem>follow standard of QuickForm rendering </listitem>
+    <listitem>buttons size, dialog box and buttons title, all are customizable </listitem>
+    <listitem>different captions on user-process progress are allowed </listitem>
+   </itemizedlist>
+   User-end command actions to begin and cancel process. The progress bar won't start if the user
+   did not click on the 'Start' button. Once the process begun the start button is disabled.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id basic-concept}">
+  <title>Basic concept</title>
+  <para>
+   Form and progress bar output are now contained in classes that extend 
+   <classname>HTML_QuickForm_Renderer</classname>. Design pattern is much easier to manage 
+   and change, and you can choose your favorite template engine.
+  </para>
+  <para>
+   There are 8 renderers available since release 3.1.1 of QuickForm. The following template engines
+   are directly suported: Smarty, HTML_Template_Sigma, HTML_Template_IT, HTML_Template_Flexy. 
+   Among these 8 renderers, we will have a look on 3 examples in next chapters :
+   'default', 'default improved', 'template integration'.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id useit}">
+  <title>Using Progress Monitor</title>
+  <para>
+   <refsect2 id="{@id renderer-default}">
+    <title>Default renderer</title>
+    <para>
+     Without any changes, you may obtains a decent dialog box with a default progress meter
+     such as :
+     <simpara>
+      <figure>
+       <graphic fileref="../media/screenshots/monitor_default1.png"></graphic>
+      </figure>
+     </simpara>
+    </para>
+    <example><title>Default renderer</title>
+     {@example monitor_default.php}
+    </example>
+    <para>
+     <note>
+      CSS class 'progressStatus' is for caption display (see {@tutorial monitor.setcaption.pkg}).
+     </note>
+    </para>
+   </refsect2>
+   <refsect2 id="{@id renderer-improved}">
+    <title>Default improved renderer</title>
+    <para>
+     With some class constructor options and a QF renderer, we will improves a lot in few lines,
+     the decent but poor graphic first example. Enjoy the new result :
+     <simpara>
+      <figure>
+       <graphic fileref="../media/screenshots/monitor_function_callback.png"></graphic>
+      </figure>
+     </simpara>
+    </para>
+    <example><title>Default improved renderer</title>
+     {@example monitor_improved.php}
+    </example>
+    <para>
+     To make it possible, we have changed buttons size and internal QuickForm name 
+     on <emphasis>lines 26 to 29</emphasis> (class constructor options), and written the
+     QF renderer on <emphasis>lines 71 to 84</emphasis>. 
+     The progress bar look and feel is defined on <emphasis>lines 38 to 42</emphasis>. 
+     <simpara>
+      Our user-process which run an indeterminate progress switching back to determinate mode
+      is defined by the 'myFunctionHandler' function (<emphasis>lines 4 to 24</emphasis>),
+      linked to the monitor on <emphasis>line 30</emphasis>.
+     </simpara>
+    </para>
+   </refsect2>
+   <refsect2 id="{@id renderer-template}">
+    <title>Template engine integration </title>
+    <para>
+     Using Progress Monitor with a template engine supported by QF rendering system is very easy.
+     We will show you how to do with ITx ({@link http://pear.php.net/package/HTML_Template_IT}).
+     Example below will simulate a picture upload operation (3 steps: picture 1 at 10%,
+     picture 2 at 45%, picture 3 at 70%).
+     <simpara>
+      <figure>
+       <graphic fileref="../media/screenshots/monitor_itdynamic.png"></graphic>
+      </figure>
+     </simpara>
+    </para>
+    <example><title>ITDynamic renderer </title>
+     {@example monitor_itdynamic.php}
+    </example>
+    <para>
+     <classname>HTML_Progress_Monitor</classname> class constructor options (<emphasis>lines 33 to 39</emphasis>)
+     allows to change buttons name and size, the dialog box title, and the internal QuickForm name.
+     <simpara> 
+      User-process is now defined by a method-class on <emphasis>lines 6 to 31</emphasis>, and
+      linked to the monitor on <emphasis>line 40</emphasis>.
+     </simpara> 
+     <simpara>
+      The ITx template engine is initialized <emphasis>line 53</emphasis>, and loaded with template
+      {@link http://pear.laurent-laville.org/HTML_Progress/apidoc/HTML/monitor_itdynamic_tpl.php monitor_itdynamic.html} 
+      (<emphasis>line 54</emphasis>).
+     </simpara> 
+     <simpara>
+      Finally we get the QF renderer on <emphasis>lines 61 to 64</emphasis>.
+     </simpara> 
+    </para>
+   </refsect2>
+  </para>
+ </refsect1>
+
+</refentry>
