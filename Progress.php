@@ -31,8 +31,6 @@
  * @tutorial   HTML_Progress.pkg
  */
 
-require_once 'PEAR/ErrorStack.php';
-require_once 'Log.php';
 require_once 'HTML/Progress/DM.php';
 require_once 'HTML/Progress/UI.php';
 
@@ -82,6 +80,60 @@ define ('HTML_PROGRESS_ERROR_INVALID_CALLBACK',-101);
  */
 define ('HTML_PROGRESS_DEPRECATED',            -102);
 
+/**#@+
+ * One of five possible return values from the error Callback
+ *
+ * @see        HTML_Progress::_handleError
+ * @var        integer
+ * @since      1.2.0
+ */
+/**
+ * If this is returned, then the error will be both pushed onto the stack
+ * and logged.
+ */
+define('HTML_PROGRESS_ERRORSTACK_PUSHANDLOG', 1);
+/**
+ * If this is returned, then the error will only be pushed onto the stack,
+ * and not logged.
+ */
+define('HTML_PROGRESS_ERRORSTACK_PUSH', 2);
+/**
+ * If this is returned, then the error will only be logged, but not pushed
+ * onto the error stack.
+ */
+define('HTML_PROGRESS_ERRORSTACK_LOG', 3);
+/**
+ * If this is returned, then the error is completely ignored.
+ */
+define('HTML_PROGRESS_ERRORSTACK_IGNORE', 4);
+/**
+ * If this is returned, then the error will only be logged, but not pushed
+ * onto the error stack because the script will die.
+ */
+define('HTML_PROGRESS_ERRORSTACK_LOGANDDIE', 5);
+/**#@-*/
+
+
+/**#@+
+ * Log types for PHP's native error_log() function
+ *
+ * @see        HTML_Progress::_errorHandler
+ * @var        integer
+ * @since      1.2.0
+ */
+/** 
+ * Use PHP's system logger 
+ */
+define('HTML_PROGRESS_LOG_TYPE_SYSTEM',  0);
+/** 
+ * Use PHP's mail() function 
+ */
+define('HTML_PROGRESS_LOG_TYPE_MAIL',    1);
+/**
+ * Append to a file 
+ */
+define('HTML_PROGRESS_LOG_TYPE_FILE',    3);
+/**#@-*/
 
 class HTML_Progress
 {
@@ -210,6 +262,65 @@ class HTML_Progress
      */
     var $_callback = null;
 
+    /**
+     * Errors stack
+     *
+     * @var        array
+     * @since      1.2.0
+     * @access     private
+     */
+    var $_errors = array();
+
+    /**
+     * If set to a valid callback, this will be used to generate the error
+     * message from the error code.
+     *
+     * @var        false|string|array
+     * @since      1.2.0
+     * @access     private
+     */
+    var $_msgCallback;
+
+    /**
+     * If set to a valid callback, this will be used to generate the error
+     * context for an error.
+     *
+     * @var        false|string|array
+     * @since      1.2.0
+     * @access     private
+     */
+    var $_contextCallback;
+    
+    /**
+     * If set to a valid callback, this will be called every time an error
+     * is pushed onto the stack.  The return value will be used to determine
+     * whether to allow an error to be pushed or logged.
+     * 
+     * @var        false|string|array
+     * @since      1.2.0
+     * @access     private
+     */
+    var $_pushCallback;
+
+    /**
+     * Callback that handle errors, 
+     * either function name or array(&$object, 'method')
+     *
+     * @var        mixed
+     * @since      1.2.0
+     * @access     private
+     */
+    var $_errorHandler;
+
+    /**
+     * Associative array of key-value pairs that are used to specify
+     * any handler-specific settings.
+     *
+     * @var        array
+     * @since      1.2.0
+     * @access     private
+     */
+    var $_optionsHandler;
     
     /**
      * Constructor Summary
@@ -279,9 +390,9 @@ class HTML_Progress
             } else {
                 $num_args--;
             }
-            $this->_initErrorStack($errorPrefs);
+            $this->_initErrorHandler($errorPrefs);
         } else {        	
-            $this->_initErrorStack();
+            $this->_initErrorhandler();
         }
 
         $this->_listeners = array();          // none listeners by default
@@ -1655,90 +1766,262 @@ class HTML_Progress
     }
 
     /**
-     * Initialize Error Stack engine
+     * Initialize Error Handler 
      *
-     * @param      array     $prefs         hash of params for PEAR::Log object list
+     * Parameter '$prefs' contains a hash of options to define the error handler.
+     * You may find :
+     *  'message_callback'  A callback to generate message body.
+     *                      Default is:  HTML_Progress::_msgCallback()
+     *  'context_callback'  A callback to generate context of error.
+     *                      Default is:  HTML_Progress::_getBacktrace()
+     *  'push_callback'     A callback to determine whether to allow an error
+     *                      to be pushed or logged.
+     *                      Default is:  HTML_Progress::_handleError()
+     *  'error_handler'     A callback to manage all error raised.
+     *                      Default is:  HTML_Progress::_errorHandler()
+     *  'handler'           Hash of params to configure all handlers (display, file, mail ...)
+     *                      There are only a display handler by default with options below:
+     *  <code>
+     *  array('display' => array('conf' => $options));
+     *  // where $options are:
+     *  $options = array(
+     *      'lineFormat' => '<b>%1$s</b>: %2$s %3$s',
+     *      'contextFormat' => ' in <b>%3$s</b> (file <b>%1$s</b> at line <b>%2$s</b>)'
+     *  );
+     *  </code>
+     *
+     * @param      array     $prefs         hash of params to configure error handler
      *
      * @return     void
-     * @since      1.2.0RC1
+     * @since      1.2.0
      * @access     private
      */
-    function _initErrorStack($prefs = array())
+    function _initErrorHandler($prefs = array())
     {
         $this->_package = 'HTML_Progress';
-        $stack =& PEAR_ErrorStack::singleton($this->_package);
 
-        if (isset($prefs['pushCallback']) && is_callable($prefs['pushCallback'])) {
-            $cb = $prefs['pushCallback'];
+        // error message mapping callback
+        if (isset($prefs['message_callback']) && is_callable($prefs['message_callback'])) {
+            $this->_msgCallback = $prefs['message_callback'];
         } else {
-            $cb = array('HTML_Progress', '_handleError');
+            $this->_msgCallback = array(&$this, '_msgCallback');
         }
-        $stack->pushCallback($cb);
 
-        if (isset($prefs['msgCallback'])) {
-            $cb = $prefs['msgCallback'];
+        // error context mapping callback
+        if (isset($prefs['context_callback']) && is_callable($prefs['context_callback'])) {
+            $this->_contextCallback = $prefs['context_callback'];
         } else {
-            $cb = array('HTML_Progress', '_msgCallback');
-        }
-        $stack->setMessageCallback($cb);
-        if (isset($prefs['contextCallback'])) {
-            $stack->setContextCallback($prefs['contextCallback']);
-        }
-        $messages = HTML_Progress::_getErrorMessage();
-        $stack->setErrorMessageTemplate($messages);
-        $composite = &Log::singleton('composite');
-        $stack->setLogger($composite);
-
-        $drivers = isset($prefs['handler']) ? $prefs['handler'] : array();
-        $display_errors = isset($prefs['display_errors']) ? strtolower($prefs['display_errors']) : 'on';
-        $log_errors = isset($prefs['log_errors']) ? strtolower($prefs['log_errors']) : 'on';
-        
-        foreach ($drivers as $handler => $params) {
-            if ((strtolower($handler) == 'display') && ($display_errors == 'off')) {
-                continue;
-            }
-            if ((strtolower($handler) != 'display') && ($log_errors == 'off')) {
-                continue;
-            }       
-            $name = isset($params['name']) ? $params['name'] : '';
-            $ident = isset($params['ident']) ? $params['ident'] : '';
-            $conf = isset($params['conf']) ? $params['conf'] : array();
-            $level = isset($params['level']) ? $params['level'] : PEAR_LOG_DEBUG;
-            
-            $logger = &Log::singleton(strtolower($handler), $name, $ident, $conf, $level);
-            $composite->addChild($logger);
+            $this->_contextCallback = array('HTML_Progress', '_getBacktrace');
         }
 
-        // Add at least the Log::display driver to output errors on browser screen
-        if (!array_key_exists('display', $drivers)) {
-            if ($display_errors == 'on') {
-                $logger = &Log::singleton('display');
-                $composite->addChild($logger);
-            }
+        // determine whether to allow an error to be pushed or logged
+        if (isset($prefs['push_callback']) && is_callable($prefs['push_callback'])) {
+            $this->_pushCallback = $prefs['push_callback'];
+        } else {
+            $this->_pushCallback = array(&$this, '_handleError');
+        }
+
+        // default error handler will use PEAR_Error
+        if (isset($prefs['error_handler']) && is_callable($prefs['error_handler'])) {
+            $this->_errorHandler = $prefs['error_handler'];
+        } else {
+            $this->_errorHandler = array(&$this, '_errorHandler');
+        }
+
+        // only a display handler is set by default with specific settings
+        $conf = array('lineFormat' => '<b>%1$s</b>: %2$s %3$s',
+                      'contextFormat' => ' in <b>%3$s</b> (file <b>%1$s</b> at line <b>%2$s</b>)'
+                      );
+
+        $this->_optionsHandler['display'] = array('conf' => $conf);
+
+        if (isset($prefs['handler'])) {
+            $this->_optionsHandler = array_merge($this->_optionsHandler, $prefs['handler']);
         }
     }
 
     /**
-     * User callback to generate error messages for any instance
+     * Default callback to generate error messages for any instance
      *
-     * @param      object    $stack         PEAR_ErrorStack instance
-     * @param      array     $err           current error with context info 
+     * @param      array     $err           current error structure with context info 
      *
      * @return     string
      * @since      1.2.0RC1
      * @access     private
      */
-    function _msgCallback(&$stack, $err)
+    function _msgCallback($err)
     {
-        $message = call_user_func_array(array(&$stack, 'getErrorMessage'), array(&$stack, $err));
+        $messages = HTML_Progress::_getErrorMessage();
+        $mainmsg = $messages[$err['code']];
+        
+        if (count($err['params'])) {
+            foreach ($err['params'] as $name => $val) {
+                if (is_array($val)) {
+                    $val = implode(', ', $val);
+                }
+                $mainmsg = str_replace('%' . $name . '%', $val,  $mainmsg);
+            }
+        }
+        return $mainmsg;
+    }
 
-        if (isset($err['context']['function'])) {
-            $message .= ' in ' . $err['context']['class'] . '::' . $err['context']['function'];
+    /**
+     * Standard file/line number/function/class context callback
+     *
+     * @return     false|array
+     * @since      1.2.0
+     * @access     private
+     * @static
+     */
+    function _getBacktrace()
+    {
+        if (function_exists('debug_backtrace')) {
+            $backtrace = debug_backtrace();     // PHP 4.3+
+            $backtrace = $backtrace[count($backtrace)-1];
+        } else {
+            $backtrace = false;                 // PHP 4.1.x, 4.2.x (no context info available)
         }
-        if (isset($err['context']['file'])) {
-            $message .= ' (file ' . $err['context']['file'] . ' at line ' . $err['context']['line'] .')';
+        return $backtrace;
+    }
+
+    /**
+     * Standard callback, this will be called every time an error
+     * is pushed onto the stack.  The return value will be used to determine
+     * whether to allow an error to be pushed or logged.
+     * Dies if the error is an exception (and would have died anyway)
+     *
+     * @param      array     $err           current error structure with context info 
+     *
+     * @return     null|HTML_PROGRESS_ERRORSTACK_* constant
+     * @since      1.2.0RC2
+     * @access     private
+     * @see        HTML_PROGRESS_ERRORSTACK_PUSHANDLOG, HTML_PROGRESS_ERRORSTACK_PUSH, 
+     *             HTML_PROGRESS_ERRORSTACK_LOG, HTML_PROGRESS_ERRORSTACK_IGNORE,
+     *             HTML_PROGRESS_ERRORSTACK_LOGANDDIE
+     */
+    function _handleError($err)
+    {
+        if ($err['level'] == 'exception') {
+            return HTML_PROGRESS_ERRORSTACK_LOGANDDIE;
         }
-        return $message;
+    }
+
+    /**
+     * Standard error handler that will use PEAR_Error object
+     *
+     * To improve performances, the PEAR.php file is included dynamically.
+     * The file is so included only when an error is triggered. So, in most
+     * cases, the file isn't included and perfs are much better.
+     *
+     * @param      array     $err           current error structure with context info 
+     *
+     * @return     PEAR_Error
+     * @since      1.2.0
+     * @access     private
+     */
+    function _errorHandler($err)
+    {
+        include_once 'PEAR.php';
+        $e = PEAR::raiseError($err['message'], $err['code'], PEAR_ERROR_RETURN, null, 
+                              $err['context']);
+
+        if (isset($err['context'])) {
+            $file = $err['context']['file'];
+            $line = $err['context']['line'];
+            $func = $err['context']['class'].'::'.$err['context']['function'];
+        }
+
+        $display_errors = ini_get('display_errors');
+        $log_errors = ini_get('log_errors');
+
+        $display = $this->_optionsHandler['display'];
+        
+        if ($display_errors) {
+            $lineFormat = $display['conf']['lineFormat'];
+            $contextFormat = $display['conf']['contextFormat'];
+
+            $context = sprintf($contextFormat, $file, $line, $func);
+           
+            printf($lineFormat."<br />\n", ucfirst($err['level']), $err['message'], $context);
+        }
+
+        if ($log_errors) {
+            if (isset($this->_optionsHandler['error_log'])) {
+                $error_log = $this->_optionsHandler['error_log'];
+                $message_type = $error_log['name'];
+                $destination = '';
+                $extra_headers = '';
+                $send = true;
+                
+                switch ($message_type) {
+                    case HTML_PROGRESS_LOG_TYPE_SYSTEM:
+                        break;
+                    case HTML_PROGRESS_LOG_TYPE_MAIL:
+                        $destination = $error_log['conf']['destination'];
+                        $extra_headers = $error_log['conf']['extra_headers'];
+                        break;
+                    case HTML_PROGRESS_LOG_TYPE_FILE:
+                        $destination = $error_log['conf']['destination'];
+                        break;
+                    default:
+                        $send = false;
+                }
+                if ($send) {
+                    /**
+                     * String containing the format of a log line.
+                     * Position arguments are: 
+                     *  $1 -> timestamp
+                     *  $2 -> ident
+                     *  $3 -> level
+                     *  $4 -> message
+                     *  $5 -> context
+                     */
+                    if (isset($error_log['conf']['lineFormat'])) {
+                        $lineFormat = $error_log['conf']['lineFormat'];
+                    } else {
+                        $lineFormat = '%1$s %2$s [%3$s] %4$s %5$s';
+                    }
+
+                    /**
+                     * String containing the timestamp format
+                     */
+                    if (isset($error_log['conf']['timeFormat'])) {
+                        $timeFormat = $error_log['conf']['timeFormat'];
+                    } else {
+                        $timeFormat = '%b %d %H:%M:%S';
+                    }
+
+                    /**
+                     * String containing the error execution context format
+                     */
+                    if (isset($error_log['conf']['contextFormat'])) {
+                    	$contextFormat = $error_log['conf']['contextFormat'];
+                    } else {
+                    	$contextFormat = strip_tags($display['conf']['contextFormat']);
+                    }
+
+                    /**
+                     * String containing the end-on-line character sequence
+                     */
+                    if (isset($error_log['conf']['eol'])) {
+                    	$eol = $error_log['conf']['eol'];
+                    } else {
+                    	$eol = "\n";
+                    }
+
+                    $context = sprintf($contextFormat, $file, $line, $func);
+                    $message = sprintf($lineFormat, 
+                                       strftime($timeFormat, $err['time']),
+                                       $error_log['ident'],
+                                       $err['level'],
+                                       $err['message'],
+                                       $context);
+
+                    error_log($message.$eol, $message_type, $destination, $extra_headers);
+                }
+            }
+        }
+        return $e;
     }
 
     /**
@@ -1768,44 +2051,70 @@ class HTML_Progress
     }
 
     /**
-     * Default internal error handler
-     * Dies if the error is an exception (and would have died anyway)
-     *
-     * @since      1.2.0RC2
-     * @access     private
-     */
-    function _handleError($err)
-    {
-        if ($err['level'] == 'exception') {
-            $stack =& PEAR_ErrorStack::singleton($err['package']);
-            $stack->_log($err);
-            die();
-        }
-    }
-
-    /**
      * Add an error to the stack
-     * Dies if the error is an exception (and would have died anyway)
      *
      * @param      integer   $code       Error code.
      * @param      string    $level      The error level of the message. 
      *                                   Valid are PEAR_LOG_* constants
      * @param      array     $params     Associative array of error parameters
-     * @param      boolean   $msg        Static error message
      *
-     * @return     array     PEAR_ErrorStack instance. And with context info (if PHP 4.3+)
+     * @return     false|PEAR_Error      clone of PEAR_ErrorStack instance,
+     *                                   with context info if PHP 4.3.0+
      * @since      1.2.0RC1
      * @access     public
+     *  //
      */
-    function raiseError($code, $level, $params, $msg = false)
+    function raiseError($code, $level, $params)
     {
-        if (function_exists('debug_backtrace')) {
-            $trace = debug_backtrace();     // PHP 4.3+
-        } else {
-            $trace = null;                  // PHP 4.1.x, 4.2.x (no context info available)
+        // grab error context
+        $context = call_user_func($this->_contextCallback);
+       
+        // save error
+        $time = explode(' ', microtime());
+        $time = $time[1] + $time[0];
+        $err = array(
+                'code' => $code,
+                'params' => $params,
+                'package' => $this->_package,
+                'level' => $level,
+                'time' => $time,
+                'context' => $context
+               );
+
+        // set up the error message, if necessary
+        $err['message'] = call_user_func($this->_msgCallback, $err);
+
+        $push = $log = true;
+        $die = false;
+        switch(call_user_func($this->_pushCallback, $err)){
+            case HTML_PROGRESS_ERRORSTACK_IGNORE: 
+                $push = $log = false;
+                break;
+            case HTML_PROGRESS_ERRORSTACK_PUSH: 
+                $log = false;
+                break;
+            case HTML_PROGRESS_ERRORSTACK_LOG: 
+                $push = false;
+      		break;
+            case HTML_PROGRESS_ERRORSTACK_LOGANDDIE: 
+                $push = false;
+                $die = true;
+      		break;
+            // anything else returned has the same effect as pushandlog
         }
-        $err = PEAR_ErrorStack::staticPush($this->_package, $code, $level, $params, $msg, false, $trace);
-        return $err;
+
+        $e = false;
+        if ($push) {
+            array_unshift($this->_errors, $err);
+        }
+        if ($log) {
+            // standard PEAR error
+            $e = call_user_func($this->_errorHandler, $err);
+        }
+        if ($die) {
+            die();
+        }
+        return $e;
     }
 
     /**
@@ -1817,8 +2126,7 @@ class HTML_Progress
      */
     function hasErrors()
     {
-        $s = &PEAR_ErrorStack::singleton($this->_package);
-        return $s->hasErrors();
+        return count($this->_errors);
     }
 
     /**
@@ -1830,8 +2138,7 @@ class HTML_Progress
      */
     function getError()
     {
-        $s = &PEAR_ErrorStack::singleton($this->_package);
-        return $s->pop();
+        return @array_shift($this->_errors);
     }
 }    
 ?>
