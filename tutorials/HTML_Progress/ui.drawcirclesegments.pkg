@@ -1,0 +1,75 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>drawCircleSegments Manual</refname>
+  <refpurpose>draw each of pictures for circle and/or ellipse progress shape</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>April 2004, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.2.0RC1</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>array</emphasis> <important>drawCircleSegments</important>( $dir, $fileMask )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+       <entry><important>Default</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>dir</emphasis></entry>
+      <entry>string                  </entry>
+      <entry>.                       </entry>
+     </row>
+     <row>
+      <entry><emphasis>fileMask</emphasis></entry>
+      <entry>string                  </entry>
+      <entry>c%s.png                 </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+  <para>
+   <emphasis>$dir</emphasis> is the path to final destination of pictures creates by the GD library.
+  </para>
+  <para>
+   <emphasis>$fileMask</emphasis> is a template filename to build each picture segment.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>drawCircleSegments()</emphasis> method is used to create each circle/ellipse
+   segment picture.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will produced a plain circle 
+   the progress bar will run.
+   <para><graphic fileref="../media/screenshots/circle080.png"></graphic></para>
+   {@example drawcirclesegments.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial ui.setcellattributes.pkg} 
+  </para>
+ </refsect1>
+</refentry>

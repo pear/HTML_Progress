@@ -1,0 +1,65 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>setUI Manual</refname>
+  <refpurpose>sets new instance of HTML_Progress_UI object</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>void</emphasis> <important>setUI</important>($ui)</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+       <entry><important>Default</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>ui</emphasis></entry>
+      <entry>string                 </entry>
+      <entry>n/a                    </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>setUI()</emphasis> method is used to set new instance
+   of HTML_Progress_UI object used to manage graphical properties.
+  </para>
+  <para>
+   <emphasis>$ui</emphasis> is the name of a class (that must exists) 
+   which is an extends of HTML_Progress_UI.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   {@example setui.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial progress.getui.pkg}
+  </para>
+ </refsect1>
+</refentry>

@@ -1,0 +1,38 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>getDM Manual</refname>
+  <refpurpose>returns instance of HTML_Progress_DM object</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>object</emphasis> <important>getDM</important>()</para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>getDM()</emphasis> method is used to retrieve instance
+   of current HTML_Progress_DM object used to manage mathematical data model.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   {@example getdm.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial progress.setdm.pkg}
+  </para>
+ </refsect1>
+</refentry>
