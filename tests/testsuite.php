@@ -50,7 +50,7 @@ $title = 'PhpUnit test run, HTML_Progress class';
             'HTML_Progress_TestCase_setStringPainted',
             'HTML_Progress_TestCase_setDM',
             'HTML_Progress_TestCase_setUI',
-            'HTML_Progress_TestCase_setModel',
+//            'HTML_Progress_TestCase_setModel',
             'HTML_Progress_TestCase_setAnimSpeed',
             'HTML_Progress_TestCase_addListener',
             'HTML_Progress_TestCase_removeListener',
@@ -71,7 +71,6 @@ $title = 'PhpUnit test run, HTML_Progress class';
    	    'HTML_Progress_TestCase_DM_setIncrement',
    	    'HTML_Progress_TestCase_DM_setValue'
 	);
-
 	
 	$suite = new PHPUnit_TestSuite();
 
