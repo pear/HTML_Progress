@@ -8,16 +8,16 @@ Your browser should accept DHTML feature.
 
 Features:
 - create horizontal, vertival bar and also circle, ellipse and polygons (square, rectangle)
-- allows usage of an existing external StyleSheet and/or JavaScript 
+- allows usage of existing external StyleSheet and/or JavaScript 
 - all elements (progress, cells, string) are customizable by their html properties
-- percent/string is floating all around the progress bar
+- percent/string is floating all around the progress meter
 - compliant with all CSS/XHMTL standards
 - integration with all template engines is very easy
-- implements a Observer design pattern. It is possible to add Listeners.
+- implements Observer design pattern. It is possible to add Listeners
 - adds a customizable UI monitor pattern to display a progress bar. 
   User-end can abort progress at any time.
-- Look and feel can be sets by internal API or external config file.
-- Allows many progress bar on same page without uses of iframe solution.
+- Look and feel can be sets by internal API or external config file
+- Allows many progress meter on same page without uses of iframe solution
 - Since release 1.2.0 you may display new shapes like: circle, ellipse, square and rectangle.</description>
   <maintainers>
     <maintainer>
@@ -40,30 +40,25 @@ Features:
     </maintainer>
   </maintainers>
   <release>
-    <version>1.2.0RC3</version>
-    <date>2004-07-06</date>
+    <version>1.2.0</version>
+    <date>2004-09-12</date>
     <license>PHP License 3.0</license>
-    <state>beta</state>
-    <notes>* QA 
-- package.xml should not contain md5sum or provides for readability
+    <state>stable</state>
+    <notes>* changes 
+- PEAR_ErrorStack was replaced by a simple way to plug in any error handling system
+you might want (default used PEAR_Error object)
+- Log package dependency was removed (no more used for logging)
+- HTML_Progress_Model and HTML_Progress_Uploader classes were removed
 
-* changes 
-- suite of PHPUnit TestCases are now fully compatible with PHP5
-- method raiseError has a new optional parameter ( $msg: static message )
+* improvements
+- HTML_Progress::sleep() method use now in most case the PHP usleep() function
 
-* bugs fixes
-- missing ident class in stylesheet production in HTML_Progress::getStyle() 
-- sometimes circle, ellipse segments pictures were generated with horiz. bottom line
-  (it's no more exists)
-
-* new features
-- 2 new methods to easily manage API errors ( hasErrors(), getError() )
-- 1 new method to hide a progress meter when necessary ( request by JH Szeto )
-- 2 new methods to simplify your job: sleep(), run() 
-- 2 new methods to introduce user-callback: process(), setProgressHandler()
-
-* to do
-- preload segments pictures before progress meter (circle, ellipse) start 
+* news
+- The Definitive Guide: 
+  http://pear.laurent-laville.org/HTML_Progress/apidoc/
+         HTML/ read it online the html version
+         CHM/  download (190 kb) the Windows Help Compiled version
+         PDF/  download (757 kb) the Acrobat Reader version
 </notes>
     <deps>
       <dep type="pkg" rel="ge" version="1.3.1" optional="no">PEAR</dep>
@@ -74,7 +69,6 @@ Features:
       <dep type="pkg" rel="ge" version="3.1.1" optional="yes">HTML_QuickForm</dep>
       <dep type="pkg" rel="ge" version="0.9.3" optional="yes">HTML_QuickForm_Controller</dep>
       <dep type="pkg" rel="ge" version="1.9" optional="yes">Config</dep>
-      <dep type="pkg" rel="ge" version="1.8.0" optional="no">Log</dep>
       <dep type="pkg" rel="ge" version="1.0.0" optional="yes">Image_Color</dep>
       <dep type="ext" rel="ge" version="2.0.1" optional="yes">GD</dep>
     </deps>
@@ -82,16 +76,10 @@ Features:
       <dir baseinstalldir="HTML" name="/">
        <dir name="examples">
         <file role="doc" name="examples.css"/>
+        <file role="doc" name="highlighter.php"/>
+        <file role="doc" name="include_path.php"/>
         <file role="doc" name="index.html"/>
         <file role="doc" name="pear-power.png"/>
-        <dir name="errorstack">
-         <file role="doc" name="display2.php"/>
-         <file role="doc" name="display184.php"/>
-         <file role="doc" name="display_errors.html"/>
-         <file role="doc" name="display_errors.php"/>
-         <file role="doc" name="log_errors.html"/>
-         <file role="doc" name="log_errors.php"/>
-        </dir> <!-- examples/errorstack -->
         <dir name="generator">
          <file role="doc" name="ancestor.ini"/>
          <file role="doc" name="bgimages.ini"/>
@@ -123,8 +111,6 @@ Features:
          <file role="doc" name="download.gif"/>
          <file role="doc" name="javadanse.html"/>
          <file role="doc" name="javadanse.php"/>
-         <file role="doc" name="model.html"/>
-         <file role="doc" name="model.php"/>
          <file role="doc" name="nostring.html"/>
          <file role="doc" name="nostring.php"/>
          <file role="doc" name="progress_number.js"/>
@@ -221,8 +207,9 @@ Features:
          <file role="doc" name="generator_standard.png"/>
          <file role="doc" name="horizontal.png"/>
          <file role="doc" name="indeterminate.png"/>
+         <file role="doc" name="indeterminate_half_basic.png"/>
+         <file role="doc" name="itxstatic.png"/>
          <file role="doc" name="javadanse.png"/>
-         <file role="doc" name="model.png"/>
          <file role="doc" name="monitor_complex.png"/>
          <file role="doc" name="monitor_default1.png"/>
          <file role="doc" name="monitor_function_callback.png"/>
@@ -283,7 +270,6 @@ Features:
        <dir name="Progress">
         <file role="php" name="DM.php"/>
         <file role="php" name="generator.php"/>
-        <file role="php" name="model.php"/>
         <file role="php" name="monitor.php"/>
         <file role="php" name="observer.php"/>
         <file role="php" name="UI.php"/>
@@ -300,6 +286,7 @@ Features:
        <dir name="tests">
         <file role="test" name="ancestor.ini"/>
         <file role="test" name="HTML_Progress_TestCase_addListener.php"/>
+        <file role="test" name="HTML_Progress_TestCase_DM_new.php"/>
         <file role="test" name="HTML_Progress_TestCase_DM_setIncrement.php"/>
         <file role="test" name="HTML_Progress_TestCase_DM_setMaximum.php"/>
         <file role="test" name="HTML_Progress_TestCase_DM_setMinimum.php"/>
@@ -320,6 +307,7 @@ Features:
         <file role="test" name="HTML_Progress_TestCase_UI_getCellAttributes.php"/>
         <file role="test" name="HTML_Progress_TestCase_UI_getProgressAttributes.php"/>
         <file role="test" name="HTML_Progress_TestCase_UI_getStringAttributes.php"/>
+        <file role="test" name="HTML_Progress_TestCase_UI_new.php"/>
         <file role="test" name="HTML_Progress_TestCase_UI_setCellAttributes.php"/>
         <file role="test" name="HTML_Progress_TestCase_UI_setCellCoordinates.php"/>
         <file role="test" name="HTML_Progress_TestCase_UI_setCellCount.php"/>
@@ -334,7 +322,9 @@ Features:
        </dir> <!-- tests -->
        <dir name="tutorials">
         <dir name="HTML_Progress">
-         <file role="doc" name="beginner.pkg"/>
+         <file role="doc" name="A_install.pkg"/>
+         <file role="doc" name="B_migration12.pkg"/>
+         <file role="doc" name="C_faq.pkg"/>
          <file role="doc" name="dm.getincrement.pkg"/>
          <file role="doc" name="dm.getmaximum.pkg"/>
          <file role="doc" name="dm.getminimum.pkg"/>
@@ -345,34 +335,69 @@ Features:
          <file role="doc" name="dm.setmaximum.pkg"/>
          <file role="doc" name="dm.setminimum.pkg"/>
          <file role="doc" name="dm.setvalue.pkg"/>
-         <file role="doc" name="expert.pkg"/>
-         <file role="doc" name="expert.pkg.ini"/>
-         <file role="doc" name="gettingstarted.pkg"/>
-         <file role="doc" name="howto.pkg"/>
-         <file role="doc" name="howto.pkg.ini"/>
          <file role="doc" name="HTML_Progress.pkg"/>
          <file role="doc" name="HTML_Progress.pkg.ini"/>
-         <file role="doc" name="indeterminate.pkg"/>
-         <file role="doc" name="monitor.pkg"/>
-         <file role="doc" name="observer.pkg"/>
+         <file role="doc" name="monitor.accept.pkg"/>
+         <file role="doc" name="monitor.callprogresshandler.pkg"/>
+         <file role="doc" name="monitor.getprogresselement.pkg"/>
+         <file role="doc" name="monitor.getscript.pkg"/>
+         <file role="doc" name="monitor.getstyle.pkg"/>
+         <file role="doc" name="monitor.iscanceled.pkg"/>
+         <file role="doc" name="monitor.isstarted.pkg"/>
+         <file role="doc" name="monitor.notify.pkg"/>
+         <file role="doc" name="monitor.run.pkg"/>
+         <file role="doc" name="monitor.setcaption.pkg"/>
+         <file role="doc" name="monitor.setprogresselement.pkg"/>
+         <file role="doc" name="monitor.setprogresshandler.pkg"/>
+         <file role="doc" name="monitor.tohtml.pkg"/>
+         <file role="doc" name="part1-introduction.pkg"/>
+         <file role="doc" name="part2-errorhandling.pkg"/>
+         <file role="doc" name="part2-firstprogressmeter.pkg"/>
+         <file role="doc" name="part2-gettingstarted.pkg"/>
+         <file role="doc" name="part2-gettingstarted.pkg.ini"/>
+         <file role="doc" name="part2-indeterminate.pkg"/>
+         <file role="doc" name="part2-monitor.pkg"/>
+         <file role="doc" name="part2-observer.pkg"/>
+         <file role="doc" name="part2-progresshandler.pkg"/>
+         <file role="doc" name="part3-reference.pkg"/>
+         <file role="doc" name="part3-reference.pkg.ini"/>
+         <file role="doc" name="part4-appendixes.pkg"/>
+         <file role="doc" name="part4-appendixes.pkg.ini"/>
+         <file role="doc" name="preface.pkg"/>
          <file role="doc" name="progress.addlistener.pkg"/>
+         <file role="doc" name="progress.apiversion.pkg"/>
+         <file role="doc" name="progress.constants.pkg"/>
+         <file role="doc" name="progress.display.pkg"/>
          <file role="doc" name="progress.getanimspeed.pkg"/>
+         <file role="doc" name="progress.getdm.pkg"/>
+         <file role="doc" name="progress.geterror.pkg"/>
          <file role="doc" name="progress.getident.pkg"/>
          <file role="doc" name="progress.getlisteners.pkg"/>
          <file role="doc" name="progress.getstring.pkg"/>
+         <file role="doc" name="progress.getui.pkg"/>
+         <file role="doc" name="progress.haserrors.pkg"/>
+         <file role="doc" name="progress.hide.pkg"/>
          <file role="doc" name="progress.isborderpainted.pkg"/>
          <file role="doc" name="progress.isindeterminate.pkg"/>
          <file role="doc" name="progress.isstringpainted.pkg"/>
+         <file role="doc" name="progress.process.pkg"/>
+         <file role="doc" name="progress.raiseerror.pkg"/>
          <file role="doc" name="progress.removelistener.pkg"/>
+         <file role="doc" name="progress.run.pkg"/>
          <file role="doc" name="progress.setanimspeed.pkg"/>
          <file role="doc" name="progress.setborderpainted.pkg"/>
+         <file role="doc" name="progress.setdm.pkg"/>
          <file role="doc" name="progress.setident.pkg"/>
          <file role="doc" name="progress.setindeterminate.pkg"/>
          <file role="doc" name="progress.setmodel.pkg"/>
+         <file role="doc" name="progress.setprogresshandler.pkg"/>
          <file role="doc" name="progress.setstring.pkg"/>
          <file role="doc" name="progress.setstringpainted.pkg"/>
-         <file role="doc" name="reference.pkg"/>
-         <file role="doc" name="reference.pkg.ini"/>
+         <file role="doc" name="progress.setui.pkg"/>
+         <file role="doc" name="progress.sleep.pkg"/>
+         <file role="doc" name="progress.toarray.pkg"/>
+         <file role="doc" name="progress.tohtml.pkg"/>
+         <file role="doc" name="ui.drawcirclesegments.pkg"/>
          <file role="doc" name="ui.getborderattributes.pkg"/>
          <file role="doc" name="ui.getcellattributes.pkg"/>
          <file role="doc" name="ui.getcellcoordinates.pkg"/>
@@ -395,11 +420,18 @@ Features:
          <dir name="examples">
           <file role="doc" name="addlistener.php"/>
           <file role="doc" name="ancestor.ini"/>
+          <file role="doc" name="apiversion.php"/>
+          <file role="doc" name="display.php"/>
+          <file role="doc" name="display_errors-p6.php"/>
+          <file role="doc" name="drawcirclesegments.php"/>
+          <file role="doc" name="eh_basic_display.php"/>
+          <file role="doc" name="eh_push_callback.php"/>
           <file role="doc" name="getanimspeed.php"/>
           <file role="doc" name="getborderattributes.php"/>
           <file role="doc" name="getcellattributes.php"/>
           <file role="doc" name="getcellcoordinates.php"/>
           <file role="doc" name="getcellcount.php"/>
+          <file role="doc" name="getdm.php"/>
           <file role="doc" name="getfillway.php"/>
           <file role="doc" name="getident.php"/>
           <file role="doc" name="getincrement.php"/>
@@ -413,11 +445,28 @@ Features:
           <file role="doc" name="getstring.php"/>
           <file role="doc" name="getstringattributes.php"/>
           <file role="doc" name="getstyle.php"/>
+          <file role="doc" name="getui.php"/>
           <file role="doc" name="getvalue.php"/>
+          <file role="doc" name="haserrors.php"/>
+          <file role="doc" name="hide.php"/>
           <file role="doc" name="incvalue.php"/>
+          <file role="doc" name="indeterminate.php"/>
           <file role="doc" name="isborderpainted.php"/>
           <file role="doc" name="isindeterminate.php"/>
           <file role="doc" name="isstringpainted.php"/>
+          <file role="doc" name="listing-2.1.php"/>
+          <file role="doc" name="listing-2.2.1.php"/>
+          <file role="doc" name="listing-2.2.2.php"/>
+          <file role="doc" name="listing-2.2.html"/>
+          <file role="doc" name="listing-2.3.php"/>
+          <file role="doc" name="monitor_default.php"/>
+          <file role="doc" name="monitor_improved.php"/>
+          <file role="doc" name="monitor_indeterminate.php"/>
+          <file role="doc" name="monitor_itdynamic.html"/>
+          <file role="doc" name="monitor_itdynamic.php"/>
+          <file role="doc" name="monitor_itdynamic_tpl.php"/>
+          <file role="doc" name="observer_basic.php"/>
+          <file role="doc" name="observer_complex.php"/>
           <file role="doc" name="progress.js"/>
           <file role="doc" name="removelistener.php"/>
           <file role="doc" name="setanimspeed.php"/>
@@ -426,6 +475,7 @@ Features:
           <file role="doc" name="setcellattributes.php"/>
           <file role="doc" name="setcellcoordinates.php"/>
           <file role="doc" name="setcellcount.php"/>
+          <file role="doc" name="setdm.php"/>
           <file role="doc" name="setfillway.php"/>
           <file role="doc" name="setident.php"/>
           <file role="doc" name="setincrement.php"/>
@@ -439,10 +489,19 @@ Features:
           <file role="doc" name="setstring.php"/>
           <file role="doc" name="setstringattributes.php"/>
           <file role="doc" name="setstringpainted.php"/>
+          <file role="doc" name="setui.php"/>
           <file role="doc" name="setvalue.php"/>
+          <file role="doc" name="sleep.php"/>
+          <file role="doc" name="tohtml.php"/>
          </dir> <!-- tutorials/HTML_Progress/examples -->
          <dir name="media">
+          <file role="doc" name="caution.png"/>
+          <file role="doc" name="example.png"/>
+          <file role="doc" name="important.png"/>
+          <file role="doc" name="note.png"/>
           <file role="doc" name="tip.gif"/>
+          <file role="doc" name="tip.png"/>
+          <file role="doc" name="warning.png"/>
           <dir name="screenshots">
            <file role="doc" name="ancestor.png"/>
            <file role="doc" name="bgimages.png"/>
@@ -453,10 +512,12 @@ Features:
            <file role="doc" name="border2.png"/>
            <file role="doc" name="border3.png"/>
            <file role="doc" name="bullit.png"/>
+           <file role="doc" name="circle080.png"/>
            <file role="doc" name="default.png"/>
            <file role="doc" name="determinate.png"/>
            <file role="doc" name="inahurry.png"/>
            <file role="doc" name="indeterminate.png"/>
+           <file role="doc" name="indeterminate_basic.png"/>
            <file role="doc" name="javadanse.png"/>
            <file role="doc" name="monitor_complex.png"/>
            <file role="doc" name="monitor_default1.png"/>
@@ -466,9 +527,13 @@ Features:
            <file role="doc" name="nostring.png"/>
            <file role="doc" name="observer_complex.png"/>
            <file role="doc" name="progressmaker.png"/>
+           <file role="doc" name="rect64.png"/>
            <file role="doc" name="redsandback.png"/>
            <file role="doc" name="scratch1.png"/>
+           <file role="doc" name="scratch21.png"/>
+           <file role="doc" name="scratch22.png"/>
            <file role="doc" name="smallest.png"/>
+           <file role="doc" name="square.png"/>
            <file role="doc" name="string.png"/>
            <file role="doc" name="string1.png"/>
            <file role="doc" name="vertical1.png"/>
@@ -491,6 +556,7 @@ Features:
        <file role="doc" name="Release-0.6.2"/>
        <file role="doc" name="Release-1.0"/>
        <file role="doc" name="Release-1.1"/>
+       <file role="doc" name="Release-1.2.0"/>
        <file role="doc" name="Release-1.2.0RC1"/>
        <file role="doc" name="Release-1.2.0RC2"/>
        <file role="doc" name="Release-1.2.0RC3"/>
@@ -498,6 +564,28 @@ Features:
     </filelist>
   </release>
   <changelog>
+    <release>
+      <version>1.2.0</version>
+      <date>2004-09-12</date>
+      <license>PHP License 3.0</license>
+      <state>stable</state>
+      <notes>* changes 
+- PEAR_ErrorStack was replaced by a simple way to plug in any error handling system
+you might want (default used PEAR_Error object)
+- Log package dependency was removed (no more used for logging)
+- HTML_Progress_Model and HTML_Progress_Uploader classes were removed
+
+* improvements
+- HTML_Progress::sleep() method use now in most case the PHP usleep() function
+
+* news
+- The Definitive Guide: 
+  http://pear.laurent-laville.org/HTML_Progress/apidoc/
+         HTML/ read it online the html version
+         CHM/  download (190 kb) the Windows Help Compiled version
+         PDF/  download (757 kb) the Acrobat Reader version
+</notes>
+    </release>
     <release>
       <version>1.2.0RC3</version>
       <date>2004-07-06</date>
@@ -522,21 +610,7 @@ Features:
 - 2 new methods to introduce user-callback: process(), setProgressHandler()
 
 * to do
-- preload segments pictures before progress meter (circle, ellipse) start 
-</notes>
-    </release>
-    <release>
-      <version>1.2.0</version>
-      <date>2004-05-08</date>
-      <license>PHP License 3.0</license>
-      <state>beta</state>
-      <notes>* QA 
-- package.xml should not contain md5sum or provides for readability
-
-* changes 
-- suite of PHPUnit TestCases are now fully compatible with PHP5
-- sometimes circle, ellipse segments pictures were generated with horiz. bottom line
-  (it's no more exists)</notes>
+- preload segments pictures before progress meter (circle, ellipse) start</notes>
     </release>
     <release>
       <version>1.2.0RC2</version>
