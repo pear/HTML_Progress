@@ -1,5 +1,5 @@
 <?php
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
 $bar->setAnimSpeed(100);
@@ -35,14 +35,7 @@ $ui->setStringAttributes('font-size=14 color=#FF0000 align=left valign=bottom');
 
 <?php 
 echo $bar->toHtml(); 
-
-do {
-    $bar->display();
-    if ($bar->getPercentComplete() == 1) {
-        break;   // the progress bar has reached 100%
-    }
-    $bar->incValue();
-} while(1);
+$bar->run();
 ?>
 
 </body>

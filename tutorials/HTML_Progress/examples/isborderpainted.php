@@ -1,5 +1,5 @@
 <?php
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
 $bar->setBorderPainted(true);

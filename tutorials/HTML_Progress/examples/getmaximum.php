@@ -1,13 +1,10 @@
 <?php
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
 
-// direct way
-print('maximum = ' . $bar->getMaximum());
-echo '<br/>';
+printf('direct way: maximum = %d <br/>', $bar->getMaximum());
 
-// another way
 $dm =& $bar->getDM();
-print('maximum = ' . $dm->getMaximum());
+printf('another way: maximum = %d <br/>', $dm->getMaximum());
 ?>

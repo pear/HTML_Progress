@@ -1,13 +1,10 @@
 <?php
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
 
-// direct way
-print('value = ' . $bar->getValue());
-echo '<br/>';
+printf('direct way: value = %d <br/>', $bar->getValue());
 
-// another way
 $dm =& $bar->getDM();
-print('value = ' . $dm->getValue());
+printf('another way: value = %d <br/>', $dm->getValue());
 ?>

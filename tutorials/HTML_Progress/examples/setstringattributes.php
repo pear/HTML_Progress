@@ -1,5 +1,5 @@
 <?php
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
 $bar->setValue(50);
@@ -32,10 +32,7 @@ $ui->setStringAttributes('font-size=14 color=#FF0000 align=left valign=bottom');
 </head>
 <body>
 
-<?php 
-echo $bar->toHtml(); 
-$bar->display();
-?>
+<?php echo $bar->toHtml(); ?>
 
 </body>
 </html>

@@ -1,15 +1,12 @@
 <?php
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
 
-// direct way
 $bar->setIncrement(10);
-print('increment = ' . $bar->getIncrement());
-echo '<br/>';
+printf('direct way: increment = %d <br/>', $bar->getIncrement());
 
-// another way
 $dm =& $bar->getDM();
 $dm->setIncrement(10);
-print('increment = ' . $bar->getIncrement());
+printf('another way: increment = %d <br/>', $dm->getIncrement());
 ?>

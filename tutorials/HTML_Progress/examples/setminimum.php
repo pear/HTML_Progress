@@ -1,15 +1,12 @@
 <?php
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
 
-// direct way
 $bar->setMinimum(20);
-print('minimum = ' . $bar->getMinimum());
-echo '<br/>';
+printf('direct way: minimum = %d <br/>', $bar->getMinimum());
 
-// another way
 $dm =& $bar->getDM();
 $dm->setMinimum(20);
-print('minimum = ' . $bar->getMinimum());
+printf('another way: minimum = %d <br/>', $dm->getMinimum());
 ?>

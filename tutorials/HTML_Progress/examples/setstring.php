@@ -1,5 +1,5 @@
 <?php 
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
 $bar->setAnimSpeed(100);
@@ -10,11 +10,7 @@ $bar->setString('');              // but don't paint it
 $ui =& $bar->getUI();
 $ui->setStringAttributes('width=350 align=left');
 ?>
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html>
 <head>
 <title>setString example</title>
 <style type="text/css">
@@ -40,13 +36,19 @@ $pkg = array('PEAR', 'Archive_Tar', 'Config',
 do {
     $val = $bar->getValue();
     $i = floor($val / 10);
-    $msg = ($val == 100) ? '' : "&nbsp; installing package ($val %) ... : ".$pkg[$i];
+    if ($val == 100) {
+        $msg = '';
+    } else {
+        $msg  = "&nbsp; installing package ($val %) ... : ";
+        $msg .= $pkg[$i];
+    }
     $bar->setString($msg);
 
     $bar->display();
     if ($bar->getPercentComplete() == 1) {
         break;   // the progress bar has reached 100%
     }
+    $bar->sleep();  // for purpose of demo only
     $bar->incValue();
 } while(1);
 ?>

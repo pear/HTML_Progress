@@ -1,5 +1,5 @@
 <?php 
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress(HTML_PROGRESS_BAR_VERTICAL);
 $bar->setAnimSpeed(80);
@@ -54,7 +54,8 @@ $loop = 0;
 
 do {
     $bar->display();
-
+    $bar->sleep();      // for purpose of demo only
+    
     if ($bar->getPercentComplete() == 1) {
         $loop++;
         if ($bar->isIndeterminate()) {

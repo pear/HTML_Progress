@@ -1,7 +1,7 @@
 <?php 
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
 
-print('delay progress bar execution = ' . $bar->getAnimSpeed());
+printf('delay execution of progress meter = %d millisecond(s)', $bar->getAnimSpeed());
 ?>

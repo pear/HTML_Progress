@@ -1,8 +1,9 @@
 <?php
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
-$bar->setIdent('PB1');
 
-print('progress bar string identification = ' . $bar->getIdent());
+printf('initial progress bar string identification = "%s" <br/>', $bar->getIdent());
+$bar->setIdent('PB1');
+printf('current progress bar string identification = "%s" <br/>', $bar->getIdent());
 ?>

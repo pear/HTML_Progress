@@ -1,16 +1,13 @@
 <?php
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
 $bar->setIncrement(5);
 
-// direct way
 $bar->incValue();
-print('value after 1st update = ' . $bar->getValue());
-echo '<br/>';
+printf('value after 1st update = %d <br/>', $bar->getValue());
 
-// another way
 $dm =& $bar->getDM();
 $dm->incValue();
-print('value after 2nd update = ' . $bar->getValue());
+printf('value after 2nd update = %d <br/>', $dm->getValue());
 ?>

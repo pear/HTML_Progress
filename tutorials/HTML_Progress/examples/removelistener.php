@@ -1,15 +1,14 @@
 <?php 
-require_once ('HTML/Progress/monitor.php');
+require_once 'HTML/Progress/monitor.php';
 	
 $bar = new HTML_Progress();
 $mon = new HTML_Progress_Monitor();
 
 $bar->addListener($mon);
 $li = $bar->getListeners();
-print(count($li) .' listener(s)');
-echo '<br/>';
+printf("try 1: %d listener(s) <br/>", count($li));
 
 $bar->removeListener($mon);
 $li = $bar->getListeners();
-print(count($li) .' listener(s) now');
+printf("try 2: %d listener(s) <br/>", count($li));
 ?>

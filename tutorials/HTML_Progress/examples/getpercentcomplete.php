@@ -1,14 +1,11 @@
 <?php
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
 $bar->setValue(18);
 
-// direct way
-print('completed at ' . $bar->getPercentComplete());
-echo '<br/>';
+printf('direct way: progress completed at %f <br/>', $bar->getPercentComplete());
 
-// another way
 $dm =& $bar->getDM();
-print('completed at ' . $dm->getPercentComplete());
+printf('another way: progress completed at %f <br/>', $dm->getPercentComplete());
 ?>

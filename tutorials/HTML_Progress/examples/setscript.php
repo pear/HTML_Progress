@@ -1,5 +1,5 @@
 <?php
-require_once ('HTML/Progress.php');
+require_once 'HTML/Progress.php';
 
 $bar = new HTML_Progress();
 $bar->setAnimSpeed(100);
@@ -8,17 +8,18 @@ $bar->setBorderPainted(true);
 
 $ui =& $bar->getUI();
 $ui->setCellAttributes(array(
-	'active-color' => '#3874B4',
-	'inactive-color' => '#EEEECC',
-	'width' => 10
-));
+    'active-color' => '#3874B4',
+    'inactive-color' => '#EEEECC',
+    'width' => 10,
+    'font-size' => 10
+    ));
 $ui->setBorderAttributes('width=1 color=navy');
 $ui->setStringAttributes(array(
-	'width' => 60,
-	'font-size' => 14,
-	'background-color' => '#EEEEEE',
-	'align' => 'center'
-));
+    'width' => 60,
+    'font-size' => 14,
+    'background-color' => '#EEEEEE',
+    'align' => 'center'
+    ));
 $ui->setScript('progress.js');
 
 foreach (range(0,2) as $index) {
@@ -55,14 +56,7 @@ body {
 
 <?php 
 echo $bar->toHtml(); 
-
-do {
-    $bar->display();
-    if ($bar->getPercentComplete() == 1) {
-        break;   // the progress bar has reached 100%
-    }
-    $bar->incValue();
-} while(1);
+$bar->run();
 ?>
 
 </body>
