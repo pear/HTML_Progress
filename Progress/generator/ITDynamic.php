@@ -17,22 +17,22 @@
 //
 // $Id$
 
-require_once 'HTML/QuickForm/Renderer/ITDynamic.php';
-// can use either HTML_Template_Sigma or HTML_Template_ITX
-require_once 'HTML/Template/ITX.php';
-//require_once 'HTML/Template/Sigma.php';
-
 /**
  * The ActionDisplay class provides a ITDynamic form rendering
  * with template engine IT[x] family.
  *
- * @version    1.1
+ * @version    1.2.0
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @access     public
- * @category   HTML
  * @package    HTML_Progress
+ * @subpackage Progress_UI
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  */
+
+require_once 'HTML/QuickForm/Renderer/ITDynamic.php';
+// can use either HTML_Template_Sigma or HTML_Template_ITX
+require_once 'HTML/Template/ITX.php';
+//require_once 'HTML/Template/Sigma.php';
 
 class ActionDisplay extends HTML_QuickForm_Action_Display
 {

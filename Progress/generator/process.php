@@ -21,11 +21,11 @@
  * The ActionProcess class provides final step of ProgressBar creation.
  * Manage php/css source-code save and cancel action.
  *
- * @version    1.1
+ * @version    1.2.0
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @access     public
- * @category   HTML
  * @package    HTML_Progress
+ * @subpackage Progress_UI
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  */
 

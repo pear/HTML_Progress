@@ -21,17 +21,18 @@
  * The six classes below provides GUI for interactive tools: 
  * HTML Progress Generator.
  *
- * @version    1.1
+ * @version    1.2.0
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @access     public
- * @category   HTML
  * @package    HTML_Progress
+ * @subpackage Progress_UI
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  */
 
 /**
  *  Class for first Tab:
  *  Progress main properties
+ *  @ignore
  */
 class Property1 extends HTML_QuickForm_Page
 {
@@ -91,6 +92,7 @@ class Property1 extends HTML_QuickForm_Page
 /**
  *  Class for second Tab:
  *  Cell properties
+ *  @ignore
  */
 class Property2 extends HTML_QuickForm_Page
 {
@@ -140,6 +142,7 @@ class Property2 extends HTML_QuickForm_Page
 /**
  *  Class for third Tab:
  *  Progress border properties
+ *  @ignore
  */
 class Property3 extends HTML_QuickForm_Page
 {
@@ -177,6 +180,7 @@ class Property3 extends HTML_QuickForm_Page
 /**
  *  Class for fourth Tab:
  *  String properties
+ *  @ignore
  */
 class Property4 extends HTML_QuickForm_Page
 {
@@ -232,6 +236,7 @@ class Property4 extends HTML_QuickForm_Page
 /**
  *  Class for fifth Tab:
  *  Show a preview of your progress bar design.
+ *  @ignore
  */
 class Preview extends HTML_QuickForm_Page
 {
@@ -260,6 +265,7 @@ class Preview extends HTML_QuickForm_Page
 /**
  *  Class for sixth Tab:
  *  Save PHP and/or CSS code
+ *  @ignore
  */
 class Save extends HTML_QuickForm_Page
 {
