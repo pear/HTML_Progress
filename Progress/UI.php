@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------+
-// | PHP Version 4                                                        |
+// | PEAR :: HTML :: Progress                                             |
 // +----------------------------------------------------------------------+
 // | Copyright (c) 1997-2004 The PHP Group                                |
 // +----------------------------------------------------------------------+
@@ -874,17 +874,18 @@ var cellCount = %cellCount%;
 
 function setprogress(pIdent, pValue, pString, pDeterminate)
 {
-        if (isDom)
+        if (isDom) {
             prog = document.getElementById(pIdent+'%installationProgress%');
-        if (isIE)
+        } else if (isIE) {
             prog = document.all[pIdent+'%installationProgress%'];
-        if (isNS4)
+        } else if (isNS4) {
             prog = document.layers[pIdent+'%installationProgress%'];
-	if (prog != null) 
-	    prog.innerHTML = pString;
-
+        }
+        if (prog != null) {
+            prog.innerHTML = pString;
+        }
         if (pValue == pDeterminate) {
-	    for (i=0; i < cellCount; i++) {
+            for (i=0; i < cellCount; i++) {
                 showCell(i, pIdent, "hidden");	
             }
         }
@@ -895,18 +896,32 @@ function setprogress(pIdent, pValue, pString, pDeterminate)
             for (i=pValue-1; i >=0; i--) {
                 showCell(i, pIdent, "visible");	
             }
-	}
+        }
 }
 
 function showCell(pCell, pIdent, pVisibility)
 {
-	if (isDom)
-	    document.getElementById(pIdent+'%progressCell%'+pCell+'A').style.visibility = pVisibility;
-	if (isIE)
-	    document.all[pIdent+'%progressCell%'+pCell+'A'].style.visibility = pVisibility;
-	if (isNS4)
-	    document.layers[pIdent+'%progressCell%'+pCell+'A'].style.visibility = pVisibility;
+        if (isDom) {
+            document.getElementById(pIdent+'%progressCell%'+pCell+'A').style.visibility = pVisibility;
+        } else if (isIE) {
+            document.all[pIdent+'%progressCell%'+pCell+'A'].style.visibility = pVisibility;
+        } else if (isNS4) {
+            document.layers[pIdent+'%progressCell%'+pCell+'A'].style.visibility = pVisibility;
+        }
+}
 
+function hideProgress(pIdent)
+{
+        if (isDom) {
+            document.getElementById(pIdent+'progress').style.visibility = 'hidden';
+        } else if (isIE) {
+            document.all[pIdent+'progress'].style.visibility = 'hidden';
+        } else if (isNS4) {
+            document.layers[pIdent+'progress'].style.visibility = 'hidden';
+        }
+        for (i=0; i < cellCount; i++) {
+            showCell(i, pIdent, "hidden");	
+        }
 }
 
 JS;
@@ -997,6 +1012,7 @@ JS;
         if (isset($stringAttr['height'])) {
             $css->setStyle('.'.$stringAttr['id'], 'height', $stringAttr['height'].'px');
         }
+        
         $css->setStyle('.'.$stringAttr['id'], 'text-align', $stringAttr['align']);
         $css->setStyle('.'.$stringAttr['id'], 'font-family', $stringAttr['font-family']);
         $css->setStyle('.'.$stringAttr['id'], 'font-size', $stringAttr['font-size'].'px');
@@ -1055,8 +1071,16 @@ JS;
         $h = $cellAttr['height'];
         $s = $cellAttr['spacing'];
         $c = intval(360 / $cellCount);
-        $cx = intval($w / 2);
-        $cy = intval($h / 2);
+        if (fmod($w,2) == 0) {
+            $cx = floor($w / 2) - 0.5;
+        } else {
+            $cx = floor($w / 2);
+        }
+        if (fmod($h,2) == 0) {
+            $cy = floor($h / 2) - 0.5;
+        } else {
+            $cy = floor($h / 2);
+        }
             
         $image = imagecreate($w, $h);
 

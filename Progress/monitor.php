@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------+
-// | PHP Version 4                                                        |
+// | PEAR :: HTML :: Progress                                             |
 // +----------------------------------------------------------------------+
 // | Copyright (c) 1997-2004 The PHP Group                                |
 // +----------------------------------------------------------------------+
@@ -74,14 +74,12 @@ class HTML_Progress_Monitor
     var $_form;
 
     /**
-     * User callback, is in the format:
-     * * $_callback = array('classname', 'functionname');
-     * If the callback is not a method, then its just
-     * * $_callback = 'functionname';
+     * Callback, either function name or array(&$object, 'method')
      *
      * @var        mixed
      * @since      1.1
      * @access     private
+     * @see        setProgressHandler()
      */
     var $_callback = null;
 
@@ -215,7 +213,7 @@ class HTML_Progress_Monitor
      * @since      1.0
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
-     * @see        callProgressHandler()
+     * @see        HTML_Progress::process()
      */
     function notify($event)
     {
@@ -229,12 +227,8 @@ class HTML_Progress_Monitor
         $log = strtolower($event['log']);
         if ($log == 'incvalue') {
 
-            if (!is_null($this->_callback)) {
-                $this->callProgressHandler($event['value'], $this);
-            }
             $this->_progress->display();
-            // sleep a bit ...
-            for ($i=0; $i<($this->_progress->getAnimSpeed()*1000); $i++) { }
+            $this->callProgressHandler($event['value']);
                  
             if ($this->_progress->getPercentComplete() == 1) {
                 if ($this->_progress->isIndeterminate()) {
@@ -252,48 +246,21 @@ class HTML_Progress_Monitor
     /**
      * Sets a user-defined progress handler function.
      *
-     * @param      callback  $handler       Name of function or a class-method.
+     * @param      mixed     $handler       Name of function or a class-method.
      *
      * @return     void
      * @since      1.1
      * @access     public
-     * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @throws     HTML_PROGRESS_ERROR_INVALID_CALLBACK
-     * @see        callProgressHandler()
+     * @see        HTML_Progress::setProgressHandler()
      */
     function setProgressHandler($handler)
     {
-        if (is_array($handler) && count($handler) == 2) {
-            list($className, $methodName) = $handler;
-            if (class_exists($className)) {
-                $obj = new $className();
-                if (!method_exists($obj, $methodName)) {
-                    HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_CALLBACK, 'error',
-                        array('var' => '$handler[1]',
-                              'element' => 'Class-Method',
-                              'was' => $methodName,
-                              'paramnum' => 1));
-                }
-            } else {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_CALLBACK, 'error',
-                    array('var' => '$handler[0]',
-                          'element' => 'Class',
-                          'was' => $className,
-                          'paramnum' => 1));
-            }
-        } elseif (is_string($handler)) {
-            if (!function_exists($handler)) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_CALLBACK, 'error',
-                    array('var' => '$handler',
-                          'element' => 'Function',
-                          'was' => $handler,
-                          'paramnum' => 1));
-            }
-        } else {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+        if (!is_callable($handler)) {
+            return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_CALLBACK, 'warning',
                 array('var' => '$handler',
-                      'was' => gettype($handler),
-                      'expected' => 'array(class,method) | string(function)',
+                      'element' => 'valid Class-Method/Function',
+                      'was' => 'element',
                       'paramnum' => 1));
         }
         $this->_callback = $handler;
@@ -306,39 +273,18 @@ class HTML_Progress_Monitor
      * Calls a user-defined progress handler function.
      *
      * @param      integer   $arg           Current value of the progress bar.
-     * @param      object    $monitor       Reference to this monitor.
      *
-     * @return     mixed
+     * @return     void
      * @since      1.1
      * @access     public
-     * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        setProgressHandler(), notify()
      */
-    function callProgressHandler($arg, &$monitor)
+    function callProgressHandler($arg)
     {
-        if (!is_int($arg)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
-                array('var' => '$arg',
-                      'was' => gettype($arg),
-                      'expected' => 'integer',
-                      'paramnum' => 1));
-
-        } elseif (!is_object($monitor)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
-                array('var' => '$monitor',
-                      'was' => gettype($monitor),
-                      'expected' => 'HTML_Progress_Monitor object',
-                      'paramnum' => 2));
-        }
-        
         if (is_null($this->_callback)) {
-            return true;                         // no callback yet defined
-        } elseif (is_array($this->_callback)) {
-            list($className, $methodName) = $this->_callback;
-            $obj = new $className();
-            return call_user_func(array(&$obj, $methodName), $arg, $monitor);
+            $this->_progress->sleep();
         } else {
-            return call_user_func($this->_callback, $arg, $monitor);
+            call_user_func($this->_callback, $arg, &$this);
         }
     }
 

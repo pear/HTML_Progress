@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------+
-// | PHP Version 4                                                        |
+// | PEAR :: HTML :: Progress                                             |
 // +----------------------------------------------------------------------+
 // | Copyright (c) 1997-2004 The PHP Group                                |
 // +----------------------------------------------------------------------+
@@ -87,6 +87,7 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
      * o Creates a progress bar generator wizard with 
      *   customized actions: progress bar preview, form rendering, buttons manager
      *   <code>
+     *   $controllerName = 'myPrivateGenerator';
      *   $attributes = array(
      *        'preview' => name of a HTML_QuickForm_Action instance 
      *                     (default 'ActionPreview', see 'HTML/Progress/generator/preview.php')
@@ -95,7 +96,7 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
      *        'process' => name of a HTML_QuickForm_Action instance 
      *                     (default 'ActionProcess', see 'HTML/Progress/generator/process.php')
      *   );
-     *   $generator = new HTML_Progress_Generator($attributes);
+     *   $generator = new HTML_Progress_Generator($controllerName, $attributes);
      *   </code>
      *
      * @param      string    $controllerName(optional) Name of generator wizard (QuickForm)

@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------+
-// | PHP Version 4                                                        |
+// | PEAR :: HTML :: Progress                                             |
 // +----------------------------------------------------------------------+
 // | Copyright (c) 1997-2004 The PHP Group                                |
 // +----------------------------------------------------------------------+
@@ -115,14 +115,7 @@ class ActionProcess extends HTML_QuickForm_Action
                 $strPHP .= 'echo \'<style type="text/css">\'.$progress->getStyle().\'</style>\';'.$lineEnd;
                 $strPHP .= 'echo \'<script type="text/javascript">\'.$progress->getScript().\'</script>\';'.$lineEnd;
                 $strPHP .= 'echo $progress->toHtml();'.$lineEnd;
-                $strPHP .= 'do {'.$lineEnd;
-                $strPHP .= '    $progress->display();'.$lineEnd;
-                $strPHP .= '    if ($progress->getPercentComplete() == 1) {'.$lineEnd;
-                $strPHP .= '        break;'.$lineEnd;
-                $strPHP .= '    }'.$lineEnd;
-                $strPHP .= '    $progress->incValue();'.$lineEnd;
-                $strPHP .= '} while(1);'.$lineEnd;
-
+                $strPHP .= '$progress->run();'.$lineEnd;
                 $strPHP .= '?>';
                 $this->exportOutput($strPHP);
             }
