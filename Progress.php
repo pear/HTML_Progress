@@ -267,7 +267,7 @@ class HTML_Progress
      *             setBorderPainted(), setStringPainted(), setString(),
      *             setDM(), setUI(), setIdent()
      */
-    function HTML_Progress()
+    function HTML_Progress() 
     {
         $args = func_get_args();
         $num_args = func_num_args();
@@ -1777,9 +1777,9 @@ class HTML_Progress
     function _handleError($err)
     {
         if ($err['level'] == 'exception') {
+            $stack =& PEAR_ErrorStack::singleton($err['package']);
+            $stack->_log($err);
             die();
-        } else {
-            return $err;
         }
     }
 
