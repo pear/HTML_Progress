@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.1 $ -->
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname>Package HTML_Progress Constants</refname>
+  <refpurpose>Constants defined in and used by HTML_Progress</refpurpose>
+ </refnamediv>
+
+ <refsect1 id="{@id all-constants}">
+  <title>All Constants</title>
+
+  <refsect2 id="{@id shape-constants}">
+   <title>Shape type Constants</title>
+   <para>
+     <table frame="all">
+     <title>Constants defined in Progress.php</title>
+     <tgroup cols="4">
+      <thead>
+       <row>
+        <entry>Name</entry>
+        <entry>Value</entry>
+        <entry>Available since version</entry>
+        <entry>Description</entry>
+       </row>
+      </thead>
+      <tbody>
+       <row>
+        <entry>HTML_PROGRESS_BAR_HORIZONTAL</entry>
+        <entry>1</entry>
+        <entry>0.6</entry>
+        <entry>Basic Horizontal Bar</entry>
+       </row>
+       <row>
+        <entry>HTML_PROGRESS_BAR_VERTICAL</entry>
+        <entry>2</entry>
+        <entry>0.6</entry>
+        <entry>Basic Vertical Bar</entry>
+       </row>
+       <row>
+        <entry>HTML_PROGRESS_POLYGONAL</entry>
+        <entry>3</entry>
+        <entry>1.2.0RC1</entry>
+        <entry>Square, Rectangle and free Polygonal </entry>
+       </row>
+       <row>
+        <entry>HTML_PROGRESS_CIRCLE</entry>
+        <entry>4</entry>
+        <entry>1.2.0RC1</entry>
+        <entry>Circle, Ellipse </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+   </para>
+  </refsect2>
+
+  <refsect2 id="{@id error-constants}">
+   <title>Error Constants</title>
+   <para>
+    <table frame="all">
+     <title>Constants defined in Progress.php</title>
+     <tgroup cols="4">
+      <thead>
+       <row>
+        <entry>Name</entry>
+        <entry>Value</entry>
+        <entry>Available since version</entry>
+        <entry>Description</entry>
+       </row>
+      </thead>
+      <tbody>
+       <row>
+        <entry>HTML_PROGRESS_ERROR_INVALID_INPUT</entry>
+        <entry>-100</entry>
+        <entry>1.0</entry>
+        <entry>Error code that indicate a wrong input</entry>
+       </row>
+       <row>
+        <entry>HTML_PROGRESS_ERROR_INVALID_CALLBACK</entry>
+        <entry>-101</entry>
+        <entry>1.1</entry>
+        <entry>Error code that indicate a wrong callback</entry>
+       </row>
+       <row>
+        <entry>HTML_PROGRESS_DEPRECATED</entry>
+        <entry>-102</entry>
+        <entry>1.2.0RC1</entry>
+        <entry>Error code that indicate a deprecated method</entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+   </para>
+  </refsect2>
+
+  <refsect2 id="{@id error-handler-constants}">
+   <title>Error Handling Constants</title>
+   <para>
+    <table frame="all">
+     <title>Constants defined in Progress.php</title>
+     <tgroup cols="4">
+      <thead>
+       <row>
+        <entry>Name</entry>
+        <entry>Value</entry>
+        <entry>Available since version</entry>
+        <entry>Description</entry>
+       </row>
+      </thead>
+      <tbody>
+       <row>
+        <entry>HTML_PROGRESS_ERRORSTACK_PUSHANDLOG</entry>
+        <entry>1</entry>
+        <entry>1.2.0</entry>
+        <entry>Error will be both pushed onto the stack and logged</entry>
+       </row>
+       <row>
+        <entry>HTML_PROGRESS_ERRORSTACK_PUSH</entry>
+        <entry>2</entry>
+        <entry>1.2.0</entry>
+        <entry>Error will only be pushed onto the stack, and not logged </entry>
+       </row>
+       <row>
+        <entry>HTML_PROGRESS_ERRORSTACK_LOG</entry>
+        <entry>3</entry>
+        <entry>1.2.0</entry>
+        <entry>Error will only be logged, but not pushed onto the error stack </entry>
+       </row>      
+       <row>
+        <entry>HTML_PROGRESS_ERRORSTACK_IGNORE</entry>
+        <entry>4</entry>
+        <entry>1.2.0</entry>
+        <entry>Error is completely ignored </entry>
+       </row>      
+       <row>
+        <entry>HTML_PROGRESS_ERRORSTACK_LOGANDDIE</entry>
+        <entry>5</entry>
+        <entry>1.2.0</entry>
+        <entry>Error will only be logged, but not pushed onto the error stack
+         because will halt script execution
+        </entry>
+       </row>      
+      </tbody>
+     </tgroup>
+    </table>
+   </para>
+  </refsect2>
+
+  <refsect2 id="{@id error-log-constants}">
+   <title>Error Log Handler Constants</title>
+   <para>
+    <table frame="all">
+     <title>Constants defined in Progress.php</title>
+     <tgroup cols="4">
+      <thead>
+       <row>
+        <entry>Name</entry>
+        <entry>Value</entry>
+        <entry>Available since version</entry>
+        <entry>Description</entry>
+       </row>
+      </thead>
+      <tbody>
+       <row>
+        <entry>HTML_PROGRESS_LOG_TYPE_SYSTEM</entry>
+        <entry>0</entry>
+        <entry>1.2.0</entry>
+        <entry>Use PHP's system logger </entry>
+       </row>
+       <row>
+        <entry>HTML_PROGRESS_LOG_TYPE_MAIL</entry>
+        <entry>1</entry>
+        <entry>1.2.0</entry>
+        <entry>Use PHP's mail() function </entry>
+       </row>
+       <row>
+        <entry>HTML_PROGRESS_LOG_TYPE_FILE</entry>
+        <entry>3</entry>
+        <entry>1.2.0</entry>
+        <entry>Append to a file </entry>
+       </row>
+      </tbody>
+     </tgroup>
+    </table>
+   </para>
+  </refsect2>
+
+
+ </refsect1>
+
+</refentry>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.1 $ -->
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname><function>HTML_Progress::run</function></refname>
+  <refpurpose>displays status of the progress meter, while the user-task is running </refpurpose>
+ </refnamediv>
+
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>void <function>HTML_Progress::run</function></funcdef>
+    <void/>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
+ </refsect1>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   This method manage display of the progress meter (both modes: determinate and indeterminate)
+   and run the user callback. 
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.2.0RC3 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
+  </para>
+  <para>
+   <tip>
+    This function is an easy way to manage a progress meter with 
+    the <emphasis>Master-Progress</emphasis> behavior.
+   </tip>
+  </para>
+  <para>
+   <note>
+    The <emphasis>Master-Progress</emphasis> behavior give a full control to progress meter:
+    decides when to display new status, and call your user task.
+    The <emphasis>Slave-Progress</emphasis> behavior is the opposite way. It's up to you 
+    to choose when display the new status of the progress meter.
+   </note>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial progress.setanimspeed.pkg},
+   {@tutorial progress.process.pkg},
+   {@tutorial progress.sleep.pkg},
+   {@tutorial progress.setprogresshandler.pkg}
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   See example of {@tutorial progress.sleep.pkg}.
+  </para>
+ </refsect1>
+
+</refentry>

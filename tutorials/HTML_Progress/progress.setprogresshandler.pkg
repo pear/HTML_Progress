@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.1 $ -->
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname><function>HTML_Progress::setProgressHandler</function></refname>
+  <refpurpose>sets the user callback of the progress meter</refpurpose>
+ </refnamediv>
+
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>void <function>HTML_Progress::setProgressHandler</function></funcdef>
+    <paramdef>mixed <parameter>$handler</parameter></paramdef>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
+ </refsect1>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   This method defines the user process to execute while the progress meter is running.
+  </para>
+  <para>
+   This user callback is called by {@tutorial progress.process.pkg} in
+   the do-while loop of the {@tutorial progress.run.pkg} method.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id parameter}">
+  <title>Parameter</title>
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      <type>mixed</type>
+      <parameter>$handler</parameter>
+     </term>
+     <listitem>
+      <para>
+       a valid callback 
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id throws}">
+  <title>Throws</title>
+  <para>
+   <table frame="all">
+    <title>Possible PEAR_Error values</title>
+    <tgroup cols="4">
+     <thead>
+      <row>
+       <entry>Error level</entry>
+       <entry>Error code</entry>
+       <entry>Error message</entry>
+       <entry>Solution</entry>
+      </row>
+     </thead>
+     <tbody>
+      <row>
+       <entry>warning</entry>
+       <entry><constant>HTML_PROGRESS_ERROR_INVALID_CALLBACK</constant></entry>
+       <entry>invalid callback, parameter #1 "<parameter>$handler</parameter>" expecting "(a valid callback)"</entry>
+       <entry>Fixed the user-callback reference </entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.2.0RC3 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial progress.setanimspeed.pkg},
+   {@tutorial progress.process.pkg},
+   {@tutorial progress.sleep.pkg},
+   {@tutorial progress.run.pkg}
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   See example of {@tutorial progress.sleep.pkg}.
+  </para>
+ </refsect1>
+
+</refentry>

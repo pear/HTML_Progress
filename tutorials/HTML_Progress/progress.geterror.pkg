@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.1 $ -->
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname><function>HTML_Progress::getError</function></refname>
+  <refpurpose>returns count of API error</refpurpose>
+ </refnamediv>
+
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <funcsynopsis>
+    <funcsynopsisinfo>
+     require_once 'HTML/Progress.php'; 
+    </funcsynopsisinfo>
+    <funcprototype>
+     <funcdef>mixed <function>HTML_Progress::getError</function></funcdef>
+     <void/>
+    </funcprototype>
+   </funcsynopsis>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ </refsect1>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   This method pop an error off of the HTML_Progress stack. This item will be purged from stack.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.2.0RC3 )
+  </simpara>
+  <para>
+   <important>
+    This function can be called statically.
+   </important>
+  </para>
+  <para>
+   <tip>
+    The HTML_Progress error stack follows the same PEAR_ErrorStack structure: associative array
+    with keys 'code', 'params', 'package', 'level', 'time', 'context'.
+   </tip>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial progress.raiseerror.pkg},
+   {@tutorial progress.haserrors.pkg}
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   See example of {@tutorial progress.haserrors.pkg}
+  </para>
+ </refsect1>
+
+</refentry>

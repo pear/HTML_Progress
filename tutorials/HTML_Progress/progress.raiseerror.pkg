@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.1 $ -->
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname><function>HTML_Progress::raiseError</function></refname>
+  <refpurpose>sets the progress meter identification string</refpurpose>
+ </refnamediv>
+
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <funcsynopsis>
+    <funcsynopsisinfo>
+     require_once 'HTML/Progress.php'; 
+    </funcsynopsisinfo>
+    <funcprototype>
+     <funcdef>void <function>HTML_Progress::raiseError</function></funcdef>
+     <paramdef>string <parameter>$code</parameter></paramdef>
+     <paramdef>string <parameter>$level</parameter></paramdef>
+     <paramdef>array <parameter>$params</parameter></paramdef>
+    </funcprototype>
+   </funcsynopsis>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ </refsect1>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   This method is used to raise an API error and push it to the HTML_Progress stack.
+  </para>
+  <para>
+   Default behavior will returns a <emphasis>PEAR_Error</emphasis> object.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id parameter}">
+  <title>Parameter</title>
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      <type>integer</type>
+      <parameter>$code</parameter>
+     </term>
+     <listitem>
+      <para>
+       the error code (a valid HTML_PROGRESS_ERROR_* constant).
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term>
+      <type>string</type>
+      <parameter>$level</parameter>
+     </term>
+     <listitem>
+      <para>
+       the error level ('exception', 'error', 'warning').
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term>
+      <type>array</type>
+      <parameter>$params</parameter>
+     </term>
+     <listitem>
+      <para>
+       an associative array of error parameters.
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.2.0RC1, PEAR )
+  </simpara>
+  <para>
+   <important>
+    This function can be called statically.
+   </important>
+  </para>
+  <para>
+   <note>
+    This method obey to {@link http://www.php.net/manual/en/function.error-reporting.php} protocol.
+   </note>
+  </para>
+  <para>
+   <tip>
+    The HTML_Progress error stack follows the same PEAR_ErrorStack structure: associative array
+    with keys 'code', 'params', 'package', 'level', 'time', 'context'.
+   </tip>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial progress.haserrors.pkg},
+   {@tutorial progress.geterror.pkg}
+  </para>
+ </refsect1>
+
+</refentry>
