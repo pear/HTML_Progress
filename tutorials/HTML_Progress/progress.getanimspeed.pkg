@@ -9,8 +9,8 @@
     by Laurent Laville
     <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
    </author>
-   <copyright>March 2004, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.2+</releaseinfo>
+   <copyright>April 2004, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.2.0RC1</releaseinfo>
   </refsynopsisdivinfo>
  </refsynopsisdiv>
  <refsect1 id="{@id synopsis}">

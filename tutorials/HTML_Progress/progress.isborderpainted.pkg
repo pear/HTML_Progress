@@ -10,7 +10,7 @@
     <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
    </author>
    <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+   <releaseinfo>HTML_Progress 1.0</releaseinfo>
   </refsynopsisdivinfo>
  </refsynopsisdiv>
  <refsect1 id="{@id synopsis}">
