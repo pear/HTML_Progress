@@ -120,11 +120,18 @@ class HTML_Progress_Uploader
      */
     function HTML_Progress_Uploader($formName = 'ProgressUploader', $attributes = array())
     {
-        $this->_package = 'HTML_Progress_Uploader';
-        $stack =& Error_Stack::singleton($this->_package);
-        $messages = HTML_Progress::_getErrorMessage();
-        $stack->setErrorMessageTemplate($messages);
-        $stack->setDefaultLogger($this);
+        $args = func_get_args();
+        $num_args = func_num_args();
+
+        if ($num_args > 2) {
+            $errorPrefs = func_get_arg($num_args - 1);
+            if (!is_array($errorPrefs)) {
+                $errorPrefs = array();
+            }
+            HTML_Progress::_initErrorStack($errorPrefs);
+        } else {        	
+            HTML_Progress::_initErrorStack();
+        }
 
         if (!is_string($formName)) {
             $trace = debug_backtrace();
@@ -468,24 +475,6 @@ function setStatus(pString)
     {
         $this->_ftp->disconnect();
         unset($this->_ftp);
-    }
-
-    /**
-     * Error Message Logger
-     *
-     * @param      mixed     $message    String or object containing the message to log.
-     * @param      string    $level      The error level of the message. 
-     *                                   Valid are PEAR_LOG_* constants
-     * @param      array     $err        Error hash
-     *
-     * @return     void
-     * @since      1.2.0
-     * @access     private
-     * @see        HTML_Progress::log()
-     */
-    function log($message, $level, $err)
-    {
-        HTML_Progress::log($message, $level, $err);
     }
 }
 
