@@ -134,20 +134,18 @@ class HTML_Progress_Uploader
         }
 
         if (!is_string($formName)) {
-            $trace = debug_backtrace();
             HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$formName',
                       'was' => gettype($formName),
                       'expected' => 'string',
-                      'paramnum' => 1), $trace);
+                      'paramnum' => 1));
 
         } elseif (!is_array($attributes)) {
-            $trace = debug_backtrace();
             HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$attributes',
                       'was' => gettype($attributes),
                       'expected' => 'array',
-                      'paramnum' => 2), $trace);
+                      'paramnum' => 2));
         }
         
         $this->_form = new HTML_QuickForm($formName);
@@ -194,12 +192,11 @@ class HTML_Progress_Uploader
     function setProgressElement(&$bar)
     {
         if (!is_a($bar, 'HTML_Progress')) {
-            $trace = debug_backtrace();
             HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$bar',
                       'was' => gettype($bar),
                       'expected' => 'HTML_Progress object',
-                      'paramnum' => 1), $trace);
+                      'paramnum' => 1));
         }
         $this->_progress =& $bar;
 
@@ -297,12 +294,11 @@ function setStatus(pString)
     function accept(&$renderer)
     {
         if (!is_a($renderer, 'HTML_QuickForm_Renderer')) {
-            $trace = debug_backtrace();
             HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$renderer',
                       'was' => gettype($renderer),
                       'expected' => 'HTML_QuickForm_Renderer object',
-                      'paramnum' => 1), $trace);
+                      'paramnum' => 1));
         }
         $this->_form->accept($renderer);
     }
@@ -323,20 +319,18 @@ function setStatus(pString)
     function moveTo($dest, $overwrite = false)
     {
         if (!is_string($dest)) {
-            $trace = debug_backtrace();
             HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$dest',
                       'was' => gettype($dest),
                       'expected' => 'string',
-                      'paramnum' => 1), $trace);
+                      'paramnum' => 1));
 
         } elseif (!is_bool($overwrite)) {
-            $trace = debug_backtrace();
             HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$overwrite',
                       'was' => gettype($overwrite),
                       'expected' => 'boolean',
-                      'paramnum' => 2), $trace);
+                      'paramnum' => 2));
         }
 
         if (!isset($this->_ftp)) {
