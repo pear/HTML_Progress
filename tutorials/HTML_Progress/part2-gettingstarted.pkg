@@ -6,39 +6,52 @@
   <refpurpose>learn all features of HTML_Progress package</refpurpose>
  </refnamediv>
 
- <refsynopsisdiv>
-  <refsynopsisdivinfo>
-   <copyright>
-    <year>2003</year>
-    <year>2004</year>
-    <holder>
-     <author>
-      <firstname>Laurent</firstname>
-      <surname>Laville</surname>
-     </author>
-    </holder>
-   </copyright>
-   <releaseinfo>HTML_Progress 1.2.0</releaseinfo>
-  </refsynopsisdivinfo>
- </refsynopsisdiv>
+ <refsect2 id="{@id intro}">
+  <title>Introduction</title>
+  <para>
+   In a series of tutorials, we give the new users of HTML_Progress an overview of its features
+   and usage patterns. 
+   It describes a small subset of available functionality, but points to the parts of 
+   the documentation that give a more in-depth overview.
+  </para>
+ </refsect2>
+ 
+ <refsect2 id="{@id first-progressmeter}">
+  <title>Your first progress meter</title>
+  <para>
+   Create a <emphasis>simple progress meter</emphasis> from scratch, 
+   and learn the basic concepts of HTML_Progress with {@tutorial part2-firstprogressmeter.pkg}. 
+  </para>
+ </refsect2>
 
- <para>
-  This tutorial takes you through several tasks which provide an overview of 
-  how to use HTML_Progress 1.x to its fullest. 
- </para>
- <para>
-  You will learn how to:
-  <itemizedlist>
-   <listitem>Create a <emphasis>simple progress meter</emphasis> from scratch, 
-    with {@tutorial part2-firstprogressmeter.pkg}. 
-   </listitem>
-   <listitem>Control a long task running with the <emphasis>master and slave</emphasis> pattern. 
-    Use or not the {@tutorial part2-progresshandler.pkg} feature.
-   </listitem>
-   <listitem><emphasis>Handle error</emphasis> both simple and advanced with the new 
-    {@tutorial part2-errorhandling.pkg error-handling plug-in}. 
-   </listitem>
-  </itemizedlist>
- </para>
+ <refsect2 id="{@id patterns}">
+  <title>Master and slave patterns</title>
+  <para>
+   Control a long task running with <emphasis>master and slave</emphasis> patterns.
+   Choose to use or not the {@tutorial part2-progresshandler.pkg} feature.
+  </para>
+ </refsect2>
+
+ <refsect2 id="{@id error-handling}">
+  <title>Error handling</title>
+  <para>
+   <emphasis>Handle error</emphasis> both simple and advanced with the new 
+   {@tutorial part2-errorhandling.pkg error-handling plug-in} comes with version 1.2.0
+  </para>
+ </refsect2>
+
+ <refsect2 id="{@id indeterminate}">
+  <title>Indeterminate mode</title>
+  <para>
+   Sometimes you can't immediately determine the length of a long-running task, 
+   or the task might stay stuck at the same state of completion for a long time.
+   So how to animate a progress bar to show unknown length-task activity ?
+   <simpara>
+    We will learn, with two examples, how to {@tutorial part2-indeterminate.pkg use indeterminate mode}.
+    The first example apply basic concept, and the second example show an integration
+    with a progress monitor.
+   </simpara>
+  </para>
+ </refsect2>
 
 </refentry>
