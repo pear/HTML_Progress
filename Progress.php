@@ -290,7 +290,7 @@ class HTML_Progress
                 $this->_UI->setOrientation($args[0]);
 
             } else {
-                $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$model | $orient',
                           'was' => (gettype($args[0]) == 'object') ? 
                                     get_class($args[0]).' object' : gettype($args[0]),
@@ -301,14 +301,14 @@ class HTML_Progress
          case 2:
             /*   int min, int max   */
             if (!is_int($args[0])) {
-                $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$min',
                           'was' => $args[0],
                           'expected' => 'integer',
                           'paramnum' => 1));
 
             } elseif (!is_int($args[1])) {
-                $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$max',
                           'was' => $args[1],
                           'expected' => 'integer',
@@ -321,21 +321,21 @@ class HTML_Progress
          case 3:
             /*   int orient, int min, int max   */
             if (!is_int($args[0])) {
-                $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$orient',
                           'was' => $args[0],
                           'expected' => 'integer',
                           'paramnum' => 1));
 
             } elseif (!is_int($args[1])) {
-                $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$min',
                           'was' => $args[1],
                           'expected' => 'integer',
                           'paramnum' => 2));
 
             } elseif (!is_int($args[2])) {
-                $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$max',
                           'was' => $args[2],
                           'expected' => 'integer',
@@ -404,7 +404,7 @@ class HTML_Progress
     function setIndeterminate($continuous)
     {
         if (!is_bool($continuous)) {
-            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$continuous',
                       'was' => gettype($continuous),
                       'expected' => 'boolean',
@@ -444,7 +444,7 @@ class HTML_Progress
     function setBorderPainted($paint)
     {
         if (!is_bool($paint)) {
-            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$paint',
                       'was' => gettype($paint),
                       'expected' => 'boolean',
@@ -487,7 +487,7 @@ class HTML_Progress
     function setStringPainted($paint)
     {
         if (!is_bool($paint)) {
-            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$paint',
                       'was' => gettype($paint),
                       'expected' => 'boolean',
@@ -563,7 +563,7 @@ class HTML_Progress
     function setDM($model)
     {
         if (!class_exists($model)) {
-            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$model',
                       'was' => 'class does not exists',
                       'expected' => $model.' class defined',
@@ -573,7 +573,7 @@ class HTML_Progress
         $_dm = new $model();
 
         if (!is_a($_dm, 'html_progress_dm')) {
-            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$model',
                       'was' => $model,
                       'expected' => 'HTML_Progress_DM extends',
@@ -800,7 +800,7 @@ class HTML_Progress
     function setUI($ui)
     {
         if (!class_exists($ui)) {
-            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$ui',
                       'was' => 'class does not exists',
                       'expected' => $ui.' class defined',
@@ -810,7 +810,7 @@ class HTML_Progress
         $_ui = new $ui();
 
         if (!is_a($_ui, 'html_progress_ui')) {
-            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$ui',
                       'was' => $ui,
                       'expected' => 'HTML_Progress_UI extends',
@@ -867,21 +867,21 @@ class HTML_Progress
     function setAnimSpeed($delay)
     {
         if (!is_int($delay)) {
-            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$delay',
                       'was' => gettype($delay),
                       'expected' => 'integer',
                       'paramnum' => 1));
 
         } elseif ($delay < 0) {
-            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$delay',
                       'was' => $delay,
                       'expected' => 'greater than zero',
                       'paramnum' => 1));
 
         } elseif ($delay > 1000) {
-            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$delay',
                       'was' => $delay,
                       'expected' => 'less or equal 1000',
@@ -1535,6 +1535,14 @@ class HTML_Progress
     {
         $this->_package = 'HTML_Progress';
         $stack =& PEAR_ErrorStack::singleton($this->_package);
+
+        if (isset($prefs['pushCallback']) && is_callable($prefs['pushCallback'])) {
+            $cb = $prefs['pushCallback'];
+        } else {
+            $cb = array('HTML_Progress', '_handleError');
+        }
+        $stack->pushCallback($cb);
+
         if (isset($prefs['msgCallback'])) {
             $cb = $prefs['msgCallback'];
         } else {
@@ -1628,6 +1636,22 @@ class HTML_Progress
     }
 
     /**
+     * Default internal error handler
+     * Dies if the error is an exception (and would have died anyway)
+     *
+     * @since      1.2.0
+     * @access     private
+     */
+    function _handleError($err)
+    {
+        if ($err['level'] == 'exception') {
+            die();
+        } else {
+            return $err;
+        }
+    }
+
+    /**
      * Add an error to the stack
      * Dies if the error is an exception (and would have died anyway)
      *
@@ -1649,12 +1673,7 @@ class HTML_Progress
             $trace = null;                  // PHP 4.1.x, 4.2.x (no context info available)
         }
         $err = PEAR_ErrorStack::staticPush($this->_package, $code, $level, $params, false, false, $trace);
- 
-        if ($level == 'exception') {
-            die();
-        } else {
-            return $err;
-        }
+        return $err;
     }
 }    
 ?>
