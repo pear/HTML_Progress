@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="index,nofollow" >
+<meta name="keywords" content"="HTML_Progress, square, progress meter" />
+<meta name="description" content="Display a square filled in reverse order as progress meter" />
+<meta name="author" content="Laurent Laville" />
+<title>PEAR::HTML::Progress example: Square Back</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="../index.html"><img src="../images/home.gif" alt="Examples TOC"/>examples</a></p>
+
+<h1><span class="chapter">Square Back</span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#render">Render options<a>
+<li><a href="#source">PHP source syntax highlight<a>
+<li><a href="#run">Play demo<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="../images/info.gif"/> Introduction</h2>
+		
+<p>This example requires :
+<ul>
+<li>PEAR::HTML_Progress 1.2.0RC3 or better (see source at line 11).</li>
+</ul>
+</p>
+
+<hr/>
+<p><b>This example will run a polygonal (square 4x4) ProgressBar filled in reverse way.</b></p>
+
+<p>Cell coordinates are pre-computed (line 22) but free x-y-grid coordinates are also possible.
+Percent text info is centered on a white background area of 50 pixels width,
+at left side of polygonal shape.</p>
+	
+<p>[<a href="#top">Top</a>]</p>
+
+
+
+<a name="render">
+<h2><img src="../images/config.gif"/>&nbsp;Render options </h2>
+
+Here are options to build this progress bar string (percent text info):
+<pre>
+valign = left
+align  = center
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+Here are options to build the progress bar cells :
+<pre>
+width  = 10
+height = 10
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="../images/image.gif"/>&nbsp;Output</h2>
+<h3>Screenshot </h3>
+<p><img src="../screenshots/square44.png"/></p>
+<p>[<a href="#top">Top</a>]</p>
+
+		
+<a name="source">
+<h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
+<a target="_blank" href="../highlighter.php?file=newshape/squareback.php">Open</a> source listing in a new window.
+
+<p>[<a href="#top">Top</a>]</p>
+
+<a name="run">
+<h2><img src="../images/run.gif"/>&nbsp;Play demo</h2>
+<p><a href="squareback.php">Run</a> the script.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+</body>
+</html>

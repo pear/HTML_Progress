@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="index,nofollow" >
+<meta name="keywords" content"="HTML_Progress, circle, progress meter" />
+<meta name="description" content="Display a plain circle 360 degree reverse as progress meter" />
+<meta name="author" content="Laurent Laville" />
+<title>PEAR::HTML::Progress example: Circle back</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="../index.html"><img src="../images/home.gif" alt="Examples TOC"/>examples</a></p>
+
+<h1><span class="chapter">Circle Back</span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#render">Render options<a>
+<li><a href="#source">PHP source syntax highlight<a>
+<li><a href="#run">Play demo<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="../images/info.gif"/> Introduction</h2>
+		
+<p>This example requires :
+<ul>
+<li>PEAR::HTML_Progress 1.2.0RC3 or better (see source at line 11).</li>
+</ul>
+</p>
+
+<hr/>
+<p><b>This example will display a plain circle 360 degree as new shape of progress meter.</b></p>
+
+<p>This example will run a circle (size:100x100) filled in reverse way.</p>
+<p>There are 10 cells with :
+<ul>
+<li>active-color = #FF0000 (red)
+<li>inactive-color = #000080 (navy)
+<li>spacing = 0
+</ul>
+Percent text info is right aligned on a 100 pixels width area,
+at right side of circle.</p>
+
+<p>A cache system is used on lines 29 thru 37, to avoid built pictures a second times.</p>
+	
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="../images/config.gif"/>&nbsp;Render options </h2>
+
+Here are options to build this progress bar string (percent text info):
+<pre>
+font-size = 20
+width     = 100
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+Here are options to build the progress bar cells :
+<pre>
+width          = 100
+height         = 100
+spacing        = 0
+inactive-color = navy
+active-color   = red
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="../images/image.gif"/>&nbsp;Output</h2>
+<h3>Screenshots </h3>
+<p>
+<img src="../screenshots/cb010.png"/>
+<img src="../screenshots/cb060.png"/>
+<img src="../screenshots/cb100.png"/>
+</p>
+<p>[<a href="#top">Top</a>]</p>
+		
+<a name="source">
+<h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
+<a target="_blank" href="../highlighter.php?file=newshape/circleback.php">Open</a> source listing in a new window.
+
+<p>[<a href="#top">Top</a>]</p>
+
+<a name="run">
+<h2><img src="../images/run.gif"/>&nbsp;Play demo</h2>
+<p><a href="circleback.php">Run</a> the script.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>
