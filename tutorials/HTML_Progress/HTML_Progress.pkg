@@ -9,8 +9,8 @@
     by Laurent Laville
     <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
    </author>
-   <copyright>March 2004, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.2</releaseinfo>
+   <copyright>May 2004, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.2.0</releaseinfo>
   </refsynopsisdivinfo>
  </refsynopsisdiv>
  {@toc}
@@ -50,8 +50,11 @@
       </unorderedlist>
     </para>
     </listitem>
-    <listitem><emphasis>2004-03-xx (version 1.2)</emphasis> 
+    <listitem><emphasis>2004-05-xx (version 1.2)</emphasis> 
      <para>
+      <unorderedlist>
+       <listitem>new shapes such as <important>circle, ellipse, square, rectangle</important> are allowed.</listitem>
+      </unorderedlist>
     </para>
     </listitem>
    </unorderedlist>
@@ -72,29 +75,6 @@
        bar to show activity before the task's scope is known.
       </para>
      </listitem>
-     <listitem>Error_Raise
-      <author>
-       by Greg Beaver
-       <authorblurb>{@link mailto:cellog@php.net}</authorblurb>
-      </author>
-      <para>The Error_Raise static class contains tremendously simple and powerful
-       error management based on error codes.
-      </para>
-     </listitem>
-     <listitem>Error_Util
-      <author>
-       by Greg Beaver
-       <authorblurb>{@link mailto:cellog@php.net}</authorblurb>
-      </author>
-      <para>This class is used for advanced retrieval of context information, and for
-       callback validation.  It also has a few miscellaneous functions for processing
-       display of variables.
-      </para>
-     </listitem>
-     <para>Until this package is accepted as a PEAR package, it can be downloaded at 
-      {@link http://www.chiaraquartet.net/Error_Raise-0.2.2.tgz}, and was integrated
-      in {@link http://pear.php.net/package/HTML_Progress HTML_Progress} package.
-     </para>
     </unorderedlist>
    </para>
   </refsect2>
