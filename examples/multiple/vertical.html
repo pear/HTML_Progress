@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="index,nofollow" />
+<meta name="keywords" content"="HTML_Progress, progress meter, vertical bar, multiple" />
+<meta name="description" content"="Multiple vertical progress meter" />
+<meta name="author" content="Laurent Laville" />
+<title>PEAR::HTML::Progress example: Multiple ProgressBar</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="../index.html"><img src="../images/home.gif" alt="Examples TOC"/>examples</a></p>
+
+<h1><span class="chapter">Multiple ProgressBar </span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Ouput</a>
+<li><a href="#source">PHP source syntax highlight<a>
+<li><a href="#run">Play demo<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="../images/info.gif"/> Introduction</h2>
+		
+<p>This example requires :
+<ul>
+<li>PEAR::HTML_Progress 1.2.0RC3 or better (see source at line 11).</li>
+</ul>
+</p>
+
+<hr/>
+<p><b>This example will run two progress meter at same time.</b></p>
+
+<p>It will show two vertical progress bar running in opposite sides (down to up and reverse)
+with different increment step.</p>
+	
+<p><b>Important: </b>In case you want to use more than one progress meter on a same page.
+<br/>
+To manage all bars easily, you need to identify them by a free simple code to avoid system to generate 
+random values (see at lines 15 and 35).</p>
+
+<p><b>bar1</b> (on left side) will be filled from down to up (see line 20) with color scheme 
+defined on lines 22 to 30.</p>
+	
+<p><b>bar2</b> (on right side) will be filled from up to down (see line 40) with color scheme 
+defined on lines 42 to 50.</p>
+
+<p>The loop that will display both progress meter at same time is defined on lines 117 to 119.</p>
+<p>If you want to do something corresponding to bar1 and bar2 process (see lines 114 and 117)
+you should set your own progress handler with method HTML_Progress::setProgressHandler(). 
+Default is to do the HTML_Progress::sleep() action (see setAnimSpeed).</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="../images/config.gif"/>&nbsp;Render options </h2>
+
+Here are options to build the 1st progress bar cells (count=15 filled in natural way):
+<pre>
+active-color   = #970038
+inactive-color = #FFDDAA
+width          = 50
+height         = 13
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+Here are options to build the 1st progress bar border :
+<pre>
+width = 1
+color = #000000
+</pre>
+<div class="fig">HTML_Progress_UI::setBorderAttributes()</div>
+
+Here are options to build the 1st progress bar string :
+<pre>
+font-size        = 8
+color            = #FF0000
+background-color = #C3C6C3
+align            = center
+valign           = bottom
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+
+Here are options to build the 2nd progress bar cells (count=15 filled in reverse way):
+<pre>
+active-color   = #3874B4
+inactive-color = #FFDDAA
+width          = 50
+height         = 13
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+Here are options to build the 2nd progress bar border :
+<pre>
+width = 1
+style = dashed
+color = #000000
+</pre>
+<div class="fig">HTML_Progress_UI::setBorderAttributes()</div>
+
+Here are options to build the 2nd progress bar string :
+<pre>
+font-size        = 8
+color            = navy
+background-color = #C3C6C3
+align            = center
+valign           = bottom
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="../images/image.gif"/>&nbsp;Output</h2>
+<h3>Screenshot </h3>
+<p><img src="../screenshots/vumeter.png"/></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="source">
+<h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
+<a target="_blank" href="../highlighter.php?file=multiple/vertical.php">Open</a> source listing in a new window.
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="run">
+<h2><img src="../images/run.gif"/>&nbsp;Play demo</h2>
+<p><a href="vertical.php">Run</a> the script.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>
