@@ -1,0 +1,128 @@
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname>Appendix C. Frequently Asked Questions</refname>
+ </refnamediv>
+
+ {@toc}
+ 
+ <refsect2 id="{@id faq001}">
+  <title>I got only 0% displayed on left corner of my browser screen </title>
+  <para>
+    You've forgot to put the necessary styles (CSS) on your HTML document. 
+    <simpara>
+     Adds the HTML_Progress::getStyle or {@tutorial ui.getstyle.pkg} method 
+     between style-html-tags, and your code look like:
+    </simpara>
+    <example>
+     <programlisting role="php">
+      <![CDATA[
+<?php
+require_once 'HTML/Progress.php';
+$bar = new HTML_Progress();
+?>
+<style type="text/css">
+<!--
+<?php echo $bar->getStyle(); ?>
+// -->
+</style>
+<?php
+echo $bar->toHtml(); 
+?>
+      ]]>
+     </programlisting>
+    </example>
+    <simpara>
+     You should see a progress bar like that :
+     <figure>
+      <graphic fileref="../media/screenshots/scratch1.png"></graphic>
+     </figure>
+    </simpara>
+  </para>
+ </refsect2>
+
+ <refsect2 id="{@id faq002}">
+  <title>The progress bar is running, but i see no changes </title>
+  <para>
+    You've forgot to put the requires JavaScript code to manage the progress bar.
+    <simpara>
+     Adds the HTML_Progress::getScript or {@tutorial ui.getscript.pkg} method 
+     between script-html-tags, and your code up and running look like:
+    </simpara>
+    <example>
+     <programlisting role="php">
+      <![CDATA[
+<?php
+require_once 'HTML/Progress.php';
+$bar = new HTML_Progress();
+?>
+<style type="text/css">
+<!--
+<?php echo $bar->getStyle(); ?>
+// -->
+</style>
+<script type="text/javascript">
+<!--
+<?php echo $bar->getScript(); ?>
+//-->
+</script>
+
+<?php
+echo $bar->toHtml(); 
+
+do {
+    $bar->display();
+    if ($bar->getPercentComplete() == 1) {
+        break; // the progress bar has reached 100%
+    }
+    sleep(1);  // to replace by your own procedure
+    $bar->incValue();
+} while(1);
+?>
+      ]]>
+     </programlisting>
+    </example>
+  </para>
+ </refsect2>
+
+ <refsect2 id="{@id faq003}">
+  <title>The progress meter seems to be frozen at 100%, i see no changes </title>
+  <para>
+    Using {@tutorial progress.run.pkg} rather than coding a loop as in above example,
+    you've forgot to give a delay to progress animation.
+    <simpara>
+     Because it's not necessary in real world, almost all cases, the delay is fixed at zero (default behaviour).
+     Uses the {@tutorial progress.setanimspeed.pkg} method to fix the delay from 1 to 1000 milliseconds.
+     In example below delay is only 0.5 seconds
+    </simpara>
+    <example>
+     <programlisting role="php">
+      <![CDATA[
+<?php
+require_once 'HTML/Progress.php';
+$bar = new HTML_Progress();
+$bar->setAnimSpeed(500);
+?>
+<style type="text/css">
+<!--
+<?php echo $bar->getStyle(); ?>
+// -->
+</style>
+<script type="text/javascript">
+<!--
+<?php echo $bar->getScript(); ?>
+//-->
+</script>
+
+<?php
+echo $bar->toHtml(); 
+$bar->run();
+?>
+      ]]>
+     </programlisting>
+    </example>
+  </para>
+ </refsect2>
+
+</refentry>
