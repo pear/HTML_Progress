@@ -25,8 +25,7 @@ class HTML_Progress_TestCase_setUI extends PHPUnit_TestCase
     {
         error_reporting(E_ALL & ~E_NOTICE);
 
-        $logger['display_errors'] = 'off';                      // don't use PEAR::Log display driver
-        $logger['msgCallback'] = array(&$this, '_msgCallback'); // remove file&line context in error message
+        $logger['push_callback'] = array(&$this, '_pushCallback'); // don't die when an exception is thrown
         $this->progress = new HTML_Progress($logger);
     }
 
@@ -54,17 +53,16 @@ class HTML_Progress_TestCase_setUI extends PHPUnit_TestCase
         return false;
     }
 
-    function _msgCallback(&$stack, $err)
+    function _pushCallback($err)
     {
-        $message = call_user_func_array(array(&$stack, 'getErrorMessage'), array(&$stack, $err));
-        return $message;
+        // don't die if the error is an exception (as default callback)
+        return HTML_PROGRESS_ERRORSTACK_PUSH;
     }
 
     function _getResult()
     {
-        $s = &PEAR_ErrorStack::singleton('HTML_Progress');
-        if ($s->hasErrors()) {
-            $err = $s->pop();
+        if ($this->progress->hasErrors()) {
+            $err = $this->progress->getError();
             $this->assertTrue(false, $err['message']);
         } else {
             $this->assertTrue(true);
@@ -75,36 +73,13 @@ class HTML_Progress_TestCase_setUI extends PHPUnit_TestCase
      * TestCases for method setUI.
      *
      */
-    function test_setUI_fail_no_class()
+    function test_setUI_fail()
     {
         if (!$this->_methodExists('setUI')) {
             return;
         }
-        $this->progress->setUI('progress360');
+        $this->progress->setUI('');
         $this->_getResult();
-    }
-
-    function test_setUI()
-    {
-        if (!$this->_methodExists('setUI')) {
-            return;
-        }
-        $this->progress->setUI('progress180');
-        $this->_getResult();
-    }
-}
-
-class progress360
-{
-    function progress360()
-    {
-    }
-}
-
-class progress180 extends HTML_Progress_UI
-{
-    function progress180()
-    {
     }
 }
 ?>

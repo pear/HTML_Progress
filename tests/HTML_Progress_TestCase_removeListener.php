@@ -26,8 +26,7 @@ class HTML_Progress_TestCase_removeListener extends PHPUnit_TestCase
     {
         error_reporting(E_ALL & ~E_NOTICE);
 
-        $logger['display_errors'] = 'off';                      // don't use PEAR::Log display driver
-        $logger['msgCallback'] = array(&$this, '_msgCallback'); // remove file&line context in error message
+        $logger['push_callback'] = array(&$this, '_pushCallback'); // don't die when an exception is thrown
         $this->progress = new HTML_Progress($logger);
     }
 
@@ -55,17 +54,16 @@ class HTML_Progress_TestCase_removeListener extends PHPUnit_TestCase
         return false;
     }
 
-    function _msgCallback(&$stack, $err)
+    function _pushCallback($err)
     {
-        $message = call_user_func_array(array(&$stack, 'getErrorMessage'), array(&$stack, $err));
-        return $message;
+        // don't die if the error is an exception (as default callback)
+        return HTML_PROGRESS_ERRORSTACK_PUSH;
     }
 
     function _getResult()
     {
-        $s = &PEAR_ErrorStack::singleton('HTML_Progress');
-        if ($s->hasErrors()) {
-            $err = $s->pop();
+        if ($this->progress->hasErrors()) {
+            $err = $this->progress->getError();
             $this->assertTrue(false, $err['message']);
         } else {
             $this->assertTrue(true);
