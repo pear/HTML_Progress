@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2003 The PHP Group                                |
+// | Copyright (c) 1997-2004 The PHP Group                                |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 3.0 of the PHP license,       |
 // | that is bundled with this package in the file LICENSE, and is        |
@@ -21,11 +21,11 @@
  * The HTML_Progress_Model class provides an easy way to set look and feel 
  * of a progress bar with external config file.
  *
- * @version    1.0
+ * @version    1.2.0
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @access     public
- * @category   HTML
  * @package    HTML_Progress
+ * @subpackage Progress_UI
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  */
 
@@ -34,7 +34,7 @@ require_once ('Config.php');
 class HTML_Progress_Model extends HTML_Progress_UI
 {
     /**
-     * Package name used by Error_Raise functions
+     * Package name used by PEAR_ErrorStack functions
      *
      * @var        string
      * @since      1.0
@@ -56,24 +56,29 @@ class HTML_Progress_Model extends HTML_Progress_UI
     function HTML_Progress_Model($file, $type)
     {
         $this->_package = 'HTML_Progress_Model';
-        Error_Raise::initialize($this->_package, array('HTML_Progress', '_getErrorMessage'));
+        $stack =& Error_Stack::singleton($this->_package);
+        $messages = HTML_Progress::_getErrorMessage();
+        $stack->setErrorMessageTemplate($messages);
+        $stack->setDefaultLogger($this);
 
         if (!file_exists($file)) {
-            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            $trace = debug_backtrace();
+            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$file',
                       'was' => $file,
                       'expected' => 'file exists',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1), $trace);
         }
 
         $conf = new Config();
 
         if (!$conf->isConfigTypeRegistered($type)) {
-            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            $trace = debug_backtrace();
+            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$type',
                       'was' => $type,
                       'expected' => implode (" | ", array_keys($GLOBALS['CONFIG_TYPES'])),
-                      'paramnum' => 2), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 2), $trace);
         }
 
         $data = $conf->parseConfig($file, $type);

@@ -17,27 +17,25 @@
 //
 // $Id$
 
-require_once ('HTML/Progress/Error/Raise.php');
-require_once ('HTML/Progress/FTP/upload.php');
-require_once ('HTML/Progress.php');
-
-require_once ('HTML/QuickForm.php');
-
 /**
- *
  * The HTML_Progress_Uploader class provides a GUI interface
  * (with progress bar) to manage files to upload to a 
  * ftp server via your web browser.
  *
- * @version    1.1
+ * @version    1.2.0
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @access     public
- * @category   HTML
  * @package    HTML_Progress
+ * @subpackage Progress_Observer
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  */
 
-class HTML_Progress_Uploader extends FTP_Upload
+require_once 'HTML/Progress.php';
+require_once 'Net/FTP.php';
+require_once 'Net/FTP/Observer.php';
+require_once 'HTML/QuickForm.php';
+
+class HTML_Progress_Uploader
 {
     /**#@+
      * Attributes of upload form.
@@ -70,7 +68,46 @@ class HTML_Progress_Uploader extends FTP_Upload
      */
     var $_form;
 
+    /**
+     * It's a common security risk in pages who has the upload dir
+     * facility. You should restrict file kind to upload.
+     *
+     * @var        array
+     * @since      1.1
+     * @access     private
+     * @see        setValidExtensions()
+     */
+    var $_extensions_check = array('jpg', 'jpeg', 'gif', 'png', 'pdf', 'tar', 'zip', 'gz');
+
+    /**
+     * A list of files ready to upload on a ftp server.
+     *
+     * @var        array
+     * @since      1.1
+     * @access     private
+     * @see        setFiles()
+     */
+    var $_files = array();
+
+    /**
+     * Net_FTP instance used for communications with ftp server
+     *
+     * @var        object
+     * @since      1.2.0
+     * @access     private
+     */
+    var $_ftp;
     
+    /**
+     * Package name used by PEAR_ErrorStack functions
+     *
+     * @var        string
+     * @since      1.0
+     * @access     private
+     */
+    var $_package;
+
+
     /**
      * The progress uploader class constructor
      *
@@ -84,23 +121,27 @@ class HTML_Progress_Uploader extends FTP_Upload
     function HTML_Progress_Uploader($formName = 'ProgressUploader', $attributes = array())
     {
         $this->_package = 'HTML_Progress_Uploader';
-        Error_Raise::initialize($this->_package, array('HTML_Progress', '_getErrorMessage'));
+        $stack =& Error_Stack::singleton($this->_package);
+        $messages = HTML_Progress::_getErrorMessage();
+        $stack->setErrorMessageTemplate($messages);
+        $stack->setDefaultLogger($this);
 
         if (!is_string($formName)) {
-            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            $trace = debug_backtrace();
+            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$formName',
                       'was' => gettype($formName),
                       'expected' => 'string',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1), $trace);
 
         } elseif (!is_array($attributes)) {
-            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            $trace = debug_backtrace();
+            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$attributes',
                       'was' => gettype($attributes),
                       'expected' => 'array',
-                      'paramnum' => 2), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 2), $trace);
         }
-        parent::FTP_Upload();          // checks all necessary dependencies
         
         $this->_form = new HTML_QuickForm($formName);
 
@@ -146,11 +187,12 @@ class HTML_Progress_Uploader extends FTP_Upload
     function setProgressElement(&$bar)
     {
         if (!is_a($bar, 'HTML_Progress')) {
-            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            $trace = debug_backtrace();
+            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$bar',
                       'was' => gettype($bar),
                       'expected' => 'HTML_Progress object',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1), $trace);
         }
         $this->_progress =& $bar;
 
@@ -248,11 +290,12 @@ function setStatus(pString)
     function accept(&$renderer)
     {
         if (!is_a($renderer, 'HTML_QuickForm_Renderer')) {
-            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            $trace = debug_backtrace();
+            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$renderer',
                       'was' => gettype($renderer),
                       'expected' => 'HTML_QuickForm_Renderer object',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1), $trace);
         }
         $this->_form->accept($renderer);
     }
@@ -273,35 +316,47 @@ function setStatus(pString)
     function moveTo($dest, $overwrite = false)
     {
         if (!is_string($dest)) {
-            Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            $trace = debug_backtrace();
+            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$dest',
                       'was' => gettype($dest),
                       'expected' => 'string',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1), $trace);
 
         } elseif (!is_bool($overwrite)) {
-            Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            $trace = debug_backtrace();
+            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$overwrite',
                       'was' => gettype($overwrite),
                       'expected' => 'boolean',
-                      'paramnum' => 2), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 2), $trace);
         }
 
-        $dir = parent::_changeDir($dest);
+        if (!isset($this->_ftp)) {
+            return PEAR::raiseError('You should logs in first'); 
+        }
+        $dir = $this->_ftp->cd($dest);
         if (PEAR::isError($dir)) {
             return $dir;
         }
-        $remoteFiles = ftp_nlist($this->_conn, '.');
-        if ($remoteFiles === false) {
-            return PEAR::raiseError('Couldn\'t read directory ' . $dest); 
+        $remoteFiles = $this->_ftp->ls(null, NET_FTP_FILES_ONLY);
+        if (PEAR::isError($remoteFiles)) {
+            return $remoteFiles;
         }
+
+        $observer = new Observer_progressUpload($this->_progress);
+        $this->_ftp->attach($observer);
         
         $nomove = array();   // files not transfered on remote host
         
         foreach ($this->_files as $file) {
-            if (!$overwrite && in_array(basename($file), $remoteFiles)) {
-                // file already exists, skip to next one
-                continue;
+            if (!$overwrite) {
+                foreach ($remoteFiles as $remoteFile) {
+                    if (basename($file) == $remoteFile['name']) {
+                        // file already exists, skip to next one
+                        continue 2;
+                    }
+                }
             }
 
             // writes file caption
@@ -312,28 +367,163 @@ function setStatus(pString)
             echo $status;
             ob_start();
 
-            $ret = ftp_nb_put($this->_conn, basename($file), $file, FTP_BINARY);
-
-            while ($ret == FTP_MOREDATA) {
-  
-                $this->_progress->display();
-                // sleep a bit ...
-                for ($i=0; $i<($this->_progress->_anim_speed*1000); $i++) { }
-                 
-                if ($this->_progress->getPercentComplete() == 1) {
-                    $this->_progress->setValue(0);
-                } else {
-                    $this->_progress->incValue();
-                }
-
-                // upload Continue ...
-                $ret = ftp_nb_continue($this->_conn);
-            }
-            if ($ret != FTP_FINISHED) {
+            $ret = $this->_ftp->put($file, basename($file), $overwrite);
+            if (PEAR::isError($ret)) {
                 $nomove[] = $file;
             }
         }
+        $this->_ftp->detach($observer);
+
         return $nomove;
+    }
+
+    /**
+     * Restricts the valid extensions on file uploads.
+     *
+     * @param      mixed     $exts          File extensions to validate
+     *
+     * @return     void
+     * @since      1.1
+     * @access     public
+     */
+    function setValidExtensions($exts)
+    {
+        if (is_array($exts)) {
+            $this->_extensions_check = $exts;
+        } else {
+            $this->_extensions_check = array();
+            array_push($this->_extensions_check, $exts);
+        }
+    }
+
+    /**
+     * Set a list of files to upload on the ftp server.
+     *
+     * @param      mixed     $files         List of files to transfer to FTP server.
+     * @param      boolean   $check         (optional) Restrict files to valid extensions only.
+     *
+     * @return     void
+     * @since      1.1
+     * @access     public
+     */
+    function setFiles($files, $check = true)
+    {
+        $this->_files = $inputs = array();
+        if (is_array($files)) {
+            $inputs = $files;
+        } else {
+            array_push($inputs, $files);
+        }
+
+        foreach ($inputs as $file) {
+            if ($check) {
+                $info = pathinfo($file);
+                if (in_array($info['extension'], $this->_extensions_check) && file_exists($file)) {
+                    $this->_files[] = $file;
+                }
+            } else {
+                $this->_files[] = $file;
+	    }
+        }
+    }
+
+    /**
+     * Connect on a remote FTP server and login as $user.
+     *
+     * @param      string    $host          FTP server to connect to.
+     * @param      string    $user          Username.
+     * @param      string    $pass          Password.
+     * @param      integer   $port          (optional) an alternate port to connect to.
+     * @param      integer   $timeout       (optional) the timeout for all subsequent network operations.
+     *
+     * @return     mixed                    TRUE on success, and PEAR_Error on failure
+     * @since      1.1
+     * @access     public
+     */
+    function logon($user, $pass, $host, $port = 21, $timeout = 90)
+    {
+        $this->_ftp = new Net_FTP($host, $port);
+
+        $ret = $this->_ftp->connect();
+        if (PEAR::isError($ret)) {
+            return $ret;
+        }
+
+        $ret = $this->_ftp->login($user, $pass);
+        if (PEAR::isError($ret)) {
+            $this->logoff();            
+            return $ret;
+        }
+    }
+
+    /**
+     * Disconnect from a remote FTP server.
+     * (Timeout is default set to 90 sec.)
+     *
+     * @return     void
+     * @since      1.1
+     * @access     public
+     */
+    function logoff()
+    {
+        $this->_ftp->disconnect();
+        unset($this->_ftp);
+    }
+
+    /**
+     * Error Message Logger
+     *
+     * @param      mixed     $message    String or object containing the message to log.
+     * @param      string    $level      The error level of the message. 
+     *                                   Valid are PEAR_LOG_* constants
+     * @param      array     $err        Error hash
+     *
+     * @return     void
+     * @since      1.2.0
+     * @access     private
+     * @see        HTML_Progress::log()
+     */
+    function log($message, $level, $err)
+    {
+        HTML_Progress::log($message, $level, $err);
+    }
+}
+
+/**
+ * The class is a listener for HTML_Progress pending 
+ * file uploads operation.
+ *
+ * @version    1.2.0
+ * @author     Laurent Laville <pear@laurent-laville.org>
+ * @access     private
+ * @package    HTML_Progress
+ * @subpackage Progress_Observer
+ */
+
+class Observer_progressUpload extends Net_FTP_Observer
+{
+    var $_progress;
+
+    function Observer_progressUpload(&$progress)
+    {
+        /* Call the base class constructor. */
+        parent::Net_FTP_Observer();
+
+        /* Configure the observer. */
+        $this->_progress =& $progress;
+    }
+
+    function notify($event)
+    {
+        $this->_progress->display();
+        // sleep a bit ...
+        for ($i=0; $i<($this->_progress->getAnimSpeed()*1000); $i++) { }
+                 
+        if ($this->_progress->getPercentComplete() == 1) {
+            $this->_progress->setValue(0);
+        } else {
+            $this->_progress->incValue();
+        }
     }
 }
 ?>

@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2003 The PHP Group                                |
+// | Copyright (c) 1997-2004 The PHP Group                                |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 3.0 of the PHP license,       |
 // | that is bundled with this package in the file LICENSE, and is        |
@@ -22,19 +22,19 @@
  * to any of your xhtml document.
  * You should have a browser that accept DHTML feature.
  *
- * @version    1.1
+ * @version    1.2.0
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @access     public
  * @category   HTML
  * @package    HTML_Progress
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  * @tutorial   HTML_Progress.pkg
- * @todo       add new progress shapes such as square, rectangle, circle.
  */
 
-require_once ('HTML/Progress/Error/Raise.php');
-require_once ('HTML/Progress/DM.php');
-require_once ('HTML/Progress/UI.php');
+require_once 'PEAR/ErrorStack.php';
+require_once 'Log.php';
+require_once 'HTML/Progress/DM.php';
+require_once 'HTML/Progress/UI.php';
 
 /**#@+
  * Progress Bar shape types
@@ -44,6 +44,16 @@ require_once ('HTML/Progress/UI.php');
  */
 define ('HTML_PROGRESS_BAR_HORIZONTAL', 1);
 define ('HTML_PROGRESS_BAR_VERTICAL',   2);
+/**#@-*/
+
+/**#@+
+ * Progress Bar shape types
+ *
+ * @var        integer
+ * @since      1.2.0
+ */
+define ('HTML_PROGRESS_POLYGONAL',      3);
+define ('HTML_PROGRESS_CIRCLE',         4);
 /**#@-*/
 
 /**
@@ -62,6 +72,15 @@ define ('HTML_PROGRESS_ERROR_INVALID_INPUT',   -100);
  * @since      1.1
  */
 define ('HTML_PROGRESS_ERROR_INVALID_CALLBACK',-101);
+
+/**
+ * Basic error code that indicate a deprecated method
+ * that may be removed at any time from a future version
+ *
+ * @var        integer
+ * @since      1.2.0
+ */
+define ('HTML_PROGRESS_DEPRECATED',            -102);
 
 
 class HTML_Progress
@@ -161,7 +180,7 @@ class HTML_Progress
     var $_listeners;
 
     /**
-     * Package name used by Error_Raise functions
+     * Package name used by PEAR_ErrorStack functions
      *
      * @var        string
      * @since      1.0
@@ -179,7 +198,7 @@ class HTML_Progress
      * @access     private
      * @see        setAnimSpeed()
      */
-    var $_anim_speed = 0;
+    var $_anim_speed;
 
 
     /**
@@ -224,10 +243,12 @@ class HTML_Progress
      *   </code>
      *
      *
-     * @param      object    $model         Model that hold the progress bar's data
-     * @param      int       $orient        Orientation of progress bar
-     * @param      int       $min           Minimum value of progress bar
-     * @param      int       $max           Maximum value of progress bar
+     * @param      object    $model         (optional) Model that hold the progress bar's data
+     * @param      int       $orient        (optional) Orientation of progress bar
+     * @param      int       $min           (optional) Minimum value of progress bar
+     * @param      int       $max           (optional) Maximum value of progress bar
+     * @param      array     $errorPrefs    (optional) Always last argument of class constructor.
+     *                                       hash of params to configure PEAR_ErrorStack and loggers
      *
      * @since      1.0
      * @access     public
@@ -238,17 +259,27 @@ class HTML_Progress
      */
     function HTML_Progress()
     {
-        $this->_package = 'HTML_Progress';
-        Error_Raise::initialize($this->_package, array(get_class($this), '_getErrorMessage'));
+        $args = func_get_args();
+        $num_args = func_num_args();
+
+        if ($num_args > 0) {
+            $errorPrefs = func_get_arg($num_args - 1);
+            if (!is_array($errorPrefs)) {
+                $errorPrefs = array();
+            } else {
+                $num_args--;
+            }
+            $this->_initErrorStack($errorPrefs);
+        } else {        	
+            $this->_initErrorStack();
+        }
 
         $this->_listeners = array();          // none listeners by default
 
         $this->_DM = new HTML_Progress_DM();  // new instance of a progress DataModel
         $this->_UI = new HTML_Progress_UI();  // new instance of a progress UserInterface
 
-        $args = func_get_args();
-
-        switch (count($args)) {
+        switch ($num_args) {
          case 1:
             if (is_object($args[0]) && (is_a($args[0], 'html_progress_dm'))) {
                 /*   object html_progress_dm extends   */
@@ -259,29 +290,29 @@ class HTML_Progress
                 $this->_UI->setOrientation($args[0]);
 
             } else {
-                return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$model | $orient',
                           'was' => (gettype($args[0]) == 'object') ? 
                                     get_class($args[0]).' object' : gettype($args[0]),
                           'expected' => 'html_progress_dm object | integer',
-                          'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                          'paramnum' => 1));
             }
             break;
          case 2:
             /*   int min, int max   */
             if (!is_int($args[0])) {
-                return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$min',
                           'was' => $args[0],
                           'expected' => 'integer',
-                          'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                          'paramnum' => 1));
 
             } elseif (!is_int($args[1])) {
-                return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$max',
                           'was' => $args[1],
                           'expected' => 'integer',
-                          'paramnum' => 2), PEAR_ERROR_TRIGGER);
+                          'paramnum' => 2));
             } else {
                 $this->_DM->setMinimum($args[0]);
                 $this->_DM->setMaximum($args[1]);
@@ -290,25 +321,25 @@ class HTML_Progress
          case 3:
             /*   int orient, int min, int max   */
             if (!is_int($args[0])) {
-                return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$orient',
                           'was' => $args[0],
                           'expected' => 'integer',
-                          'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                          'paramnum' => 1));
 
             } elseif (!is_int($args[1])) {
-                return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$min',
                           'was' => $args[1],
                           'expected' => 'integer',
-                          'paramnum' => 2), PEAR_ERROR_TRIGGER);
+                          'paramnum' => 2));
 
             } elseif (!is_int($args[2])) {
-                return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$max',
                           'was' => $args[2],
                           'expected' => 'integer',
-                          'paramnum' => 3), PEAR_ERROR_TRIGGER);
+                          'paramnum' => 3));
             } else {
                 $this->_UI->setOrientation($args[0]);
                 $this->_DM->setMinimum($args[1]);
@@ -322,7 +353,8 @@ class HTML_Progress
         $this->setBorderPainted(false);
         $this->setIndeterminate(false);
         $this->setIdent();
-
+        $this->setAnimSpeed(0);
+        
         // to fix a potential php config problem with PHP 4.2.0 : turn 'implicit_flush' ON
         ob_implicit_flush(1);
     }
@@ -336,7 +368,7 @@ class HTML_Progress
      */
     function apiVersion()
     {
-        return 1.1;
+        return 1.2;
     }
 
     /**
@@ -346,7 +378,7 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        setIndeterminate()
-     * @tutorial   indeterminate.pkg
+     * @tutorial   progress.isindeterminate.pkg
      */
     function isIndeterminate()
     {
@@ -367,28 +399,29 @@ class HTML_Progress
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        isIndeterminate()
-     * @tutorial   indeterminate.pkg
-     * @example    indeterminate.php        Horizontal ProgressBar in indeterminate mode
+     * @tutorial   progress.setindeterminate.pkg
      */
     function setIndeterminate($continuous)
     {
         if (!is_bool($continuous)) {
-            Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$continuous',
                       'was' => gettype($continuous),
                       'expected' => 'boolean',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1));
         }
         $this->_indeterminate = $continuous;
     }
 
     /**
-     * Does the progress bar should paint its border. The default is false.
+     * Determines whether the progress bar border is painted or not.
+     * The default is false.
      *
      * @return     boolean
      * @since      1.0
      * @access     public
      * @see        setBorderPainted()
+     * @tutorial   progress.isborderpainted.pkg
      */
     function isBorderPainted()
     {
@@ -406,24 +439,24 @@ class HTML_Progress
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        isBorderPainted()
-     * @tutorial   beginner.pkg#look-and-feel.border-style
-     * @example    bluesand.php             A thin solid border to a horizontal progress bar
+     * @tutorial   progress.setborderpainted.pkg
      */
     function setBorderPainted($paint)
     {
         if (!is_bool($paint)) {
-            Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$paint',
                       'was' => gettype($paint),
                       'expected' => 'boolean',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1));
         }
 
         $this->_paintBorder = $paint;
     }
 
     /**
-     * Does the progress bar should render a progress string. The default is false.
+     * Determines whether the progress bar string is painted or not. 
+     * The default is false.
      * The progress bar displays the value returned by getPercentComplete() method
      * formatted as a percent such as 33%.
      *
@@ -431,6 +464,7 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        setStringPainted(), setString()
+     * @tutorial   progress.isstringpainted.pkg
      */
     function isStringPainted()
     {
@@ -448,16 +482,16 @@ class HTML_Progress
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        isStringPainted(), setString()
-     * @tutorial   beginner.pkg#look-and-feel.string-style
+     * @tutorial   progress.setstringpainted.pkg
      */
     function setStringPainted($paint)
     {
         if (!is_bool($paint)) {
-            Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$paint',
                       'was' => gettype($paint),
                       'expected' => 'boolean',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1));
         }
         $this->_paintString = $paint;
     }
@@ -470,7 +504,8 @@ class HTML_Progress
      * @return     string
      * @since      1.0
      * @access     public
-     * @see        setString()
+     * @see        setString(), isStringPainted()
+     * @tutorial   progress.getstring.pkg
      */
     function getString()
     {
@@ -494,8 +529,7 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        getString(), isStringPainted(), setStringPainted()
-     * @tutorial   beginner.pkg#look-and-feel.string-style
-     * @example    horizontal_string.php    A custom string with percent progress info
+     * @tutorial   progress.setstring.pkg
      */
     function setString($str)
     {
@@ -529,21 +563,21 @@ class HTML_Progress
     function setDM($model)
     {
         if (!class_exists($model)) {
-            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$model',
                       'was' => 'class does not exists',
                       'expected' => $model.' class defined',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1));
         }
 
         $_dm = new $model();
 
         if (!is_a($_dm, 'html_progress_dm')) {
-            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$model',
                       'was' => $model,
                       'expected' => 'HTML_Progress_DM extends',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1));
         }
         $this->_DM =& $_dm;
     }
@@ -557,6 +591,7 @@ class HTML_Progress
      * @access     public
      * @see        setMinimum(),
      *             HTML_Progress_DM::getMinimum()
+     * @tutorial   dm.getminimum.pkg
      */
     function getMinimum()
     {
@@ -575,6 +610,7 @@ class HTML_Progress
      * @access     public
      * @see        getMinimum(),
      *             HTML_Progress_DM::setMinimum()
+     * @tutorial   dm.setminimum.pkg
      */
     function setMinimum($min)
     {
@@ -596,6 +632,7 @@ class HTML_Progress
      * @access     public
      * @see        setMaximum(),
      *             HTML_Progress_DM::getMaximum()
+     * @tutorial   dm.getmaximum.pkg
      */
     function getMaximum()
     {
@@ -614,6 +651,7 @@ class HTML_Progress
      * @access     public
      * @see        getMaximum(),
      *             HTML_Progress_DM::setMaximum()
+     * @tutorial   dm.setmaximum.pkg
      */
     function setMaximum($max)
     {
@@ -635,6 +673,7 @@ class HTML_Progress
      * @access     public
      * @see        setIncrement(),
      *             HTML_Progress_DM::getIncrement()
+     * @tutorial   dm.getincrement.pkg
      */
     function getIncrement()
     {
@@ -651,6 +690,7 @@ class HTML_Progress
      * @access     public
      * @see        getIncrement(),
      *             HTML_Progress_DM::setIncrement()
+     * @tutorial   dm.setincrement.pkg
      */
     function setIncrement($inc)
     {
@@ -668,6 +708,7 @@ class HTML_Progress
      * @access     public
      * @see        setValue(), incValue(),
      *             HTML_Progress_DM::getValue()
+     * @tutorial   dm.getvalue.pkg
      */
     function getValue()
     {
@@ -686,6 +727,7 @@ class HTML_Progress
      * @access     public
      * @see        getValue(), incValue(),
      *             HTML_Progress_DM::setValue()
+     * @tutorial   dm.setvalue.pkg
      */
     function setValue($val)
     {
@@ -707,6 +749,7 @@ class HTML_Progress
      * @access     public
      * @see        getValue(), setValue(),
      *             HTML_Progress_DM::incValue()
+     * @tutorial   dm.incvalue.pkg
      */
     function incValue()
     {
@@ -723,6 +766,7 @@ class HTML_Progress
      * @access     public
      * @see        getValue(), getMaximum(),
      *             HTML_Progress_DM::getPercentComplete()
+     * @tutorial   dm.getpercentcomplete.pkg
      */
     function getPercentComplete()
     {
@@ -756,21 +800,21 @@ class HTML_Progress
     function setUI($ui)
     {
         if (!class_exists($ui)) {
-            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$ui',
                       'was' => 'class does not exists',
                       'expected' => $ui.' class defined',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1));
         }
         
         $_ui = new $ui();
 
         if (!is_a($_ui, 'html_progress_ui')) {
-            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$ui',
                       'was' => $ui,
                       'expected' => 'HTML_Progress_UI extends',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1));
         }
         $this->_UI =& $_ui;
     }
@@ -785,6 +829,7 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        setUI()
+     * @tutorial   progress.setmodel.pkg
      */
     function setModel($file, $type)
     {
@@ -794,7 +839,21 @@ class HTML_Progress
     }
 
     /**
-     * Set the sleep delay in milisecond before each progress cells display.
+     * Returns delay execution of the progress bar
+     *
+     * @return     integer
+     * @since      1.2.0
+     * @access     public
+     * @see        setAnimSpeed()
+     * @tutorial   progress.getanimspeed.pkg
+     */
+    function getAnimSpeed()
+    {
+        return $this->_anim_speed;
+    }
+
+    /**
+     * Set the delays progress bar execution for the given number of miliseconds.
      *
      * @param      integer   $delay         Delay in milisecond.
      *
@@ -802,29 +861,31 @@ class HTML_Progress
      * @since      1.1
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
+     * @see        getAnimSpeed()
+     * @tutorial   progress.setanimspeed.pkg
      */
     function setAnimSpeed($delay)
     {
         if (!is_int($delay)) {
-            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$delay',
                       'was' => gettype($delay),
                       'expected' => 'integer',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1));
 
         } elseif ($delay < 0) {
-            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$delay',
                       'was' => $delay,
                       'expected' => 'greater than zero',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1));
 
         } elseif ($delay > 1000) {
-            return Error_Raise::raise($this->_package, HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            $this->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$delay',
                       'was' => $delay,
                       'expected' => 'less or equal 1000',
-                      'paramnum' => 1), PEAR_ERROR_TRIGGER);
+                      'paramnum' => 1));
         }
         $this->_anim_speed = $delay;
     }
@@ -836,6 +897,7 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        HTML_Progress_UI::getStyle()
+     * @tutorial   ui.getstyle.pkg
      */
     function getStyle()
     {
@@ -856,6 +918,7 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        HTML_Progress_UI::getScript()
+     * @tutorial   ui.getscript.pkg
      */
     function getScript()
     {
@@ -882,7 +945,7 @@ class HTML_Progress
         $_structure['borderpainted'] = $this->isBorderPainted();
         $_structure['stringpainted'] = $this->isStringPainted();
         $_structure['string'] = $this->_progressString;
-        $_structure['animspeed'] = $this->_anim_speed;
+        $_structure['animspeed'] = $this->getAnimSpeed();
         $_structure['ui']['classID'] = get_class($ui);
         $_structure['ui']['orientation'] = $ui->getOrientation();
         $_structure['ui']['fillway'] = $ui->getFillWay();
@@ -945,6 +1008,20 @@ class HTML_Progress
 
         if ($orient == HTML_PROGRESS_BAR_VERTICAL) {
             $progressHtml = $this->_getProgressVbar_toHtml();
+        }
+
+        if ($orient == HTML_PROGRESS_POLYGONAL) {
+            $progressHtml = $this->_getProgressPolygonal_toHtml();
+        }
+
+        if ($orient == HTML_PROGRESS_CIRCLE) {
+            $cellAttr = $ui->getCellAttributes();
+            if (!isset($cellAttr[0]['background-image']) || !file_exists($cellAttr[0]['background-image'])) {
+                // creates default circle segments pictures :
+                // 'c0.png'->0% 'c1.png'->10%, 'c2.png'->20%, ... 'c10.png'->100%
+                $ui->drawCircleSegments();
+            }
+            $progressHtml = $this->_getProgressCircle_toHtml();
         }
 
         /**
@@ -1042,7 +1119,7 @@ class HTML_Progress
         $bar .= '<script type="text/javascript">self.setprogress("'.$progressId.'",'.((int) $progress).',"'.$this->getString().'",'.$determinate.'); </script>';
 
         // sleep a bit ...
-        for ($i=0; $i<($this->_anim_speed*1000); $i++) { }
+        for ($i=0; $i<($this->getAnimSpeed()*1000); $i++) { }
 
         echo $bar;
         ob_start();
@@ -1086,6 +1163,7 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        addListener(), removeListener()
+     * @tutorial   progress.getlisteners.pkg
      */
     function getListeners()
     {
@@ -1103,6 +1181,7 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        getListeners(), removeListener()
+     * @tutorial   progress.addlistener.pkg
      */
     function addListener($observer)
     {
@@ -1124,6 +1203,7 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        getListeners(), addListener()
+     * @tutorial   progress.removelistener.pkg
      */
     function removeListener($observer)
     {
@@ -1307,17 +1387,228 @@ class HTML_Progress
     }
 
     /**
-     * Error message generator for package HTML_Progress
+     * Returns a polygonal progress structure as HTML.
      *
-     * @param      integer   $code
-     * @param      array     $args
-     * @param      integer   $state
+     * @return     string                   Polygonal HTML Progress 
+     * @since      1.2.0
+     * @access     private
+     */
+    function _getProgressPolygonal_toHtml()
+    {
+        $ui =& $this->_UI;
+        $tabs = $ui->_getTabs();
+        $tab = $ui->_getTab();
+        $lnEnd = $ui->_getLineEnd();
+        $way_natural = ($ui->getFillWay() == 'natural');
+        $cellAttr = $ui->getCellAttributes();
+        $cellCount = $ui->getCellCount();
+        $coord = $ui->_coordinates;
+
+        $progressId = $this->getIdent().'_';
+        $progressHtml = "";
+
+        if ($way_natural) {
+            // inactive cells first
+            for ($i=0; $i<$cellCount; $i++) {
+                $top  = $coord[$i][0] * $cellAttr['width'];
+                $left = $coord[$i][1] * $cellAttr['height'];
+                $progressHtml .= $tabs . $tab . $tab;
+                $progressHtml .= "<div id=\"". $progressId . sprintf($cellAttr['id'],$i) ."I\""; 
+                $progressHtml .= " class=\"".$cellAttr['class']."I\"";
+                $progressHtml .= " style=\"position:absolute;top:".$top."px;left:".$left."px;\"";
+                $progressHtml .= ">&nbsp;</div>" . $lnEnd;
+            }
+            // then active cells
+            for ($i=0; $i<$cellCount; $i++) {
+                $top  = $coord[$i][0] * $cellAttr['width'];
+                $left = $coord[$i][1] * $cellAttr['height'];
+                $progressHtml .= $tabs . $tab . $tab;
+                $progressHtml .= "<div id=\"". $progressId . sprintf($cellAttr['id'],$i) ."A\""; 
+                $progressHtml .= " class=\"".$cellAttr['class']."A\"";
+                $progressHtml .= " style=\"position:absolute;top:".$top."px;left:".$left."px;\"";
+                if (isset($cellAttr[$i])) {
+                    $progressHtml .= "color:".$cellAttr[$i]['color'].";\"";
+                } else {
+                    $progressHtml .= "\"";
+                }
+                $progressHtml .= ">&nbsp;</div>" . $lnEnd;
+            }
+        } else {
+            $c = count($coord) - 1;
+            // inactive cells first
+            for ($i=0; $i<$cellCount; $i++) {
+                $top  = $coord[$c-$i][0] * $cellAttr['width'];
+                $left = $coord[$c-$i][1] * $cellAttr['height'];
+                $progressHtml .= $tabs . $tab . $tab;
+                $progressHtml .= "<div id=\"". $progressId . sprintf($cellAttr['id'],$i) ."I\""; 
+                $progressHtml .= " class=\"".$cellAttr['class']."I\"";
+                $progressHtml .= " style=\"position:absolute;top:".$top."px;left:".$left."px;\"";
+                $progressHtml .= ">&nbsp;</div>" . $lnEnd;
+            }
+            // then active cells
+            for ($i=0; $i<$cellCount; $i++) {
+                $top  = $coord[$c-$i][0] * $cellAttr['width'];
+                $left = $coord[$c-$i][1] * $cellAttr['height'];
+                $progressHtml .= $tabs . $tab . $tab;
+                $progressHtml .= "<div id=\"". $progressId . sprintf($cellAttr['id'],$i) ."A\""; 
+                $progressHtml .= " class=\"".$cellAttr['class']."A\"";
+                $progressHtml .= " style=\"position:absolute;top:".$top."px;left:".$left."px;\"";
+                if (isset($cellAttr[$i])) {
+                    $progressHtml .= "color:".$cellAttr[$i]['color'].";\"";
+                } else {
+                    $progressHtml .= "\"";
+                }
+                $progressHtml .= ">&nbsp;</div>" . $lnEnd;
+            }
+        }
+        return $progressHtml;
+    }
+
+    /**
+     * Returns a circle progress structure as HTML.
+     *
+     * @return     string                   Circle HTML Progress 
+     * @since      1.2.0
+     * @access     private
+     */
+    function _getProgressCircle_toHtml()
+    {
+        $ui =& $this->_UI;
+        $tabs = $ui->_getTabs();
+        $tab = $ui->_getTab();
+        $lnEnd = $ui->_getLineEnd();
+        $way_natural = ($ui->getFillWay() == 'natural');
+        $cellAttr = $ui->getCellAttributes();
+        $cellCount = $ui->getCellCount();
+
+        $progressId = $this->getIdent().'_';
+        $progressHtml = "";
+
+        if ($way_natural) {
+            // inactive cells first
+            for ($i=0; $i<$cellCount; $i++) {
+                $progressHtml .= $tabs . $tab . $tab;
+                $progressHtml .= "<div id=\"". $progressId . sprintf($cellAttr['id'],$i) ."I\""; 
+                $progressHtml .= " class=\"".$cellAttr['class']."I\"";
+                $progressHtml .= " style=\"position:absolute;top:0;left:0;\"";
+                $progressHtml .= ">&nbsp;</div>" . $lnEnd;
+            }
+            // then active cells
+            for ($i=0; $i<$cellCount; $i++) {
+                $progressHtml .= $tabs . $tab . $tab;
+                $progressHtml .= "<div id=\"". $progressId . sprintf($cellAttr['id'],$i) ."A\""; 
+                $progressHtml .= " class=\"".$cellAttr['class']."A\"";
+                $progressHtml .= " style=\"position:absolute;top:0;left:0;\"";
+                $progressHtml .= "><img src=\"".$cellAttr[$i+1]['background-image']."\" border=\"0\" /></div>" . $lnEnd;
+            }
+        } else {
+            // inactive cells first
+            for ($i=0; $i<$cellCount; $i++) {
+                $progressHtml .= $tabs . $tab . $tab;
+                $progressHtml .= "<div id=\"". $progressId . sprintf($cellAttr['id'],$i) ."I\""; 
+                $progressHtml .= " class=\"".$cellAttr['class']."I\"";
+                $progressHtml .= " style=\"position:absolute;top:0;left:0;\"";
+                $progressHtml .= ">&nbsp;</div>" . $lnEnd;
+            }
+            // then active cells
+            for ($i=0; $i<$cellCount; $i++) {
+                $progressHtml .= $tabs . $tab . $tab;
+                $progressHtml .= "<div id=\"". $progressId . sprintf($cellAttr['id'],$i) ."A\""; 
+                $progressHtml .= " class=\"".$cellAttr['class']."A\"";
+                $progressHtml .= " style=\"position:absolute;top:0;left:0;\"";
+                $progressHtml .= "><img src=\"".$cellAttr[$i+1]['background-image']."\" border=\"0\" /></div>" . $lnEnd;
+            }
+        }
+        return $progressHtml;
+    }
+
+    /**
+     * Initialize Error Stack engine
+     *
+     * @param      array     $prefs         hash of params for PEAR::Log object list
+     *
+     * @return     void
+     * @since      1.2.0
+     * @access     private
+     */
+    function _initErrorStack($prefs = array())
+    {
+        $this->_package = 'HTML_Progress';
+        $stack =& PEAR_ErrorStack::singleton($this->_package);
+        if (isset($prefs['msgCallback'])) {
+            $cb = $prefs['msgCallback'];
+        } else {
+            $cb = array('HTML_Progress', '_msgCallback');
+        }
+        $stack->setMessageCallback($cb);
+        if (isset($prefs['contextCallback'])) {
+            $stack->setContextCallback($prefs['contextCallback']);
+        }
+        $messages = HTML_Progress::_getErrorMessage();
+        $stack->setErrorMessageTemplate($messages);
+        $composite = &Log::singleton('composite');
+        $stack->setLogger($composite);
+
+        $drivers = isset($prefs['handler']) ? $prefs['handler'] : array();
+        $display_errors = isset($prefs['display_errors']) ? strtolower($prefs['display_errors']) : 'on';
+        $log_errors = isset($prefs['log_errors']) ? strtolower($prefs['log_errors']) : 'on';
+        
+        foreach ($drivers as $handler => $params) {
+            if ((strtolower($handler) == 'display') && ($display_errors == 'off')) {
+                continue;
+            }
+            if ((strtolower($handler) != 'display') && ($log_errors == 'off')) {
+                continue;
+            }       
+            $name = isset($params['name']) ? $params['name'] : '';
+            $ident = isset($params['ident']) ? $params['ident'] : '';
+            $conf = isset($params['conf']) ? $params['conf'] : array();
+            $level = isset($params['level']) ? $params['level'] : PEAR_LOG_DEBUG;
+            
+            $logger = &Log::singleton(strtolower($handler), $name, $ident, $conf, $level);
+            $composite->addChild($logger);
+        }
+
+        // Add at least the Log::display driver to output errors on browser screen
+        if (!array_key_exists('display', $drivers)) {
+            if ($display_errors == 'on') {
+                $logger = &Log::singleton('display');
+                $composite->addChild($logger);
+            }
+        }
+    }
+
+    /**
+     * User callback to generate error messages for any instance
+     *
+     * @param      object    $stack         PEAR_ErrorStack instance
+     * @param      array     $err           current error with context info 
+     *
+     * @return     string
+     * @since      1.2.0
+     * @access     private
+     */
+    function _msgCallback(&$stack, $err)
+    {
+        $message = call_user_func_array(array(&$stack, 'getErrorMessage'), array(&$stack, $err));
+
+        if (isset($err['context']['function'])) {
+            $message .= ' in ' . $err['context']['class'] . '::' . $err['context']['function'];
+        }
+        if (isset($err['context']['file'])) {
+            $message .= ' (file ' . $err['context']['file'] . ' at line ' . $err['context']['line'] .')';
+        }
+        return $message;
+    }
+
+    /**
+     * Error Message Template array
      *
      * @return     string
      * @since      1.0
      * @access     private
      */
-    function _getErrorMessage($code, $args, $state)
+    function _getErrorMessage()
     {
         $messages = array(
             HTML_PROGRESS_ERROR_INVALID_INPUT =>
@@ -1328,13 +1619,42 @@ class HTML_Progress
                 'invalid callback, parameter #%paramnum% '
                     . '"%var%" expecting %element%,'
                     . ' instead got "%was%" does not exists',
-      );
-        if (isset($messages[$code])) {
-            $message = $messages[$code];
-        } else {
-            $message = 'Code ' . $code . ' is not a valid error code';
-        }
-        return Error_Raise::sprintfErrorMessageWithState($message, $args, $state);
+            HTML_PROGRESS_DEPRECATED => 
+                'method is deprecated '
+                    . 'use %newmethod% instead of %oldmethod%'
+
+        );
+        return $messages;
     }
-}
+
+    /**
+     * Add an error to the stack
+     * Dies if the error is an exception (and would have died anyway)
+     *
+     * @param      integer   $code       Error code.
+     * @param      string    $level      The error level of the message. 
+     *                                   Valid are PEAR_LOG_* constants
+     * @param      array     $params     Associative array of error parameters
+     * @param      array     $trace      Error context info (see debug_backtrace() contents)
+     *
+     * @return     array     PEAR_ErrorStack instance. And with context info (if PHP 4.3+)
+     * @since      1.2.0
+     * @access     public
+     */
+    function raiseError($code, $level, $params)
+    {
+        if (function_exists('debug_backtrace')) {
+            $trace = debug_backtrace();     // PHP 4.3+
+        } else {
+            $trace = null;                  // PHP 4.1.x, 4.2.x (no context info available)
+        }
+        $err = PEAR_ErrorStack::staticPush($this->_package, $code, $level, $params, false, false, $trace);
+ 
+        if ($level == 'exception') {
+            die();
+        } else {
+            return $err;
+        }
+    }
+}    
 ?>
