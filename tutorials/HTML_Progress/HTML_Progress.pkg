@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.5 $ -->
 
 <refentry id="{@id}">
 
@@ -18,105 +20,59 @@
      </author>
     </holder>
    </copyright>
-   <releaseinfo>HTML_Progress 1.2.0</releaseinfo>
+   <releaseinfo>
+    <simpara>Version $Revision: 1.5 $</simpara>
+    <simpara>Updated: $Date: 2004-09-11 15:39:21 $</simpara>
+   </releaseinfo>
   </refsynopsisdivinfo>
   <para>
-   This package provides a way to add a progress meter fully customizable in existing XHTML documents.
-   Your browser should accept DHTML and JavaScript features.
+   <emphasis>
+    This document describes HTML_Progress 1.0 or greater.
+   </emphasis>
   </para>
  </refsynopsisdiv>
 
- {@toc}
+
+ <refsect2 id="{@id toc}">
+  <title>Table of Contents</title>
+  <para>
+   <orderedlist>
+    <listitem>{@tutorial preface.pkg} </listitem>
+     <itemizedlist>
+      <listitem>{@tutorial preface.pkg#audience} </listitem>
+      <listitem>{@tutorial preface.pkg#why-use-it} </listitem>
+      <listitem>{@tutorial preface.pkg#pre-requisites} </listitem>
+      <listitem>{@tutorial preface.pkg#what-is-new} </listitem>
+      <listitem>{@tutorial preface.pkg#pkg-overview} </listitem>
+     </itemizedlist> 
+    <listitem>{@tutorial part1-introduction.pkg} </listitem>
+     <itemizedlist>
+      <listitem>{@tutorial part1-introduction.pkg} </listitem>
+     </itemizedlist>
+    <listitem>{@tutorial part2-gettingstarted.pkg} </listitem>
+       <itemizedlist>
+        <listitem>{@tutorial part2-firstprogressmeter.pkg} </listitem>
+        <listitem>{@tutorial part2-progresshandler.pkg} </listitem>
+        <listitem>{@tutorial part2-errorhandling.pkg} </listitem>
+       </itemizedlist>
+    <listitem>{@tutorial part3-reference.pkg} </listitem>
+       <itemizedlist>
+        <listitem>{@tutorial part3-reference.pkg#common-ref} </listitem>
+        <listitem>{@tutorial part3-reference.pkg#error-ref} </listitem>
+        <listitem>{@tutorial part3-reference.pkg#observer-ref} </listitem>
+        <listitem>{@tutorial part3-reference.pkg#math-ref} </listitem>
+        <listitem>{@tutorial part3-reference.pkg#graphic-ref} </listitem>
+        <listitem>{@tutorial part3-reference.pkg#model-ref} </listitem>
+        <listitem>{@tutorial progress.constants.pkg} </listitem>
+        <listitem>{@tutorial part3-reference.pkg#monitor-ref} </listitem>
+       </itemizedlist>
+    <listitem>{@tutorial part4-appendixes.pkg} </listitem>
+       <itemizedlist>
+        <listitem>{@tutorial A_install.pkg Installation} </listitem>
+        <listitem>{@tutorial B_migration12.pkg Migration to version 1.2} </listitem>
+       </itemizedlist>
+   </orderedlist>
+  </para>
+ </refsect2>
  
- <refsect1 id="{@id doc-organization}">
-  <title>Organization of this documention</title>
-  <para>
-   This documentation is divided into four parts. 
-   <para>
-    <emphasis>Part1: Introduction</emphasis> is an introduction to HTML_Progress package and its components.
-    <itemizedlist>
-     <listitem>{@tutorial part1-introduction.pkg}
-     <itemizedlist>
-      <listitem>{@tutorial part1-introduction.pkg#what-is-for} </listitem>
-      <listitem>{@tutorial part1-introduction.pkg#what-is-doc-for} </listitem>
-      <listitem>{@tutorial part1-introduction.pkg#why-use-it} </listitem>
-      <listitem>{@tutorial part1-introduction.pkg#pre-requisites} </listitem>
-      <listitem>{@tutorial part1-introduction.pkg#what-is-new} </listitem>
-      <listitem>{@tutorial part1-introduction.pkg#pkg-overview} </listitem>
-     </itemizedlist>
-     </listitem>
-    </itemizedlist>
-   </para>
-   <para>
-    <emphasis>Part2: Tutorials</emphasis> help you to learn all components of HTML_Progress, step by step.
-    <itemizedlist>
-     <listitem>{@tutorial part2-gettingstarted.pkg}
-     <itemizedlist>
-      <listitem>{@tutorial part2-firstprogressmeter.pkg} </listitem>
-      <listitem>{@tutorial part2-progresshandler.pkg} </listitem>
-      <listitem>{@tutorial part2-errorhandling.pkg} </listitem>
-     </itemizedlist>
-     </listitem>
-    </itemizedlist>
-   </para>
-   <para>
-    <emphasis>Part3: Reference</emphasis> is the API Reference Guide.
-    <itemizedlist>
-     <listitem>{@tutorial part3-reference.pkg}
-     <itemizedlist>
-      <listitem>{@tutorial part3-reference.pkg#common-ref} </listitem>
-      <listitem>{@tutorial part3-reference.pkg#error-ref} </listitem>
-      <listitem>{@tutorial part3-reference.pkg#observer-ref} </listitem>
-      <listitem>{@tutorial part3-reference.pkg#math-ref} </listitem>
-      <listitem>{@tutorial part3-reference.pkg#graphic-ref} </listitem>
-      <listitem>{@tutorial part3-reference.pkg#model-ref} </listitem>
-      <listitem>{@tutorial progress.constants.pkg} </listitem>
-     </itemizedlist>
-     </listitem>
-    </itemizedlist>
-   </para>
-   <para>
-    <emphasis>Part4: Appendixes</emphasis> discusses others ressources.
-    <itemizedlist>
-     <listitem>{@tutorial part4-appendixes.pkg} 
-     <itemizedlist>
-      <listitem>{@tutorial part4-appendixes.pkg#install} </listitem>
-      <listitem>{@tutorial part4-appendixes.pkg#howto-make-phpdoc} </listitem>
-     </itemizedlist>
-     </listitem>
-    </itemizedlist>
-   </para>
-  </para>
- </refsect1>
-
- <refsect1 id="{@id getdoc}">
-  <title>Getting this documentation</title>
-  <para>
-   In the HTML_Progress 1.2.0 bundle you will find a windows help file (chm) and also a
-   portable document file (pdf) reading by acrobat reader.
-  </para>
-  <para>
-   You may also read this <emphasis>Definitive Guide</emphasis> online in HTML format at 
-   {@link http://pear.laurent-laville.org/HTML_Progress/apidoc/}.
-  </para>
- </refsect1>
-
- <refsect1 id="{@id getexamples}">
-  <title>Getting examples</title>
-  <para>
-   All of these documentation examples are included into the HTML_Progress package bundle. 
-   You can get the most up-to-date examples from the web site: 
-   {@link http://pear.laurent-laville.org/HTML_Progress/examples/}
-  </para>
- </refsect1>
-
- <refsect1 id="{@id rfc}">
-  <title>Request For Comments</title>
-  <para>
-   Please help me to improve future editions of this documentation by reporting any errors, 
-   inaccuracies, bugs, misleading or confusing statements, and plain old typos that you find.
-   {@link mailto:pear@laurent-laville.org}
-  </para>
- </refsect1>
-
 </refentry>
