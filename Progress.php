@@ -1412,7 +1412,7 @@ class HTML_Progress
             // when there is no valid user callback then default is to sleep a bit ...
             $this->sleep();
         } else {
-            call_user_func($this->_callback, $this->getValue(), &$this);
+            call_user_func_array($this->_callback, array($this->getValue(), &$this));
         }
     }
 

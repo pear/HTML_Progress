@@ -1,5 +1,9 @@
 $Id$
 
+-------------------------Release 1.2.1------------------------
+2004-12-19  Laurent Laville <pear@laurent-laville.org>
+    * fix bug#2577 Call time pass by reference error
+
 -------------------------Release 1.2.0------------------------
 2004-09-12  Laurent Laville <pear@laurent-laville.org>
     * The final and last stable version of branch 1 
