@@ -552,23 +552,5 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
 
         return $bar;
     }
-
-    /**
-     * Error Message Logger
-     *
-     * @param      mixed     $message    String or object containing the message to log.
-     * @param      string    $level      The error level of the message. 
-     *                                   Valid are PEAR_LOG_* constants
-     * @param      array     $err        Error hash
-     *
-     * @return     void
-     * @since      1.2
-     * @access     private
-     * @see        HTML_Progress::log()
-     */
-    function log($message, $level, $err)
-    {
-        HTML_Progress::log($message, $level, $err);
-    }
 }
 ?>
