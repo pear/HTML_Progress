@@ -1,5 +1,35 @@
 $Id$
 
+-------------------------Release 1.2.0------------------------
+2004-09-12  Laurent Laville <pear@laurent-laville.org>
+    * The final and last stable version of branch 1 
+      of HTML_Progress is finally published on PEAR website.
+
+2004-09-06  Laurent Laville <pear@laurent-laville.org>
+    * HTML_Progress::sleep method use now in most case 
+      the PHP usleep() function except for PHP4 on Windows System
+
+2004-08-15  Laurent Laville <pear@laurent-laville.org>
+    * begin to write "The Definitive Guide" 
+      (tutorial and reference)
+
+2004-08-10  Laurent Laville <pear@laurent-laville.org>
+    * fixed all compatibility problem with new error handling
+      system.
+
+2004-08-07  Laurent Laville <pear@laurent-laville.org>
+    * setAnimSpeed() method in HTML_Progress_Monitor class
+      marked as deprecated was removed
+
+2004-08-06  Laurent Laville <pear@laurent-laville.org>
+    * PEAR_ErrorStack was replaced by a simple 
+      plugin architecture to set any error handling system
+      you might want.
+
+2004-08-05  Laurent Laville <pear@laurent-laville.org>
+    * remove $msg optional parameter on raiseError() method
+      appeared with RC3.
+
 -------------------------Release 1.2.0RC3---------------------
 2004-07-04  Laurent Laville <pear@laurent-laville.org>
     * The third release candidate of HTML_Progress 1.2.0
