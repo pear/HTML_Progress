@@ -14,7 +14,6 @@ $bar->setIncrement(10);
 $bar->setStringPainted(true);   // get space for the string
 $bar->setString('');            // but don't paint it
 
-$ui =& $bar->getUI();
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

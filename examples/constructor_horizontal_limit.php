@@ -11,8 +11,6 @@ require_once ('HTML/Progress.php');
 
 $bar = new HTML_Progress(0,20);
 
-$ui =& $bar->getUI();
-
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
