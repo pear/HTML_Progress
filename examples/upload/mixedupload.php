@@ -102,3 +102,5 @@ if ($form->validate()) {
 }
 $form->display();
 ?>
+</body>
+</html>
