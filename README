@@ -21,9 +21,9 @@ If you need more detailed help, check out INSTALL
 Release Notes
 ********************************************************************************
 
-Release notes for the newest version are in Release-1.2.0RC3
+Release notes for the newest version are in Release-1.2.0
 
-1.2.0RC3 is out, a beta bugfix release
+1.2.0 is out, a stable release
 
 To learn how to do, read online APIdoc and tutorials in many formats at 
 http://pear.laurent-laville.org/HTML/Progress/apidoc/
@@ -32,57 +32,6 @@ If you find a bug please send me a mail with subject HTML_Progress at:
 <pear@laurent-laville.org>
 Or put a new entry on PEAR BugTracker at :
 http://pear.php.net/bugs/search.php?cmd=display&status=Open&bug_type[]=HTML_Progress
-
-
-********************************************************************************
-How To generate the API doc and tutorials (made with phpDocumentor 1.3.0RC3)
-********************************************************************************
-Guide is based on "HTML:frames:DOM/earthli" converter
-
-----
-First you need to hack a little phpDocumentor converters options.ini file.
-(PEAR\data\PhpDocumentor\phpDocumentor\Converters\HTML\frames\templates\DOM\earthli\options.ini)
-
-In [ppage] section of options.ini, 
-# adds:
-	graphic = img
-	graphic->fileref = src
-	graphic/ = 
-  to allow display of images (progress screenshots).
-
-# adds:
-	tip = <div class="tips">
-	/tip = </div>
-  to allow display of tips area
-  
-At end of options.ini file,
-# adds:
-	[tip_title]
-	;tag_attr = true
-	;attr_name = true
-	cdata_start = true
-	open = <img src="../media/tip.gif" />
-	close = 
-  if you want to have the little icon on left corner
-
-----
-Second you need to hack a little phpDocumentor converters stylesheet file.
-(PEAR\data\PhpDocumentor\phpDocumentor\Converters\HTML\frames\templates\DOM\earthli\templates\media\stylesheet.css)
-
-# adds:
-	.tips { padding: 0.5em; margin-left: 2em; font-style: italic; font-size: 10pt; background-color: lightyellow; color: black; width: 80%;}
-  for Tips display
-
-----
-Finally, you have to run phpdoc (or perharps docBuilder - Webinterface):
- 	phpdoc [commandline]
- 	
-where command_line switches are :
-	-f <pathTo>HTML\Progress.php                               to parse main file
-	-d <pathTo>HTML\Progress,<pathTo>HTML\Progress\tutorials   to parse all subclasses and tutorial files
-        -po HTML_Progress                                          to restrict generation to HTML_Progress, NOT included Error_Raise
-        -o <you favorite output format>                            for example "HTML:frames:DOM/earthli"
-        -t <target directory>                                      where you want to put generated files
 
         
 ********************************************************************************
@@ -150,13 +99,14 @@ Features since version 1.1
 Improvement since version 1.1
   - HTML_Progress (Monitor, Generator, Uploader) support now the QF renderer system
   
-Features since version 1.2
+Features since version 1.2.0
   - new shapes (square, rectangle, polygonal, circle, ellipse)
   - new api error methods management (hasError, getError)
 
-Improvement since version 1.2
+Improvement since version 1.2.0
   - HTML_Progress_Uploader was removed from package 
-  - Error_Raise was replaced by PEAR_ErrorStack, the new error manager included in PEAR 1.3.1
+  - Error_Raise was replaced by a clone of PEAR_ErrorStack
+  - HTML_Progress_Model was removed from package 
 
 
 If something is missing from this list make sure to file a feature request 
@@ -176,5 +126,6 @@ Thanks to Christian Wenz to help me to fix javascript errors on IE4 and NS4 brow
 Thanks to Olivier Hondermarck to help me to fix a progress circle css problem (www.toutjavascript.com)
 Thanks to Juan Camilo who allow me to learn SOAP
 Thanks to Marlon Brandao who help me to debug my http file upload form examples
+Thanks to Gregory Beaver for his works on PEAR_ErrorStack who inspired me on the final error handling system
 
 Special Thanks to Rasmus Lerdorf, without him PHP and all this universe won't be! 
