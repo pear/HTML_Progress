@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="index,nofollow" />
+<meta name="keywords" content"="HTML_Progress, progress meter, horizontal bar, template ITX" />
+<meta name="description" content"="Template embedded progress meter" />
+<meta name="author" content="Laurent Laville" />
+<title>PEAR::HTML::Progress example: Template ITX static</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="../index.html"><img src="../images/home.gif" alt="Examples TOC"/>examples</a></p>
+
+<h1><span class="chapter">Template ITX static </span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Ouput</a>
+<li><a href="#source">PHP source syntax highlight<a>
+<li><a href="#run">Play demo<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="../images/info.gif"/> Introduction</h2>
+		
+<p>This example requires :
+<ul>
+<li>PEAR::HTML_Progress 1.2.0RC3 or better (see source at line 15).</li>
+<li>PEAR::HTML_QuickForm 3.1.1 or better.</li>
+<li>PEAR::HTML_Template_IT 1.1 or better.</li>
+</ul>
+</p>
+
+<hr/>
+<p><b>This example will run a progress meter embedded into a template file.</b></p>
+
+<p>Template engine is <a href="http://pear.php.net/package/HTML_Template_IT">IT(X)</a>, 
+but you could use any others template engine.</p>
+
+<p>On lines 17 thru 32, there is your user-callback (function <b>myFunctionHandler</b>),
+where you do what you want. This callback is attached on progress bar at line 80.</p>
+
+<p>Inside this callback, we will show a custom string (build at line 31) 
+at 25% (lines 22 to 24), at 50% (lines 25 to 27), at 100% (lines 28 to 30).</p>
+
+<p>As for all demos, to smooth animation, i've added a <b>sleep</b> method at line 19. 
+Delay depends on value set by <b>setAnimSpeed</b> method at line 75. In real world, 
+you have to do a long task, so delay (sleep) is unnecesary.</p>
+
+<p><b>Tips</b>: to build custom string, you don't forget to set lines 78 and 79.</p>
+
+<p>Depending of your template engine, you should :</p>
+<ul>
+<li>initialize (at line 34)
+<li>load your template pattern (at line 35)
+<li>merge some template variables with datas (lines 37 thru 42, 98, 99 and 100)
+<li>display final result (at line 105)
+</ul>
+
+<p>Before to run the progress meter at line 107.</p>
+<p><b>Note</b>: usage of quickform is only to show you how to dynamic change look and feel 
+of progress meter.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="../images/config.gif"/>&nbsp;Render options </h2>
+
+Here are options to build the progress bar cells (count=10 filled in natural way):
+<pre>
+active-color   = #7B7B88
+inactive-color = #D0D0D0
+width          = 10
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+Here are options to build the progress bar string :
+<pre>
+width            = 320
+font-size        = 10
+align            = left
+valign           = bottom
+background-color = #D0D0D0
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+Here are options to build the progress bar itself:
+<pre>
+width  = 320
+</pre>
+<div class="fig">HTML_Progress_UI::setProgressAttributes()</div>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="../images/image.gif"/>&nbsp;Output</h2>
+<h3>Screenshot </h3>
+<p><img src="../screenshots/itxstatic.png"/></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="source">
+<h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
+<a target="_blank" href="../highlighter.php?file=./templates/itxstatic.php">Open</a> source listing in a new window.
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="run">
+<h2><img src="../images/run.gif"/>&nbsp;Play demo</h2>
+<p><a href="itxstatic.php">Run</a> the script.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>

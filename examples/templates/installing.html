@@ -1,0 +1,163 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Template Progress example</title>
+<style type="text/css">
+<!--
+{L_STYLESHEET}
+
+BODY {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin: 0px 0px 0px 0px;
+	padding: 10px;
+	text-align: center;
+}
+
+H1,H2,H3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-align: left;
+	margin-top: 0em;
+	margin-bottom: 0em;
+}
+
+H1 {
+	font-size: 36px;
+	font-style: italic;
+	color: White;
+	margin-bottom: 0.5em;
+}
+
+H2 {
+	font-size: 9pt;
+	font-weight: normal;
+}
+
+IMG {
+	border: 0;
+}
+
+#MainWindow {
+	width: 500px;
+	margin: 0px auto;
+	text-align: left;
+	border-style: solid; 
+	border-width: 2px; 
+	border-color: #808080; 
+	background-color: #d0d0d0;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	color: Black;
+}
+
+#WizardCaption {
+	background: #7B7B88;
+	color: White;
+	font-size: 9pt;
+	margin: 4px 4px 4px 4px;
+	padding: 2px;
+}
+
+#WizardSubCaption {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #7B7B88;
+	margin: 4px 4px 4px 4px;
+	padding: 2px;
+}
+
+#WizardBody {
+        height: 250px;
+	margin: 4px auto;
+}
+
+#WizardImage {
+        float: left;
+	margin: 0px;
+	padding: 4px;
+	width: 120px;
+        height: 240px;
+}
+
+#WizardForm {
+        float: left;
+	margin: 0px;
+	padding: 2px 8px 2px 4px;
+        height: 240px;
+}
+
+#WizardCommand {
+	text-align: right;
+	padding: 4px;
+        border-top: 1px solid #808080
+}
+
+#Copyright {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: White;	
+}
+body {
+	background-color: #444444;
+	color: white;
+	font-family: Verdana, Arial;
+}
+a:link, a:visited, a:active {
+	color: yellow;
+}
+// -->
+</style>
+<script type="text/javascript">
+<!--
+{L_JAVASCRIPT}
+//-->
+</script>
+</head>
+<body>
+
+<h1>{L_APPNAME}</h1>
+
+<div id="MainWindow">
+
+<form {form_attributes}>
+
+<div id="WizardCaption">
+<h2>
+<img src="./cross.png" align="right">
+{L_SETUP_APP_TITLE}
+</h2>
+</div>    
+
+<div id="WizardBody">
+<div id="WizardImage">
+<img src="./wizard.png"><br />
+</div>
+<div id="WizardForm">
+<br /><p>{L_PROGRESS_BAR}</p>
+<p><fieldset>
+<p>{form_border_label}&nbsp;{form_border_html}</p>
+<p>{form_color_label}&nbsp;{form_color_html}</p>
+</fieldset></p>
+</div>
+</div>
+
+<div id="WizardCommand">
+{form_launch_html}
+</div>    
+
+</form>
+
+</div>
+
+<div id="Copyright">
+{L_APPCOPYRIGHT}
+</div>
+
+</body>
+</html>
