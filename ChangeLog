@@ -1,5 +1,21 @@
 $Id$
 
+-------------------------Release 1.1--------------------------
+2004-02-14  Laurent Laville <pear@laurent-laville.org>
+    * HTML_Progress_Uploader is the new GUI class for FTP_Upload
+    * FTP_Upload is an independant class to manage files ftp upload
+      Credit to Tomas VV Cox for idea and code pick from package
+      HTTP_Upload.
+
+2004-02-13  Laurent Laville <pear@laurent-laville.org>
+    * fixes PEAR-BUG#342 http://pear.php.net/bugs/bug.php?id=342
+      add the new method setAnimSpeed() instead of sleep(1)
+    * HTML_Progress_Generator is the next generation of 
+      interactive tools to build online your own progress bar
+
+2004-02-10  Laurent Laville <pear@laurent-laville.org>
+    * HTML_Progress_Monitor support the QF renderer solution
+
 -------------------------Release 1.0--------------------------
 2003-11-15  Laurent Laville <pear@laurent-laville.org>
     * fixes compatibility with PHP 4.1.0 and 
