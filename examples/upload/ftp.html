@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="index,nofollow" />
+<meta name="keywords" content"="HTML_Progress, HTML_QuickForm, Net_FTP, upload, form, progress meter, logs" />
+<meta name="description" content"="Upload files from a web browser to a ftp server" />
+<meta name="author" content="Laurent Laville" />
+<title>PEAR::HTML::Progress example: Web-FTP ProgressBar uploader</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../examples.css" />
+</head>
+<body>
+
+<a name="top">
+
+<p><a href="../index.html"><img src="../images/home.gif" alt="Examples TOC"/>examples</a></p>
+
+<h1><span class="chapter">Web-FTP ProgressBar uploader </span></h1>
+
+<p align="right">$Date$</p>
+
+<div class="toc">&nbsp;Table of contents </div>
+<ul>
+<li><a href="#intro">Introduction<a>
+<li><a href="#render">Render options<a>
+<li><a href="#output">Ouput</a>
+<li><a href="#source">PHP source syntax highlight<a>
+<li><a href="#run">Play demo<a>
+</ul>
+
+
+<a name="intro">
+<h2><img src="../images/info.gif"/> Introduction</h2>
+		
+<p>This example requires :
+<ul>
+<li>PEAR::HTML_Progress 1.1 or better.</li>
+<li>PEAR::Net_FTP 1.3.0 or better.</li>
+</ul>
+</p>
+
+<hr/>
+<p><b>This example allows you to upload files from a web browser to a ftp server
+(may be different and on another host that your web server).</b></p>
+ 
+<p>PEAR::HTML_QuickForm package is used to make and manage the form that will send file
+to your web server (left frame), while HTML_Progress is only used to display a horizontal 
+progress meter running in indeterminate mode (right frame).</p>
+
+<p>Be aware that your web server could returns a timeout on long upload operation, by running 
+the HTML_Progress script (See technical notes below).</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<h2><img src="../images/hands.gif"/>&nbsp;Technical notes </h2>
+
+<p>The script time-out refers to the number of seconds a PHP page is given before the script 
+is assumed to have failed and the page terminated. 
+If you are uploading a large file the script that is receiving the transfer may time out 
+before the file has been completely uploaded. 
+To alter this setting you should insert the following code into your uploading page 
+prior to creating any HTML_Progress and HTML_QuickForm objects.</p>
+
+<table class="hl-table" width="100%">
+<tr>
+<td class="hl-gutter" align="right" valign="top" style="width:4ex;">
+1
+</td>
+<td class="hl-main" valign="top">
+<span class="hl-inlinetags">&lt;?php </span><span class="hl-identifier">set_time_limit</span><span class="hl-brackets">(</span><span class="hl-number">300</span><span class="hl-brackets">)</span><span class="hl-code">;  </span><span class="hl-comment">// five minutes  </span><span class="hl-inlinetags">?&gt;</span>
+</td>
+</tr>
+</table>
+<p>See also: 
+<a target="_blank" href="http://www.php.net/manual/en/function.set-time-limit.php">set_time_limit</a> manual.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="render">
+<h2><img src="../images/config.gif"/>&nbsp;Render options </h2>
+
+<pre>
+increment = 10 (to make progress bar animation smoothest in indeterminate mode)
+</pre>
+<div class="fig">HTML_Progress::setIncrement()</div>
+<pre>
+speed = 100 (to make progress bar animation smoothest)
+</pre>
+<div class="fig">HTML_Progress::setAnimSpeed()</div>
+
+<pre>
+background-color = #e0e0e0
+</pre>
+<div class="fig">HTML_Progress_UI::setProgressAttributes()</div>
+
+<pre>
+color            = #996
+background-color = #CCCC99
+</pre>
+<div class="fig">HTML_Progress_UI::setStringAttributes()</div>
+
+<pre>
+active-color     = #996
+</pre>
+<div class="fig">HTML_Progress_UI::setCellAttributes()</div>
+
+
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="output">
+<h2><img src="../images/image.gif"/>&nbsp;Output</h2>
+<h3>Screenshot </h3>
+<p><img src="../screenshots/upload_ftp.png"/></p>
+
+<p>[<a href="#top">Top</a>]</p>
+		
+
+<a name="source">
+<h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
+<p><b>The form file selection:</b>
+<a target="_blank" href="../highlighter.php?file=upload/ftpupload.php">Open</a> source listing in a new window.
+</p>
+<p><b>The progress meter in indeterminate mode:</b>
+<a target="_blank" href="../highlighter.php?file=upload/progressbar.php">Open</a> source listing in a new window.
+</p>
+<p>[<a href="#top">Top</a>]</p>
+
+
+<a name="run">
+<h2><img src="../images/run.gif"/>&nbsp;Play demo</h2>
+<p><a href="ftpupload.html">Run</a> the script.</p>
+
+<p>[<a href="#top">Top</a>]</p>
+
+</body>
+</html>
