@@ -125,7 +125,7 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
                       'expected' => 'array',
                       'paramnum' => 2));
         }
-        parent::HTML_QuickForm_Controller($controllerName,false);
+        parent::HTML_QuickForm_Controller($controllerName);
 
         // Check if Action(s) are customized
         $ActionPreview = isset($attributes['preview'])? $attributes['preview']: 'ActionPreview';
