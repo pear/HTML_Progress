@@ -81,6 +81,7 @@ require_once ('HTML/Progress/observer.php');
 
 // 1. Creates ProgressBar
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setBorderPainted(true);
 $bar->setIncrement(10);
 
@@ -122,7 +123,7 @@ a:visited, a:active, a:link {
 </style>
 <script type="text/javascript">
 <!--
-<?php echo $ui->getScript(); ?>
+<?php echo $bar->getScript(); ?>
 //-->
 </script>
 </head>
@@ -187,6 +188,7 @@ class MyObserver extends HTML_Progress_Observer
 
 // 2. Creates ProgressBar
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 $bar->setIncrement(5);
 
 // 3. Creates and attach a listener 
@@ -218,7 +220,7 @@ $ui->setComment('Simple Observer ProgressBar example');
 </style>
 <script type="text/javascript">
 <!--
-<?php echo $ui->getScript(); ?>
+<?php echo $bar->getScript(); ?>
 //-->
 </script>
 </head>
@@ -285,10 +287,12 @@ class Bar1Observer extends HTML_Progress_Observer
 
 // 2. Creates ProgressBar
 $bar1 = new HTML_Progress(HTML_PROGRESS_BAR_VERTICAL);
+$bar1->setAnimSpeed(100);
 $bar1->setIncrement(10);
 $bar1->setIdent('PB1');
 
 $bar2 = new HTML_Progress(HTML_PROGRESS_BAR_VERTICAL);
+$bar2->setAnimSpeed(100);
 $bar2->setIncrement(25);
 $bar2->setIdent('PB2');
 $bar2->setBorderPainted(true);
@@ -359,7 +363,7 @@ table.container {
 </style>
 <script type="text/javascript">
 <!--
-<?php echo $ui1->getScript(); ?>
+<?php echo $bar1->getScript(); ?>
 //-->
 </script>
 </head>

@@ -112,6 +112,7 @@ do {
 require_once ('HTML/Progress.php');
 
 $bar = new HTML_Progress();
+$bar->setAnimSpeed(100);
 
 $ui =& $bar->getUI();
 ?>
@@ -122,7 +123,7 @@ $ui =& $bar->getUI();
 </style>
 <script type="text/javascript">
 <!--
-<?php echo $ui->getScript(); ?>
+<?php echo $bar->getScript(); ?>
 //-->
 </script>
 

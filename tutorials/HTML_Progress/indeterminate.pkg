@@ -107,6 +107,7 @@ class Task extends HTML_Progress_Monitor
 
         
         $this->_progress = new HTML_Progress();
+        $this->_progress->setAnimSpeed(100);
         $this->_progress->setIncrement(10);
         $this->_progress->setStringPainted(true);     // get space for the string
         $this->_progress->setString("");              // but don't paint it
