@@ -47,6 +47,7 @@
      <listitem>adds a customizable UI monitor pattern to display a progress bar. User-end can abort progress at any time. </listitem>
      <listitem>Look and feel can be sets by internal API or external config file </listitem>
      <listitem>Allows many progress meter on same page without uses of iframe solution </listitem>
+     <listitem>HTML_Progress 1.2.0 works with PHP 5 </listitem>
     </itemizedlist>
    </para>
   </refsect2>
