@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.1 $ -->
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname><function>HTML_Progress_Monitor::run</function></refname>
+  <refpurpose>runs the monitor and catch user action (cancel)</refpurpose>
+ </refnamediv>
+
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress/monitor.php';
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>void <function>HTML_Progress_Monitor::run</function></funcdef>
+    <void/>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
+ </refsect1>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   This method launch the monitoring process after user has clicked on <emphasis>Start</emphasis> button.
+  </para>
+  <simpara>
+   At any time, the user can stop the process with the <emphasis>Cancel</emphasis> button.
+  </simpara>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.0 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial progress.setanimspeed.pkg},
+   {@tutorial progress.sleep.pkg},
+   {@tutorial monitor.setprogresshandler.pkg},
+   {@tutorial monitor.callprogresshandler.pkg}
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   <simpara>
+    The full example below will run a progress monitor starting in indeterminate mode,
+    and then switch back to determinate mode.
+   </simpara>
+   <figure>
+    <graphic fileref="../media/screenshots/indeterminate.png"></graphic>
+   </figure>
+    {@example monitor_indeterminate.php}
+  </para>
+ </refsect1>
+
+</refentry>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.1 $ -->
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname><function>HTML_Progress_Monitor::accept</function></refname>
+  <refpurpose>accepts a quickform renderer</refpurpose>
+ </refnamediv>
+
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress/monitor.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>void <function>HTML_Progress_Monitor::accept</function></funcdef>
+    <paramdef>object &amp;<parameter>$renderer</parameter></paramdef>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
+ </refsect1>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   Accepts a renderer. This method is a part of the Visitor design pattern implementation.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id parameter}">
+  <title>Parameter</title>
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      <type>object</type>
+      <parameter>&amp;$renderer</parameter>
+     </term>
+     <listitem>
+      <para>
+       an instance of HTML_QuickForm_Renderer subclass 
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id throws}">
+  <title>Throws</title>
+  <para>
+   <table frame="all">
+    <title>Possible PEAR_Error values</title>
+    <tgroup cols="4">
+     <thead>
+      <row>
+       <entry>Error level</entry>
+       <entry>Error code</entry>
+       <entry>Error message</entry>
+       <entry>Solution</entry>
+      </row>
+     </thead>
+     <tbody>
+      <row>
+       <entry>exception</entry>
+       <entry><constant>HTML_PROGRESS_ERROR_INVALID_INPUT</constant></entry>
+       <entry>invalid input, parameter #1 "<parameter>$renderer</parameter>" was expecting (HTML_QuickForm_Renderer object)</entry>
+       <entry>Fixed the cast of parameter</entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.1 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   See example of {@tutorial monitor.run.pkg}.
+  </para>
+ </refsect1>
+
+</refentry>

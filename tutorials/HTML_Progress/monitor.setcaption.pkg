@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.1 $ -->
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname><function>HTML_Progress_Monitor::setCaption</function></refname>
+  <refpurpose>displays caption on action in progress</refpurpose>
+ </refnamediv>
+
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress/monitor.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>void <function>HTML_Progress_Monitor::setCaption</function></funcdef>
+    <paramdef>string <parameter><optional>$caption = '&nbsp;'</optional></parameter></paramdef>
+    <paramdef>array <parameter><optional>$args = array()</optional></parameter></paramdef>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
+ </refsect1>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   Allows to display a caption to action in progress into the dialog box monitor.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id parameter}">
+  <title>Parameter</title>
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      <type>string</type>
+      <parameter>$caption</parameter>
+     </term>
+     <listitem>
+      <para>
+       caption to action in progress 
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term>
+      <type>array</type>
+      <parameter>$args</parameter>
+     </term>
+     <listitem>
+      <para>
+       associative array of template variable, message text
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id throws}">
+  <title>Throws</title>
+  <para>
+   <table frame="all">
+    <title>Possible PEAR_Error values</title>
+    <tgroup cols="4">
+     <thead>
+      <row>
+       <entry>Error level</entry>
+       <entry>Error code</entry>
+       <entry>Error message</entry>
+       <entry>Solution</entry>
+      </row>
+     </thead>
+     <tbody>
+      <row>
+       <entry>exception</entry>
+       <entry><constant>HTML_PROGRESS_ERROR_INVALID_INPUT</constant></entry>
+       <entry>invalid input, parameter #1 "<parameter>$caption</parameter>" was expecting "string"</entry>
+       <entry>Fixed the cast of parameter</entry>
+      </row>
+      <row>
+       <entry>exception</entry>
+       <entry><constant>HTML_PROGRESS_ERROR_INVALID_INPUT</constant></entry>
+       <entry>invalid input, parameter #2 "<parameter>$args</parameter>" was expecting "array"</entry>
+       <entry>Fixed the cast of parameter</entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.1 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   See example of {@tutorial monitor.run.pkg}.
+  </para>
+ </refsect1>
+
+</refentry>

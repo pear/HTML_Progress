@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.1 $ -->
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname><function>HTML_Progress_Monitor::callProgressHandler</function></refname>
+  <refpurpose>calls a user-defined progress handler function</refpurpose>
+ </refnamediv>
+
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress/monitor.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>void <function>HTML_Progress_Monitor::callProgressHandler</function></funcdef>
+    <paramdef>integer <parameter>$arg</parameter></paramdef>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
+ </refsect1>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   This method is a wrapper for your callback function defined by {@tutorial monitor.setprogresshandler.pkg}
+   or at least call by default the {@tutorial progress.sleep.pkg} method.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id parameter}">
+  <title>Parameter</title>
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      <type>integer</type>
+      <parameter>$arg</parameter>
+     </term>
+     <listitem>
+      <para>
+       current value of the progress bar
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.1 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial progress.setanimspeed.pkg},
+   {@tutorial progress.sleep.pkg},
+   {@tutorial monitor.setprogresshandler.pkg},
+   {@tutorial monitor.run.pkg}
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   See example of {@tutorial monitor.run.pkg}.
+  </para>
+ </refsect1>
+
+</refentry>

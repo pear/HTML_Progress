@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.1 $ -->
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname><function>HTML_Progress_Monitor::getProgressElement</function></refname>
+  <refpurpose>returns a reference to the progress bar used by the monitor</refpurpose>
+ </refnamediv>
+
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress/monitor.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>void &amp;<function>HTML_Progress_Monitor::getProgressElement</function></funcdef>
+    <void/>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
+ </refsect1>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   This method is used to get a reference to the progress bar object attached to the monitor.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.1 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial monitor.setprogresselement.pkg}
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   See example of {@tutorial monitor.run.pkg}.
+  </para>
+ </refsect1>
+
+</refentry>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!-- $Revision: 1.1 $ -->
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname><function>HTML_Progress_Monitor::setProgressElement</function></refname>
+  <refpurpose>attachs a progress bar to the monitor</refpurpose>
+ </refnamediv>
+
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+ <refsynopsisdiv>
+  <funcsynopsis>
+   <funcsynopsisinfo>
+    require_once 'HTML/Progress/monitor.php'; 
+   </funcsynopsisinfo>
+   <funcprototype>
+    <funcdef>void <function>HTML_Progress_Monitor::setProgressElement</function></funcdef>
+    <paramdef>object <parameter>$bar</parameter></paramdef>
+   </funcprototype>
+  </funcsynopsis>
+ </refsynopsisdiv>
+ </refsect1>
+
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>
+   This method is used to attach a new progress bar to the current monitor.
+  </para>
+  <simpara>
+   All progress events will be send to this monitor thru the listen interface 
+   ({@tutorial monitor.notify.pkg}).
+  </simpara>
+ </refsect1>
+
+ <refsect1 id="{@id parameter}">
+  <title>Parameter</title>
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      <type>object</type>
+      <parameter>$bar</parameter>
+     </term>
+     <listitem>
+      <para>
+       a html_progress instance
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id throws}">
+  <title>Throws</title>
+  <para>
+   <table frame="all">
+    <title>Possible PEAR_Error values</title>
+    <tgroup cols="4">
+     <thead>
+      <row>
+       <entry>Error level</entry>
+       <entry>Error code</entry>
+       <entry>Error message</entry>
+       <entry>Solution</entry>
+      </row>
+     </thead>
+     <tbody>
+      <row>
+       <entry>exception</entry>
+       <entry><constant>HTML_PROGRESS_ERROR_INVALID_INPUT</constant></entry>
+       <entry>invalid input, parameter #1 "<parameter>$val</parameter>" was expecting (HTML_Progress object)</entry>
+       <entry>Fixed the cast of parameter</entry>
+      </row>
+     </tbody>
+    </tgroup>
+   </table>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id note}">
+  <title>Note</title>
+  <simpara>
+   ( HTML_Progress >= 1.1 )
+  </simpara>
+  <para>
+   <important>
+    This function can not be called statically.
+   </important>
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id see}">
+  <title>See</title>
+  <para>
+   {@tutorial monitor.getprogresselement.pkg}
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   See example of {@tutorial monitor.run.pkg}.
+  </para>
+ </refsect1>
+
+</refentry>
