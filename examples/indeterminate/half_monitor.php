@@ -22,6 +22,7 @@ function myProgressHandler($progressValue, &$obj)
     $obj->setCaption("completed $c out of 400");
 
     $bar =& $obj->getProgressElement();
+    $bar->sleep();
     /* rules to determine when switch back from indeterminate to determinate mode */
     if ($c >= 240 && $bar->isIndeterminate()) {
         $bar->setIndeterminate(false);
