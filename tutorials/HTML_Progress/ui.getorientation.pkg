@@ -1,0 +1,42 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>getOrientation Manual</refname>
+  <refpurpose>returns progress bar orientation type</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>integer</emphasis> <important>getOrientation</important>()</para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>getOrientation()</emphasis> method is used to retrieve orientation
+   type of a progress bar. It could be horizontal (=1) or vertical (=2) and polygonal (=3), 
+   since HTML_Progress 1.2
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will give you orientation when progress bar was created, then return
+   the vertical code due to orientation changes.
+   {@example getorientation.php}
+   <para>Output will display first "int(1)", then "int(2)".</para>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial ui.setorientation.pkg}
+  </para>
+ </refsect1>
+</refentry>

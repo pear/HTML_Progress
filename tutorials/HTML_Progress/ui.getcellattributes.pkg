@@ -1,0 +1,96 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>getCellAttributes Manual</refname>
+  <refpurpose>returns attributes list of the progress bar cells</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>mixed</emphasis> <important>getCellAttributes</important>( $asString )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+       <entry><important>Default</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>asString</emphasis></entry>
+      <entry>boolean                      </entry>
+      <entry>false                        </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>getCellAttributes()</emphasis> method is used to retrieve attributes
+   of progress bar cells. Ouput could be an array or a string.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will show you the attributes definition of progress bar cells in two formats:
+   array (default) and string.
+   {@example getcellattributes.php}
+   <para>Output 1.</para>
+   <example>
+   <![CDATA[
+array(10) {
+  ["id"]=>
+  string(16) "progressCell%01s"
+  ["class"]=>
+  string(4) "cell"
+  ["active-color"]=>
+  string(7) "#3874B4"
+  ["inactive-color"]=>
+  string(7) "#EEEECC"
+  ["font-family"]=>
+  string(16) "Courier, Verdana"
+  ["font-size"]=>
+  int(8)
+  ["color"]=>
+  string(7) "#000000"
+  ["width"]=>
+  string(2) "10"
+  ["height"]=>
+  int(20)
+  ["spacing"]=>
+  int(2)
+}
+   ]]>
+   </example>
+   <para>Output 2.</para>
+   <example>
+   <![CDATA[
+string(179) " id="progressCell%01s" class="cell" active-color="#3874B4" inactive-color="#EEEECC" font-family="Courier, Verdana" font-size="8" color="#000000" width="10" height="20" spacing="2""
+   ]]>
+   </example>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial ui.setcellattributes.pkg}
+  </para>
+ </refsect1>
+</refentry>

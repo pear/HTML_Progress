@@ -1,0 +1,66 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>setStringPainted Manual</refname>
+  <refpurpose>allow or not, usage of a custom progress string</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>void</emphasis> <important>setStringPainted</important>( $paint )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>paint</emphasis></entry>
+      <entry>boolean                   </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>setStringPainted()</emphasis> method is used to decide whether 
+   the progress bar should paint a custom string or not. The default value is FALSE.
+  </para>
+  <para>
+   By default, the progress bar displays the value returned by 
+   {@link HTML_Progress::getPercentComplete()} method formatted as a percent such as 33%.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will produced a progress bar with a custom string.
+   <para><graphic fileref="../media/screenshots/string.png"></graphic></para>
+   {@example setstringpainted.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial progress.isstringpainted.pkg},
+   {@tutorial progress.setstring.pkg}
+  </para>
+ </refsect1>
+</refentry>

@@ -1,0 +1,75 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>setProgressAttributes Manual</refname>
+  <refpurpose>defines look and feel of the core of progress bar</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>void</emphasis> <important>setProgressAttributes</important>( $attributes )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+       <entry><important>Default</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>attributes</emphasis></entry>
+      <entry>array                          </entry>
+      <entry>
+       <itemizedlist>
+        <listitem>class => progressBar        </listitem>
+        <listitem>background-color => #FFFFFF </listitem>
+        <listitem>auto-size => true           </listitem>
+       </itemizedlist>
+      </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+  <para>
+   <emphasis>$attributes</emphasis> is an associative array or string of HTML tag attributes.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>setProgressAttributes()</emphasis> method is used to give a look and feel,
+   such as size and color, to the core of progress bar.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will produced a plain progress bar. It's a dynamic example, the progress bar
+   will run.
+   <para><graphic fileref="../media/screenshots/bullit.png"></graphic></para>
+   {@example setprogressattributes.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial ui.setborderattributes.pkg},
+   {@tutorial ui.setstringattributes.pkg},
+   {@tutorial ui.setcellattributes.pkg}
+  </para>
+ </refsect1>
+</refentry>

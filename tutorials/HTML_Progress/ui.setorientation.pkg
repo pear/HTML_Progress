@@ -1,0 +1,70 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>setOrientation Manual</refname>
+  <refpurpose>defines the orientation of the progress bar</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>void</emphasis> <important>setOrientation</important>( $orient )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+       <entry><important>Default</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>orient</emphasis> </entry>
+      <entry>integer                     </entry>
+      <entry>HTML_PROGRESS_BAR_HORIZONTAL</entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+  <para>
+   <emphasis>$orient</emphasis> is an integer which identify in version 1.0 only 2 shapes,
+   Horizontal and Vertical Progress Bars. Polygonal was added in version 1.2
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>setOrientation()</emphasis> method is used to change orientation
+   of the progress bar after you invoked the constructor. For example, you can swap from a
+   horizontal progress bar to a vertical one, by only one call such as: 
+   <emphasis>setOrientation(HTML_PROGRESS_BAR_VERTICAL)</emphasis>.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will produced a vertical progress bar with only 6 cells.
+   It's a dynamic example, the progress bar will run.
+   <para><graphic fileref="../media/screenshots/vertical1.png"></graphic></para>
+   {@example setorientation.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial ui.setfillway.pkg}
+  </para>
+ </refsect1>
+</refentry>

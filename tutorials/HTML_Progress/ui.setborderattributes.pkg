@@ -1,0 +1,104 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>setBorderAttributes Manual</refname>
+  <refpurpose>defines look and feel of the progress bar border</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>void</emphasis> <important>setBorderAttributes</important>( $attributes )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+       <entry><important>Default</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>attributes</emphasis></entry>
+      <entry>array                          </entry>
+      <entry>
+       <itemizedlist>
+        <listitem>class => progressBarBorder  </listitem>
+        <listitem>width => 0                  </listitem>
+        <listitem>style => solid (dashed, dotted, inset, outset) </listitem>
+        <listitem>color => #000000            </listitem>
+       </itemizedlist>
+      </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+  <para>
+   <emphasis>$attributes</emphasis> is an associative array or string of HTML tag attributes.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>setBorderAttributes()</emphasis> method is used to give a look and feel,
+   such as size, style and color, to the progress bar border.
+  </para>
+  <para>
+  <tip><title></title>
+   You may also used an existing StyleSheet and a CSS class-selector with pre-defined style.
+   For example:
+   <para>
+   <programlisting role="php">
+   <![CDATA[
+<?php
+...
+// specify a user-ident (instead of the auto-generated value)
+$bar->setIdent('PB1');  
+...
+$ui =& $bar->getUI();
+$ui->setBorderAttributes('class="myProgressBorder"');
+...
+?>
+   ]]>
+   </programlisting>
+   <example>
+   <![CDATA[
+<!-- custom stylesheet -->
+...
+.PB1 .myProgressBar { border: 3px dotted #0000FF; }
+...
+   ]]>
+   </example>
+   </para>
+   <para><graphic fileref="../media/screenshots/border3.png"></graphic></para>
+  </tip>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will produced a progress bar with a solid navy border. It's a static example, 
+   the progress bar will not run.
+   <para><graphic fileref="../media/screenshots/border2.png"></graphic></para>
+   {@example setborderattributes.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial progress.setborderpainted.pkg} 
+  </para>
+ </refsect1>
+</refentry>

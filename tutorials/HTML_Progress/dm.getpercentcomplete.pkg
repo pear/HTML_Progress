@@ -1,0 +1,39 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>getPercentComplete Manual</refname>
+  <refpurpose>returns the percent complete for the progress bar</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>float</emphasis> <important>getPercentComplete</important>()</para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>getPercentComplete()</emphasis> method is used to retrieve
+   degree of completion from 0.00 to 1.00
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   {@example getpercentcomplete.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial dm.getvalue.pkg},
+   {@tutorial dm.getmaximum.pkg}
+  </para>
+ </refsect1>
+</refentry>

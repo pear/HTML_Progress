@@ -1,0 +1,118 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>setStringAttributes Manual</refname>
+  <refpurpose>defines look and feel of the progress bar string</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>void</emphasis> <important>setStringAttributes</important>( $attributes )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+       <entry><important>Default</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>attributes</emphasis></entry>
+      <entry>array                          </entry>
+      <entry>
+       <itemizedlist>
+        <listitem>id => installationProgress  </listitem>
+        <listitem>width => 50                 </listitem>
+        <listitem>font-family => Verdana, Arial, Helvetica, sans-serif </listitem>
+        <listitem>font-size => 12             </listitem>
+        <listitem>color => #000000            </listitem>
+        <listitem>background-color => #FFFFFF </listitem>
+        <listitem>align => right ( left, center ) </listitem>
+        <listitem>for horizontal bar:         </listitem>
+        <itemizedlist>
+         <listitem>valign => right (left, top, bottom)    </listitem>
+        </itemizedlist>
+        <listitem>for vertical bar:           </listitem>
+        <itemizedlist>
+         <listitem>valign => bottom (top, left, right)    </listitem>
+        </itemizedlist>
+       </itemizedlist>
+      </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+  <para>
+   <emphasis>$attributes</emphasis> is an associative array or string of HTML tag attributes.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>setStringAttributes()</emphasis> method is used to give a look and feel,
+   such as alignment, size and color, to the progress bar string.
+  </para>
+  <para>
+  <tip><title></title>
+   You may also used an existing StyleSheet and a CSS id with pre-defined style.
+   For example:
+   <para>
+   <programlisting>
+   <![CDATA[
+<?php
+require_once ('HTML/Progress.php');
+
+$bar = new HTML_Progress();
+// specify a user-ident (instead of the auto-generated value)
+$bar->setIdent('myPB');
+$bar->setStringPainted(true);
+
+$ui =& $bar->getUI();
+$ui->setStringAttributes('id="myPBstring"');
+...
+?>
+   ]]>
+   </programlisting>
+   <example>
+   <![CDATA[
+<!-- custom stylesheet -->
+...
+.myPB .myPBstring { width: 100px; background-color: lightyellow; color: black; }
+...
+   ]]>
+   </example>
+   </para>
+   <para><graphic fileref="../media/screenshots/string1.png"></graphic></para>
+  </tip>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will produced a progress bar with a custom style string. It's a static example, 
+   the progress bar will not run.
+   <para><graphic fileref="../media/screenshots/redsandback.png"></graphic></para>
+   {@example setstringattributes.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial progress.setstringpainted.pkg}
+  </para>
+ </refsect1>
+</refentry>

@@ -1,0 +1,97 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>setCellAttributes Manual</refname>
+  <refpurpose>defines look and feel of the progress bar cells</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>void</emphasis> <important>setCellAttributes</important>( $attributes, $cell )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+       <entry><important>Default</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>attributes</emphasis></entry>
+      <entry>array                          </entry>
+      <entry>
+       <itemizedlist>
+        <listitem>id => progressCell%01s </listitem>
+        <listitem>class => cell          </listitem>
+        <listitem>spacing => 2           </listitem>
+        <listitem>active-color => #006600      </listitem>
+        <listitem>inactive-color => #CCCCCC    </listitem>
+        <listitem>font-family => Courier, Verdana    </listitem>
+        <listitem>font-size => 8         </listitem>
+        <listitem>color => #000000       </listitem>
+        <listitem>for horizontal bar:    </listitem>
+        <itemizedlist>
+         <listitem>width => 15           </listitem>
+         <listitem>height => 20          </listitem>
+        </itemizedlist>
+        <listitem>for vertical bar:      </listitem>
+        <itemizedlist>
+         <listitem>width => 20           </listitem>
+         <listitem>height => 15          </listitem>
+        </itemizedlist>
+       </itemizedlist>
+      </entry>
+     </row>
+     <row>
+      <entry><emphasis>cell</emphasis></entry>
+      <entry>integer                  </entry>
+      <entry>null                     </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+  <para>
+   <emphasis>$attributes</emphasis> is an associative array or string of HTML tag attributes.
+  </para>
+  <para>
+   <emphasis>$cell</emphasis> is an integer that allows to identify each cell, and properties
+    to apply.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>setCellAttributes()</emphasis> method is used to give a look and feel,
+   such as spacing, size and color, to the progress bar cells.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will produced a progress bar with smaller cell. It's a dynamic example, 
+   the progress bar will run.
+   <para><graphic fileref="../media/screenshots/bluesand.png"></graphic></para>
+   {@example setcellattributes.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial ui.setcellcount.pkg} 
+  </para>
+ </refsect1>
+</refentry>

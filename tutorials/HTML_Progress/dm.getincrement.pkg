@@ -1,0 +1,39 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>getIncrement Manual</refname>
+  <refpurpose>returns the progress bar's increment value</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>integer</emphasis> <important>getIncrement</important>()</para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>getIncrement()</emphasis> method is used to retrieve the 
+   increment value in the mathematical model of the progress bar.
+   The default value is set to +1.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   {@example getincrement.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial dm.setincrement.pkg}
+  </para>
+ </refsect1>
+</refentry>

@@ -1,0 +1,65 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>setValue Manual</refname>
+  <refpurpose>set the current progress bar's value</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>void</emphasis> <important>setValue</important>( $val )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>val</emphasis></entry>
+      <entry>integer                 </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+  <para>
+   <emphasis>$val</emphasis> is an integer between the minimum value,
+   given by {@link HTML_Progress_DM::getMinimum()}, and the maximum value, 
+   given by {@link HTML_Progress_DM::getMaximum()}.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>setValue()</emphasis> method is used to set the 
+   current value in the mathematical model of the progress bar.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   {@example setvalue.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial dm.getvalue.pkg},
+   {@tutorial dm.incvalue.pkg}
+  </para>
+ </refsect1>
+</refentry>

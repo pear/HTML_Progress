@@ -1,0 +1,63 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>setIndeterminate Manual</refname>
+  <refpurpose>sets the current value of the progress string</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>void</emphasis> <important>setIndeterminate</important>( $continuous )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>continuous</emphasis></entry>
+      <entry>boolean                        </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>setIndeterminate()</emphasis> method is used to switch
+   the progress abr in indeterminate mode. 
+   Read {@tutorial indeterminate.pkg} to learn how to animate a progress bar 
+   to show unknown length-task activity.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Look and feel of indeterminate mode used with HTML_Progress_Monitor.
+   <para><graphic fileref="../media/screenshots/indeterminate.png"></graphic></para>
+   {@example setindeterminate.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial progress.isindeterminate.pkg}
+  </para>
+ </refsect1>
+</refentry>

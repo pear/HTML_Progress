@@ -1,0 +1,62 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>setAnimSpeed Manual</refname>
+  <refpurpose>set the delay progress bar execution for the given number of miliseconds</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>February 2004, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.1+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>void</emphasis> <important>setAnimSpeed</important>( $delay )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>delay</emphasis></entry>
+      <entry>integer                   </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>setAnimSpeed()</emphasis> method delays progress bar execution 
+   for the given number of <emphasis>$delay</emphasis> miliseconds.
+   Default value is zero (no delay).
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will produced a progress bar with a delay progress bar
+   execution equivalent to 1 second.
+   {@example setanimspeed.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial progress.getanimspeed.pkg}
+  </para>
+ </refsect1>
+</refentry>

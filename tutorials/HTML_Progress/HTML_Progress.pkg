@@ -9,88 +9,161 @@
     by Laurent Laville
     <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
    </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+   <copyright>March 2004, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.2</releaseinfo>
   </refsynopsisdivinfo>
  </refsynopsisdiv>
  {@toc}
- <refsect1 id="{@id whatisit}">
+ <refsect1 id="{@id presentation}">
   <title>What is HTML_Progress ?</title>
   <para>
-   HTML_Progress is a OO class {@link http://pear.php.net PEAR} package for 
-   {@link http://www.php.net PHP} 4.1 or better.
-  </para>
-  <para>
-   HTML_Progress makes it easy to build and display an horizontal or vertical loading bar 
-   on XHTML document of your choice, 
-   and allows user to wait and see progress status during a long procedure such an installation.
-   You get a more or less decent result with just the basic settings, but it's also 
-   highly configurable, so you can almost get what you want.
-  </para>
-  <para>
-   The core class assigns context sensitive default values for most of the parameters 
-   which minimizes the learning part. The features are there when you need it - 
-   they don't get in your way. The package also comes with very extensive documentation.
+   To discover what is really the HTML_Progress component (PEAR class), first
+   read {@link http://laurent-laville.org/spip/article.php3?id_article=7 HTML_Progress (part1)}.
+   You'll find a quick presentation, the license, a short image gallery, and the FAQ.
   </para>
  </refsect1>
- <refsect1 id="{@id features}">
-  <title>Features</title>
+ <refsect1 id="{@id releases}">
+  <title>Releases</title>
+  <para>
+   First publish release of HTML_Progress on 
+   {@link http://pear.php.net/package/HTML_Progress/ PEAR website} was on August 1st, 2003.
+   Its introduced the first attempt of stable API version. But as i wanted HTML_Progress 
+   more open to future evolutions, i've redevelopped a second API more robust.
+   So versions 0.4.x, 0.5.x and 0.6.x are all incompatible with the new API introduced first 
+   in version 1.0
+  </para>
    <unorderedlist>
-    <listitem><para>Create horizontal and also vertival bar</para></listitem>
-    <listitem><para>Allows usage of an existing external StyleSheet 
-     and/or JavaScript </para></listitem>
-    <listitem><para>All elements (progress, cells, string) are customizable 
-     by their html properties</para></listitem>
-    <listitem><para>percent/string is floating all around the progress bar</para></listitem>
-    <listitem><para>Compliant with all CSS/XHMTL standards</para></listitem>
-    <listitem><para>Integration with all template engines is very easy</para></listitem>
-    <listitem><para>Implements a Observer design pattern. 
-     It is possible to add Listeners.</para></listitem>
-    <listitem><para>Adds a customizable UI monitor pattern to display a progress bar.
-     User-end can abort progress at any time.</para></listitem>
-    <listitem><para>Look and feel can be sets by internal API or external config file.
-     </para></listitem>
-    <listitem><para>Allows many progress bar on same page without uses of 
-     iframe solution.</para></listitem>
+    <listitem><emphasis>2003-11-16 (version 1.0)</emphasis>
+     <para>First attempt to:
+      <unorderedlist>
+       <listitem>create a <important>Progress Monitor</important> solution.</listitem>
+       <listitem>interactive tools to build progress bar (<important>Progress Maker</important>).</listitem>
+      </unorderedlist>
+     </para>
+    </listitem>
+    <listitem><emphasis>2004-02-14 (version 1.1)</emphasis> 
+     <para>
+      <unorderedlist>
+       <listitem>Second version of <important>Progress Monitor</important>, using the QuickForm rendering system.</listitem>
+       <listitem><important>Progress Uploader</important> was born: a web-ftp file uploads solution.</listitem>
+       <listitem><important>Progress Generator</important> became the next generation of Progress Maker.</listitem>
+      </unorderedlist>
+    </para>
+    </listitem>
+    <listitem><emphasis>2004-03-xx (version 1.2)</emphasis> 
+     <para>
+    </para>
+    </listitem>
    </unorderedlist>
  </refsect1>
- <refsect1 id="{@id license}">
-  <title>Software license</title>
-   <para>HTML_Progress is released under 
-    {@link http://www.php.net/license/3_0.txt PHP License 3.0}</para>
- </refsect1>
- <refsect1 id="{@id gallery}">
-  <title>Image gallery</title>
-   <para>Below is a few sample images all created with HTML_Progress.</para>
-   <para><graphic fileref="../media/screenshots/ancestor.png"></graphic></para>
-   <para><graphic fileref="../media/screenshots/bullit.png"></graphic></para>
-   <para><graphic fileref="../media/screenshots/redsandback.png"></graphic></para>
-   <para><graphic fileref="../media/screenshots/vertical1.png"></graphic></para>
- </refsect1>
- <refsect1 id="{@id faq}">
-  <title>FAQ</title>
-   <unorderedlist>
-    <listitem><para><important>May i use my favorite template engine ?</important></para>
-     <para>Yes, integrate HTML_Progress is also easy that put any other HTML element. 
-      See <emphasis>template_embedded.php</emphasis> in examples subdirectory of 
-      bundle distribution, for an IT[x] template family example.
+ <refsect1 id="{@id pkg-overview}">
+  <title>Package Overview</title>
+   <para>
+    HTML_Progress provides 8 main classes to help you use progress bars:
+   </para>
+  <refsect2 id="{@id class-bar}">
+   <title>Global classes</title>
+   <para>
+    <unorderedlist>
+     <listitem>HTML_Progress
+      <para>Main component to graphically display how much of a total task has completed.
+       See (Using Determinate Progress Bars) for information and an example of using a typical
+       progress bar. The section {@tutorial indeterminate.pkg} tells you how to animate a progress
+       bar to show activity before the task's scope is known.
+      </para>
+     </listitem>
+     <listitem>Error_Raise
+      <author>
+       by Greg Beaver
+       <authorblurb>{@link mailto:cellog@php.net}</authorblurb>
+      </author>
+      <para>The Error_Raise static class contains tremendously simple and powerful
+       error management based on error codes.
+      </para>
+     </listitem>
+     <listitem>Error_Util
+      <author>
+       by Greg Beaver
+       <authorblurb>{@link mailto:cellog@php.net}</authorblurb>
+      </author>
+      <para>This class is used for advanced retrieval of context information, and for
+       callback validation.  It also has a few miscellaneous functions for processing
+       display of variables.
+      </para>
+     </listitem>
+     <para>Until this package is accepted as a PEAR package, it can be downloaded at 
+      {@link http://www.chiaraquartet.net/Error_Raise-0.2.2.tgz}, and was integrated
+      in {@link http://pear.php.net/package/HTML_Progress HTML_Progress} package.
      </para>
-    </listitem>
-    <listitem><para><important>I got only 0% displayed on left corner of my browser screen</important></para>
-     <para>You've forgot to send the necessary styles (CSS).
-      See {@tutorial beginner.pkg#basics.starting} for details and solution.
-     </para>
-    </listitem>
-    <listitem><para><important>The progress bar is running, but i see no changes</important></para>
-     <para>You've forgot to put the requires JavaScript code to manage the progress bar.
-      See {@tutorial beginner.pkg#basics.using} for details and solution.
-     </para>
-    </listitem>
-    <listitem><para><important>The progress bar is running, but percent info is frozen to 0%</important></para>
-     <para>You've a browser that is not fully DHTML compliant. For example Opera 6.x. 
-      You should upgrade to the most recent browser version.
-     </para>
-    </listitem>
-   </unorderedlist>
+    </unorderedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id class-dm}">
+   <title>Data Model class</title>
+   <para>
+    <unorderedlist>
+     <listitem>HTML_Progress_DM
+      <para>This class handles any mathematical issues arising from assigning faulty values.
+      </para>
+     </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id class-ui}">
+   <title>User Interface classes</title>
+   <para>
+    <unorderedlist>
+     <listitem>HTML_Common
+      <para>This class provides methods for html code display and attributes handling.
+       It is a base class for other HTML classes and can be downloaded at PEAR under 
+       {@link http://pear.php.net/package/HTML_Common HTML_Common} package.
+      </para>
+     </listitem>
+     <listitem>HTML_Progress_UI
+      <para>This class provides a basic look and feel implementation of a progress bar. </para>
+     </listitem>
+     <listitem>HTML_Progress_Model
+      <para>This class provides an easy way to set look and feel of a progress bar with 
+       external config file. This class requires another great PEAR package, the
+       {@link http://pear.php.net/package/Config Config} package which provides methods 
+       for configuration manipulation.
+      </para>
+     </listitem>
+     <listitem>HTML_Progress_Generator
+      <para>This class provides an easy way to build and run demo of your own progress bar.
+       You can also save final PHP and/or CSS source-code.
+       <emphasis>HTML_Progress_Generator</emphasis> become the next generation of 
+       interactive tools after <emphasis>ProgressMaker</emphasis> (included in HTML_Progress 1.0)
+      </para>
+     </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id class-observer}">
+   <title>Observers classes</title>
+   <para>
+    <unorderedlist>
+     <listitem>HTML_Progress_Observer
+      <para>This class implements the observer pattern for watching progress bar activity 
+       and taking actions on exceptional events.
+      </para>
+     </listitem>
+     <listitem>HTML_Progress_Monitor
+      <para>This class allow an easy way to display progress in a dialog. The user can cancel 
+       the task.
+       It requires another PEAR package, the 
+       {@link http://pear.php.net/package/HTML_QuickForm HTML_QuickForm} package which 
+       provides methods for creating, validating, processing HTML forms.
+      </para>
+     </listitem>
+     <listitem>HTML_Progress_Uploader
+      <para>
+       This class provides a GUI interface (with progress bar) to manage files 
+       to upload to a ftp server with your web browser.
+      </para>
+     </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
  </refsect1>
 </refentry>

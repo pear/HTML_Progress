@@ -1,0 +1,65 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>setMaximum Manual</refname>
+  <refpurpose>defines the progress bar's minimum value</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>void</emphasis> <important>setMaximum</important>( $max )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>max</emphasis></entry>
+      <entry>integer                 </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+  <para>
+   <emphasis>$max</emphasis> is an integer with a minimum of 0, or 
+   given by {@link HTML_Progress_DM::getMinimum()}, but as no maximum limit.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>setMaximum()</emphasis> method is used to set the 
+   maximal value in the mathematical model of the progress bar.
+   If the maximum value is less than current value, then the current value
+   is set to this maximum.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   {@example setmaximum.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial dm.getmaximum.pkg}
+  </para>
+ </refsect1>
+</refentry>

@@ -1,0 +1,39 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>getAnimSpeed Manual</refname>
+  <refpurpose>returns delay execution of the progress bar</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>March 2004, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.2+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>integer</emphasis> <important>getAnimSpeed</important>()</para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>getAnimSpeed()</emphasis> method is used to retrieve 
+   progress bar delay execution. Default value is zero (no delay).
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will print the default execution delay of progress bar.
+   {@example getanimspeed.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial progress.setanimspeed.pkg}
+  </para>
+ </refsect1>
+</refentry>

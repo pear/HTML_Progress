@@ -1,0 +1,40 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>isIndeterminate Manual</refname>
+  <refpurpose>determines whether the progress bar is in determinate mode or not</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>boolean</emphasis> <important>isIndeterminate</important>()</para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>isIndeterminate()</emphasis> method is used to know whether
+   the progress bar is switched on determinate mode (default) or not (indeterminate). 
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Look and feel of indeterminate mode used with HTML_Progress_Monitor.
+   <para><graphic fileref="../media/screenshots/indeterminate.png"></graphic></para>
+   {@example isindeterminate.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial progress.setindeterminate.pkg}
+  </para>
+ </refsect1>
+</refentry>

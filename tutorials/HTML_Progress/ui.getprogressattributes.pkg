@@ -1,0 +1,86 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>getProgressAttributes Manual</refname>
+  <refpurpose>returns general attributes list of the progress bar</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>mixed</emphasis> <important>getProgressAttributes</important>( $asString )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+       <entry><important>Default</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>asString</emphasis></entry>
+      <entry>boolean                      </entry>
+      <entry>false                        </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>getProgressAttributes()</emphasis> method is used to retrieve 
+   general attributes of progress bar. Ouput could be an array or a string.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will show you the attributes definition of a progress bar in two formats:
+   array (default) and string.
+   {@example getprogressattributes.php}
+   <para>Output 1.</para>
+   <example>
+   <![CDATA[
+array(5) {
+  ["class"]=>
+  string(11) "progressBar"
+  ["background-color"]=>
+  string(7) "#FFFFFF"
+  ["auto-size"]=>
+  bool(true)
+  ["width"]=>
+  int(172)
+  ["height"]=>
+  int(24)
+}
+   ]]>
+   </example>
+   <para>Output 2.</para>
+   <example>
+   <![CDATA[
+string(85) " class="progressBar" background-color="#FFFFFF" auto-size="1" width="172" height="24""
+   ]]>
+   </example>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial ui.setprogressattributes.pkg}
+  </para>
+ </refsect1>
+</refentry>

@@ -1,0 +1,40 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>getCellCount Manual</refname>
+  <refpurpose>returns cell count into a progress bar</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>integer</emphasis> <important>getCellCount</important>()</para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>getCellCount()</emphasis> method is used to retrieve the number
+   of cell defined into a progress bar. A basic progress bar has ten cells by default.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will give you the number of cell defined in this progress bar:
+   {@example getcellcount.php}
+   <para>Output will display "int(5)".</para>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial ui.setcellcount.pkg}
+  </para>
+ </refsect1>
+</refentry>

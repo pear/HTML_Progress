@@ -1,0 +1,67 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>setFillWay Manual</refname>
+  <refpurpose>decides how the progress bar will be filled</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>void</emphasis> <important>setFillWay</important>( $way )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+       <entry><important>Default</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>way</emphasis></entry>
+      <entry>string                  </entry>
+      <entry>natural                 </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>setFillWay()</emphasis> method is used to change the fill way
+   of the progress bar.
+   It could be <emphasis>natural</emphasis> (left to right for horizontal progress bar),
+   (down to up for vertical progress bar) or <emphasis>reverse</emphasis> 
+   (right to left for horizontal progress bar), (up to down for vertical progress bar).
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will produced a vertical progress bar with only 5 cells filled in reverse order.
+   It's a dynamic example, the progress bar will run.
+   <para><graphic fileref="../media/screenshots/vertical2.png"></graphic></para>
+   {@example setfillway.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial ui.setorientation.pkg}
+  </para>
+ </refsect1>
+</refentry>

@@ -9,8 +9,8 @@
     by Laurent Laville
     <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
    </author>
-   <copyright>November 2003, Laurent Laville</copyright>
-   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+   <copyright>March 2004, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.2</releaseinfo>
   </refsynopsisdivinfo>
  </refsynopsisdiv>
  <refsect1 id="{@id intro}">
@@ -26,7 +26,7 @@
    </unorderedlist>
    <para>
     Remember that if you're lost or need a solution to a problem,don't forget to read 
-    the {@tutorial HTML_Progress.pkg#faq}.
+    the FAQ at {@link http://www.laurent-laville.org/faq}.
    </para>
  </refsect1>
 </refentry>

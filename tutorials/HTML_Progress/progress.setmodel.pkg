@@ -1,0 +1,68 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>setModel Manual</refname>
+  <refpurpose>set the look-and-feel that renders the progress bar</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>void</emphasis> <important>setModel</important>( $file, $type )</para>
+ </refsect1>
+ <refsect1 id="{@id attributes}">
+  <title>Attributes</title>
+  <para>
+   <table frame="all">
+    <tgroup cols="3">
+    <thead align="center">
+      <row>
+       <entry><important>Name</important></entry>
+       <entry><important>Type</important></entry>
+      </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry><emphasis>file</emphasis></entry>
+      <entry>string                   </entry>
+     </row>
+     <row>
+      <entry><emphasis>type</emphasis></entry>
+      <entry>string                   </entry>
+     </row>
+    </tbody>
+    </tgroup>
+   </table>
+  </para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>setModel()</emphasis> method is used as an easy way to customize
+   with only one line of code and a configuration file, the look and feel of a progress bar.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   <para><graphic fileref="../media/screenshots/ancestor.png"></graphic></para>
+   {@example setmodel.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial ui.setorientation.pkg},
+   {@tutorial ui.setcellattributes.pkg},
+   {@tutorial ui.setborderattributes.pkg},
+   {@tutorial ui.setstringattributes.pkg},
+   {@tutorial ui.setprogressattributes.pkg}
+  </para>
+ </refsect1>
+</refentry>

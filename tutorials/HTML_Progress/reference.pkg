@@ -1,0 +1,152 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>Reference Guides</refname>
+  <refpurpose>will help you if you don't remember how to use API</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>March 2004, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.2</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ {@toc}
+ <refsect1 id="{@id cls-overview}">
+  <title>Classes Overview</title>
+  <refsect2 id="{@id mth-general}">
+   <title>General methods</title>
+   <para>
+    <para>
+     These common methods allow to manage UI and DM classes component, change
+     internal progress bar identifier, and display html output or properties structure.
+    </para>
+    <unorderedlist>
+     <listitem>{@link HTML_Progress::display()} </listitem>
+     <listitem>{@link HTML_Progress::toHtml()} </listitem>
+     <listitem>{@link HTML_Progress::toArray()} </listitem>
+     <listitem>{@link HTML_Progress::getUI()} </listitem>
+     <listitem>{@link HTML_Progress::setUI()} </listitem>
+     <listitem>{@link HTML_Progress::getDM()} </listitem>
+     <listitem>{@link HTML_Progress::setDM()} </listitem>
+     <listitem>{@tutorial progress.getident.pkg  HTML_Progress::getIdent()} </listitem>
+     <listitem>{@tutorial progress.setident.pkg  HTML_Progress::setIdent()} </listitem>
+     <listitem>{@tutorial progress.getanimspeed.pkg HTML_Progress::getAnimSpeed()} </listitem>
+     <listitem>{@tutorial progress.setanimspeed.pkg HTML_Progress::setAnimSpeed()} </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id mth-math}">
+   <title>Mathematical methods</title>
+   <para>
+    <para>
+     Default mathematical model ({@link HTML_Progress_DM} class) handles a common progress bar
+     with a minimum and initial value sets to 0, a maximum set to 100, and an increment set to 1.
+    </para>
+    <unorderedlist>
+     <listitem>{@tutorial dm.getincrement.pkg HTML_Progress::getIncrement()} </listitem>
+     <listitem>{@tutorial dm.setincrement.pkg HTML_Progress::setIncrement()} </listitem>
+     <listitem>{@tutorial dm.getmaximum.pkg HTML_Progress::getMaximum()} </listitem>
+     <listitem>{@tutorial dm.setmaximum.pkg HTML_Progress::setMaximum()} </listitem>
+     <listitem>{@tutorial dm.getminimum.pkg HTML_Progress::getMinimum()} </listitem>
+     <listitem>{@tutorial dm.setminimum.pkg HTML_Progress::setMinimum()} </listitem>
+     <listitem>{@tutorial dm.getvalue.pkg HTML_Progress::getValue()} </listitem>
+     <listitem>{@tutorial dm.setvalue.pkg HTML_Progress::setValue()} </listitem>
+     <listitem>{@tutorial dm.incvalue.pkg HTML_Progress::incValue()} </listitem>
+     <listitem>{@tutorial dm.getpercentcomplete.pkg HTML_Progress::getPercentComplete()} </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id mth-graphic}">
+   <title>Graphical methods</title>
+   <para>
+    <para>
+     Default progress bar is a horizontal ten cells bar with no border and standard 
+     percent info string, and runs in determinate mode.
+    </para>
+    <unorderedlist>
+     <listitem>{@tutorial progress.getstring.pkg HTML_Progress::getString()} </listitem>
+     <listitem>{@tutorial progress.setstring.pkg HTML_Progress::setString()} </listitem>
+     <listitem>{@tutorial progress.isstringpainted.pkg HTML_Progress::isStringPainted()} </listitem>
+     <listitem>{@tutorial progress.setstringpainted.pkg HTML_Progress::setStringPainted()} </listitem>
+     <listitem>{@tutorial progress.isborderpainted.pkg HTML_Progress::isBorderPainted()} </listitem>
+     <listitem>{@tutorial progress.setborderpainted.pkg HTML_Progress::setBorderPainted()} </listitem>
+     <listitem>{@tutorial ui.getscript.pkg HTML_Progress::getScript()} </listitem>
+     <listitem>{@tutorial ui.getstyle.pkg HTML_Progress::getStyle()} </listitem>
+     <listitem>{@tutorial progress.setmodel.pkg HTML_Progress::setModel()} </listitem>
+     <listitem>{@tutorial progress.isindeterminate.pkg HTML_Progress::isIndeterminate()} </listitem>
+     <listitem>{@tutorial progress.setindeterminate.pkg HTML_Progress::setIndeterminate()} </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id mth-listener}">
+   <title>Listeners methods</title>
+   <para>
+    <para>
+     {@link HTML_Progress_Observer} class provide an implementation of the observer pattern.
+     In the content of the HTML_Progress package, it provide a mechanism by which you can 
+     examine special event as it is happened. This allows the implementation of special behavior.
+    </para>
+    <unorderedlist>
+     <listitem>{@tutorial progress.addlistener.pkg HTML_Progress::addListener()} </listitem>
+     <listitem>{@tutorial progress.removelistener.pkg HTML_Progress::removeListener()} </listitem>
+     <listitem>{@tutorial progress.getlisteners.pkg HTML_Progress::getListeners()} </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id class-dm}">
+   <title>Data Model</title>
+   <para>
+    <para>
+     The <important>HTML_Progress_DM</important> class 
+     handles any mathematical issues arising from assigning faulty values.
+     You can overload it with {@link HTML_Progress::setDM()} method.
+    </para>
+    <unorderedlist>
+     <listitem>{@tutorial dm.getincrement.pkg HTML_Progress_DM::getIncrement()} </listitem>
+     <listitem>{@tutorial dm.setincrement.pkg HTML_Progress_DM::setIncrement()} </listitem>
+     <listitem>{@tutorial dm.getmaximum.pkg HTML_Progress_DM::getMaximum()} </listitem>
+     <listitem>{@tutorial dm.setmaximum.pkg HTML_Progress_DM::setMaximum()} </listitem>
+     <listitem>{@tutorial dm.getminimum.pkg HTML_Progress_DM::getMinimum()} </listitem>
+     <listitem>{@tutorial dm.setminimum.pkg HTML_Progress_DM::setMinimum()} </listitem>
+     <listitem>{@tutorial dm.getvalue.pkg HTML_Progress_DM::getValue()} </listitem>
+     <listitem>{@tutorial dm.setvalue.pkg HTML_Progress_DM::setValue()} </listitem>
+     <listitem>{@tutorial dm.incvalue.pkg HTML_Progress_DM::incValue()} </listitem>
+     <listitem>{@tutorial dm.getpercentcomplete.pkg HTML_Progress_DM::getPercentComplete()} </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id class-ui}">
+   <title>User Interface</title>
+   <para>
+    <para>
+     The <important>HTML_Progress_UI</important> class 
+     provides methods for html code display and element attributes handling.
+    </para>
+    <unorderedlist>
+     <listitem>{@tutorial ui.getprogressattributes.pkg HTML_Progress_UI::getProgressAttributes()} </listitem>
+     <listitem>{@tutorial ui.setprogressattributes.pkg HTML_Progress_UI::setProgressAttributes()} </listitem>
+     <listitem>{@tutorial ui.getstringattributes.pkg HTML_Progress_UI::getStringAttributes()} </listitem>
+     <listitem>{@tutorial ui.setstringattributes.pkg HTML_Progress_UI::setStringAttributes()} </listitem>
+     <listitem>{@tutorial ui.getborderattributes.pkg HTML_Progress_UI::getBorderAttributes()} </listitem>
+     <listitem>{@tutorial ui.setborderattributes.pkg HTML_Progress_UI::setBorderAttributes()} </listitem>
+     <listitem>{@tutorial ui.getcellattributes.pkg HTML_Progress_UI::getCellAttributes()} </listitem>
+     <listitem>{@tutorial ui.setcellattributes.pkg HTML_Progress_UI::setCellAttributes()} </listitem>
+     <listitem>{@tutorial ui.getcellcoordinates.pkg HTML_Progress_UI::getCellCoordinates()} </listitem>
+     <listitem>{@tutorial ui.setcellcoordinates.pkg HTML_Progress_UI::setCellCoordinates()} </listitem>
+     <listitem>{@tutorial ui.getcellcount.pkg HTML_Progress_UI::getCellCount()} </listitem>
+     <listitem>{@tutorial ui.setcellcount.pkg HTML_Progress_UI::setCellCount()} </listitem>
+     <listitem>{@tutorial ui.getfillway.pkg HTML_Progress_UI::getFillWay()} </listitem>
+     <listitem>{@tutorial ui.setfillway.pkg HTML_Progress_UI::setFillWay()} </listitem>
+     <listitem>{@tutorial ui.getorientation.pkg HTML_Progress_UI::getOrientation()} </listitem>
+     <listitem>{@tutorial ui.setorientation.pkg HTML_Progress_UI::setOrientation()} </listitem>
+     <listitem>{@tutorial ui.getscript.pkg HTML_Progress_UI::getScript()} </listitem>
+     <listitem>{@tutorial ui.setscript.pkg HTML_Progress_UI::setScript()} </listitem>
+     <listitem>{@tutorial ui.getstyle.pkg HTML_Progress_UI::getStyle()} </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
+ </refsect1>
+</refentry>

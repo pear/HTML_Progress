@@ -1,0 +1,42 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>getStyle Manual</refname>
+  <refpurpose>returns cascading style sheet HTML_CSS object</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>object</emphasis> <important>getStyle</important>()</para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>getStyle()</emphasis> method is used to retrieve style sheet 
+   required to run properly the progress bar.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will print inline cascading style sheet of a default progress bar. 
+   {@example getstyle.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial ui.setprogressattributes.pkg}, 
+   {@tutorial ui.setborderattributes.pkg},
+   {@tutorial ui.setstringattributes.pkg},
+   {@tutorial ui.setcellattributes.pkg}
+  </para>
+ </refsect1>
+</refentry>

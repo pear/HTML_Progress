@@ -187,10 +187,10 @@ do {
    <para>There are 2 main methods to add and customize the cells of a Progress Bar :
     <unorderedlist>
      <listitem><para>{@link HTML_Progress_UI::setCellCount()}, 
-      more details on {@tutorial ui.setcellcount.cls}, where you'll find a full example.</para>
+      more details on {@tutorial ui.setcellcount.pkg}, where you'll find a full example.</para>
      </listitem>
      <listitem><para>{@link HTML_Progress_UI::setCellAttributes()}, 
-      more details on {@tutorial ui.setcellattributes.cls}, where you'll find a full example.</para>
+      more details on {@tutorial ui.setcellattributes.pkg}, where you'll find a full example.</para>
      </listitem>
     </unorderedlist> 
    </para>
@@ -203,10 +203,10 @@ do {
    <para>There are 2 main methods to add and customize the border of a Progress Bar :
     <unorderedlist>
      <listitem><para>{@link HTML_Progress::setBorderPainted()}, 
-      more details on {@tutorial progress.setborderpainted.cls}, where you'll find a full example.</para>
+      more details on {@tutorial progress.setborderpainted.pkg}, where you'll find a full example.</para>
      </listitem>
      <listitem><para>{@link HTML_Progress_UI::setBorderAttributes()}, 
-      more details on {@tutorial ui.setborderattributes.cls}, where you'll find a full example.</para>      
+      more details on {@tutorial ui.setborderattributes.pkg}, where you'll find a full example.</para>      
      </listitem>
     </unorderedlist> 
    </para>
@@ -219,13 +219,13 @@ do {
    <para>There are 3 main methods to add and customize the string of a Progress Bar :
     <unorderedlist>
      <listitem><para>{@link HTML_Progress::setStringPainted()}, 
-      more details on {@tutorial progress.setstringpainted.cls}, where you'll find a full example.</para>      
+      more details on {@tutorial progress.setstringpainted.pkg}, where you'll find a full example.</para>      
      </listitem>
      <listitem><para>{@link HTML_Progress::setString()}, 
-      more details on {@tutorial progress.setstring.cls}, where you'll find a full example.</para>      
+      more details on {@tutorial progress.setstring.pkg}, where you'll find a full example.</para>      
      </listitem>
      <listitem><para>{@link HTML_Progress_UI::setStringAttributes()}, 
-      more details on {@tutorial ui.setstringattributes.cls}, where you'll find a full example.</para>      
+      more details on {@tutorial ui.setstringattributes.pkg}, where you'll find a full example.</para>      
      </listitem>
     </unorderedlist> 
    </para>
@@ -238,13 +238,13 @@ do {
    <para>There is only 3 main methods to customize a Progress Bar :
     <unorderedlist>
      <listitem><para>{@link HTML_Progress_UI::setProgressAttributes()}, 
-      more details on {@tutorial ui.setprogressattributes.cls}, where you'll find a full example.</para>      
+      more details on {@tutorial ui.setprogressattributes.pkg}, where you'll find a full example.</para>      
      </listitem>
      <listitem><para>{@link HTML_Progress_UI::setOrientation()}, 
-      more details on {@tutorial ui.setorientation.cls}, where you'll find a full example.</para>      
+      more details on {@tutorial ui.setorientation.pkg}, where you'll find a full example.</para>      
      </listitem>
      <listitem><para>{@link HTML_Progress_UI::setFillWay()}, 
-      more details on {@tutorial ui.setfillway.cls}, where you'll find a full example.</para>      
+      more details on {@tutorial ui.setfillway.pkg}, where you'll find a full example.</para>      
      </listitem>
     </unorderedlist> 
    </para>

@@ -18,8 +18,8 @@
   <title>Introduction </title>
    <para>
     After you see a progress bar ({@tutorial beginner.pkg#basics.using})
-    and a progress monitor in action ({@tutorial monitor.pkg}), {@tutorial expert.pkg#deciding}
-    can help you figure out which is appropriate for your application.
+    and a progress monitor in action ({@tutorial monitor.pkg}), next chapter can help you
+    figure out which is appropriate for your application.
    </para>
  </refsect1>
  <refsect1 id="{@id deciding}">

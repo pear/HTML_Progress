@@ -1,0 +1,42 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>getScript Manual</refname>
+  <refpurpose>returns the JavaScript code to manage the progress bar</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>string</emphasis> <important>getScript</important>()</para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>getScript()</emphasis> method is used retrieve JavaScript code
+   used to manage the progress bar.
+   Returns value could be an URL that identify a JavaScript file target, or inline
+   default internal code.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will retrieve default internal javascript code after overloaded it 
+   at construction time.
+   {@example getscript.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial ui.setscript.pkg}
+  </para>
+ </refsect1>
+</refentry>

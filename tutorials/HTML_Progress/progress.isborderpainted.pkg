@@ -1,0 +1,40 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>isBorderPainted Manual</refname>
+  <refpurpose>determines whether the progress bar border is painted or not</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id synopsis}">
+  <title>Synopsis</title>
+  <para><emphasis>boolean</emphasis> <important>isBorderPainted</important>()</para>
+ </refsect1>
+ <refsect1 id="{@id description}">
+  <title>Description</title>
+  <para>The <emphasis>isBorderPainted()</emphasis> method is used to know whether
+   the progress bar border is painted or not. The default is FALSE.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id example}">
+  <title>Example</title>
+  <para>
+   Example below will produced a progress bar with a solid red border.
+   <para><graphic fileref="../media/screenshots/border1.png"></graphic></para>
+   {@example isborderpainted.php}
+  </para>
+ </refsect1>
+ <refsect1 id="{@id seealso}">
+  <title>See Also</title>
+  <para>
+   {@tutorial progress.setborderpainted.pkg}
+  </para>
+ </refsect1>
+</refentry>
