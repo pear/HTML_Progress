@@ -71,6 +71,46 @@ Features:
       <dep type="pkg" rel="ge" version="0.9.3" optional="yes">HTML_QuickForm_Controller</dep>
       <dep type="pkg" rel="ge" version="1.9" optional="yes">Config</dep>
     </deps>
+    <provides type="class" name="Error_Raise" />
+    <provides type="function" name="Error_Raise::initialize" />
+    <provides type="function" name="Error_Raise::notice" />
+    <provides type="function" name="Error_Raise::warning" />
+    <provides type="function" name="Error_Raise::error" />
+    <provides type="function" name="Error_Raise::exception" />
+    <provides type="function" name="Error_Raise::raise" />
+    <provides type="function" name="Error_Raise::isPackageError" />
+    <provides type="function" name="Error_Raise::isError" />
+    <provides type="function" name="Error_Raise::isException" />
+    <provides type="function" name="Error_Raise::isNotice" />
+    <provides type="function" name="Error_Raise::isWarning" />
+    <provides type="function" name="Error_Raise::getDisabledCallbacks" />
+    <provides type="function" name="Error_Raise::disableErrorCallbacks" />
+    <provides type="function" name="Error_Raise::reenableErrorCallbacks" />
+    <provides type="function" name="Error_Raise::setErrorMsgGenerator" />
+    <provides type="function" name="Error_Raise::setContextGrabber" />
+    <provides type="function" name="Error_Raise::sprintfErrorMessage" />
+    <provides type="function" name="Error_Raise::sprintfErrorMessageWithState" />
+    <provides type="function" name="is_a" />
+    <provides type="class" name="Error_Util" />
+    <provides type="function" name="Error_Util::getErrorContext" />
+    <provides type="function" name="Error_Util::exportVariables" />
+    <provides type="function" name="Error_Util::escapeJavascript" />
+    <provides type="function" name="Error_Util::strrpos_str" />
+    <provides type="function" name="Error_Util::var_export2" />
+    <provides type="function" name="Error_Util::isIncludeable" />
+    <provides type="function" name="Error_Util::formatStackTrace" />
+    <provides type="function" name="Error_Util::genErrorMessage" />
+    <provides type="class" name="Error_Raise_Error" extends="PEAR_Error" />
+    <provides type="function" name="Error_Raise_Error::getPackage" />
+    <provides type="function" name="Error_Raise_Error::getMessage" />
+    <provides type="function" name="Error_Raise_Error::getBareMessage" />
+    <provides type="function" name="Error_Raise_Error::getErrorPrefix" />
+    <provides type="function" name="Error_Raise_Error::getErrorSuffix" />
+    <provides type="function" name="Error_Raise_Error::getErrorType" />
+    <provides type="function" name="Error_Raise_Error::getParent" />
+    <provides type="function" name="Error_Raise_Error::setParent" />
+    <provides type="function" name="Error_Raise_Error::setContextLines" />
+    <provides type="function" name="Error_Raise_Error::rePackageError" />
     <provides type="class" name="HTML_Progress_DM" />
     <provides type="function" name="HTML_Progress_DM::getMinimum" />
     <provides type="function" name="HTML_Progress_DM::setMinimum" />
@@ -194,6 +234,9 @@ Features:
     <provides type="function" name="HTML_Progress::addListener" />
     <provides type="function" name="HTML_Progress::removeListener" />
     <filelist>
+      <file role="php" baseinstalldir="HTML/Progress" md5sum="5733222fa60312add68ee8218d0f8511" name="Error/Raise.php"/>
+      <file role="php" baseinstalldir="HTML/Progress" md5sum="dae34ad2c9946da8be8c90da19cae25b" name="Error/Util.php"/>
+      <file role="php" baseinstalldir="HTML/Progress" md5sum="7185bf9f07a1bf8de4a25cebdcd8b8a5" name="Error/Raise/Error.php"/>
       <file role="doc" baseinstalldir="HTML" md5sum="4705832e217dc04b6dc7c039d2922a3e" name="examples/ancestor.ini"/>
       <file role="doc" baseinstalldir="HTML" md5sum="bb8230ee4cdbed5f43e57ab6bdf691cd" name="examples/ancestor.php"/>
       <file role="doc" baseinstalldir="HTML" md5sum="5cd8c927d1a0715612a41cc5801d1805" name="examples/bgimages.ini"/>
