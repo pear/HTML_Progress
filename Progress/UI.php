@@ -216,14 +216,14 @@ class HTML_Progress_UI extends HTML_Common
          case 1:
             /*   int cell  */
             if (!is_int($args[0])) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$cell',
                           'was' => $args[0],
                           'expected' => 'integer',
                           'paramnum' => 1));
 
             } elseif ($args[0] < 1) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                     array('var' => '$cell',
                           'was' => $args[0],
                           'expected' => 'greater or equal 1',
@@ -315,7 +315,7 @@ class HTML_Progress_UI extends HTML_Common
     function setOrientation($orient)
     {
         if (!is_int($orient)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$orient',
                       'was' => gettype($orient),
                       'expected' => 'integer',
@@ -325,7 +325,7 @@ class HTML_Progress_UI extends HTML_Common
                   ($orient != HTML_PROGRESS_BAR_VERTICAL) &&
                   ($orient != HTML_PROGRESS_POLYGONAL) &&
                   ($orient != HTML_PROGRESS_CIRCLE)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$orient',
                       'was' => $orient,
                       'expected' => HTML_PROGRESS_BAR_HORIZONTAL.' | '.
@@ -385,14 +385,14 @@ class HTML_Progress_UI extends HTML_Common
     function setFillWay($way)
     {
         if (!is_string($way)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$way',
                       'was' => gettype($way),
                       'expected' => 'string',
                       'paramnum' => 1));
 
         } elseif ((strtolower($way) != 'natural') && (strtolower($way) != 'reverse')) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$way',
                       'was' => $way,
                       'expected' => 'natural | reverse',
@@ -430,14 +430,14 @@ class HTML_Progress_UI extends HTML_Common
     function setCellCount($cells)
     {
         if (!is_int($cells)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$cells',
                       'was' => gettype($cells),
                       'expected' => 'integer',
                       'paramnum' => 1));
 
         } elseif ($cells < 1) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$cells',
                       'was' => $cells,
                       'expected' => 'greater or equal 1',
@@ -463,7 +463,7 @@ class HTML_Progress_UI extends HTML_Common
     function getCellAttributes($asString = false)
     {
         if (!is_bool($asString)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$asString',
                       'was' => gettype($asString),
                       'expected' => 'boolean',
@@ -522,21 +522,21 @@ class HTML_Progress_UI extends HTML_Common
     {
         if (!is_null($cell)) {
             if (!is_int($cell)) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$cell',
                           'was' => gettype($cell),
                           'expected' => 'integer',
                           'paramnum' => 1));
 
             } elseif ($cell < 0) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                     array('var' => '$cell',
                           'was' => $cell,
                           'expected' => 'positive',
                           'paramnum' => 1));
 
             } elseif ($cell > $this->getCellCount()) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                     array('var' => '$cell',
                           'was' => $cell,
                           'expected' => 'less or equal '.$this->getCellCount(),
@@ -587,21 +587,35 @@ class HTML_Progress_UI extends HTML_Common
     function setCellCoordinates($xgrid, $ygrid, $coord = array())
     {
         if (!is_int($xgrid)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$xgrid',
                       'was' => gettype($xgrid),
                       'expected' => 'integer',
                       'paramnum' => 1));
 
+        } elseif ($xgrid < 3) {
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                array('var' => '$xgrid',
+                      'was' => $xgrid,
+                      'expected' => 'greater than 2',
+                      'paramnum' => 1));
+
         } elseif (!is_int($ygrid)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$ygrid',
                       'was' => gettype($ygrid),
                       'expected' => 'integer',
                       'paramnum' => 2));
 
+        } elseif ($ygrid < 3) {
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                array('var' => '$ygrid',
+                      'was' => $ygrid,
+                      'expected' => 'greater than 2',
+                      'paramnum' => 2));
+
         } elseif (!is_array($coord)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$coord',
                       'was' => gettype($coord),
                       'expected' => 'array',
@@ -614,21 +628,21 @@ class HTML_Progress_UI extends HTML_Common
         } else {
             foreach ($coord as $id => $pos) {
                 if (!is_array($pos)) {
-                    HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                    return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                         array('var' => '$coord[,$pos]',
                               'was' => gettype($pos),
                               'expected' => 'array',
                               'paramnum' => 3));
                 }
                 if ($pos[0] >= $ygrid) {
-                    HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                    return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                         array('var' => '$pos[0]',
                               'was' => $pos[0],
                               'expected' => 'coordinate less than grid height',
                               'paramnum' => 2));
                 }
                 if ($pos[1] >= $xgrid) {
-                    HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                    return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                         array('var' => '$pos[1]',
                               'was' => $pos[1],
                               'expected' => 'coordinate less than grid width',
@@ -661,7 +675,7 @@ class HTML_Progress_UI extends HTML_Common
     function getBorderAttributes($asString = false)
     {
         if (!is_bool($asString)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$asString',
                       'was' => gettype($asString),
                       'expected' => 'boolean',
@@ -718,7 +732,7 @@ class HTML_Progress_UI extends HTML_Common
     function getStringAttributes($asString = false)
     {
         if (!is_bool($asString)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$asString',
                       'was' => gettype($asString),
                       'expected' => 'boolean',
@@ -784,7 +798,7 @@ class HTML_Progress_UI extends HTML_Common
     function getProgressAttributes($asString = false)
     {
         if (!is_bool($asString)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$asString',
                       'was' => gettype($asString),
                       'expected' => 'boolean',
@@ -922,14 +936,14 @@ JS;
     {
         if (!is_null($url)) {
             if (!is_string($url)) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$url',
                           'was' => gettype($url),
                           'expected' => 'string',
                           'paramnum' => 1));
 
             } elseif (!is_file($url) || $url == '.' || $url == '..') {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                     array('var' => '$url',
                           'was' => $url.' file does not exists',
                           'expected' => 'javascript file exists',

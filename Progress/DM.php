@@ -128,21 +128,21 @@ class HTML_Progress_DM
             /*   int min, int max   */
 
             if (!is_int($args[0])) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$min',
                           'was' => $args[0],
                           'expected' => 'integer',
                           'paramnum' => 1));
 
             } elseif ($args[0] < 0) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                     array('var' => '$min',
                           'was' => $args[0],
                           'expected' => 'positive',
                           'paramnum' => 1));
 
             } elseif ($args[0] > $args[1]) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                     array('var' => '$min',
                           'was' => $args[0],
                           'expected' => 'less than $max = '.$args[1],
@@ -152,14 +152,14 @@ class HTML_Progress_DM
 
 
             if (!is_int($args[1])) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$max',
                           'was' => $args[1],
                           'expected' => 'integer',
                           'paramnum' => 2));
 
             } elseif ($args[1] < 0) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                     array('var' => '$max',
                           'was' => $args[1],
                           'expected' => 'positive',
@@ -171,21 +171,21 @@ class HTML_Progress_DM
             /*   int min, int max, int inc   */
 
             if (!is_int($args[0])) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$min',
                           'was' => $args[0],
                           'expected' => 'integer',
                           'paramnum' => 1));
 
             } elseif ($args[0] < 0) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                     array('var' => '$min',
                           'was' => $args[0],
                           'expected' => 'positive',
                           'paramnum' => 1));
 
             } elseif ($args[0] > $args[1]) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                     array('var' => '$min',
                           'was' => $args[0],
                           'expected' => 'less than $max = '.$args[1],
@@ -194,14 +194,14 @@ class HTML_Progress_DM
             $this->_minimum = $args[0];
 
             if (!is_int($args[1])) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$max',
                           'was' => $args[1],
                           'expected' => 'integer',
                           'paramnum' => 2));
 
             } elseif ($args[1] < 0) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                     array('var' => '$max',
                           'was' => $args[1],
                           'expected' => 'positive',
@@ -210,14 +210,14 @@ class HTML_Progress_DM
             $this->_maximum = $args[1];
 
             if (!is_int($args[2])) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                     array('var' => '$inc',
                           'was' => $args[2],
                           'expected' => 'integer',
                           'paramnum' => 3));
 
             } elseif ($args[2] < 1) {
-                HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+                return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                     array('var' => '$inc',
                           'was' => $args[2],
                           'expected' => 'greater than zero',
@@ -259,21 +259,21 @@ class HTML_Progress_DM
     function setMinimum($min)
     {
         if (!is_int($min)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$min',
                       'was' => gettype($min),
                       'expected' => 'integer',
                       'paramnum' => 1));
 
         } elseif ($min < 0) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$min',
                       'was' => $min,
                       'expected' => 'positive',
                       'paramnum' => 1));
 
         } elseif ($min > $this->getMaximum()) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$min',
                       'was' => $min,
                       'expected' => 'less than $max = '.$this->getMaximum(),
@@ -316,21 +316,21 @@ class HTML_Progress_DM
     function setMaximum($max)
     {
         if (!is_int($max)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$max',
                       'was' => gettype($max),
                       'expected' => 'integer',
                       'paramnum' => 1));
 
         } elseif ($max < 0) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$max',
                       'was' => $max,
                       'expected' => 'positive',
                       'paramnum' => 1));
 
         } elseif ($max < $this->getMinimum()) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$max',
                       'was' => $max,
                       'expected' => 'greater than $min = '.$this->getMinimum(),
@@ -373,14 +373,14 @@ class HTML_Progress_DM
     function setIncrement($inc)
     {
         if (!is_int($inc)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$inc',
                       'was' => gettype($inc),
                       'expected' => 'integer',
                       'paramnum' => 1));
 
         } elseif ($inc == 0) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$inc',
                       'was' => $inc,
                       'expected' => 'not equal zero',
@@ -422,21 +422,21 @@ class HTML_Progress_DM
     function setValue($val)
     {
         if (!is_int($val)) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
                 array('var' => '$val',
                       'was' => gettype($val),
                       'expected' => 'integer',
                       'paramnum' => 1));
 
         } elseif ($val < $this->getMinimum()) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$val',
                       'was' => $val,
                       'expected' => 'greater than $min = '.$this->getMinimum(),
                       'paramnum' => 1));
 
         } elseif ($val > $this->getMaximum()) {
-            HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
+            return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'error',
                 array('var' => '$val',
                       'was' => $val,
                       'expected' => 'less than $max = '.$this->getMaximum(),
