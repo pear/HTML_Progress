@@ -96,17 +96,27 @@ class MyProcessHandler extends HTML_QuickForm_Action
             // what kind of source code is requested  
             $code = $page->exportValue('phpcss');
             $bar = $page->controller->createProgressBar();
+
+            $lineEnd = OS_WINDOWS ? "\r\n" : "\n";
             
-            if (isset($code['C'])) {
+            if (isset($code['C']) && !isset($code['P'])) {
                 $this->exportOutput($bar->getStyle(), 'text/css');
             }
 
             if (isset($code['P'])) {
                 $structure = $bar->toArray();
 
-                $lineEnd = OS_WINDOWS ? "\r\n" : "\n";
-                
-                $strPHP  = '<?php'.$lineEnd;
+                if (isset($code['C'])) {
+                    $strCSS  = '<style type="text/css">'.$lineEnd;
+                    $strCSS .= '<!--'.$lineEnd;
+                    $strCSS .= $bar->getStyle() . $lineEnd;
+                    $strCSS .= '// -->'.$lineEnd;
+                    $strCSS .= '</style>'.$lineEnd;
+                    $strPHP  = $strCSS;
+                } else {
+                    $strPHP  = '';
+                }
+                $strPHP .= '<?php'.$lineEnd;
                 $strPHP .= 'require_once \'HTML/Progress.php\';'.$lineEnd.$lineEnd;
                 $strPHP .= '$progress = new HTML_Progress();'.$lineEnd;
                 $strPHP .= '$progress->setIdent(\'PB1\');'.$lineEnd;
@@ -163,9 +173,19 @@ class MyProcessHandler extends HTML_QuickForm_Action
                 $strPHP .= $this->_attributesArray('$ui->setStringAttributes(', $structure['ui']['string']);
                 $strPHP .= $lineEnd.$lineEnd;
 
-                $strPHP .= '// code below is only for run demo; its not ncecessary to create progress bar'.$lineEnd;
-                $strPHP .= 'echo \'<style type="text/css">\'.$progress->getStyle().\'</style>\';'.$lineEnd;
-                $strPHP .= 'echo \'<script type="text/javascript">\'.$progress->getScript().\'</script>\';'.$lineEnd;
+                $strPHP .= '// code below is only for run demo; its not nececessary to create progress bar'.$lineEnd;
+                if (!isset($code['C'])) {
+                    $strPHP .= 'echo "<style type=\"text/css\">\n";'.$lineEnd;
+                    $strPHP .= 'echo "<!--\n";'.$lineEnd;
+                    $strPHP .= 'echo $progress->getStyle();'.$lineEnd;
+                    $strPHP .= 'echo "// -->\n";'.$lineEnd;
+                    $strPHP .= 'echo "</style>\n";'.$lineEnd;
+                }
+                $strPHP .= 'echo "<script type=\"text/javascript\">\n";'.$lineEnd;
+                $strPHP .= 'echo "<!--\n";'.$lineEnd;
+                $strPHP .= 'echo $progress->getScript();'.$lineEnd;
+                $strPHP .= 'echo "//-->\n";'.$lineEnd;
+                $strPHP .= 'echo "</script>\n";'.$lineEnd;
                 $strPHP .= 'echo $progress->toHtml();'.$lineEnd;
                 $strPHP .= '$progress->run();'.$lineEnd;
                 $strPHP .= '?>';
