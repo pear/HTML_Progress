@@ -175,15 +175,6 @@ class HTML_Progress_UI extends HTML_Common
      */
     var $_script;
 
-    /**
-     * Package name used by PEAR_ErrorStack functions
-     *
-     * @var        string
-     * @since      1.0
-     * @access     private
-     */
-    var $_package;
-
 
     /**
      * The progress bar's UI model class constructor
@@ -209,7 +200,12 @@ class HTML_Progress_UI extends HTML_Common
      */
     function HTML_Progress_UI()
     {
-        $this->_package = 'HTML_Progress';
+        // if you've not yet created an instance of html_progress
+        if (!$GLOBALS['_HTML_PROGRESS_DEFAULT_ERRORCALLBACK']) {
+            // init default error handling system,
+            HTML_Progress::_initErrorHandler();
+        }
+
         $args = func_get_args();
 
         switch (count($args)) {

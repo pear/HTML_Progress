@@ -74,15 +74,6 @@ class HTML_Progress_DM
      */
     var $_value;
 
-    /**
-     * Package name used by PEAR_ErrorStack functions
-     *
-     * @var        string
-     * @since      1.0
-     * @access     private
-     */
-    var $_package;
-
 
     /**
      * The data model class constructor
@@ -116,7 +107,12 @@ class HTML_Progress_DM
      */
     function HTML_Progress_DM()
     {
-        $this->_package = 'HTML_Progress';
+        // if you've not yet created an instance of html_progress
+        if (!$GLOBALS['_HTML_PROGRESS_DEFAULT_ERRORCALLBACK']) {
+            // init default error handling system,
+            HTML_Progress::_initErrorHandler();
+        }
+
         $this->_minimum = 0;
         $this->_maximum = 100;
         $this->_increment = +1;
