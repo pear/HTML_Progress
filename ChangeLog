@@ -1,5 +1,31 @@
 $Id$
 
+-------------------------Release 1.2.0RC1---------------------
+2004-04-18  Laurent Laville <pear@laurent-laville.org>
+    * The first release candidate of HTML_Progress 1.2.0
+      is finally published on PEAR website.
+
+2004-03-20  Laurent Laville <pear@laurent-laville.org>
+    * add Error message logger in classes 
+      using the new PEAR_ErrorStack package (by Greg Beaver)
+
+2004-03-13  Laurent Laville <pear@laurent-laville.org>
+    * adds 1 new UI method: drawCircleSegments
+    * HTML_Progress_Circle is now a new managed shape 
+
+2004-02-29  Laurent Laville <pear@laurent-laville.org>
+    * adds 2 new UI methods: setCellCoordinates, getCellCoordinates
+    * HTML_Progress_Polygonal is now a new managed shape 
+
+2004-02-27  Laurent Laville <pear@laurent-laville.org>
+    * HTML_Progress_Monitor::setAnimSpeed() method is deprecated
+    * add basic code error HTML_PROGRESS_DEPRECATED
+
+2004-02-21  Laurent Laville <pear@laurent-laville.org>
+    * PEAR::Net_FTP got observer pattern (see PEAR/Net/FTP/observer.php)
+    * PEAR::Net_FTP will replace FTP_Upload for basic ftp commands
+    * HTML_Progress_Uploader used now PEAR::Net_FTP package
+
 -------------------------Release 1.1--------------------------
 2004-02-14  Laurent Laville <pear@laurent-laville.org>
     * HTML_Progress_Uploader is the new GUI class for FTP_Upload
