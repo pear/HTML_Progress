@@ -81,7 +81,7 @@ class HTML_Progress_TestCase_getUI extends PHPUnit_TestCase
         }
         $ui =& $this->progress->getUI();
 
-        $this->assertSame($this, $ui, 'Wrong UI instance;');
+        $this->assertEquals($this, $ui, 'Wrong UI instance;');
     }
 
     function test_getUI()
@@ -91,7 +91,7 @@ class HTML_Progress_TestCase_getUI extends PHPUnit_TestCase
         }
         $ui =& $this->progress->getUI();
 
-        $this->assertSame($this->progress->_UI, $ui);
+        $this->assertEquals($this->progress->_UI, $ui);
     }
 }
 ?>

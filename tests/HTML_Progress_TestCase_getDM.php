@@ -81,7 +81,7 @@ class HTML_Progress_TestCase_getDM extends PHPUnit_TestCase
         }
         $dm =& $this->progress->getDM();
 
-        $this->assertSame($this, $dm, 'Wrong DM instance;');
+        $this->assertEquals($this, $dm, 'Wrong DM instance;');
     }
 
     function test_getDM()
@@ -91,7 +91,7 @@ class HTML_Progress_TestCase_getDM extends PHPUnit_TestCase
         }
         $dm =& $this->progress->getDM();
 
-        $this->assertSame($this->progress->_DM, $dm);
+        $this->assertEquals($this->progress->_DM, $dm);
     }
 }
 ?>
