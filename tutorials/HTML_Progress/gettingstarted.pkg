@@ -1,0 +1,315 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>Getting Started</refname>
+  <refpurpose>how to begin with HTML_Progress package</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ {@toc}
+ <refsect1 id="{@id installing}">
+  <title>Installing</title>
+  <orderedlist>
+    <listitem><para>Setup the PEAR package manager (if you haven't got it already) - 
+     see {@link http://pear.php.net/manual/en/installation.getting.php Getting the manager}
+     (command line version) - or
+     {@link http://www.phpkitchen.com/article.php?story=20021201062516970 Getting Up and Running with the PEAR Web Installer}
+     (web package manager).
+     </para>
+    </listitem>
+    <listitem><para>Type <emphasis>pear install HTML_Progress</emphasis> 
+     (using the command line manager)</para></listitem>
+    <listitem><para>PEAR::HTML_Progress is now installed</para></listitem>
+  </orderedlist>
+ </refsect1>
+ <refsect1 id="{@id inahurry}">
+  <title>In a hurry</title>
+   <para>You can't wait to read the full documentation and tutorials, so you write few lines
+    of code as below ...
+   </para>
+   <para>
+    <programlisting role="php">
+    <![CDATA[
+<?php
+require_once ('HTML/Progress.php');
+
+$bar = new HTML_Progress();
+
+echo $bar->toHtml(); 
+?>
+    ]]>
+    </programlisting>
+   </para>
+   <para>And you only get a such result :
+   <graphic fileref="../media/screenshots/inahurry.png"></graphic></para>
+   <para>What's wrong ? Read the {@tutorial HTML_Progress.pkg#faq} to know why, or start out 
+    right away, and read {@tutorial howto.pkg}
+   </para>
+ </refsect1>
+ <refsect1 id="{@id intro}">
+  <title>Introduction</title>
+   <para>
+    Sometimes a task running within a program might take a while to complete. A user-friendly 
+    program provides some indication to the user that the task is occurring, how long the task 
+    might take, and how much work has already been done. One way of indicating work, and perhaps 
+    the amount of progress, is to use an animated image.
+   </para>
+   <para>
+    Another way of indicating work is to set the wait cursor.
+    To convey how complete a task is, you can use a progress bar like this one:
+   <para><graphic fileref="../media/screenshots/nostring.png"></graphic></para>
+   </para>
+   <para>
+    Sometimes you can't immediately determine the length of a long-running task, or the task 
+    might stay stuck at the same state of completion for a long time. You can show work without 
+    measurable progress by putting the progress bar in indeterminate mode. A progress bar in 
+    indeterminate mode displays animation to indicate that work is occurring. As soon as the 
+    progress bar can display more meaningful information, you should switch it back into its 
+    default, determinate mode. Indeterminate progress bars look like this:
+   <para><graphic fileref="../media/screenshots/indeterminate.png"></graphic></para>
+   </para>
+ </refsect1>
+ <refsect1 id="{@id pkg-overview}">
+  <title>Package Overview</title>
+   <para>
+    HTML_Progress provides 6 main classes to help you use progress bars:
+   </para>
+  <refsect2 id="{@id class-bar}">
+   <title>Global Classes</title>
+   <para>
+    <unorderedlist>
+     <listitem>HTML_Progress
+      <para>Main component to graphically display how much of a total task has completed.
+       See (Using Determinate Progress Bars) for information and an example of using a typical
+       progress bar. The section {@tutorial indeterminate.pkg} tells you how to animate a progress
+       bar to show activity before the task's scope is known.
+      </para>
+     </listitem>
+     <listitem>Error_Raise
+      <author>
+       by Greg Beaver
+       <authorblurb>{@link mailto:cellog@php.net}</authorblurb>
+      </author>
+      <para>The Error_Raise static class contains tremendously simple and powerful
+       error management based on error codes.
+      </para>
+     </listitem>
+     <listitem>Error_Util
+      <author>
+       by Greg Beaver
+       <authorblurb>{@link mailto:cellog@php.net}</authorblurb>
+      </author>
+      <para>This class is used for advanced retrieval of context information, and for
+       callback validation.  It also has a few miscellaneous functions for processing
+       display of variables.
+      </para>
+     </listitem>
+     <para>Until this package is accepted as a PEAR package, it can be downloaded at 
+      {@link http://www.chiaraquartet.net/Error_Raise-0.2.2.tgz}, and was integrated
+      in {@link http://pear.php.net/package/HTML_Progress HTML_Progress} package.
+     </para>
+    </unorderedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id class-dm}">
+   <title>DataModel Classes</title>
+   <para>
+    <unorderedlist>
+     <listitem>HTML_Progress_DM
+      <para>This class handles any mathematical issues arising from assigning faulty values.
+       You can overload it with {@link HTML_Progress::setDM()} method.
+      </para>
+     </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id class-ui}">
+   <title>User Interface Classes</title>
+   <para>
+    <unorderedlist>
+     <listitem>HTML_Common
+      <para>This class provides methods for html code display and attributes handling.
+       It is a base class for other HTML classes and can be downloaded at PEAR under 
+       {@link http://pear.php.net/package/HTML_Common HTML_Common} package.
+      </para>
+     </listitem>
+     <listitem>HTML_Progress_UI
+      <para>This class provides a basic look and feel implementation of a progress bar.
+       You can overload it with {@link HTML_Progress::setUI()} method.
+      </para>
+     </listitem>
+     <listitem>HTML_Progress_Model
+      <para>This class provides an easy way to set look and feel of a progress bar with 
+       external config file. This class requires another great PEAR package, the
+       {@link http://pear.php.net/package/Config Config} package which provides methods 
+       for configuration manipulation.
+      </para>
+     </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id class-observer}">
+   <title>Observers Classes</title>
+   <para>
+    <unorderedlist>
+     <listitem>HTML_Progress_Observer
+      <para>This class implements the observer pattern for watching progress bar activity 
+       and taking actions on exceptional events.
+      </para>
+     </listitem>
+     <listitem>HTML_Progress_Monitor
+      <para>This class allow an easy way to display progress in a dialog. The user can cancel 
+       the task.
+       It requires another PEAR package, the 
+       {@link http://pear.php.net/package/HTML_QuickForm HTML_QuickForm} package which 
+       provides methods for creating, validating, processing HTML forms.
+      </para>
+     </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
+ </refsect1>
+ <refsect1 id="{@id cls-overview}">
+  <title>Method Overview</title>
+  <refsect2 id="{@id constructors}">
+   <title>Constructors</title>
+   <para>
+    The constructors of the Main class accept integer values as their arguments, beginning with 
+    the orientation (on the left) across to the maximum (on the right), depending on what value
+    you've at your disposal, for example;   
+   </para>
+   <para>
+    <programlisting role="php">
+    <![CDATA[
+<?php
+require_once ('HTML/Progress.php');
+
+$bar1 = new HTML_Progress();
+$bar2 = new HTML_Progress(HTML_PROGRESS_BAR_VERTICAL);
+$bar3 = new HTML_Progress(0,100);
+$bar4 = new HTML_Progress(HTML_PROGRESS_BAR_VERTICAL,0,100);
+
+?>
+    ]]>
+    </programlisting>
+   </para>
+   <para>
+    The exception to that is a <emphasis>HTML_Progress($model)</emphasis> which takes an 
+    HTML_Progress_Model object as it's first argument.
+   </para>
+  </refsect2>
+  <refsect2 id="{@id mth-math}">
+   <title>Mathematical Methods</title>
+   <para>
+    Default mathematical model ({@link HTML_Progress_DM} class) handles a common progress bar
+    with a minimum and initial value sets to 0, a maximum set to 100, and an increment set to 1.
+    But in particular cases, you may have another limit. It's up to you to defines these limits,
+    with 4 methods:
+   </para>
+   <para>
+    <unorderedlist>
+     <listitem>{@link HTML_Progress::setMinimum()}   </listitem>
+     <listitem>{@link HTML_Progress::setMaximum()}   </listitem>
+     <listitem>{@link HTML_Progress::setValue()}     </listitem>
+     <listitem>{@link HTML_Progress::setIncrement()} </listitem>
+    </unorderedlist>
+   </para>
+   <para>
+    <programlisting role="php">
+    <![CDATA[
+<?php
+require_once ('HTML/Progress.php');
+
+$bar = new HTML_Progress();
+$bar->setMinimum(0);
+$bar->setMaximum(60);
+$bar->setValue(10);
+$bar->setIncrement(10);
+
+?>
+    ]]>
+    </programlisting>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id mth-graphic}">
+   <title>Graphical Methods</title>
+   <para>
+    Default user interface ({@link HTML_Progress_UI} class) handles a common progress bar
+    with 10 cells, no border and a percent string information.
+    But in most of case, you would change these default and give your own graphical chart.
+    You can do it with 7 methods:
+   </para>
+   <para>
+    <unorderedlist>
+     <listitem>{@link HTML_Progress_UI::setProgressAttributes()} </listitem>
+     <listitem>{@link HTML_Progress_UI::setStringAttributes()}   </listitem>
+     <listitem>{@link HTML_Progress_UI::setBorderAttributes()}   </listitem>
+     <listitem>{@link HTML_Progress_UI::setCellAttributes()}     </listitem>
+     <listitem>{@link HTML_Progress_UI::setCellCount()}          </listitem>
+     <listitem>{@link HTML_Progress_UI::setOrientation()}        </listitem>
+     <listitem>{@link HTML_Progress_UI::setFillWay()}            </listitem>
+    </unorderedlist>
+   </para>
+   <para>
+    <programlisting role="php">
+    <![CDATA[
+<?php
+require_once ('HTML/Progress.php');
+
+$bar = new HTML_Progress();
+
+$ui =& $bar->getUI();
+$ui->setProgressAttributes(array(
+	'background-color' => '#e0e0e0'
+));        
+$ui->setStringAttributes(array(
+	'valign' => 'left',
+	'color'  => 'red',
+	'background-color' => 'lightblue'
+));
+$ui->setBorderAttributes(array(
+        'width' => 1,
+        'style' => 'solid',
+        'color' => 'navy'
+));
+$ui->setCellAttributes(array(
+        'active-color' => '#3874B4',
+        'inactive-color' => '#EEEECC'
+));        
+$ui->setCellCount(20);
+$ui->setOrientation(HTML_PROGRESS_BAR_VERTICAL);
+$ui->setFillWay('reverse');
+
+?>
+    ]]>
+    </programlisting>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id mth-listeners}">
+   <title>Listeners Methods</title>
+   <para>
+    {@link HTML_Progress_Observer} class provide an implementation of the observer pattern.
+    In the content of the HTML_Progress package, it provide a mechanism by which you can 
+    examine special event as it is happened. This allows the implementation of special behavior.
+    For example, the observer code could send an email when the progress bar reach 100%.
+   </para>
+   <para>Observer pattern is explains on details in {@tutorial observers.pkg}. To display,
+    activate, or remove the listener mechanism, you have 3 methods :
+   </para>
+   <para>
+    <unorderedlist>
+     <listitem>{@link HTML_Progress::addListener()}    </listitem>
+     <listitem>{@link HTML_Progress::removeListener()} </listitem>
+     <listitem>{@link HTML_Progress::getListeners()}   </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
+ </refsect1>
+</refentry>

@@ -1,0 +1,272 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>Using Progress Monitors</refname>
+  <refpurpose>an easy way to display progress in a dialog</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ {@toc}
+ <refsect1 id="{@id intro}">
+  <title>Introduction</title>
+  <para>
+   A progress monitor is an easy way to display progress in a dialog. Note that the progress
+   monitor doesn't itself cancel the task. It provides the GUI and API to allow the user/program
+   to do so easily.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id easymon}">
+  <title>Easy Monitoring</title>
+  <para>
+   To produce such result in this example :
+   <para><graphic fileref="../media/screenshots/monitor_simple.png"></graphic></para>
+   we will use the {@link http://pear.php.net/package/HTML_Page HTML_Page} package solution
+   as a base class for XHTML page generation. 
+  </para>
+  <para>
+   First, we need the {@link HTML_Progress_Monitor} class ressource 
+   ({@tutorial monitor.pkg#easymon.ex1-listing line 2}) to allow creation of a new instance 
+   <emphasis>$progressMonitor</emphasis> ({@tutorial monitor.pkg#easymon.ex1-listing line 16}).
+   Others steps are only necessary to prepare display of progress dialog :
+  </para>
+  <para>
+   <unorderedlist>
+    <listitem>HTML_Page::<emphasis>addStyleDeclaration()</emphasis> method 
+     ({@tutorial monitor.pkg#easymon.ex1-listing line 18})
+      to add an inline stylesheet, required to display the progress bar.
+    </listitem>
+    <listitem>HTML_Page::<emphasis>addScriptDeclaration()</emphasis> method 
+     ({@tutorial monitor.pkg#easymon.ex1-listing line 21})
+     to add inline javascript, required to manage the progress bar.
+    </listitem>
+    <listitem>HTML_Page::<emphasis>addBodyContent()</emphasis> method 
+     ({@tutorial monitor.pkg#easymon.ex1-listing line 24})
+     to include html progress structure.
+    </listitem>
+   </unorderedlist>
+  </para>
+  <para>
+   At {@tutorial monitor.pkg#easymon.ex1-listing line 28}, the final result is sent to browser
+   for displaying, while in same time ({@tutorial monitor.pkg#easymon.ex1-listing line 30}) we
+   launch execution of progress monitoring.
+  </para>
+  <para>
+    {@link HTML_Progress_Monitor::run()} method checks with help of 
+    {@link HTML_Progress_Monitor::isCanceled()} if the user canceled the task or if the task
+    exited normally (reach 100%).
+  </para>
+  <refsect2 id="{@id ex1-listing}">
+   <title>Full example1 listing</title>
+   <programlisting role="php">
+   <![CDATA[
+<?php
+require_once ('HTML/Progress/monitor.php');
+require_once ('HTML/Page.php');
+
+$p = new HTML_Page(array(
+        'charset'  => 'utf-8',
+        'lineend'  => OS_WINDOWS ? 'win' : 'unix',
+        'doctype'  => "XHTML 1.0 Strict",
+        'language' => 'en',
+        'cache'    => 'false'
+     ));        
+
+$p->setTitle("PEAR::HTML_Progress - Simple Monitor demo");
+$p->setMetaData("author", "Laurent Laville");
+
+$progressMonitor = new HTML_Progress_Monitor();
+
+$p->addStyleDeclaration(
+    $progressMonitor->getStyle()
+    );
+$p->addScriptDeclaration(
+    $progressMonitor->getScript()
+    );
+$p->addBodyContent(
+    $progressMonitor->toHtml()
+    );
+
+$p->display();
+
+$progressMonitor->run();
+
+?>
+   ]]>
+   </programlisting>
+  </refsect2>
+ </refsect1>
+ <refsect1 id="{@id customon}">
+  <title>Customize Monitoring</title>
+  <para>
+   In previous example, we have seen the most easy way to create a progress monitor, with
+   default look-and-feel. 
+  </para>
+  <para>
+   Now we want, in the following example, choose our own graphical chart. 
+   <para><graphic fileref="../media/screenshots/monitor_complex.png"></graphic></para>
+   To do so, we will need a template engine. We've choosen the 
+   {@link http://pear.php.net/package/HTML_Template_IT HTML_Template_IT} package,
+   which is included in PEAR bundle base distribution, but of course you can used your own 
+   template engine.
+  </para>
+  <para>
+   Here again, we need the {@link HTML_Progress_Monitor} class ressource 
+   ({@tutorial monitor.pkg#easymon.ex2-listing line 2}) to allow creation of a new instance 
+   <emphasis>$progressMonitor</emphasis> ({@tutorial monitor.pkg#easymon.ex2-listing line 59}).
+   The two next steps display and run the monitor.    
+  </para>
+  <para>
+   <unorderedlist>
+    <listitem><emphasis>display()</emphasis> method 
+     ({@tutorial monitor.pkg#easymon.ex2-listing lines 53,60})
+      send the final template engine parsing result to browser.
+    </listitem>
+    <listitem><emphasis>run()</emphasis> method 
+     ({@tutorial monitor.pkg#easymon.ex2-listing line 61}) 
+     launch execution of progress monitoring.
+    </listitem>
+   </unorderedlist>
+  </para>
+  <para>Look and feel is defined ({@tutorial monitor.pkg#easymon.ex2-listing lines 28,29,30})
+   in <emphasis>attachProgress()</emphasis> method, where we create instance of progress bar
+   ({@tutorial monitor.pkg#easymon.ex2-listing line 24}).
+  </para>
+  <para>
+   Mandatory default ressources (JavaScript, CSS) were integrated in HTML template at 
+   {@tutorial monitor.pkg#easymon.ex2-listing lines 45,46}.
+  </para>
+  <para>
+   Now it's up to you to extends default {@link HTML_Progress_Monitor} class to your own 
+   template engine and graphical chart. Easy isn't it !?
+  </para>
+  <refsect2 id="{@id ex2-listing}">
+   <title>Full example2 listing</title>
+   <programlisting role="php">
+   <![CDATA[
+<?php
+require_once ('HTML/Progress/monitor.php');
+require_once ('HTML/QuickForm/Renderer/ITStatic.php');
+require_once ('HTML/Template/ITX.php');
+
+class ProgressMonitor extends HTML_Progress_Monitor
+{
+    
+    function ProgressMonitor()
+    {
+        $this->_id = md5(microtime());
+
+        $this->_form = new HTML_QuickForm('form');
+        
+        $this->_form->addElement('header', 'windowsname', 'Progress...');
+        $this->_form->addElement('static', 'progress');
+        $this->_form->addElement('submit', 'cancel', 'Cancel');
+        
+        $this->attachProgress();
+    }
+
+    function attachProgress()
+    {
+        $this->_progress = new HTML_Progress();
+        $this->_progress->setIncrement(10);
+
+        $ui =& $this->_progress->getUI();
+        $ui->setProgressAttributes('background-color=#EEE');
+        $ui->setCellAttributes('inactive-color=#FFF active-color=#444444');
+        $ui->setStringAttributes('background-color=#EEE color=navy');
+
+        $this->_progress->addListener($this);
+        
+        $bar =& $this->_form->getElement('progress');
+        $bar->setText( $this->_progress->toHtml() );
+    }
+
+    function toHtml()
+    {
+        $tpl =& new HTML_Template_ITX('.');
+        $tpl->loadTemplateFile('monitor.html');
+
+        $js  = $this->getScript();
+        $css = $this->getStyle();
+        $tpl->setVariable("monitor_script", $js);
+        $tpl->setVariable("monitor_style", $css);
+
+        $renderer =& new HTML_QuickForm_Renderer_ITStatic($tpl);       
+        $this->_form->accept($renderer);
+        return $tpl->get();
+    }
+
+    function display()
+    {
+        print $this->toHtml();
+    }
+}
+
+$progressMonitor = new ProgressMonitor();
+$progressMonitor->display();
+$progressMonitor->run();
+
+?>
+   ]]>
+   </programlisting>
+   <para><title>HTML template - monitor.html file</title>
+   <example>
+   <![CDATA[
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>PEAR::HTML_Progress - Complex Monitor demo</title>
+<style type="text/css">
+   th {
+   font-family: sans-serif;
+   font-size : small;
+   color : #FFF;
+   background-color : #AAA;
+   }
+   .maintable {
+   border : thin dashed #D0D0D0;
+   background-color : #EEE;
+   }
+{monitor_style}
+</style>
+<script type="text/javascript">
+{monitor_script}
+</script>
+</head>
+<body>
+
+<form {form_attributes}>
+
+<table class="maintable" width="600" align="center">
+<tr><td valign="top">
+  <table width="100%" cellpadding="4">
+  <tr><th>{form_header_windowsname}</th></tr>
+  <tr><td>{form_progress_html}</td></tr>
+  </table>
+</td>
+</tr>
+</table>
+<table width="600" align="center">
+<tr>
+  <td align="right">{form_cancel_html}</td>
+</tr>
+</table>
+</form>
+
+</body>
+</html>
+   ]]>
+   </example>
+   </para>
+  </refsect2>
+ </refsect1>
+</refentry>

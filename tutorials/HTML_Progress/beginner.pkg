@@ -1,0 +1,252 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>Beginner Guide</refname>
+  <refpurpose>learn how to use HTML_Progress, basic features</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ {@toc}
+ <refsect1 id="{@id basics}">
+  <title>HTML_Progress Basics</title>
+  <refsect2 id="{@id starting}">
+   <title>Starting out from scratch</title>
+   <para>
+    {@tutorial gettingstarted.pkg#inahurry} you've seen that such code below is not enough 
+    to run properly a Progress Bar.
+   </para>
+   <para>
+    <programlisting role="php">
+    <![CDATA[
+<?php
+require_once ('HTML/Progress.php');
+
+$bar = new HTML_Progress();
+
+echo $bar->toHtml(); 
+?>
+    ]]>
+    </programlisting>
+   </para>
+   <para>You got only : 
+    <graphic fileref="../media/screenshots/inahurry.png"></graphic></para>
+   <para>
+    Why ? what's wrong with previous code ? It's very simple, HTML_Progress needs some CSS
+    class-selector to work fine. So if you send to browser the necessary styles, all will be ok.
+   </para>
+   <para>
+    <programlisting role="php">
+    <![CDATA[
+<?php
+require_once ('HTML/Progress.php');
+
+$bar = new HTML_Progress();
+?>
+<style type="text/css">
+<!--
+<?php echo $bar->getStyle(); ?>
+// -->
+</style>
+
+<?php
+echo $bar->toHtml(); 
+?>
+    ]]>
+    </programlisting>
+   </para>
+   <para>And the result will be : 
+    <graphic fileref="../media/screenshots/scratch1.png"></graphic></para>
+  </refsect2>
+  <refsect2 id="{@id using}">
+   <title>Running HTML_Progress</title>
+   <para>
+    Now you know how to show a basic progress bar, what should we do to run it ?
+   </para>
+   <para>
+    Let's begin by a simple empty loop. Your code should be something like that :
+   </para>
+   <para>
+    <programlisting role="php">
+    <![CDATA[
+<?php
+require_once ('HTML/Progress.php');
+
+$bar = new HTML_Progress();
+?>
+<style type="text/css">
+<!--
+<?php echo $bar->getStyle(); ?>
+// -->
+</style>
+
+<?php
+echo $bar->toHtml(); 
+
+do {
+    $bar->display();
+    if ($bar->getPercentComplete() == 1) {
+        break;   // the progress bar has reached 100%
+    }
+    $bar->incValue();
+} while(1);
+?>
+    ]]>
+    </programlisting>
+   </para>
+   <para>
+    What's wrong out there ? The progress bar is running but nothing change on browser screen.
+    As for previous error, HTML_Progress needs some CSS class-selector, and also some JavaScript
+    code to work fine. Adds few more lines, and example will be at end :
+   </para>
+   <para>
+    <programlisting role="php">
+    <![CDATA[
+<?php
+require_once ('HTML/Progress.php');
+
+$bar = new HTML_Progress();
+
+$ui =& $bar->getUI();
+?>
+<style type="text/css">
+<!--
+<?php echo $bar->getStyle(); ?>
+// -->
+</style>
+<script type="text/javascript">
+<!--
+<?php echo $ui->getScript(); ?>
+//-->
+</script>
+
+<?php
+echo $bar->toHtml(); 
+
+do {
+    $bar->display();
+    if ($bar->getPercentComplete() == 1) {
+        break;   // the progress bar has reached 100%
+    }
+    $bar->incValue();
+} while(1);
+?>
+    ]]>
+    </programlisting>
+   </para>
+   <para>
+    <caution>As default increment of HTML_Progress is only +1(%), it may took few seconds before you
+    could see the first cell color changed.
+    </caution>
+   </para>
+   <para>
+    The empty loop was produced by a <emphasis>do ... while(1)</emphasis>, with 3 HTML_Progress
+    methods:
+    <unorderedlist>
+     <listitem><para>{@link HTML_Progress::display()}, to show new progress result</para>
+     </listitem>
+     <listitem><para>{@link HTML_Progress::getPercentComplete()}, to test end loop</para>
+     </listitem>
+     <listitem><para>{@link HTML_Progress::incValue()}, to ajust new progress value</para>
+     </listitem>
+    </unorderedlist>
+   </para>
+  </refsect2>
+  <tip><title></title>
+   To avoid that browser run under quirk mode, i suggest you to puts such DTD lines on each 
+   of your xHTML document.
+   <para>
+    <example>
+    <![CDATA[
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+...
+</html>
+    ]]>
+    </example>
+   </para>
+  </tip>
+ </refsect1>
+ <refsect1 id="{@id look-and-feel}">
+  <title>Changing look and feel</title>
+  <refsect2 id="{@id cell-style}">
+   <title>Progress Bar Cell element</title>
+   <para>Here you can decide if you want to have a basic bar length (10 cells), less or more.
+    You may also have possibility to change all the default values.
+   </para>
+   <para>There are 2 main methods to add and customize the cells of a Progress Bar :
+    <unorderedlist>
+     <listitem><para>{@link HTML_Progress_UI::setCellCount()}, 
+      more details on {@tutorial ui.setcellcount.cls}, where you'll find a full example.</para>
+     </listitem>
+     <listitem><para>{@link HTML_Progress_UI::setCellAttributes()}, 
+      more details on {@tutorial ui.setcellattributes.cls}, where you'll find a full example.</para>
+     </listitem>
+    </unorderedlist> 
+   </para>
+  </refsect2>
+  <refsect2 id="{@id border-style}">
+   <title>Progress Bar Border element</title>
+   <para>Here you can decide whether to paint or not a border, around the progress bar.
+    You may also have possibility to change all the default values.
+   </para>
+   <para>There are 2 main methods to add and customize the border of a Progress Bar :
+    <unorderedlist>
+     <listitem><para>{@link HTML_Progress::setBorderPainted()}, 
+      more details on {@tutorial progress.setborderpainted.cls}, where you'll find a full example.</para>
+     </listitem>
+     <listitem><para>{@link HTML_Progress_UI::setBorderAttributes()}, 
+      more details on {@tutorial ui.setborderattributes.cls}, where you'll find a full example.</para>      
+     </listitem>
+    </unorderedlist> 
+   </para>
+  </refsect2>
+  <refsect2 id="{@id string-style}">
+   <title>Progress Bar String element</title>
+   <para>Here you can decide whether to paint or not a custom string, with new value of progress bar.
+    You may also have possibility to change all the default values.
+   </para>
+   <para>There are 3 main methods to add and customize the string of a Progress Bar :
+    <unorderedlist>
+     <listitem><para>{@link HTML_Progress::setStringPainted()}, 
+      more details on {@tutorial progress.setstringpainted.cls}, where you'll find a full example.</para>      
+     </listitem>
+     <listitem><para>{@link HTML_Progress::setString()}, 
+      more details on {@tutorial progress.setstring.cls}, where you'll find a full example.</para>      
+     </listitem>
+     <listitem><para>{@link HTML_Progress_UI::setStringAttributes()}, 
+      more details on {@tutorial ui.setstringattributes.cls}, where you'll find a full example.</para>      
+     </listitem>
+    </unorderedlist> 
+   </para>
+  </refsect2>
+  <refsect2 id="{@id progress-style}">
+   <title>Progress Bar element</title>
+   <para>Here you have possibility to change all the default values (background color, width, height,
+    orientation, fill way ...)
+   </para>
+   <para>There is only 3 main methods to customize a Progress Bar :
+    <unorderedlist>
+     <listitem><para>{@link HTML_Progress_UI::setProgressAttributes()}, 
+      more details on {@tutorial ui.setprogressattributes.cls}, where you'll find a full example.</para>      
+     </listitem>
+     <listitem><para>{@link HTML_Progress_UI::setOrientation()}, 
+      more details on {@tutorial ui.setorientation.cls}, where you'll find a full example.</para>      
+     </listitem>
+     <listitem><para>{@link HTML_Progress_UI::setFillWay()}, 
+      more details on {@tutorial ui.setfillway.cls}, where you'll find a full example.</para>      
+     </listitem>
+    </unorderedlist> 
+   </para>
+  </refsect2>
+ </refsect1>
+</refentry>

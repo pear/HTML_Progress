@@ -1,0 +1,96 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>HTML_Progress 1.x Guide</refname>
+  <refpurpose>introduction to HTML_Progress package</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ {@toc}
+ <refsect1 id="{@id whatisit}">
+  <title>What is HTML_Progress ?</title>
+  <para>
+   HTML_Progress is a OO class {@link http://pear.php.net PEAR} package for 
+   {@link http://www.php.net PHP} 4.1 or better.
+  </para>
+  <para>
+   HTML_Progress makes it easy to build and display an horizontal or vertical loading bar 
+   on XHTML document of your choice, 
+   and allows user to wait and see progress status during a long procedure such an installation.
+   You get a more or less decent result with just the basic settings, but it's also 
+   highly configurable, so you can almost get what you want.
+  </para>
+  <para>
+   The core class assigns context sensitive default values for most of the parameters 
+   which minimizes the learning part. The features are there when you need it - 
+   they don't get in your way. The package also comes with very extensive documentation.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id features}">
+  <title>Features</title>
+   <unorderedlist>
+    <listitem><para>Create horizontal and also vertival bar</para></listitem>
+    <listitem><para>Allows usage of an existing external StyleSheet 
+     and/or JavaScript </para></listitem>
+    <listitem><para>All elements (progress, cells, string) are customizable 
+     by their html properties</para></listitem>
+    <listitem><para>percent/string is floating all around the progress bar</para></listitem>
+    <listitem><para>Compliant with all CSS/XHMTL standards</para></listitem>
+    <listitem><para>Integration with all template engines is very easy</para></listitem>
+    <listitem><para>Implements a Observer design pattern. 
+     It is possible to add Listeners.</para></listitem>
+    <listitem><para>Adds a customizable UI monitor pattern to display a progress bar.
+     User-end can abort progress at any time.</para></listitem>
+    <listitem><para>Look and feel can be sets by internal API or external config file.
+     </para></listitem>
+    <listitem><para>Allows many progress bar on same page without uses of 
+     iframe solution.</para></listitem>
+   </unorderedlist>
+ </refsect1>
+ <refsect1 id="{@id license}">
+  <title>Software license</title>
+   <para>HTML_Progress is released under 
+    {@link http://www.php.net/license/3_0.txt PHP License 3.0}</para>
+ </refsect1>
+ <refsect1 id="{@id gallery}">
+  <title>Image gallery</title>
+   <para>Below is a few sample images all created with HTML_Progress.</para>
+   <para><graphic fileref="../media/screenshots/ancestor.png"></graphic></para>
+   <para><graphic fileref="../media/screenshots/bullit.png"></graphic></para>
+   <para><graphic fileref="../media/screenshots/redsandback.png"></graphic></para>
+   <para><graphic fileref="../media/screenshots/vertical1.png"></graphic></para>
+ </refsect1>
+ <refsect1 id="{@id faq}">
+  <title>FAQ</title>
+   <unorderedlist>
+    <listitem><para><important>May i use my favorite template engine ?</important></para>
+     <para>Yes, integrate HTML_Progress is also easy that put any other HTML element. 
+      See <emphasis>template_embedded.php</emphasis> in examples subdirectory of 
+      bundle distribution, for an IT[x] template family example.
+     </para>
+    </listitem>
+    <listitem><para><important>I got only 0% displayed on left corner of my browser screen</important></para>
+     <para>You've forgot to send the necessary styles (CSS).
+      See {@tutorial beginner.pkg#basics.starting} for details and solution.
+     </para>
+    </listitem>
+    <listitem><para><important>The progress bar is running, but i see no changes</important></para>
+     <para>You've forgot to put the requires JavaScript code to manage the progress bar.
+      See {@tutorial beginner.pkg#basics.using} for details and solution.
+     </para>
+    </listitem>
+    <listitem><para><important>The progress bar is running, but percent info is frozen to 0%</important></para>
+     <para>You've a browser that is not fully DHTML compliant. For example Opera 6.x. 
+      You should upgrade to the most recent browser version.
+     </para>
+    </listitem>
+   </unorderedlist>
+ </refsect1>
+</refentry>

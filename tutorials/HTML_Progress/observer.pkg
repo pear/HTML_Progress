@@ -1,0 +1,398 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>Using Progress Observers</refname>
+  <refpurpose>introduction to HTML_Progress observer mechanism</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ {@toc}
+ <refsect1 id="{@id intro}">
+  <title>Introduction </title>
+  <para>
+   The {@link HTML_Progress_Observer} class provides an implementation of the observer pattern.
+   In the content of the HTML_Progress package, they provide a mechanism which you can
+   examine each important event as it is happened. This allows the implementation of
+   special behavior based on the value of the progress element.
+  </para>
+  <para>
+   Creating a progress observer involves implementing a subclass of the 
+   {@link HTML_Progress_Observer} class. The subclass must override the base class's 
+   {@link HTML_Progress_Observer::notify()} method. This method is passed a hash containing
+   event name and value.
+  </para>
+  <para>
+   At this time, no concrete observer implementations are distributed with the HTML_Progress
+   package. But you could find some good examples named {@tutorial observer.pkg#examples.standard},
+   {@tutorial observer.pkg#examples.simple}, {@tutorial observer.pkg#examples.complex} available
+   in examples subdirectory of bundle distribution.
+  </para>
+  <para>
+   Now we will learn how to catch and manage specific events and respond to them in a specific way.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id using}">
+  <title>Using Progress Observers </title>
+  <para>
+   If you <important>do not override the base class</important>, 
+   as in {@tutorial observer.pkg#examples.standard} example, the default behavior is to write 
+   events (setminimum, setmaximum, setvalue) 
+   into a file <emphasis>progress_observer.log</emphasis> in current directory.
+  </para>
+  <para>
+   If you decide to <important>override the base class with <emphasis>MyObserver</emphasis> 
+   object</important>, as in {@tutorial observer.pkg#examples.simple} example, 
+   the new behavior could be to write events (setminimum, setmaximum, setvalue) 
+   into a file <emphasis>observer_complex.log</emphasis> 
+   ({@tutorial observer.pkg#examples.simple line 40}),
+   or just send it to browser screen ({@tutorial observer.pkg#examples.simple line 39}).
+  </para>
+  <para>
+   In the last example, {@tutorial observer.pkg#examples.complex}, <important>the base class 
+   was overridden by <emphasis>Bar1Observer</emphasis> object</important>
+   ({@tutorial observer.pkg#examples.complex line 6}), to allow a double vertical bar synchronized.
+   <para><graphic fileref="../media/screenshots/observer_complex.png"></graphic></para>
+  </para>
+  <para>
+   But all these 3 examples won't work if we do not attach the observer object to the progress bar,
+   as a listener. To do so, use {@link HTML_Progress::addListener()} method. If you want to detach
+   the observer object, use {@link HTML_Progress::removeListener()} method. And if you want to
+   check what listeners are attached to progress bar, then use {@link HTML_Progress::getListeners()}
+   method.
+  </para>
+ </refsect1>
+ <refsect1 id="{@id examples}">
+  <title>Examples </title>
+  <refsect2 id="{@id standard}">
+   <title>observer_standard.php</title>
+   <para>
+    <programlisting role="php">
+    <![CDATA[
+<?php 
+require_once ('HTML/Progress.php');
+require_once ('HTML/Progress/observer.php');
+
+// 1. Creates ProgressBar
+$bar = new HTML_Progress();
+$bar->setBorderPainted(true);
+$bar->setIncrement(10);
+
+// 2. Creates and attach a listener 
+$observer = new HTML_Progress_Observer();
+
+$ok = $bar->addListener($observer);
+if (!$ok) {
+    die ("Cannot add a valid listener to progress bar !");
+}
+
+// 3. Changes look-and-feel of ProgressBar
+$ui =& $bar->getUI();
+$ui->setBorderAttributes('width = 2');   // border: 2px, solid, #000000
+$ui->setComment('Standard Observer ProgressBar example');
+
+?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Standard Observer ProgressBar example</title>
+<style type="text/css">
+<!--
+<?php echo $bar->getStyle(); ?>
+
+body {
+	background-color: #FFFFFF;
+	color: #000000;
+	font-family: Verdana, Arial;
+}
+
+a:visited, a:active, a:link {
+	color: navy;
+}
+// -->
+</style>
+<script type="text/javascript">
+<!--
+<?php echo $ui->getScript(); ?>
+//-->
+</script>
+</head>
+<body>
+
+<?php 
+echo $bar->toHTML(); 
+
+do {
+    $bar->display();
+    if ($bar->getPercentComplete() == 1) {
+        break;   // the progress bar has reached 100%
+    }
+    $bar->incValue();
+} while(1);
+?>
+
+</body>
+</html>
+    ]]>
+    </programlisting>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id simple}">
+   <title>observer_simple.php</title>
+   <para>
+    <programlisting role="php">
+    <![CDATA[
+<?php 
+require_once ('HTML/Progress.php');
+require_once ('HTML/Progress/observer.php');
+
+// 1. Defines ProgressBar observer
+class MyObserver extends HTML_Progress_Observer
+{
+    var $_console;
+    var $_out;
+    
+    function MyObserver($out)
+    {
+        $this->_console = '.' . DIRECTORY_SEPARATOR . 'observer_complex.log';
+        $this->HTML_Progress_Observer();
+        $this->_out = strtolower($out);
+    }
+
+    function notify($event)
+    {
+        if (is_array($event)) {
+            $log = isset($event['log']) ? $event['log'] : "undefined event id.";
+            $val = isset($event['value']) ? $event['value'] : "unknown value";
+            $msg = "$log = $val";
+        } else {
+            $msg = $event;
+        }
+        if ($this->_out == 'file') {
+            error_log("$msg \n", 3, $this->_console);
+        } else {
+            print ("$msg <br />\n");
+	}
+    }
+}
+
+// 2. Creates ProgressBar
+$bar = new HTML_Progress();
+$bar->setIncrement(5);
+
+// 3. Creates and attach a listener 
+$observer = new MyObserver('screen');
+//$observer = new MyObserver('file');
+
+$ok = $bar->addListener($observer);
+if (!$ok) {
+    die ("Cannot add a valid listener to progress bar !");
+}
+
+// 4. Changes look-and-feel of ProgressBar
+$ui = $bar->getUI();
+$ui->setStringAttributes('color = red');
+$ui->setComment('Simple Observer ProgressBar example');
+
+?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Simple Observer ProgressBar example</title>
+<style type="text/css">
+<!--
+<?php echo $bar->getStyle(); ?>
+// -->
+</style>
+<script type="text/javascript">
+<!--
+<?php echo $ui->getScript(); ?>
+//-->
+</script>
+</head>
+<body>
+
+<?php 
+echo $bar->toHTML(); 
+
+do {
+    $bar->display();
+    if ($bar->getPercentComplete() == 1) {
+        break;   // the progress bar has reached 100%
+    }
+    $bar->incValue();
+} while(1);
+?>
+
+</body>
+</html>
+    ]]>
+    </programlisting>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id complex}">
+   <title>observer_complex.php</title>
+   <para>
+    <programlisting role="php">
+    <![CDATA[
+<?php
+require_once ('HTML/Progress.php');
+require_once ('HTML/Progress/observer.php');
+
+// 1. Defines ProgressBar observer
+class Bar1Observer extends HTML_Progress_Observer
+{
+    function Bar1Observer()
+    {
+        $this->HTML_Progress_Observer();
+    }
+
+    function notify($event)
+    {
+        global $bar2;
+        
+        if (is_array($event)) {
+            $log = isset($event['log']) ? $event['log'] : "undefined event id.";
+            $val = isset($event['value']) ? $event['value'] : "unknown value";
+
+            switch (strtolower($log)) {
+             case 'incvalue':
+                 // if you want to do special on each step of progress bar1; it's here !!!
+                 break;
+             case 'setvalue':
+                 if ($val == 0) {
+                     // updates $bar2 because $bar1 has completed a full loop
+                     $bar2->incValue();
+                     $bar2->display();
+                 }
+             default:
+            }
+        }
+    }
+}
+
+// 2. Creates ProgressBar
+$bar1 = new HTML_Progress(HTML_PROGRESS_BAR_VERTICAL);
+$bar1->setIncrement(10);
+$bar1->setIdent('PB1');
+
+$bar2 = new HTML_Progress(HTML_PROGRESS_BAR_VERTICAL);
+$bar2->setIncrement(25);
+$bar2->setIdent('PB2');
+$bar2->setBorderPainted(true);
+
+// 3. Creates and attach a listener
+$observer = new Bar1Observer();
+
+$ok = $bar1->addListener($observer);
+if (!$ok) {
+    die ("Cannot add a valid listener to progress bar !");
+}
+
+// 4. Changes look-and-feel of ProgressBar
+$ui1 =& $bar1->getUI();
+$ui1->setComment('Complex Observer ProgressBar example');
+$ui1->setTabOffset(1);
+$ui1->setProgressAttributes(array(
+	'background-color' => '#e0e0e0'
+        ));        
+$ui1->setStringAttributes(array(
+	'valign' => 'left',
+	'color'  => 'red',
+	'background-color' => 'lightblue'
+	));
+
+$ui2 =& $bar2->getUI();
+$ui2->setTabOffset(1);
+$ui2->setBorderAttributes(array(
+        'width' => 1,
+        'style' => 'solid',
+        'color' => 'navy'
+        ));
+$ui2->setCellAttributes(array(
+        'active-color' => '#3874B4',
+        'inactive-color' => '#EEEECC'
+        ));        
+$ui2->setStringAttributes(array(
+        'width'  => '100',
+	'align'  => 'center',
+	'valign' => 'right',
+	'color'  => 'yellow',
+	'background-color' => 'lightblue'
+	));
+?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Complex Observer ProgressBar example</title>
+<style type="text/css">
+<!--
+<?php
+echo $bar1->getStyle();
+echo $bar2->getStyle();
+?>
+table.container {
+	background-color: lightblue;
+	border: 2;
+	border-color: navy;
+	border-style: dashed;
+	cell-spacing: 4;
+	cell-padding: 8;
+	width: 50%;
+}
+// -->
+</style>
+<script type="text/javascript">
+<!--
+<?php echo $ui1->getScript(); ?>
+//-->
+</script>
+</head>
+<body>
+
+<table class="container">
+<tr>
+    <td width="25%" align="center">
+<?php echo $bar1->toHTML(); ?>
+    </td>
+    <td width="25%" align="center">
+<?php echo $bar2->toHTML(); ?>
+    </td>
+</tr>
+</table>
+
+<?php
+do {
+    $bar1->display();
+    if ($bar1->getPercentComplete() == 1) {
+        $bar1->setValue(0);  // the 1st progress bar has reached 100%, do a new loop
+    } else {
+        $bar1->incValue();   // updates 1st progress bar
+    }
+} while($bar2->getPercentComplete() < 1);
+?>
+
+</body>
+</html>
+    ]]>
+    </programlisting>
+   </para>
+  </refsect2>
+ </refsect1>
+</refentry>
+

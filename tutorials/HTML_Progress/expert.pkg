@@ -1,0 +1,62 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>Expert Guide</refname>
+  <refpurpose>learn how to use HTML_Progress, advanced features</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ {@toc}
+ <refsect1 id="{@id intro}">
+  <title>Introduction </title>
+   <para>
+    After you see a progress bar ({@tutorial beginner.pkg#basics.using})
+    and a progress monitor in action ({@tutorial monitor.pkg}), {@tutorial expert.pkg#deciding}
+    can help you figure out which is appropriate for your application.
+   </para>
+ </refsect1>
+ <refsect1 id="{@id deciding}">
+  <title>Deciding whether to use a Progress Bar or a Progress Monitor </title>
+  <para>
+   Use a <emphasis>progress bar</emphasis> if:
+  </para>
+  <unorderedlist>
+   <listitem><para>You want more control over the configuration of the progress bar.
+    If you are working directly with a progress bar, you can set it to be indeterminate, 
+    make it display vertically, provide a string for it to display, register listeners on it,
+    and provide it with a bounded range model to control the progress bar's minimum,
+    maximum, increment and current values.
+    </para></listitem>
+   <listitem><para>Your program needs to display others components along with the progress bar.
+    </para></listitem>
+   <listitem><para>You need more than one progress bar. With some tasks, you need to monitor 
+    more than one parameter. For example, an installation program might monitor disk space
+    usage in addition to how many files have been successfully installed.
+    </para></listitem>
+  </unorderedlist>
+  <para>
+   Use a <emphasis>progress monitor</emphasis> if:
+  </para>
+  <unorderedlist>
+   <listitem><para>You want an easy way to display progress in a dialog.</para></listitem>
+   <listitem><para>The running task is secondary and the user might not be interested
+    in the progress of the task. Progress monitor provides a way for user to dismiss the dialog
+    while the task is still running.
+    </para></listitem>
+   <listitem><para>You want an easy way for the task to be cancelled. Progress Monitor provides
+    a GUI for the user to cancel the task. All you have to do is call 
+    {@link HTML_Progress_Monitor::isCanceled()} method to find out if the user pressed the 
+    <emphasis>Cancel</emphasis> button.
+   </para></listitem>
+   <listitem><para>The task might not take a long time to complete. You decide at what point 
+    a running task is taking long enough to warrant letting the user know about it.</para></listitem>
+  </unorderedlist>
+ </refsect1>
+</refentry>

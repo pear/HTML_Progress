@@ -1,0 +1,32 @@
+<refentry id="{@id}">
+ <refnamediv>
+  <refname>{@link http://pear.laurent-laville.org/HTML/Progress HTML_Progress 1.x} Tutorial</refname>
+  <refpurpose>learn how to use HTML_Progress, basic and advanced features</refpurpose>
+ </refnamediv>
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <author>
+    by Laurent Laville
+    <authorblurb>{@link mailto:pear@laurent-laville.org}</authorblurb>
+   </author>
+   <copyright>November 2003, Laurent Laville</copyright>
+   <releaseinfo>HTML_Progress 1.0+</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+ <refsect1 id="{@id intro}">
+  <title>Introduction</title>
+   <unorderedlist>
+    <listitem><para>If you are a newbie, i suggest you to follow this tutorial, step by step,
+     starting by {@tutorial beginner.pkg}</para>
+    </listitem>
+    <listitem><para>If you are a advanced programmer, and need more power,
+     i suggest you to skip the {@tutorial beginner.pkg}, and go directly to 
+     {@tutorial expert.pkg}
+    </para></listitem>
+   </unorderedlist>
+   <para>
+    Remember that if you're lost or need a solution to a problem,don't forget to read 
+    the {@tutorial HTML_Progress.pkg#faq}.
+   </para>
+ </refsect1>
+</refentry>
