@@ -184,27 +184,6 @@ class HTML_Progress_Monitor
     }
 
     /**
-     * Set the sleep delay in milisecond before each progress cells display.
-     *
-     * @param      integer   $delay         Delay in milisecond.
-     *
-     * @return     void
-     * @since      1.1
-     * @access     public
-     * @throws     HTML_PROGRESS_DEPRECATED
-     * @deprecated use HTML_Progress::setAnimSpeed()
-     */
-    function setAnimSpeed($delay)
-    {
-        HTML_Progress::raiseError(HTML_PROGRESS_DEPRECATED, 'warning',
-                array('oldmethod' => 'HTML_Progress_Monitor::setAnimSpeed',
-                      'newmethod' => 'HTML_Progress::setAnimSpeed'));
-
-        $bar =& $this->getProgressElement();
-        $bar->setAnimSpeed($delay);
-    }
-
-    /**
      * Listens all progress events from this monitor.
      *
      * @param      mixed     $event         A hash describing the progress event.
