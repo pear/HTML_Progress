@@ -1922,7 +1922,7 @@ class HTML_Progress
     function _errorHandler($err)
     {
         include_once 'PEAR.php';
-        $e = PEAR::raiseError($err['message'], $err['code'], PEAR_ERROR_RETURN, null, 
+        $e = PEAR::raiseError($err['message'], $err['code'], PEAR_ERROR_RETURN, E_USER_ERROR, 
                               $err['context']);
 
         if (isset($err['context'])) {
