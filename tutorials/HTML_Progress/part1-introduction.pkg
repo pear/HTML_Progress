@@ -1,0 +1,257 @@
+
+<refentry id="{@id}">
+
+ <refnamediv>
+  <refname>Introduction</refname>
+  <refpurpose>a quick presentation</refpurpose>
+ </refnamediv>
+
+ <refsynopsisdiv>
+  <refsynopsisdivinfo>
+   <copyright>
+    <year>2003</year>
+    <year>2004</year>
+    <holder>
+     <author>
+      <firstname>Laurent</firstname>
+      <surname>Laville</surname>
+     </author>
+    </holder>
+   </copyright>
+   <releaseinfo>HTML_Progress 1.2.0</releaseinfo>
+  </refsynopsisdivinfo>
+ </refsynopsisdiv>
+
+ {@toc}
+
+ <refsect1 id="{@id what-is-for}">
+  <title>What is HTML_Progress ?</title>
+  <para>
+   HTML_Progress makes it easy to build and display a progress meter on XHTML document
+   of your choice, and allows user to wait and see status during a slow process 
+   such a software installation. You get a more or less decent result with just the basic settings, 
+   but it’s also highly configurable, so you can almost get what you want.
+  </para>
+  <para>
+   The core class assigns context sensitive default values for most of the parameters 
+   which minimizes the learning part. The features are there when you need it.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id what-is-doc-for}">
+  <title>What is this document for ?</title>
+  <para>
+   This document is written as a guide to and reference for the HTML_Progress package, for both
+   beginner and expert users.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id why-use-it}">
+  <title>Why use HTML_Progress ?</title>
+  <para>
+   There are some classes that exists, but never none of them as such degree of customization.
+   You can produce all kind of progress indicator you want: from basic horizontal bar, vertical bar,
+   to circle, ellipse, and even free polygonal shape.
+  </para>
+  <refsect2 id="{@id features}">
+   <title>Features</title>
+   <para>
+    <itemizedlist>
+     <listitem>create horizontal, vertival bar and also circle, ellipse and polygons (square, rectangle) </listitem>
+     <listitem>allows usage of existing external StyleSheet and/or JavaScript  </listitem>
+     <listitem>all elements (progress, cells, string) are customizable by their html properties </listitem>
+     <listitem>percent/string is floating all around the progress meter </listitem>
+     <listitem>compliant with all CSS/XHMTL standards </listitem>
+     <listitem>integration with all template engines is very easy </listitem>
+     <listitem>implements Observer design pattern. It is possible to add Listeners </listitem>
+     <listitem>adds a customizable UI monitor pattern to display a progress bar. User-end can abort progress at any time. </listitem>
+     <listitem>Look and feel can be sets by internal API or external config file </listitem>
+     <listitem>Allows many progress meter on same page without uses of iframe solution </listitem>
+    </itemizedlist>
+   </para>
+  </refsect2>
+ </refsect1>
+
+ <refsect1 id="{@id pre-requisites}">
+  <title>Pre-requisites</title>
+  <para>
+   It is assumed that you have installed both PHP and PEAR, and that you have rudimentary 
+   knowledge of PHP, HTML and JavaScript. If you are not a PEAR user, don't worry you may
+   use HTML_Progress since 1.2.0 without a PEAR installation, with some features restrictions.
+  </para>
+  <para>
+   It is also assumed that your PHP scripts are correctly interpreted by your web server. 
+   In most case it will be probably Apache, but you may also have IIS. HTML_Progress runs both
+   on Windows and *nix.
+  </para>
+  <refsect2 id="{@id pear-users}">
+   <title>i am a PEAR user</title>
+   <para>
+    There are also some mandatory dependencies with others PEAR packages :
+    <itemizedlist>
+     <listitem>{@link http://pear.php.net/package/HTML_Common/ HTML_Common 1.2} or greater </listitem>
+    </itemizedlist>
+   </para>
+   <para>
+    There are also some optional dependencies with others PEAR packages :
+    <itemizedlist>
+     <listitem>{@link http://pear.php.net/package/PEAR PEAR 1.3.1} or greater </listitem>
+     <listitem>{@link http://pear.php.net/package/HTML_QuickForm  HTML_QuickForm 3.1.1} or greater </listitem>
+     <listitem>{@link http://pear.php.net/package/HTML_QuickForm_Controller  HTML_QuickForm_Controller 0.9.3} or greater </listitem>
+     <listitem>{@link http://pear.php.net/package/HTML_CSS  HTML_CSS 0.3.4} or greater </listitem>
+     <listitem>{@link http://pear.php.net/package/HTML_Page HTML_Page 2.0.0RC2} or greater </listitem>
+     <listitem>{@link http://pear.php.net/package/Config  Config 1.9} or greater </listitem>
+     <listitem>{@link http://pear.php.net/package/PHPUnit PHPUnit 0.6.2} or greater </listitem>
+     <listitem>{@link http://pear.php.net/package/Image_Color Image_Color 1.0.0} or greater </listitem>
+    </itemizedlist>
+   </para>
+   <formalpara><title>Notes: PEAR packages usage</title>
+   <para>
+    <itemizedlist>
+     <listitem><emphasis>PEAR</emphasis> is used only by the default error handler system to raise a PEAR_Error object.</listitem>
+     <listitem><emphasis>HTML_QuickForm_Controller</emphasis> and 
+      <emphasis>HTML_Page</emphasis> are used only by the HTML_Progress_Generator class.</listitem>
+     <listitem><emphasis>Config</emphasis> is used only by the HTML_Progress::setModel function. </listitem>
+     <listitem><emphasis>PHPUnit</emphasis> is used only to run regression tests. </listitem>
+     <listitem><emphasis>HTML_QuickForm</emphasis> is used by HTML_Progress_Monitor and HTML_Progress_Generator classes. </listitem>
+     <listitem><emphasis>HTML_CSS</emphasis> is used by HTML_Progress to generate default stylesheet. </listitem>
+     <listitem><emphasis>Image_Color</emphasis> is used only for circle or ellipse progress shape. </listitem>
+    </itemizedlist>
+   </para>
+   </formalpara>
+  </refsect2>
+  <refsect2 id="{@id no-pear-users}">
+   <title>i am not a PEAR user</title>
+   <para>
+    Unzip (keep directory structure) and copy the files to a directory of your choice. 
+    But be sure that theses files copied are accesible in your include path.
+   </para>
+   <para>
+    Because the version 1.2.0 is not yet a PEAR independant version, you should copy 
+    the Common.php from {@link http://pear.php.net/package/HTML_Common PEAR::HTML_Common} package 
+    into your HTML directory (the same where you have copied Progress.php).
+   </para>
+   <para>
+    If you won't use a pre-set stylesheet, you'll also need to unzip and copy CSS.php file from
+    {@link http://pear.php.net/package/HTML_CSS PEAR::HTML_CSS} package into your HTML directory.
+   </para>
+  </refsect2>
+ </refsect1>
+
+ <refsect1 id="{@id what-is-new}">
+  <title>What is new ?</title>
+  <para>
+   First publish release of HTML_Progress on 
+   {@link http://pear.php.net/package/HTML_Progress/ PEAR website} was on August 1st, 2003.
+   Its introduced the first attempt of stable API version. But as i wanted HTML_Progress 
+   more open to future evolutions, i've redevelopped a second API more robust.
+   So versions 0.4.x, 0.5.x and 0.6.x are all incompatible with the new API introduced first 
+   in version 1.0
+  </para>
+   <itemizedlist>
+    <listitem><emphasis>2003-11-16 (version 1.0)</emphasis>
+     <para>First attempt to:
+      <itemizedlist>
+       <listitem>create a <emphasis>Progress Monitor</emphasis> solution.</listitem>
+       <listitem>interactive tools to build progress bar (<emphasis>Progress Maker</emphasis>).</listitem>
+      </itemizedlist>
+     </para>
+    </listitem>
+    <listitem><emphasis>2004-02-14 (version 1.1)</emphasis> 
+     <para>
+      <itemizedlist>
+       <listitem>Second version of <emphasis>Progress Monitor</emphasis>, using the QuickForm rendering system.</listitem>
+       <listitem><emphasis>Progress Uploader</emphasis> was born: a web-ftp file uploads solution.</listitem>
+       <listitem><emphasis>Progress Generator</emphasis> became the next generation of Progress Maker.</listitem>
+      </itemizedlist>
+    </para>
+    </listitem>
+    <listitem><emphasis>2004-09-12 (version 1.2.0)</emphasis> 
+     <para>
+      <itemizedlist>
+       <listitem>new shapes such as <emphasis>circle, ellipse, square, rectangle</emphasis> are allowed.</listitem>
+       <listitem><emphasis>error plugin architecture</emphasis> to allows all error handler you might want.</listitem>
+       <listitem><emphasis>Progress Uploader</emphasis> was removed</listitem>
+       <listitem><emphasis>HTML_Progress_Model</emphasis> class was removed, but feature still exist. </listitem>
+      </itemizedlist>
+    </para>
+    </listitem>
+   </itemizedlist>
+ </refsect1>
+
+ <refsect1 id="{@id pkg-overview}">
+  <title>Package Overview</title>
+   <para>
+    HTML_Progress provides seven classes to help you use progress bars:
+   </para>
+  <refsect2 id="{@id class-bar}">
+   <title>Global classes</title>
+   <para>
+    <itemizedlist>
+     <listitem>HTML_Progress
+      <para>Main component to graphically display how much of a total task has completed.
+       See (Using Determinate Progress Bars) for information and an example of using a typical
+       progress bar. The section {@tutorial indeterminate.pkg} tells you how to animate a progress
+       bar to show activity before the task's scope is known.
+      </para>
+     </listitem>
+    </itemizedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id class-dm}">
+   <title>Data Model class</title>
+   <para>
+    <itemizedlist>
+     <listitem>HTML_Progress_DM
+      <para>This class handles any mathematical issues arising from assigning faulty values.
+      </para>
+     </listitem>
+    </itemizedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id class-ui}">
+   <title>User Interface classes</title>
+   <para>
+    <itemizedlist>
+     <listitem>HTML_Common
+      <para>This class provides methods for html code display and attributes handling.
+       It is a base class for other HTML classes and can be downloaded at PEAR under 
+       {@link http://pear.php.net/package/HTML_Common HTML_Common} package.
+      </para>
+     </listitem>
+     <listitem>HTML_Progress_UI
+      <para>This class provides a basic look and feel implementation of a progress bar. </para>
+     </listitem>
+     <listitem>HTML_Progress_Generator
+      <para>This class provides an easy way to build and run demo of your own progress bar.
+       You can also save final PHP and/or CSS source-code.
+       <emphasis>HTML_Progress_Generator</emphasis> become the next generation of 
+       interactive tools after <emphasis>ProgressMaker</emphasis> (included in HTML_Progress 1.0)
+      </para>
+     </listitem>
+    </itemizedlist>
+   </para>
+  </refsect2>
+  <refsect2 id="{@id class-observer}">
+   <title>Observers classes</title>
+   <para>
+    <itemizedlist>
+     <listitem>HTML_Progress_Observer
+      <para>This class implements the observer pattern for watching progress bar activity 
+       and taking actions on exceptional events.
+      </para>
+     </listitem>
+     <listitem>HTML_Progress_Monitor
+      <para>This class allow an easy way to display progress in a dialog. The user can cancel 
+       the task.
+       It requires another PEAR package, the 
+       {@link http://pear.php.net/package/HTML_QuickForm HTML_QuickForm} package which 
+       provides methods for creating, validating, processing HTML forms.
+      </para>
+     </listitem>
+    </itemizedlist>
+   </para>
+  </refsect2>
+ </refsect1>
+
+</refentry>
