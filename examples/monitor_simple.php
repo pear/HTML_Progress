@@ -30,6 +30,9 @@ $p->addScriptDeclaration(
     $progressMonitor->getScript()
     );
 $p->addBodyContent(
+    "<h1>".basename(__FILE__)."</h1>"
+    );
+$p->addBodyContent(
     $progressMonitor->toHtml()
     );
 $p->addBodyContent(
