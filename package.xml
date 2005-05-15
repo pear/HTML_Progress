@@ -8,13 +8,13 @@ Your browser should accept DHTML feature.
 
 Features:
 - create horizontal, vertival bar and also circle, ellipse and polygons (square, rectangle)
-- allows usage of existing external StyleSheet and/or JavaScript 
+- allows usage of existing external StyleSheet and/or JavaScript
 - all elements (progress, cells, string) are customizable by their html properties
 - percent/string is floating all around the progress meter
 - compliant with all CSS/XHMTL standards
 - integration with all template engines is very easy
 - implements Observer design pattern. It is possible to add Listeners
-- adds a customizable UI monitor pattern to display a progress bar. 
+- adds a customizable UI monitor pattern to display a progress bar.
   User-end can abort progress at any time.
 - Look and feel can be sets by internal API or external config file
 - Allows many progress meter on same page without uses of iframe solution
@@ -40,26 +40,16 @@ Features:
     </maintainer>
   </maintainers>
   <release>
-    <version>1.2.0</version>
-    <date>2004-09-12</date>
+    <version>1.2.1</version>
+    <date>2005-05-15</date>
     <license>PHP License 3.0</license>
     <state>stable</state>
-    <notes>* changes 
-- PEAR_ErrorStack was replaced by a simple way to plug in any error handling system
-you might want (default used PEAR_Error object)
-- Log package dependency was removed (no more used for logging)
-- HTML_Progress_Model and HTML_Progress_Uploader classes were removed
+    <notes>Very few changes since 1.2.0
 
-* improvements
-- HTML_Progress::sleep() method use now in most case the PHP usleep() function
-
-* news
-- The Definitive Guide: 
-  http://pear.laurent-laville.org/HTML_Progress/apidoc/
-         HTML/ read it online the html version
-         CHM/  download (190 kb) the Windows Help Compiled version
-         PDF/  download (757 kb) the Acrobat Reader version
-</notes>
+* changes
+- fixed gd dependency check in pear install procedure
+  explains are behind  http://marc.theaimsgroup.com/?l=pear-dev&amp;m=110924162309851&amp;w=2
+- fixed bug#2577 Call time pass by reference error</notes>
     <deps>
       <dep type="pkg" rel="ge" version="1.3.1" optional="no">PEAR</dep>
       <dep type="php" rel="ge" version="4.1.0" optional="no"/>
@@ -71,6 +61,7 @@ you might want (default used PEAR_Error object)
       <dep type="pkg" rel="ge" version="1.9" optional="yes">Config</dep>
       <dep type="pkg" rel="ge" version="1.0.0" optional="yes">Image_Color</dep>
       <dep type="ext" rel="ge" version="2.0.1" optional="yes">GD</dep>
+      <dep type="ext" rel="has" optional="yes">gd</dep>
     </deps>
     <filelist>
       <dir baseinstalldir="HTML" name="/">
@@ -285,6 +276,7 @@ you might want (default used PEAR_Error object)
        </dir> <!-- Progress -->
        <dir name="tests">
         <file role="test" name="ancestor.ini"/>
+        <file role="test" name="HTML_Progress_Bug28.php"/>
         <file role="test" name="HTML_Progress_TestCase_addListener.php"/>
         <file role="test" name="HTML_Progress_TestCase_DM_new.php"/>
         <file role="test" name="HTML_Progress_TestCase_DM_setIncrement.php"/>
@@ -565,6 +557,18 @@ you might want (default used PEAR_Error object)
   </release>
   <changelog>
     <release>
+      <version>1.2.1</version>
+      <date>2005-05-15</date>
+      <license>PHP License 3.0</license>
+      <state>stable</state>
+      <notes>Very few changes since 1.2.0
+
+* changes
+- fixed gd dependency check in pear install procedure
+  explains are behind  http://marc.theaimsgroup.com/?l=pear-dev&amp;m=110924162309851&amp;w=2
+- fixed bug#2577 Call time pass by reference error</notes>
+    </release>
+    <release>
       <version>1.2.0</version>
       <date>2004-09-12</date>
       <license>PHP License 3.0</license>
@@ -583,8 +587,7 @@ you might want (default used PEAR_Error object)
   http://pear.laurent-laville.org/HTML_Progress/apidoc/
          HTML/ read it online the html version
          CHM/  download (190 kb) the Windows Help Compiled version
-         PDF/  download (757 kb) the Acrobat Reader version
-</notes>
+         PDF/  download (757 kb) the Acrobat Reader version</notes>
     </release>
     <release>
       <version>1.2.0RC3</version>
