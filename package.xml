@@ -60,7 +60,6 @@ Features:
       <dep type="pkg" rel="ge" version="0.9.3" optional="yes">HTML_QuickForm_Controller</dep>
       <dep type="pkg" rel="ge" version="1.9" optional="yes">Config</dep>
       <dep type="pkg" rel="ge" version="1.0.0" optional="yes">Image_Color</dep>
-      <dep type="ext" rel="ge" version="2.0.1" optional="yes">GD</dep>
       <dep type="ext" rel="has" optional="yes">gd</dep>
     </deps>
     <filelist>
@@ -573,7 +572,7 @@ Features:
       <date>2004-09-12</date>
       <license>PHP License 3.0</license>
       <state>stable</state>
-      <notes>* changes 
+      <notes>* changes
 - PEAR_ErrorStack was replaced by a simple way to plug in any error handling system
 you might want (default used PEAR_Error object)
 - Log package dependency was removed (no more used for logging)
@@ -583,7 +582,7 @@ you might want (default used PEAR_Error object)
 - HTML_Progress::sleep() method use now in most case the PHP usleep() function
 
 * news
-- The Definitive Guide: 
+- The Definitive Guide:
   http://pear.laurent-laville.org/HTML_Progress/apidoc/
          HTML/ read it online the html version
          CHM/  download (190 kb) the Windows Help Compiled version
@@ -594,22 +593,22 @@ you might want (default used PEAR_Error object)
       <date>2004-07-06</date>
       <license>PHP License 3.0</license>
       <state>beta</state>
-      <notes>* QA 
+      <notes>* QA
 - package.xml should not contain md5sum or provides for readability
 
-* changes 
+* changes
 - suite of PHPUnit TestCases are now fully compatible with PHP5
 - method raiseError has a new optional parameter ( $msg: static message )
 
 * bugs fixes
-- missing ident class in stylesheet production in HTML_Progress::getStyle() 
+- missing ident class in stylesheet production in HTML_Progress::getStyle()
 - sometimes circle, ellipse segments pictures were generated with horiz. bottom line
   (it's no more exists)
 
 * new features
 - 2 new methods to easily manage API errors ( hasErrors(), getError() )
 - 1 new method to hide a progress meter when necessary ( request by JH Szeto )
-- 2 new methods to simplify your job: sleep(), run() 
+- 2 new methods to simplify your job: sleep(), run()
 - 2 new methods to introduce user-callback: process(), setProgressHandler()
 
 * to do
@@ -621,15 +620,15 @@ you might want (default used PEAR_Error object)
       <license>PHP License 3.0</license>
       <state>beta</state>
       <notes>* important
-- unless someone found a new bug, this release candidate will be the last before 
+- unless someone found a new bug, this release candidate will be the last before
   publication of stable version
 
-* changes 
+* changes
 - suite of PHPUnit TestCases are now fully compatible with PEAR_ErrorStack
 - completed API docs with PHPDocumentor 1.3.0RC3
 
 * bug fixes
-- css problem for progress circle, ellipse. Thanks to Olivier Hondermarck 
+- css problem for progress circle, ellipse. Thanks to Olivier Hondermarck
   (webmaster of http://www.toutjavascript.com)</notes>
     </release>
     <release>
@@ -641,18 +640,18 @@ you might want (default used PEAR_Error object)
 - this 1st RC is still marked as beta due to status of packages :
   . Net_FTP 1.3.0
   . PEAR_ErrorStack in PEAR 1.3.1
-  
+
   and of course due to first try to generate Progress Circle as new shape with GD extension.
   PLEASE, i need feedback, and tests results on different platform, before a stable version
   is publish !
 - Make suite of PHPUnit TestCase compatible with PEAR_ErrorStack
 
 * changes
-- new error manager (PEAR_ErrorStack) replace previous Error_Raise package 
+- new error manager (PEAR_ErrorStack) replace previous Error_Raise package
 - Net_FTP package with observer pattern is used to replace my Progress/FTP/Upload class
 - new method HTML_Progress_UI::setCellCoordinates to manage polygonal cells coordinates
 - new method HTML_Progress_UI::drawCircleSegments to create circle pictures collection
-- HTML_Progress_Monitor::setAnimSpeed() method is now deprecated. 
+- HTML_Progress_Monitor::setAnimSpeed() method is now deprecated.
   Use HTML_Progress::setAnimSpeed() instead.
 - full API docs - reference guide - made with phpDocumentor 1.3.0RC3
 
@@ -660,8 +659,8 @@ you might want (default used PEAR_Error object)
 - HTML_Progress now display new shapes like: circle, ellipse, square and rectangle.
 
 * dependencies
-- Net_FTP 1.3 or greater, to manage ftp communications for HTML_Progress_Uploader 
-- PEAR 1.3.1 or greater for PEAR_ErrorStack, to manage errors 
+- Net_FTP 1.3 or greater, to manage ftp communications for HTML_Progress_Uploader
+- PEAR 1.3.1 or greater for PEAR_ErrorStack, to manage errors
   instead of previous solution: Error_Raise
 - Log 1.8.0 or greater, to logs internal HTML_Progress errors
 - Image_Color 1.0.0 or greater to define circle segment colors
@@ -705,7 +704,7 @@ you might want (default used PEAR_Error object)
 
 * feature additions
 - HTML_Progress now implements a Observer design pattern. It is possible to add Listeners.
-- HTML_Progress now adds a customizable UI monitor pattern to display a progress bar. 
+- HTML_Progress now adds a customizable UI monitor pattern to display a progress bar.
   User-end can abort progress at any time.
 - Look and feel can be sets by internal API or external config file.
 - Allows many progress bar on same page without uses of iframe solution.</notes>
