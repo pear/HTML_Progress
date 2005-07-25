@@ -1,20 +1,25 @@
 $Id$
 
+-------------------------Release 1.2.2------------------------
+2005-07-25  Laurent Laville <pear@laurent-laville.org>
+    * fix bug#4885 setMaximum highter than 200 will stop progress monitor
+    * fix Call time pass by reference error in progress monitor
+
 -------------------------Release 1.2.1------------------------
 2004-12-19  Laurent Laville <pear@laurent-laville.org>
     * fix bug#2577 Call time pass by reference error
 
 -------------------------Release 1.2.0------------------------
 2004-09-12  Laurent Laville <pear@laurent-laville.org>
-    * The final and last stable version of branch 1 
+    * The final and last stable version of branch 1
       of HTML_Progress is finally published on PEAR website.
 
 2004-09-06  Laurent Laville <pear@laurent-laville.org>
-    * HTML_Progress::sleep method use now in most case 
+    * HTML_Progress::sleep method use now in most case
       the PHP usleep() function except for PHP4 on Windows System
 
 2004-08-15  Laurent Laville <pear@laurent-laville.org>
-    * begin to write "The Definitive Guide" 
+    * begin to write "The Definitive Guide"
       (tutorial and reference)
 
 2004-08-10  Laurent Laville <pear@laurent-laville.org>
@@ -26,7 +31,7 @@ $Id$
       marked as deprecated was removed
 
 2004-08-06  Laurent Laville <pear@laurent-laville.org>
-    * PEAR_ErrorStack was replaced by a simple 
+    * PEAR_ErrorStack was replaced by a simple
       plugin architecture to set any error handling system
       you might want.
 
@@ -45,7 +50,7 @@ $Id$
       in HTML_Progress::getStyle() method
 
 2004-06-12  Laurent Laville <pear@laurent-laville.org>
-    * adds new methods 
+    * adds new methods
       HTML_Progress::hasErrors() and HTML_Progress::getError()
     * adds $msg parameter on HTML_Progress::raiseError() method
 
@@ -77,16 +82,16 @@ $Id$
       is finally published on PEAR website.
 
 2004-03-20  Laurent Laville <pear@laurent-laville.org>
-    * add Error message logger in classes 
+    * add Error message logger in classes
       using the new PEAR_ErrorStack package (by Greg Beaver)
 
 2004-03-13  Laurent Laville <pear@laurent-laville.org>
     * adds 1 new UI method: drawCircleSegments
-    * HTML_Progress_Circle is now a new managed shape 
+    * HTML_Progress_Circle is now a new managed shape
 
 2004-02-29  Laurent Laville <pear@laurent-laville.org>
     * adds 2 new UI methods: setCellCoordinates, getCellCoordinates
-    * HTML_Progress_Polygonal is now a new managed shape 
+    * HTML_Progress_Polygonal is now a new managed shape
 
 2004-02-27  Laurent Laville <pear@laurent-laville.org>
     * HTML_Progress_Monitor::setAnimSpeed() method is deprecated
@@ -107,7 +112,7 @@ $Id$
 2004-02-13  Laurent Laville <pear@laurent-laville.org>
     * fixes PEAR-BUG#342 http://pear.php.net/bugs/bug.php?id=342
       add the new method setAnimSpeed() instead of sleep(1)
-    * HTML_Progress_Generator is the next generation of 
+    * HTML_Progress_Generator is the next generation of
       interactive tools to build online your own progress bar
 
 2004-02-10  Laurent Laville <pear@laurent-laville.org>
@@ -115,7 +120,7 @@ $Id$
 
 -------------------------Release 1.0--------------------------
 2003-11-15  Laurent Laville <pear@laurent-laville.org>
-    * fixes compatibility with PHP 4.1.0 and 
+    * fixes compatibility with PHP 4.1.0 and
       HTML_Progress_DM::getPercentComplete() method.
 
 2003-11-14  Laurent Laville <pear@laurent-laville.org>
@@ -126,7 +131,7 @@ $Id$
       adds new HTML_Progress::getScript() method
 
 2003-11-12  Laurent Laville <pear@laurent-laville.org>
-    * phpDocumentor-tutorial completed 
+    * phpDocumentor-tutorial completed
 
 2003-11-06  Laurent Laville <pear@laurent-laville.org>
     * publish Release Candidate 2
@@ -141,10 +146,10 @@ $Id$
 2003-10-28  Laurent Laville <pear@laurent-laville.org>
     * Rewrites all API, and adds new features.
     * adds pre-set UI models into ProgressMaker tools.
-    * adds ProgressMonitor, an easy way to display progress 
+    * adds ProgressMonitor, an easy way to display progress
       in a dialog box. The user can cancel the task.
     * CSS id and class selectors are customizable.
-    * adds ProgressObserver for watching progress bar activity 
+    * adds ProgressObserver for watching progress bar activity
       and taking actions on exceptional events.
 
 -------------------------Release 0.6.2------------------------
@@ -155,33 +160,33 @@ $Id$
     * fixes PEAR-BUG#28 http://pear.php.net/bugs/bug.php?id=28
     * fixes PEAR-BUG#29 http://pear.php.net/bugs/bug.php?id=29
     * examples progress3r[1-2] works now with IE4 and NS4
-    * adds example1p to show how to use new parameter 
+    * adds example1p to show how to use new parameter
       in setPage() method
 
 -------------------------Release 0.6.1------------------------
 2003-09-09  Laurent Laville <pear@laurent-laville.org>
     * fixes javascript errors with IE4 and NS4 browsers
       Thanks to Christian Wenz
-    * include now ProgressMaker, a dynamic tools to build 
+    * include now ProgressMaker, a dynamic tools to build
       and test all functionalities
 
 -------------------------Release 0.6.0------------------------
 2003-08-28  Laurent Laville <pear@laurent-laville.org>
-    * Latest optimization on CSS generated 
+    * Latest optimization on CSS generated
 
 2003-08-27  Laurent Laville <pear@laurent-laville.org>
-    * Tutorial has been upgraded accordinglty 
+    * Tutorial has been upgraded accordinglty
       with new features and examples.
 
 2003-08-26  Laurent Laville <pear@laurent-laville.org>
     * Add new feature: API setCell to customize cell-display
 
 2003-08-25  Laurent Laville <pear@laurent-laville.org>
-    * Progress bar will now take by default the optimized 
+    * Progress bar will now take by default the optimized
       size (height, width).
 
 2003-08-23  Laurent Laville <pear@laurent-laville.org>
-    * More attributes on setText API that allows to have 
+    * More attributes on setText API that allows to have
       a separate zone for percent text info of progress bar.
       The text may be attach on each sides of progress bar
       and not only on right side as in previous version.
@@ -200,11 +205,11 @@ $Id$
 -------------------------Release 0.5.0------------------------
 2003-08-06  Laurent Laville <laurent.laville@worldonline.fr>
     * New tutorial/howto is available in bundle distribution
-      and online at URL 
+      and online at URL
       http://farell.free.fr/en/pear/sources/HTML_Progress/docs/
 
 2003-08-05  Laurent Laville <laurent.laville@worldonline.fr>
-    * 2 news subclasses to create horizontal and vertical 
+    * 2 news subclasses to create horizontal and vertical
       loading bar (on a idea of Arnaud Limbourg).
     * JavaScript code is now embedded into core HTML_Progress class
       Thanks to Yavor Shahpasov for his comment.

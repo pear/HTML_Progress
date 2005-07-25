@@ -2,7 +2,7 @@ $Id$
 
 ********************************************************************************
 
-				HTML_Progress
+                HTML_Progress
 
 ********************************************************************************
 
@@ -12,8 +12,8 @@ Installation
 
 Installation for HTML_Progress is as simple as any other PEAR classes.
 Just enter on command line:  pear install (tarball)
-where (tarball) is an archive file like  HTML_Progress-1.2.0.tgz
-    
+where (tarball) is an archive file like  HTML_Progress-1.2.2.tgz
+
 If you need more detailed help, check out INSTALL
 
 
@@ -21,11 +21,11 @@ If you need more detailed help, check out INSTALL
 Release Notes
 ********************************************************************************
 
-Release notes for the newest version are in Release-1.2.0
+Release notes for the newest version are in Release-1.2.2
 
-1.2.0 is out, a stable release
+1.2.2 is out, a stable release
 
-To learn how to do, read online APIdoc and tutorials in many formats at 
+To learn how to do, read online APIdoc and tutorials in many formats at
 http://pear.laurent-laville.org/HTML/Progress/apidoc/
 
 If you find a bug please send me a mail with subject HTML_Progress at:
@@ -33,18 +33,18 @@ If you find a bug please send me a mail with subject HTML_Progress at:
 Or put a new entry on PEAR BugTracker at :
 http://pear.php.net/bugs/search.php?cmd=display&status=Open&bug_type[]=HTML_Progress
 
-        
+
 ********************************************************************************
 General Notes
 ********************************************************************************
-HTML_Progress is hosted at http://pear.laurent-laville.org, with downloads and 
+HTML_Progress is hosted at http://pear.laurent-laville.org, with downloads and
 online documentation
 
-Project page: 	http://pear.laurent-laville.org/HTML/Progress
+Project page:   http://pear.laurent-laville.org/HTML/Progress
 Documentation:  http://pear.laurent-laville.org/HTML/Progress/apidoc/
 
 
-HTML_Progress 1.2.0 is released under the PHP License version 3.0, text is in
+HTML_Progress 1.2.2 is released under the PHP License version 3.0, text is in
 LICENSE file
 
 
@@ -52,7 +52,7 @@ LICENSE file
 Feature Notes
 ********************************************************************************
 
-HTML_Progress is a PEAR class that provides a way to add a loading bar 
+HTML_Progress is a PEAR class that provides a way to add a loading bar
 fully customizable in existing XHTML documents. Your browser should accept DHTML feature.
 
 Features since version 0.5.0
@@ -81,16 +81,16 @@ Improvement since version 0.6.2
 
 Features since version 1.0
   - create horizontal and also vertival bar
-  - allows usage of an existing external StyleSheet and/or JavaScript 
+  - allows usage of an existing external StyleSheet and/or JavaScript
   - all elements (progress, cells, string) are customizable by their html properties
   - percent/string is floating all around the progress bar
   - compliant with all CSS/XHMTL standards
   - integration with template engine IT[x] family is possible
   - HTML_Progress now implements a Observer design pattern. It is possible to add Listeners.
-  - HTML_Progress now adds a customizable UI monitor pattern to display a progress bar. 
+  - HTML_Progress now adds a customizable UI monitor pattern to display a progress bar.
     User-end can abort progress at any time.
   - Look and feel can be sets by internal API or an external config file.
-  - Allows many progress bar on same page without uses of iframe solution. 
+  - Allows many progress bar on same page without uses of iframe solution.
 
 Features since version 1.1
   - HTML_Progress_Generator replaced previous ProgressMaker
@@ -98,18 +98,18 @@ Features since version 1.1
 
 Improvement since version 1.1
   - HTML_Progress (Monitor, Generator, Uploader) support now the QF renderer system
-  
+
 Features since version 1.2.0
   - new shapes (square, rectangle, polygonal, circle, ellipse)
   - new api error methods management (hasError, getError)
 
 Improvement since version 1.2.0
-  - HTML_Progress_Uploader was removed from package 
+  - HTML_Progress_Uploader was removed from package
   - Error_Raise was replaced by a clone of PEAR_ErrorStack
-  - HTML_Progress_Model was removed from package 
+  - HTML_Progress_Model was removed from package
 
 
-If something is missing from this list make sure to file a feature request 
+If something is missing from this list make sure to file a feature request
 at my mail address <pear@laurent-laville.org>
 
 
@@ -128,4 +128,4 @@ Thanks to Juan Camilo who allow me to learn SOAP
 Thanks to Marlon Brandao who help me to debug my http file upload form examples
 Thanks to Gregory Beaver for his works on PEAR_ErrorStack who inspired me on the final error handling system
 
-Special Thanks to Rasmus Lerdorf, without him PHP and all this universe won't be! 
+Special Thanks to Rasmus Lerdorf, without him PHP and all this universe won't be!
