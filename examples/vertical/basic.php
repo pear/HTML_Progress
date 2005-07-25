@@ -1,11 +1,11 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
  * Basic Vertical ProgressBar example.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress.php';
@@ -22,13 +22,13 @@ $bar->setValue(85);
 <?php echo $bar->getStyle(); ?>
 
 body {
-	background-color: #FFFFFF;
-	color: #000000;
-	font-family: Verdana, Arial;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: Verdana, Arial;
 }
 
 a:visited, a:active, a:link {
-	color: navy;
+    color: navy;
 }
 // -->
 </style>
@@ -39,14 +39,11 @@ a:visited, a:active, a:link {
 </script>
 </head>
 <body>
-<h1><?php echo basename(__FILE__); ?></h1>
 
-<?php 
-echo $bar->toHtml(); 
+<?php
+echo $bar->toHtml();
 $bar->run();
 ?>
-
-<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>
 
 </body>
 </html>
