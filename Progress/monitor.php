@@ -1,36 +1,50 @@
 <?php
-// +----------------------------------------------------------------------+
-// | PEAR :: HTML :: Progress                                             |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2004 The PHP Group                                |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 3.0 of the PHP license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available at through the world-wide-web at                           |
-// | http://www.php.net/license/3_0.txt.                                  |
-// | If you did not receive a copy of the PHP license and are unable to   |
-// | obtain it through the world-wide-web, please send a note to          |
-// | license@php.net so we can mail you a copy immediately.               |
-// +----------------------------------------------------------------------+
-// | Author: Laurent Laville <pear@laurent-laville.org>                   |
-// +----------------------------------------------------------------------+
-//
-// $Id$
+/**
+ * The HTML_Progress_Monitor class allow an easy way to display progress
+ * in a dialog. The user can cancel the task.
+ *
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category   HTML
+ * @package    HTML_Progress
+ * @subpackage Progress_Observer
+ * @author     Laurent Laville <pear@laurent-laville.org>
+ * @copyright  1997-2005 The PHP Group
+ * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @version    CVS: $Id$
+ * @link       http://pear.php.net/package/HTML_Progress
+ */
+
+require_once 'HTML/Progress.php';
+require_once 'HTML/QuickForm.php';
 
 /**
  * The HTML_Progress_Monitor class allow an easy way to display progress
  * in a dialog. The user can cancel the task.
  *
- * @version    1.2.0
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @access     public
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category   HTML
  * @package    HTML_Progress
  * @subpackage Progress_Observer
+ * @author     Laurent Laville <pear@laurent-laville.org>
+ * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @version    Release: @package_version@
+ * @link       http://pear.php.net/package/HTML_Progress
  */
-
-require_once 'HTML/Progress.php';
-require_once 'HTML/QuickForm.php';
 
 class HTML_Progress_Monitor
 {
@@ -54,7 +68,7 @@ class HTML_Progress_Monitor
     var $buttonStart;
     var $buttonCancel;
     /**#@-*/
-    
+
     /**
      * The progress object renders into this monitor.
      *
@@ -73,28 +87,18 @@ class HTML_Progress_Monitor
      */
     var $_form;
 
-    /**
-     * Callback, either function name or array(&$object, 'method')
-     *
-     * @var        mixed
-     * @since      1.1
-     * @access     private
-     * @see        setProgressHandler()
-     */
-    var $_callback = null;
 
-    
     /**
      * Constructor Summary
      *
      * o Creates a standard progress bar into a dialog box (QuickForm).
-     *   Form name, buttons 'start', 'cancel' labels and style, and 
+     *   Form name, buttons 'start', 'cancel' labels and style, and
      *   title of dialog box may also be changed.
      *   <code>
      *   $monitor = new HTML_Progress_Monitor();
      *   </code>
      *
-     * o Creates a progress bar into a dialog box, with only a new 
+     * o Creates a progress bar into a dialog box, with only a new
      *   form name.
      *   <code>
      *   $monitor = new HTML_Progress_Monitor($formName);
@@ -137,26 +141,27 @@ class HTML_Progress_Monitor
         $this->_id = md5(microtime());
 
         $this->_form = new HTML_QuickForm($formName);
+        $this->_form->removeAttribute('name');        // XHTML compliance
 
         $this->windowname   = isset($attributes['title'])  ? $attributes['title']  : 'In progress ...';
         $this->buttonStart  = isset($attributes['start'])  ? $attributes['start']  : 'Start';
         $this->buttonCancel = isset($attributes['cancel']) ? $attributes['cancel'] : 'Cancel';
         $buttonAttr         = isset($attributes['button']) ? $attributes['button'] : '';
-        
+
         $this->_form->addElement('header', 'windowname', $this->windowname);
         $this->_form->addElement('static', 'progressBar');
         $this->_form->addElement('static', 'progressStatus');
 
         $style = $this->isStarted() ? array('disabled'=>'true') : null;
-        
+
         $buttons[] =& $this->_form->createElement('submit', 'start',  $this->buttonStart, $style);
         $buttons[] =& $this->_form->createElement('submit', 'cancel', $this->buttonCancel);
 
         $buttons[0]->updateAttributes($buttonAttr);
         $buttons[1]->updateAttributes($buttonAttr);
-        
+
         $this->_form->addGroup($buttons, 'buttons', '', '&nbsp;', false);
-      
+
         // default embedded progress element with look-and-feel
         $this->setProgressElement($bar);
 
@@ -174,33 +179,10 @@ class HTML_Progress_Monitor
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        HTML_Progress::process()
+     * @deprecated
      */
     function notify($event)
     {
-        if (!is_array($event)) {
-            return $this->_progress->raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
-                array('var' => '$event',
-                      'was' => gettype($event),
-                      'expected' => 'array',
-                      'paramnum' => 1));
-        }
-        $log = strtolower($event['log']);
-        if ($log == 'incvalue') {
-
-            $this->_progress->display();
-            $this->callProgressHandler($event['value']);
-                 
-            if ($this->_progress->getPercentComplete() == 1) {
-                if ($this->_progress->isIndeterminate()) {
-                    $this->_progress->setValue(0);
-                } else {
-                    // the progress bar has reached 100%
-                    $this->_progress->removeListener($this);
-                }
-            } else {
-                $this->_progress->incValue();
-            }
-        }
     }
 
     /**
@@ -223,10 +205,7 @@ class HTML_Progress_Monitor
                       'was' => 'element',
                       'paramnum' => 1));
         }
-        $this->_callback = $handler;
-
-        // reflect changes on the observer copy
-        $this->_progress->addListener($this);
+        $this->_progress->setProgressHandler($handler);
     }
 
     /**
@@ -237,15 +216,11 @@ class HTML_Progress_Monitor
      * @return     void
      * @since      1.1
      * @access     public
-     * @see        setProgressHandler(), notify()
+     * @deprecated
      */
     function callProgressHandler($arg)
     {
-        if (is_null($this->_callback)) {
-            $this->_progress->sleep();
-        } else {
-            call_user_func($this->_callback, $arg, &$this);
-        }
+        $this->_progress->process();
     }
 
     /**
@@ -284,7 +259,7 @@ class HTML_Progress_Monitor
     function run()
     {
         if ($this->isStarted()) {
-            $this->_progress->incValue();
+            $this->_progress->run();
         }
     }
 
@@ -309,14 +284,13 @@ class HTML_Progress_Monitor
                       'paramnum' => 1));
         }
         $this->_progress = $bar;
-        $this->_progress->addListener($this);
 
         $bar =& $this->_form->getElement('progressBar');
         $bar->setText( $this->_progress->toHtml() );
     }
 
     /**
-     * Returns a reference to the progress bar object 
+     * Returns a reference to the progress bar object
      * used with the monitor.
      *
      * @return     object
@@ -361,7 +335,7 @@ function setStatus(pString)
         prog = document.layers['status'];
     }
     if (prog != null)  {
-	prog.innerHTML = pString;
+    prog.innerHTML = pString;
     }
 }
 ";
@@ -404,7 +378,7 @@ function setStatus(pString)
     /**
      * Display a caption on action in progress.
      *
-     * The idea of a simple utility function for replacing variables 
+     * The idea of a simple utility function for replacing variables
      * with values in an message template, come from sprintfErrorMessage
      * function of Error_Raise package by Greg Beaver.
      *
@@ -416,7 +390,7 @@ function setStatus(pString)
      * Variables should simply be surrounded by % as in %varname%
      *
      * @param      string    $caption       (optional) message template
-     * @param      array     $args          (optional) associative array of 
+     * @param      array     $args          (optional) associative array of
      *                                      template var -> message text
      * @since      1.1
      * @access     public
