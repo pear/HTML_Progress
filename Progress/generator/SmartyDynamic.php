@@ -1,41 +1,55 @@
 <?php
-// +----------------------------------------------------------------------+
-// | PEAR :: HTML :: Progress                                             |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2004 The PHP Group                                |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 3.0 of the PHP license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available at through the world-wide-web at                           |
-// | http://www.php.net/license/3_0.txt.                                  |
-// | If you did not receive a copy of the PHP license and are unable to   |
-// | obtain it through the world-wide-web, please send a note to          |
-// | license@php.net so we can mail you a copy immediately.               |
-// +----------------------------------------------------------------------+
-// | Author: Laurent Laville <pear@laurent-laville.org>                   |
-// +----------------------------------------------------------------------+
-//
-// $Id$
-
 /**
  * The ActionDisplay class provides a dynamic form rendering
  * with Smarty template engine.
  *
- * @version    1.2.0
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @access     public
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category   HTML
  * @package    HTML_Progress
  * @subpackage Progress_UI
+ * @author     Laurent Laville <pear@laurent-laville.org>
+ * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @version    CVS: $Id$
+ * @link       http://pear.php.net/package/HTML_Progress
  */
 
 require_once 'HTML/QuickForm/Renderer/Array.php';
 // fix this if your Smarty is somewhere else
 require_once 'Smarty.class.php';
 
+/**
+ * The ActionDisplay class provides a dynamic form rendering
+ * with Smarty template engine.
+ *
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category   HTML
+ * @package    HTML_Progress
+ * @subpackage Progress_UI
+ * @author     Laurent Laville <pear@laurent-laville.org>
+ * @copyright  1997-2005 The PHP Group
+ * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @version    Release: @package_version@
+ * @link       http://pear.php.net/package/HTML_Progress
+ */
+
 class ActionDisplay extends HTML_QuickForm_Action_Display
 {
-    function _renderForm(&$page) 
+    function _renderForm(&$page)
     {
         $pageName = $page->getAttribute('name');
         $tabPreview = array_slice ($page->controller->_tabs, -2, 1);
@@ -64,7 +78,7 @@ class ActionDisplay extends HTML_QuickForm_Action_Display
         $page->accept($renderer);
         $tpl->assign('form', $renderer->toArray());
 
-        // capture the array stucture 
+        // capture the array stucture
         // (only for showing in sample template)
         ob_start();
         print_r($renderer->toArray());
