@@ -1,11 +1,11 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
  * Observer ProgressBar example. Uses a custom observer class.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress.php';
@@ -16,7 +16,7 @@ class MyObserver extends HTML_Progress_Observer
 {
     var $_console;
     var $_out;
-    
+
     function MyObserver($out)
     {
         $this->_console = '.' . DIRECTORY_SEPARATOR . 'observer_complex.log';
@@ -37,7 +37,7 @@ class MyObserver extends HTML_Progress_Observer
             error_log("$msg \n", 3, $this->_console);
         } else {
             print ("$msg <br />\n");
-	}
+    }
     }
 }
 
@@ -46,7 +46,7 @@ $bar = new HTML_Progress();
 $bar->setAnimSpeed(50);
 $bar->setIncrement(5);
 
-// 3. Creates and attach a listener 
+// 3. Creates and attach a listener
 $observer = new MyObserver($_GET['out']);
 
 $ok = $bar->addListener($observer);
@@ -73,14 +73,11 @@ $ui->setComment('Simple Observer ProgressBar example');
 </script>
 </head>
 <body>
-<h1><?php echo basename(__FILE__); ?></h1>
 
-<?php 
-echo $bar->toHTML(); 
+<?php
+echo $bar->toHtml();
 $bar->run();
 ?>
-
-<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>
 
 </body>
 </html>

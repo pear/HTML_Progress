@@ -1,12 +1,12 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
  * Observer ProgressBar example. Uses a custom observer class
  * that handled progress of the second bar.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress.php';
@@ -23,7 +23,7 @@ class Bar1Observer extends HTML_Progress_Observer
     function notify($event)
     {
         global $bar2;
-        
+
         if (is_array($event)) {
             $log = isset($event['log']) ? $event['log'] : "undefined event id.";
             $val = isset($event['value']) ? $event['value'] : "unknown value";
@@ -69,32 +69,32 @@ $ui1 =& $bar1->getUI();
 $ui1->setComment('Complex Observer ProgressBar example');
 $ui1->setTabOffset(1);
 $ui1->setProgressAttributes(array(
-        'background-color' => '#e0e0e0'
-        ));        
+    'background-color' => '#e0e0e0'
+));
 $ui1->setStringAttributes(array(
-        'valign' => 'left',
-        'color'  => 'red',
-        'background-color' => 'lightblue'
-        ));
+    'valign' => 'left',
+    'color'  => 'red',
+    'background-color' => 'lightblue'
+));
 
 $ui2 =& $bar2->getUI();
 $ui2->setTabOffset(1);
 $ui2->setBorderAttributes(array(
-        'width' => 1,
-        'style' => 'solid',
-        'color' => 'navy'
-        ));
+    'width' => 1,
+    'style' => 'solid',
+    'color' => 'navy'
+));
 $ui2->setCellAttributes(array(
-        'active-color' => '#3874B4',
-        'inactive-color' => '#EEEECC'
-        ));        
+    'active-color' => '#3874B4',
+    'inactive-color' => '#EEEECC'
+));
 $ui2->setStringAttributes(array(
-        'width'  => '100',
-        'align'  => 'center',
-        'valign' => 'right',
-        'color'  => 'yellow',
-        'background-color' => 'lightblue'
-        ));
+    'width'  => '100',
+    'align'  => 'center',
+    'valign' => 'right',
+    'color'  => 'yellow',
+    'background-color' => 'lightblue'
+));
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -126,15 +126,14 @@ table.container {
 </script>
 </head>
 <body>
-<h1><?php echo basename(__FILE__); ?></h1>
 
 <table class="container">
 <tr>
     <td width="25%" align="center">
-<?php echo $bar1->toHTML(); ?>
+<?php echo $bar1->toHtml(); ?>
     </td>
     <td width="25%" align="center">
-<?php echo $bar2->toHTML(); ?>
+<?php echo $bar2->toHtml(); ?>
     </td>
 </tr>
 </table>
@@ -150,8 +149,6 @@ do {
     }
 } while($bar2->getPercentComplete() < 1);
 ?>
-
-<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>
 
 </body>
 </html>
