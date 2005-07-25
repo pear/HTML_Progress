@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
-<!-- $Revision: 1.4 $ -->
+<!-- $Revision: 1.5 $ -->
 
 <refentry id="{@id}">
 
@@ -13,10 +13,10 @@
  <refsynopsisdiv>
   <funcsynopsis>
    <funcsynopsisinfo>
-    require_once 'HTML/Progress.php'; 
+    require_once 'HTML/Progress.php';
    </funcsynopsisinfo>
    <funcprototype>
-    <funcdef>float <function>HTML_Progress::getPercentComplete</function></funcdef>
+    <funcdef>mixed <function>HTML_Progress::getPercentComplete</function></funcdef>
     <void/>
    </funcprototype>
   </funcsynopsis>
@@ -27,6 +27,26 @@
   <title>Description</title>
   <para>
    This method is used to retrieve degree of completion from 0.00 to 1.00
+   or also from 0 to 100.
+  </para>
+ </refsect1>
+
+ <refsect1 id="{@id parameter}">
+  <title>Parameter</title>
+  <para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      <type>boolean</type>
+      <parameter>$float</parameter>
+     </term>
+     <listitem>
+      <para>
+       the return format (float or integer).
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
   </para>
  </refsect1>
 
