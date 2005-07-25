@@ -1,29 +1,34 @@
 <?php
-@include '../include_path.php';
 /**
  * Default Monitor ProgressBar example with logging events.
  *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress/monitor.php';
 
-function logger($progressValue, &$obj)
+function logger($progressValue, &$bar)
 {
     include_once 'Log.php';
     $logger = &Log::singleton('file', 'monitor.log', $_SERVER['REMOTE_ADDR']);
+    $percent = $bar->getPercentComplete(false);
 
     if (fmod($progressValue,25) == 0) {
-        $logger->info("$progressValue % has been reached");
+        $logger->info("$percent% has been reached");
     } else {
-        $logger->debug("Progress ... $progressValue %");
+        $logger->debug("Progress ... $progressValue");
     }
 }
 
 $monitor = new HTML_Progress_Monitor();
 $monitor->setProgressHandler('logger');
+
+$pb = &$monitor->getProgressElement();
+$dm = &$pb->getDM();
+$dm->setMaximum(300);
 ?>
 <html>
 <head>
@@ -31,8 +36,8 @@ $monitor->setProgressHandler('logger');
 <style type="text/css">
 <!--
 .progressStatus {
-	color:#000000; 
-	font-size:10px;
+    color:#000000;
+    font-size:10px;
 }
 <?php echo $monitor->getStyle(); ?>
 // -->
@@ -44,14 +49,11 @@ $monitor->setProgressHandler('logger');
 </script>
 </head>
 <body>
-<h1><?php echo basename(__FILE__); ?></h1>
 
-<?php 
+<?php
 echo $monitor->toHtml();
 $monitor->run();
 ?>
-
-<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>
 
 </body>
 </html>
