@@ -1,27 +1,27 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
  * Horizontal ProgressBar in indeterminate mode
  * using the Progress_Monitor V2 solution (with QF renderer).
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress/monitor.php';
 
-function myProgressHandler($progressValue, &$obj)
+function myProgressHandler($progressValue, &$bar)
 {
+    global $monitor;
     static $c;
-    
-    if (!isset($c)) { 
+
+    if (!isset($c)) {
         $c = 0;
     }
     $c += 16;
-    $obj->setCaption("completed $c out of 400");
+    $monitor->setCaption("completed $c out of 400");
 
-    $bar =& $obj->getProgressElement();
     $bar->sleep();
     /* rules to determine when switch back from indeterminate to determinate mode */
     if ($c >= 240 && $bar->isIndeterminate()) {
@@ -38,26 +38,23 @@ function myProgressHandler($progressValue, &$obj)
     }
 }
 
-$monitor = new HTML_Progress_Monitor('frmMonitor', 
-    array( 'button' => array('style' => 'width:80px;'), 
+$monitor = new HTML_Progress_Monitor('frmMonitor',
+    array( 'button' => array('style' => 'width:80px;'),
            'title'  => 'Progress ...' )
 );
-
-// your custom user process goes here !
-$monitor->setProgressHandler('myProgressHandler');
 
 // Attach a progress bar custom model
 $progress = new HTML_Progress();
 $ui = & $progress->getUI();
 $ui->setProgressAttributes(array(
-	'background-color' => '#e0e0e0'
-));        
+    'background-color' => '#e0e0e0'
+));
 $ui->setStringAttributes(array(
-	'color'  => '#996',
-	'background-color' => '#CCCC99'
-));        
+    'color'  => '#996',
+    'background-color' => '#CCCC99'
+));
 $ui->setCellAttributes(array(
-	'active-color' => '#996'
+    'active-color' => '#996'
 ));
 
 $progress->setAnimSpeed(100);
@@ -65,6 +62,9 @@ $progress->setIncrement(10);
 $progress->setStringPainted(true);     // get space for the string
 $progress->setString("");              // but don't paint it
 $progress->setIndeterminate(true);     // Progress start in indeterminate mode
+// your custom user process goes here !
+$progress->setProgressHandler('myProgressHandler');
+
 $monitor->setProgressElement($progress);
 ?>
 <html>
@@ -73,18 +73,18 @@ $monitor->setProgressElement($progress);
 <style type="text/css">
 <!--
 .progressStatus {
-	color:#000000; 
-	font-size:10px;
+    color:#000000;
+    font-size:10px;
 }
 
 body {
-	background-color: #444444;
-	color: #EEEEEE;
-	font-family: Verdana, Arial;
+    background-color: #444444;
+    color: #EEEEEE;
+    font-family: Verdana, Arial;
 }
 
 a:visited, a:active, a:link {
-	color: yellow;
+    color: yellow;
 }
 
 <?php echo $monitor->getStyle(); ?>
@@ -97,31 +97,27 @@ a:visited, a:active, a:link {
 </script>
 </head>
 <body>
-<h1><?php echo basename(__FILE__); ?></h1>
 
-<?php 
+<?php
 $renderer =& HTML_QuickForm::defaultRenderer();
 $renderer->setFormTemplate('
-    <table width="450" border="0" cellpadding="3" cellspacing="2" bgcolor="#CCCC99">
-    <form{attributes}>{content}
-    </form>
-    </table>
+<form{attributes}>
+  <table width="450" border="0" cellpadding="3" cellspacing="2" bgcolor="#CCCC99">
+  {content}
+  </table>
+</form>
 ');
 $renderer->setHeaderTemplate('
-    <tr>
-	<td style="white-space:nowrap;background:#996;color:#ffc;" align="left" colspan="2"><b>{header}</b></td>
-    </tr>
+  <tr>
+    <td style="white-space:nowrap;background:#996;color:#ffc;" align="left" colspan="2"><b>{header}</b></td>
+  </tr>
 ');
 $monitor->accept($renderer);
 
 // Display progress monitor dialog box
 echo $renderer->toHtml();
-
-
-$monitor->run();   
+$monitor->run();
 ?>
-
-<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>
 
 </body>
 </html>

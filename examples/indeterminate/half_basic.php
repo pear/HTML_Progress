@@ -1,12 +1,12 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
  * Horizontal ProgressBar in indeterminate mode
  * without using the Progress_Monitor V2 solution.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress.php';
@@ -16,16 +16,16 @@ require_once 'HTML/Progress.php';
  *  Parameters
  *  1. current value of the progress bar
  *  2. the progress bar (object) itself
- */ 
+ */
 function myProgressHandler($progressValue, &$bar)
 {
     static $c;
-    
-    if (!isset($c)) { 
+
+    if (!isset($c)) {
         $c = time();
     }
 
-    // wait a bit ... 
+    // wait a bit ...
     $bar->sleep();
 
     /* rules to determine when switch back from indeterminate to determinate mode */
@@ -43,14 +43,14 @@ function myProgressHandler($progressValue, &$bar)
 $progress = new HTML_Progress();
 $ui = & $progress->getUI();
 $ui->setProgressAttributes(array(
-	'background-color' => '#e0e0e0'
-));        
+    'background-color' => '#e0e0e0'
+));
 $ui->setStringAttributes(array(
-	'color'  => '#996',
-	'background-color' => '#CCCC99'
-));        
+    'color'  => '#996',
+    'background-color' => '#CCCC99'
+));
 $ui->setCellAttributes(array(
-	'active-color' => '#996'
+    'active-color' => '#996'
 ));
 
 $progress->setAnimSpeed(200);
@@ -66,13 +66,13 @@ $progress->setProgressHandler('myProgressHandler');
 <style type="text/css">
 <!--
 body {
-	background-color: #CCCC99;
-	color: #996;
-	font-family: Verdana, Arial;
+    background-color: #CCCC99;
+    color: #996;
+    font-family: Verdana, Arial;
 }
 
 a:visited, a:active, a:link {
-	color: yellow;
+    color: yellow;
 }
 
 <?php echo $progress->getStyle(); ?>
@@ -85,15 +85,11 @@ a:visited, a:active, a:link {
 </script>
 </head>
 <body>
-<h1><?php echo basename(__FILE__); ?></h1>
 
-<?php 
-echo $progress->toHtml(); 
-
+<?php
+echo $progress->toHtml();
 $progress->run();
 ?>
-
-<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>
 
 </body>
 </html>
