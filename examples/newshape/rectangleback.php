@@ -1,11 +1,11 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
  * Reverse Rectangle Progress example.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress.php';
@@ -15,15 +15,15 @@ $bar->setAnimSpeed(100);
 $bar->setIncrement(10);
 
 $ui =& $bar->getUI();
+$ui->setTab('    ');
 $ui->setFillWay('reverse');
 $ui->setOrientation(HTML_PROGRESS_POLYGONAL);
 $ui->setCellAttributes(array(
-        'width'  => 10,
-        'height' => 10,
-        'active-color'   => 'red',
-        'inactive-color' => 'orange',
-        )
-);
+    'width'  => 10,
+    'height' => 10,
+    'active-color'   => 'red',
+    'inactive-color' => 'orange',
+));
 $ui->setCellCoordinates(15,3);         // Rectangle 15x3
 ?>
 <html>
@@ -34,13 +34,13 @@ $ui->setCellCoordinates(15,3);         // Rectangle 15x3
 <?php echo $bar->getStyle(); ?>
 
 body {
-	background-color: #FFFFFF;
-	color: #000000;
-	font-family: Verdana, Arial;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: Verdana, Arial;
 }
 
 a:visited, a:active, a:link {
-	color: navy;
+    color: navy;
 }
 // -->
 </style>
@@ -51,14 +51,11 @@ a:visited, a:active, a:link {
 </script>
 </head>
 <body>
-<h1><?php echo basename(__FILE__); ?></h1>
 
-<?php 
-echo $bar->toHtml(); 
+<?php
+echo $bar->toHtml();
 $bar->run();
 ?>
-
-<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>
 
 </body>
 </html>
