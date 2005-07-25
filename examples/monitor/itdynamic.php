@@ -1,12 +1,12 @@
 <?php
-@include '../include_path.php';
 /**
- * Monitor example using ITDynamic QF renderer, and 
+ * Monitor example using ITDynamic QF renderer, and
  * a class-method as user callback.
  *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress/monitor.php';
@@ -18,7 +18,7 @@ class Progress_ITDynamic extends HTML_Progress_UI
     function Progress_ITDynamic()
     {
         parent::HTML_Progress_UI();
-        
+
         $this->setCellCount(20);
         $this->setProgressAttributes('background-color=#EEE');
         $this->setStringAttributes('background-color=#EEE color=navy');
@@ -28,8 +28,10 @@ class Progress_ITDynamic extends HTML_Progress_UI
 
 class my2ClassHandler
 {
-    function my1Method($progressValue, &$obj)
+    function my1Method($progressValue, &$bar)
     {
+        global $monitor;
+
         switch ($progressValue) {
          case 10:
             $pic = 'picture1.jpg';
@@ -44,27 +46,27 @@ class my2ClassHandler
             $pic = null;
         }
         if (!is_null($pic)) {
-            $obj->setCaption('upload <b>%file%</b> in progress ... Start at %percent%%',
-                              array('file'=>$pic, 'percent'=>$progressValue)
-                             );
+            $monitor->setCaption('upload <b>%file%</b> in progress ... Start at %percent%%',
+                                 array('file'=>$pic, 'percent'=>$progressValue)
+                                );
         }
-        $bar =& $obj->getProgressElement();
         $bar->sleep();  // slow animation because we do noting else
     }
 }
+$obs = new my2ClassHandler();
 
 $monitor = new HTML_Progress_Monitor('frmMonitor5', array(
     'title'  => 'Upload your pictures',
     'start'  => 'Upload',
     'cancel' => 'Stop',
     'button' => array('style' => 'width:80px;')
-    )
-);
-$monitor->setProgressHandler(array('my2ClassHandler','my1Method'));
+));
 
 $progress = new HTML_Progress();
 $progress->setUI('Progress_ITDynamic');
 $progress->setAnimSpeed(50);
+$progress->setProgressHandler(array(&$obs, 'my1Method'));
+
 $monitor->setProgressElement($progress);
 
 $tpl =& new HTML_Template_ITX('../templates');
@@ -87,7 +89,6 @@ $monitor->accept($renderer);
 // Display progress uploader dialog box
 $tpl->show();
 
-$monitor->run();   
+$monitor->run();
 
-echo '<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>';
 ?>

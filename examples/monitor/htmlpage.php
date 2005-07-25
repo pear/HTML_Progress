@@ -1,5 +1,4 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
  * PEAR::HTML_Page package made it easy to build
  * a very simple ProgressBar Monitor.
@@ -7,6 +6,7 @@
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress/monitor.php';
@@ -18,7 +18,7 @@ $p = new HTML_Page(array(
         'doctype'  => "XHTML 1.0 Strict",
         'language' => 'en',
         'cache'    => 'false'
-     ));        
+     ));
 
 $p->setTitle("PEAR::HTML_Progress - Simple Monitor demo");
 $p->setMetaData("author", "Laurent Laville");
@@ -39,9 +39,6 @@ $p->addBodyContent(
     );
 $p->addBodyContent(
     $progressMonitor->toHtml()
-    );
-$p->addBodyContent(
-    '<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>'
     );
 $p->display();
 

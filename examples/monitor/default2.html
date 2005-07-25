@@ -32,133 +32,334 @@
 
 <a name="intro">
 <h2><img src="../images/info.gif"/> Introduction</h2>
-		
+
 <p>This example requires :
 <ul>
-<li>PEAR::HTML_Progress_Monitor 1.2.0RC3 or better (see source at line 11).</li>
+<li>PEAR::HTML_Progress_Monitor 1.2.2 or better (see source at line 11).</li>
 </ul>
 </p>
 
 <p>Be aware that:
 <ul>
-<li>HTML_Progress_Monitor has dependencies (HTML_CSS 0.3.4+, HTML_QuickForm 3.1.1+) </li>
-<li>This example requires PEAR::Log (1.8.0+) </li>
+<li>HTML_Progress_Monitor has dependencies (HTML_QuickForm 3.2.4+) </li>
+<li>This example requires PEAR::Log (1.8.7+) </li>
 </ul>
 </p>
 
 <hr/>
-<p><b>This example will logs a default ProgressBar Monitor, and 
+<p><b>This example will logs a default ProgressBar Monitor, and
 used a default QuickForm renderer without any form template customizations. </b></p>
 
-<p>User callback 'logger' (defined on lines 13 to 23) which write into a file through PEAR::Log
-was attached on progress bar at line 26.</p>
+<p>User callback 'logger' (defined on lines 13 to 24) which write into a file through PEAR::Log
+was attached on progress bar at line 27.</p>
 
 <p>Here are the contents of that PEAR::Log file :
 <form>
 <textarea readOnly="true" rows="10" cols="80" wrap="virtual">
-Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 1 %
-Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 2 %
-Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 3 %
-Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 4 %
-Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 5 %
-Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 6 %
-Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 7 %
-Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 8 %
-Jun 06 19:38:39 127.0.0.1 [debug] Progress ... 9 %
-Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 10 %
-Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 11 %
-Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 12 %
-Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 13 %
-Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 14 %
-Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 15 %
-Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 16 %
-Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 17 %
-Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 18 %
-Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 19 %
-Jun 06 19:38:40 127.0.0.1 [debug] Progress ... 20 %
-Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 21 %
-Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 22 %
-Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 23 %
-Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 24 %
-Jun 06 19:38:41 127.0.0.1 [info] 25 % has been reached
-Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 26 %
-Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 27 %
-Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 28 %
-Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 29 %
-Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 30 %
-Jun 06 19:38:41 127.0.0.1 [debug] Progress ... 31 %
-Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 32 %
-Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 33 %
-Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 34 %
-Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 35 %
-Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 36 %
-Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 37 %
-Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 38 %
-Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 39 %
-Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 40 %
-Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 41 %
-Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 42 %
-Jun 06 19:38:42 127.0.0.1 [debug] Progress ... 43 %
-Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 44 %
-Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 45 %
-Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 46 %
-Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 47 %
-Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 48 %
-Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 49 %
-Jun 06 19:38:43 127.0.0.1 [info] 50 % has been reached
-Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 51 %
-Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 52 %
-Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 53 %
-Jun 06 19:38:43 127.0.0.1 [debug] Progress ... 54 %
-Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 55 %
-Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 56 %
-Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 57 %
-Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 58 %
-Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 59 %
-Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 60 %
-Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 61 %
-Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 62 %
-Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 63 %
-Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 64 %
-Jun 06 19:38:44 127.0.0.1 [debug] Progress ... 65 %
-Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 66 %
-Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 67 %
-Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 68 %
-Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 69 %
-Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 70 %
-Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 71 %
-Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 72 %
-Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 73 %
-Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 74 %
-Jun 06 19:38:45 127.0.0.1 [info] 75 % has been reached
-Jun 06 19:38:45 127.0.0.1 [debug] Progress ... 76 %
-Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 77 %
-Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 78 %
-Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 79 %
-Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 80 %
-Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 81 %
-Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 82 %
-Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 83 %
-Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 84 %
-Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 85 %
-Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 86 %
-Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 87 %
-Jun 06 19:38:46 127.0.0.1 [debug] Progress ... 88 %
-Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 89 %
-Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 90 %
-Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 91 %
-Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 92 %
-Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 93 %
-Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 94 %
-Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 95 %
-Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 96 %
-Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 97 %
-Jun 06 19:38:47 127.0.0.1 [debug] Progress ... 98 %
-Jun 06 19:38:48 127.0.0.1 [debug] Progress ... 99 %
-Jun 06 19:38:48 127.0.0.1 [info] 100 % has been reached
+Jul 24 23:25:46 127.0.0.1 [info] 0% has been reached
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 1
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 2
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 3
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 4
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 5
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 6
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 7
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 8
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 9
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 10
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 11
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 12
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 13
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 14
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 15
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 16
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 17
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 18
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 19
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 20
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 21
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 22
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 23
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 24
+Jul 24 23:25:46 127.0.0.1 [info] 8% has been reached
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 26
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 27
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 28
+Jul 24 23:25:46 127.0.0.1 [debug] Progress ... 29
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 30
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 31
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 32
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 33
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 34
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 35
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 36
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 37
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 38
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 39
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 40
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 41
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 42
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 43
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 44
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 45
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 46
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 47
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 48
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 49
+Jul 24 23:25:47 127.0.0.1 [info] 16% has been reached
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 51
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 52
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 53
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 54
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 55
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 56
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 57
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 58
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 59
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 60
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 61
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 62
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 63
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 64
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 65
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 66
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 67
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 68
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 69
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 70
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 71
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 72
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 73
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 74
+Jul 24 23:25:47 127.0.0.1 [info] 25% has been reached
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 76
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 77
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 78
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 79
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 80
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 81
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 82
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 83
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 84
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 85
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 86
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 87
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 88
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 89
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 90
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 91
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 92
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 93
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 94
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 95
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 96
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 97
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 98
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 99
+Jul 24 23:25:47 127.0.0.1 [info] 33% has been reached
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 101
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 102
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 103
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 104
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 105
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 106
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 107
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 108
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 109
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 110
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 111
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 112
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 113
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 114
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 115
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 116
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 117
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 118
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 119
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 120
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 121
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 122
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 123
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 124
+Jul 24 23:25:47 127.0.0.1 [info] 41% has been reached
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 126
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 127
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 128
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 129
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 130
+Jul 24 23:25:47 127.0.0.1 [debug] Progress ... 131
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 132
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 133
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 134
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 135
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 136
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 137
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 138
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 139
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 140
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 141
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 142
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 143
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 144
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 145
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 146
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 147
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 148
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 149
+Jul 24 23:25:48 127.0.0.1 [info] 50% has been reached
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 151
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 152
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 153
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 154
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 155
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 156
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 157
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 158
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 159
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 160
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 161
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 162
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 163
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 164
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 165
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 166
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 167
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 168
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 169
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 170
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 171
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 172
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 173
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 174
+Jul 24 23:25:48 127.0.0.1 [info] 58% has been reached
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 176
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 177
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 178
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 179
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 180
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 181
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 182
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 183
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 184
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 185
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 186
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 187
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 188
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 189
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 190
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 191
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 192
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 193
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 194
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 195
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 196
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 197
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 198
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 199
+Jul 24 23:25:48 127.0.0.1 [info] 66% has been reached
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 201
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 202
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 203
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 204
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 205
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 206
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 207
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 208
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 209
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 210
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 211
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 212
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 213
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 214
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 215
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 216
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 217
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 218
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 219
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 220
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 221
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 222
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 223
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 224
+Jul 24 23:25:48 127.0.0.1 [info] 75% has been reached
+Jul 24 23:25:48 127.0.0.1 [debug] Progress ... 226
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 227
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 228
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 229
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 230
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 231
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 232
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 233
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 234
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 235
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 236
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 237
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 238
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 239
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 240
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 241
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 242
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 243
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 244
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 245
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 246
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 247
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 248
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 249
+Jul 24 23:25:49 127.0.0.1 [info] 83% has been reached
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 251
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 252
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 253
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 254
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 255
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 256
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 257
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 258
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 259
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 260
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 261
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 262
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 263
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 264
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 265
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 266
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 267
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 268
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 269
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 270
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 271
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 272
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 273
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 274
+Jul 24 23:25:49 127.0.0.1 [info] 91% has been reached
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 276
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 277
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 278
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 279
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 280
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 281
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 282
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 283
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 284
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 285
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 286
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 287
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 288
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 289
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 290
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 291
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 292
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 293
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 294
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 295
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 296
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 297
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 298
+Jul 24 23:25:49 127.0.0.1 [debug] Progress ... 299
+Jul 24 23:25:49 127.0.0.1 [info] 100% has been reached
 </textarea>
 </form>
-	
+
 <p>[<a href="#top">Top</a>]</p>
 
 
@@ -176,7 +377,7 @@ None. All default values are used.
 <p><img src="../screenshots/monitor_default1.png"/></p>
 
 <p>[<a href="#top">Top</a>]</p>
-		
+
 
 <a name="source">
 <h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>

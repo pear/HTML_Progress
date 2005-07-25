@@ -1,11 +1,11 @@
 <?php
-@include '../include_path.php';
 /**
  * Simple Default Monitor ProgressBar example.
  *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress/monitor.php';
@@ -23,8 +23,8 @@ $bar->setIncrement(10);
 <style type="text/css">
 <!--
 .progressStatus {
-	color:#000000; 
-	font-size:10px;
+    color:#000000;
+    font-size:10px;
 }
 <?php echo $monitor->getStyle(); ?>
 // -->
@@ -36,14 +36,11 @@ $bar->setIncrement(10);
 </script>
 </head>
 <body>
-<h1><?php echo basename(__FILE__); ?></h1>
 
-<?php 
+<?php
 echo $monitor->toHtml();
-$monitor->run();   
+$monitor->run();
 ?>
-
-<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>
 
 </body>
 </html>
