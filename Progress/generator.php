@@ -1,33 +1,25 @@
 <?php
-// +----------------------------------------------------------------------+
-// | PEAR :: HTML :: Progress                                             |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2004 The PHP Group                                |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 3.0 of the PHP license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available at through the world-wide-web at                           |
-// | http://www.php.net/license/3_0.txt.                                  |
-// | If you did not receive a copy of the PHP license and are unable to   |
-// | obtain it through the world-wide-web, please send a note to          |
-// | license@php.net so we can mail you a copy immediately.               |
-// +----------------------------------------------------------------------+
-// | Author: Laurent Laville <pear@laurent-laville.org>                   |
-// +----------------------------------------------------------------------+
-//
-// $Id$
-
 /**
- * The HTML_Progress_Generator class provides an easy way to 
- * dynamic build Progress bar, show a preview, 
+ * The HTML_Progress_Generator class provides an easy way to
+ * dynamic build Progress bar, show a preview,
  * and save php/css code for a later reuse.
  *
- * @version    1.2.0
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @access     public
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category   HTML
  * @package    HTML_Progress
  * @subpackage Progress_UI
+ * @author     Laurent Laville <pear@laurent-laville.org>
+ * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @version    CVS: $Id$
+ * @link       http://pear.php.net/package/HTML_Progress
  */
 
 require_once 'HTML/QuickForm/Controller.php';
@@ -37,9 +29,31 @@ require_once 'HTML/QuickForm/Action/Display.php';
 require_once 'HTML/QuickForm/Action/Direct.php';
 require_once 'HTML/Progress.php';
 require_once 'HTML/Progress/generator/pages.php';
-require_once 'HTML/CSS.php';
 
-class HTML_Progress_Generator extends HTML_QuickForm_Controller 
+/**
+ * The HTML_Progress_Generator class provides an easy way to
+ * dynamic build Progress bar, show a preview,
+ * and save php/css code for a later reuse.
+ *
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category   HTML
+ * @package    HTML_Progress
+ * @subpackage Progress_UI
+ * @author     Laurent Laville <pear@laurent-laville.org>
+ * @copyright  1997-2005 The PHP Group
+ * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @version    Release: @package_version@
+ * @link       http://pear.php.net/package/HTML_Progress
+ */
+
+class HTML_Progress_Generator extends HTML_QuickForm_Controller
 {
     /**#@+
      * Attributes of wizard form.
@@ -84,16 +98,16 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
      *   $generator = new HTML_Progress_Generator();
      *   </code>
      *
-     * o Creates a progress bar generator wizard with 
+     * o Creates a progress bar generator wizard with
      *   customized actions: progress bar preview, form rendering, buttons manager
      *   <code>
      *   $controllerName = 'myPrivateGenerator';
      *   $attributes = array(
-     *        'preview' => name of a HTML_QuickForm_Action instance 
+     *        'preview' => name of a HTML_QuickForm_Action instance
      *                     (default 'ActionPreview', see 'HTML/Progress/generator/preview.php')
      *        'display' => name of a HTML_QuickForm_Action_Display instance
      *                     (default 'ActionDisplay', see 'HTML/Progress/generator/default.php')
-     *        'process' => name of a HTML_QuickForm_Action instance 
+     *        'process' => name of a HTML_QuickForm_Action instance
      *                     (default 'ActionProcess', see 'HTML/Progress/generator/process.php')
      *   );
      *   $generator = new HTML_Progress_Generator($controllerName, $attributes);
@@ -181,7 +195,7 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
                 'autosize'      => true,
                 'progresssize'  => array('bgcolor' => '#FFFFFF'),
                 'rAnimSpeed'    => 100,
-    
+
                 'borderpainted' => false,
                 'borderclass'   => 'progressBarBorder',
                 'borderstyle'   => array('style' => 'solid', 'width' => 0, 'color' => '#000000'),
@@ -218,7 +232,7 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
      * Adds all necessary tabs to the given page object.
      *
      * @param      object    $page          Page where to put the button
-     * @param      mixed     $attributes    (optional) Either a typical HTML attribute string 
+     * @param      mixed     $attributes    (optional) Either a typical HTML attribute string
      *                                      or an associative array.
      * @return     void
      * @since      1.1
@@ -260,7 +274,7 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
      *
      * @param      object    $page          Page where to put the button
      * @param      array     $buttons       Key/label of each button/event to handle
-     * @param      mixed     $attributes    (optional) Either a typical HTML attribute string 
+     * @param      mixed     $attributes    (optional) Either a typical HTML attribute string
      *                                      or an associative array.
      * @return     void
      * @since      1.1
@@ -301,8 +315,8 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
                 $type = 'submit';
                 $attrs = $confirm;
             } elseif ($event == 'reset') {
-            	$type = 'reset';
-            	$attrs = $confirm;
+                $type = 'reset';
+                $attrs = $confirm;
             } else {
                 $type = 'submit';
                 $attrs = $attributes;
@@ -314,9 +328,9 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
 
     /**
      * Enables certain buttons for a page.
-     * 
+     *
      * Buttons [ = events] : back, next, cancel, reset, apply, help
-     * 
+     *
      * @param      object    $page          Page where you want to activate buttons
      * @param      array     $events        (optional) List of buttons
      *
@@ -324,8 +338,8 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        disableButton()
-     */  
-    function enableButton(&$page, $events = array()) 
+     */
+    function enableButton(&$page, $events = array())
     {
         if (!is_a($page, 'HTML_QuickForm_Page')) {
             return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
@@ -360,9 +374,9 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
 
     /**
      * Disables certain buttons for a page.
-     * 
+     *
      * Buttons [ = events] : back, next, cancel, reset, apply, help
-     * 
+     *
      * @param      object    $page          Page where you want to activate buttons
      * @param      array     $events        (optional) List of buttons
      *
@@ -370,8 +384,8 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        enableButton()
-     */  
-    function disableButton(&$page, $events = array()) 
+     */
+    function disableButton(&$page, $events = array())
     {
         if (!is_a($page, 'HTML_QuickForm_Page')) {
             return HTML_Progress::raiseError(HTML_PROGRESS_ERROR_INVALID_INPUT, 'exception',
@@ -407,25 +421,26 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
     /**
      * Creates a progress bar with options choosen on all wizard tabs.
      *
+     * @return     object    HTML_Progress instance
      * @since      1.1
      * @access     public
      */
     function createProgressBar()
     {
         $progress = $this->exportValues();
-        
+
         $this->_progress->setIdent('PB1');
         $this->_progress->setAnimSpeed(intval($progress['rAnimSpeed']));
 
         if ($progress['model'] != '') {
             $this->_progress->setModel($progress['model'], 'iniCommented');
             $this->_progress->setIncrement(10);
-            $ui =& $this->_progress->getUI();      
+            $ui =& $this->_progress->getUI();
         } else {
             $this->_progress->setBorderPainted(($progress['borderpainted'] == '1'));
             $this->_progress->setStringPainted(($progress['stringpainted'] == '1'));
-            $ui =& $this->_progress->getUI();      
-        
+            $ui =& $this->_progress->getUI();
+
             $structure = array();
 
             /* Page 1: Progress attributes **************************************************/
@@ -538,7 +553,7 @@ class HTML_Progress_Generator extends HTML_QuickForm_Controller
             }
             $ui->setStringAttributes($structure['string']);
 
-	} // end-if-no-model
+        } // end-if-no-model
 
         return $this->_progress;
     }

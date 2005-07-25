@@ -1,36 +1,49 @@
 <?php
-// +----------------------------------------------------------------------+
-// | PEAR :: HTML :: Progress                                             |
-// +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2004 The PHP Group                                |
-// +----------------------------------------------------------------------+
-// | This source file is subject to version 3.0 of the PHP license,       |
-// | that is bundled with this package in the file LICENSE, and is        |
-// | available at through the world-wide-web at                           |
-// | http://www.php.net/license/3_0.txt.                                  |
-// | If you did not receive a copy of the PHP license and are unable to   |
-// | obtain it through the world-wide-web, please send a note to          |
-// | license@php.net so we can mail you a copy immediately.               |
-// +----------------------------------------------------------------------+
-// | Author: Laurent Laville <pear@laurent-laville.org>                   |
-// +----------------------------------------------------------------------+
-//
-// $Id$
-
 /**
- * The HTML_Progress_UI class provides a basic look and feel 
+ * The HTML_Progress_UI class provides a basic look and feel
  * implementation of a progress bar.
  *
- * @version    1.2.0
- * @author     Laurent Laville <pear@laurent-laville.org>
- * @access     public
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category   HTML
  * @package    HTML_Progress
  * @subpackage Progress_UI
+ * @author     Laurent Laville <pear@laurent-laville.org>
+ * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @todo       better aligment renders when auto-size progress is false
+ * @version    CVS: $Id$
+ * @link       http://pear.php.net/package/HTML_Progress
  */
 
 require_once 'HTML/Common.php';
+
+/**
+ * The HTML_Progress_UI class provides a basic look and feel
+ * implementation of a progress bar.
+ *
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category   HTML
+ * @package    HTML_Progress
+ * @subpackage Progress_UI
+ * @author     Laurent Laville <pear@laurent-laville.org>
+ * @copyright  1997-2005 The PHP Group
+ * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+ * @version    Release: @package_version@
+ * @link       http://pear.php.net/package/HTML_Progress2
+ */
 
 class HTML_Progress_UI extends HTML_Common
 {
@@ -50,15 +63,15 @@ class HTML_Progress_UI extends HTML_Common
      * The default fill way is 'natural'.
      *
      * <ul>
-     * <li>since 0.5 : 'way'  =  bar fill way 
+     * <li>since 0.5 : 'way'  =  bar fill way
      *   <ul>
-     *     <li>with Progress Bar Horizontal, 
+     *     <li>with Progress Bar Horizontal,
      *              natural way is : left to right
      *        <br />reverse way is : right to left
-     *     <li>with Progress Bar Vertical, 
+     *     <li>with Progress Bar Vertical,
      *              natural way is : down to up
      *        <br />reverse way is : up to down
-     *     <li>with Progress Circle or Polygonal, 
+     *     <li>with Progress Circle or Polygonal,
      *              natural way is : clockwise
      *        <br />reverse way is : anticlockwise
      *   </ul>
@@ -112,7 +125,7 @@ class HTML_Progress_UI extends HTML_Common
     var $_ygrid;
 
     /**
-     * The progress bar's structure 
+     * The progress bar's structure
      *
      * <ul>
      * <li>['cell']
@@ -186,7 +199,7 @@ class HTML_Progress_UI extends HTML_Common
      *   $html = new HTML_Progress_UI();
      *   </code>
      *
-     * o Creates a natural horizontal progress bar with the specified cell count, 
+     * o Creates a natural horizontal progress bar with the specified cell count,
      *   which cannot be less than 1 (minimum), but has no maximum limit.
      *   <code>
      *   $html = new HTML_Progress_UI($cell);
@@ -236,7 +249,7 @@ class HTML_Progress_UI extends HTML_Common
         $this->_script = null;              // uses internal javascript code
 
         $this->_progress = array(
-            'cell' => 
+            'cell' =>
                 array(
                     'id' => "progressCell%01s",
                     'class' => "cell",
@@ -250,14 +263,14 @@ class HTML_Progress_UI extends HTML_Common
                     'height' => 20,
                     'spacing' => 2
                 ),
-            'border' => 
+            'border' =>
                 array(
                     'class' => "progressBarBorder",
                     'width' => 0,
                     'style' => "solid",
                     'color' => "#000000"
                 ),
-            'string' => 
+            'string' =>
                 array(
                     'id' => "installationProgress",
                     'width' => 50,
@@ -268,7 +281,7 @@ class HTML_Progress_UI extends HTML_Common
                     'align' => "right",
                     'valign' => "right"
                 ),
-            'progress' => 
+            'progress' =>
                 array(
                     'class' => "progressBar",
                     'background-color' => "#FFFFFF",
@@ -317,7 +330,7 @@ class HTML_Progress_UI extends HTML_Common
                       'expected' => 'integer',
                       'paramnum' => 1));
 
-        } elseif (($orient != HTML_PROGRESS_BAR_HORIZONTAL) && 
+        } elseif (($orient != HTML_PROGRESS_BAR_HORIZONTAL) &&
                   ($orient != HTML_PROGRESS_BAR_VERTICAL) &&
                   ($orient != HTML_PROGRESS_POLYGONAL) &&
                   ($orient != HTML_PROGRESS_CIRCLE)) {
@@ -341,16 +354,16 @@ class HTML_Progress_UI extends HTML_Common
 
             $this->_progress['cell']['width']  = $h;
             $this->_progress['cell']['height'] = $w;
-                                            
+
             $this->_updateProgressSize();   // updates the new size of progress bar
         }
     }
 
     /**
      * Returns 'natural' or 'reverse', depending of the fill way of progress bar.
-     * For horizontal progress bar, natural way is from left to right, and reverse 
+     * For horizontal progress bar, natural way is from left to right, and reverse
      * way is from right to left.
-     * For vertical progress bar, natural way is from down to up, and reverse 
+     * For vertical progress bar, natural way is from down to up, and reverse
      * way is from up to down.
      * The default fill way is 'natural'.
      *
@@ -447,7 +460,7 @@ class HTML_Progress_UI extends HTML_Common
     /**
      * Returns the common and private cell attributes. Assoc array (defaut) or string
      *
-     * @param      bool      $asString      (optional) whether to return the attributes as string 
+     * @param      bool      $asString      (optional) whether to return the attributes as string
      *
      * @return     mixed
      * @since      1.0
@@ -543,7 +556,7 @@ class HTML_Progress_UI extends HTML_Common
         } else {
             $this->_updateAttrArray($this->_progress['cell'], $this->_parseAttributes($attributes));
         }
-        
+
         $font_size   = $this->_progress['cell']['font-size'];
         $cell_width  = $this->_progress['cell']['width'];
         $cell_height = $this->_progress['cell']['height'];
@@ -617,7 +630,7 @@ class HTML_Progress_UI extends HTML_Common
                       'expected' => 'array',
                       'paramnum' => 3));
         }
-        
+
         if (count($coord) == 0) {
             // Computes all coordinates of a standard polygon (square or rectangle)
             $coord = $this->_computeCoordinates($xgrid, $ygrid);
@@ -649,7 +662,7 @@ class HTML_Progress_UI extends HTML_Common
         $this->_coordinates = $coord;
         $this->_xgrid = $xgrid;
         $this->_ygrid = $ygrid;
-        
+
         // auto-compute cell count
         $this->_cellCount = count($coord);
 
@@ -659,7 +672,7 @@ class HTML_Progress_UI extends HTML_Common
     /**
      * Returns the progress bar's border attributes. Assoc array (defaut) or string.
      *
-     * @param      bool      $asString      (optional) whether to return the attributes as string 
+     * @param      bool      $asString      (optional) whether to return the attributes as string
      *
      * @return     mixed
      * @since      1.0
@@ -716,7 +729,7 @@ class HTML_Progress_UI extends HTML_Common
     /**
      * Returns the string attributes. Assoc array (defaut) or string.
      *
-     * @param      bool      $asString      (optional) whether to return the attributes as string 
+     * @param      bool      $asString      (optional) whether to return the attributes as string
      *
      * @return     mixed
      * @since      1.0
@@ -782,7 +795,7 @@ class HTML_Progress_UI extends HTML_Common
     /**
      * Returns the progress attributes. Assoc array (defaut) or string.
      *
-     * @param      bool      $asString      (optional) whether to return the attributes as string 
+     * @param      bool      $asString      (optional) whether to return the attributes as string
      *
      * @return     mixed
      * @since      1.0
@@ -882,15 +895,15 @@ function setprogress(pIdent, pValue, pString, pDeterminate)
     }
     if (pValue == pDeterminate) {
         for (i=0; i < cellCount; i++) {
-            showCell(i, pIdent, "hidden");	
+            showCell(i, pIdent, "hidden");
         }
     }
     if ((pDeterminate > 0) && (pValue > 0)) {
         i = (pValue-1) % cellCount;
-        showCell(i, pIdent, "visible");	
+        showCell(i, pIdent, "visible");
     } else {
         for (i=pValue-1; i >=0; i--) {
-            showCell(i, pIdent, "visible");	
+            showCell(i, pIdent, "visible");
         }
     }
 }
@@ -916,7 +929,7 @@ function hideProgress(pIdent)
     setVisibility(pIdent+'progress', 'hidden');
 
     for (i=0; i < cellCount; i++) {
-        showCell(i, pIdent, "hidden");	
+        showCell(i, pIdent, "hidden");
     }
 }
 
@@ -924,10 +937,12 @@ JS;
         $cellAttr = $this->getCellAttributes();
         $attr = trim(sprintf($cellAttr['id'], '   '));
         $stringAttr = $this->getStringAttributes();
-        $js = str_replace("%cellCount%", $this->getCellCount(), $js);
-        $js = str_replace("%installationProgress%", $stringAttr['id'], $js);
-        $js = str_replace("%progressCell%", $attr, $js);
-         
+
+        $placeHolders = array('%cellCount%', '%installationProgress%', '%progressCell%');
+        $jsElement = array($this->getCellCount(), $stringAttr['id'], $attr);
+
+        $js = str_replace($placeHolders, $jsElement, $js);
+
         return $js;
     }
 
@@ -965,7 +980,7 @@ JS;
         /*
          - since version 0.5.0,
          - default javascript code comes from getScript() method
-         - but may be overrided by external file. 
+         - but may be overrided by external file.
         */
         $this->_script = $url;
     }
@@ -973,82 +988,89 @@ JS;
     /**
      * Get the cascading style sheet to put inline on HTML document
      *
-     * @return     object                   HTML_CSS instance
+     * @return     string
      * @since      0.2
      * @access     public
      * @tutorial   ui.getstyle.pkg
      * @author     Stefan Neufeind <pear.neufeind@speedpartner.de> Contributor.
      *             See details on thanks section of README file.
      */
-    function &getStyle()
+    function getStyle()
     {
-        include_once 'HTML/CSS.php';
-        
+        $tab = $this->_getTab();
+        $lnEnd = $this->_getLineEnd();
         $progressAttr = $this->getProgressAttributes();
         $borderAttr = $this->getBorderAttributes();
         $stringAttr = $this->getStringAttributes();
         $cellAttr = $this->getCellAttributes();
         $orient = $this->getOrientation();
-        
-        $css = new HTML_CSS();
 
-        $css->setStyle('.'.$progressAttr['class'], 'background-color', $progressAttr['background-color']);
-        $css->setStyle('.'.$progressAttr['class'], 'width', $progressAttr['width'].'px');
-        $css->setStyle('.'.$progressAttr['class'], 'height', $progressAttr['height'].'px');
-        $css->setStyle('.'.$progressAttr['class'], 'position', 'relative');
-        $css->setStyle('.'.$progressAttr['class'], 'left', '0px');
-        $css->setStyle('.'.$progressAttr['class'], 'top', '0px');
+        $css  = '{%pIdent%} .' . $progressAttr['class'] . ', {%pIdent%} .' . $borderAttr['class'] . ' {' . $lnEnd;
+        $css .= $tab . 'background-color: '. $progressAttr['background-color'] .';'. $lnEnd;
+        $css .= $tab . 'width: '. $progressAttr['width'] .'px;'. $lnEnd;
+        $css .= $tab . 'height: '. $progressAttr['height'] .'px;'. $lnEnd;
+        $css .= $tab . 'position: relative;'. $lnEnd;
+        $css .= $tab . 'left: 0;'. $lnEnd;
+        $css .= $tab . 'top: 0;'. $lnEnd;
+        $css .= '}'. $lnEnd . $lnEnd;
 
-        $css->setSameStyle('.'.$borderAttr['class'], '.'.$progressAttr['class']);
-        $css->setStyle('.'.$borderAttr['class'], 'border-width', $borderAttr['width'].'px');
-        $css->setStyle('.'.$borderAttr['class'], 'border-style', $borderAttr['style']);
-        $css->setStyle('.'.$borderAttr['class'], 'border-color', $borderAttr['color']);
+        $css .= '{%pIdent%} .' . $borderAttr['class'] . ' {' . $lnEnd;
+        $css .= $tab . 'border-width: '. $borderAttr['width'] .'px;'. $lnEnd;
+        $css .= $tab . 'border-style: '. $borderAttr['style'] .';'. $lnEnd;
+        $css .= $tab . 'border-color: '. $borderAttr['color'] .';'. $lnEnd;
+        $css .= '}'. $lnEnd . $lnEnd;
 
-        $css->setStyle('.'.$stringAttr['id'], 'width', $stringAttr['width'].'px');
+        $css .= '{%pIdent%} .' . $stringAttr['id'] . ' {' . $lnEnd;
+        $css .= $tab . 'width: '. $stringAttr['width'] .'px;'. $lnEnd;
         if (isset($stringAttr['height'])) {
-            $css->setStyle('.'.$stringAttr['id'], 'height', $stringAttr['height'].'px');
+            $css .= $tab . 'height: '. $stringAttr['height'] .'px;'. $lnEnd;
         }
-        
-        $css->setStyle('.'.$stringAttr['id'], 'text-align', $stringAttr['align']);
-        $css->setStyle('.'.$stringAttr['id'], 'font-family', $stringAttr['font-family']);
-        $css->setStyle('.'.$stringAttr['id'], 'font-size', $stringAttr['font-size'].'px');
-        $css->setStyle('.'.$stringAttr['id'], 'color', $stringAttr['color']);
-        $css->setStyle('.'.$stringAttr['id'], 'background-color', $stringAttr['background-color']);
+        $css .= $tab . 'text-align: '. $stringAttr['align'] .';'. $lnEnd;
+        $css .= $tab . 'font-family: '. $stringAttr['font-family'] .';'. $lnEnd;
+        $css .= $tab . 'font-size: '. $stringAttr['font-size'] .'px;'. $lnEnd;
+        $css .= $tab . 'color: '. $stringAttr['color'] .';'. $lnEnd;
+        $css .= $tab . 'background-color: '. $stringAttr['background-color'] .';'. $lnEnd;
+        $css .= '}'. $lnEnd . $lnEnd;
 
-        $css->setStyle('.'.$cellAttr['class'].'I', 'width', $cellAttr['width'].'px');
-        $css->setStyle('.'.$cellAttr['class'].'I', 'height', $cellAttr['height'].'px');
-        $css->setStyle('.'.$cellAttr['class'].'I', 'font-family', $cellAttr['font-family']);
-        $css->setStyle('.'.$cellAttr['class'].'I', 'font-size', $cellAttr['font-size'].'px');
-
+        $css .= '{%pIdent%} .' . $cellAttr['class'] . 'I, {%pIdent%} .' . $cellAttr['class'] . 'A {' . $lnEnd;
+        $css .= $tab . 'width: '. $cellAttr['width'] .'px;'. $lnEnd;
+        $css .= $tab . 'height: '. $cellAttr['height'] .'px;'. $lnEnd;
+        $css .= $tab . 'font-family: '. $cellAttr['font-family'] .';'. $lnEnd;
+        $css .= $tab . 'font-size: '. $cellAttr['font-size'] .'px;'. $lnEnd;
         if ($orient == HTML_PROGRESS_BAR_HORIZONTAL) {
-            $css->setStyle('.'.$cellAttr['class'].'I', 'float', 'left'); 
+            $css .= $tab . 'float: left;'. $lnEnd;
         }
         if ($orient == HTML_PROGRESS_BAR_VERTICAL) {
-            $css->setStyle('.'.$cellAttr['class'].'I', 'float', 'none'); 
+            $css .= $tab . 'float: none;'. $lnEnd;
         }
-        $css->setSameStyle('.'.$cellAttr['class'].'A', '.'.$cellAttr['class'].'I');
+        $css .= '}'. $lnEnd . $lnEnd;
 
+        $css .= '{%pIdent%} .' . $cellAttr['class'] . 'I {' . $lnEnd;
         if ($orient !== HTML_PROGRESS_CIRCLE) {
-            $css->setStyle('.'.$cellAttr['class'].'I', 'background-color', $cellAttr['inactive-color']);
-            $css->setStyle('.'.$cellAttr['class'].'A', 'background-color', $cellAttr['active-color']);
+            $css .= $tab . 'background-color: '. $cellAttr['inactive-color'] .';'. $lnEnd;
         }
-        $css->setStyle('.'.$cellAttr['class'].'A', 'visibility', 'hidden');
-
-        if (isset($cellAttr['background-image'])) {
-            $css->setStyle('.'.$cellAttr['class'].'A', 'background-image', 'url("'.$cellAttr['background-image'].'")');
-            $css->setStyle('.'.$cellAttr['class'].'A', 'background-repeat', 'no-repeat');
-        }
-        
         if ($orient == HTML_PROGRESS_CIRCLE) {
-            $css->setStyle('.'.$cellAttr['class'].'I', 'background-image', 'url("'.$cellAttr[0]['background-image'].'")');
-            $css->setStyle('.'.$cellAttr['class'].'I', 'background-repeat', 'no-repeat');
+            $css .= $tab . 'background-image: url("'. $cellAttr[0]['background-image'] .'");'. $lnEnd;
+            $css .= $tab . 'background-repeat: no-repeat;'. $lnEnd;
         }
+        $css .= '}'. $lnEnd . $lnEnd;
+
+        $css .= '{%pIdent%} .' . $cellAttr['class'] . 'A {' . $lnEnd;
+        if ($orient !== HTML_PROGRESS_CIRCLE) {
+            $css .= $tab . 'background-color: '. $cellAttr['active-color'] .';'. $lnEnd;
+        }
+        $css .= $tab . 'visibility: hidden;'. $lnEnd;
+        if (isset($cellAttr['background-image'])) {
+            $css .= $tab . 'background-image: url("'. $cellAttr['background-image'] .'");'. $lnEnd;
+            $css .= $tab . 'background-repeat: no-repeat;'. $lnEnd;
+        }
+        $css .= '}'. $lnEnd . $lnEnd;
 
         return $css;
     }
 
     /**
-     * Draw all circle segment pictures 
+     * Draw all circle segment pictures
      *
      * @param      string    $dir           (optional) Directory where pictures should be created
      * @param      string    $fileMask      (optional) sprintf format for pictures filename
@@ -1091,7 +1113,7 @@ JS;
         if (fmod($h,2) == 0) {
             $cy = $cy - 0.5;
         }
-            
+
         $image = imagecreate($w, $h);
 
         $bg     = Image_Color::allocateColor($image,$cellAttr['background-color']);
@@ -1158,7 +1180,7 @@ JS;
         if ($this->getOrientation() == HTML_PROGRESS_BAR_VERTICAL) {
             $w  = $cell_width + (2 * $cell_spacing);
             $h  = ($cell_count * ($cell_height + $cell_spacing)) + $cell_spacing;
-        } 
+        }
         if ($this->getOrientation() == HTML_PROGRESS_POLYGONAL) {
             $w  = $cell_width * $this->_xgrid;
             $h  = $cell_height * $this->_ygrid;
@@ -1184,13 +1206,13 @@ JS;
      * @access     private
      * @see        setCellCoordinates()
      */
-    function _computeCoordinates($w, $h) 
+    function _computeCoordinates($w, $h)
     {
         $coord = array();
 
         for ($y=0; $y<$h; $y++) {
             if ($y == 0) {
-                // creates top side line 
+                // creates top side line
                 for ($x=0; $x<$w; $x++) {
                     $coord[] = array($y, $x);
                 }
