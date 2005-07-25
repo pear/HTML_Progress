@@ -1,13 +1,13 @@
 <?php
-@include '../include_path.php';
 /**
  * Frameset Page Upload
- * A form is used to select and submit any kind of file to webserver (frame 1) while 
+ * A form is used to select and submit any kind of file to webserver (frame 1) while
  * a progress meter is running in indeterminate mode in the bottom of page (frame 2)
  *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/QuickForm.php';
@@ -16,7 +16,7 @@ function myProcess($values)
 {
     global $form;
     $destination = './uploads/';
-    
+
     $file =& $form->getElement('tstUpload');
     if ($file->isUploadedFile()) {
         $ok = $file->moveUploadedFile($destination);
@@ -43,7 +43,7 @@ function DoUpload() {
   parent.files.selfref.submit();
 }
 //-->
-</script> 
+</script>
 </head>
 <body>
 <?php
@@ -84,7 +84,7 @@ if ($form->validate()) {
     $destination = './uploads/';
     $fp = fopen($destination . $_GET['ID'],'w',false);
     fwrite($fp, 'error');
-    fclose($fp);  
+    fclose($fp);
 }
 $form->display();
 ?>

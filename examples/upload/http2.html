@@ -32,7 +32,7 @@
 
 <a name="intro">
 <h2><img src="../images/info.gif"/> Introduction</h2>
-		
+
 <p>This example requires :
 <ul>
 <li>PEAR::HTML_Progress 1.1 or better.</li>
@@ -41,25 +41,25 @@
 
 <hr/>
 <p><b>This example allows you to upload files from a web browser to your web server.</b></p>
- 
+
 <p>PEAR::HTML_QuickForm package is used to make and manage the form that will send file
 to your web server, while HTML_Progress is only used to display a progress meter running
 in indeterminate mode inside a windows popup.</p>
 
-<p>Be aware that your web server could returns a timeout on long upload operation, by running 
+<p>Be aware that your web server could returns a timeout on long upload operation, by running
 the HTML_Progress script (See technical notes below).</p>
-	
-	
+
+
 <p>[<a href="#top">Top</a>]</p>
 
 
 <h2><img src="../images/hands.gif"/>&nbsp;Technical notes </h2>
 
-<p>The script time-out refers to the number of seconds a PHP page is given before the script 
-is assumed to have failed and the page terminated. 
-If you are uploading a large file the script that is receiving the transfer may time out 
-before the file has been completely uploaded. 
-To alter this setting you should insert the following code into your uploading page 
+<p>The script time-out refers to the number of seconds a PHP page is given before the script
+is assumed to have failed and the page terminated.
+If you are uploading a large file the script that is receiving the transfer may time out
+before the file has been completely uploaded.
+To alter this setting you should insert the following code into your uploading page
 prior to creating any HTML_Progress and HTML_QuickForm objects.</p>
 
 <table class="hl-table" width="100%">
@@ -72,7 +72,7 @@ prior to creating any HTML_Progress and HTML_QuickForm objects.</p>
 </td>
 </tr>
 </table>
-<p>See also: 
+<p>See also:
 <a target="_blank" href="http://www.php.net/manual/en/function.set-time-limit.php">set_time_limit</a> manual.</p>
 
 <p>[<a href="#top">Top</a>]</p>
@@ -116,7 +116,7 @@ active-color = #996
 <p><img src="../screenshots/upload_popup.png"/></p>
 
 <p>[<a href="#top">Top</a>]</p>
-		
+
 
 <a name="source">
 <h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>

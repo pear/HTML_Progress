@@ -1,11 +1,11 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
  * Multiple Vertical ProgressBar example.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress.php';
@@ -22,11 +22,11 @@ $ui1->setCellCount(15);
 $ui1->setCellAttributes('active-color=#970038 inactive-color=#FFDDAA width=50 height=13');
 $ui1->setBorderAttributes('width=1 color=#000000');
 $ui1->setStringAttributes(array(
-	'font-size' => 8,
-	'color' => '#FF0000',
-	'background-color' => '#C3C6C3',
-	'align' => 'center', 
-	'valign' => 'bottom'
+    'font-size' => 8,
+    'color' => '#FF0000',
+    'background-color' => '#C3C6C3',
+    'align' => 'center',
+    'valign' => 'bottom'
 ));
 
 
@@ -42,11 +42,11 @@ $ui2->setCellCount(15);
 $ui2->setCellAttributes('active-color=#3874B4 inactive-color=#FFDDAA width=50 height=13');
 $ui2->setBorderAttributes('width=1 style=dashed color=#000000');
 $ui2->setStringAttributes(array(
-	'font-size' => 8,
-	'color' => 'navy',
-	'background-color' => '#C3C6C3',
-	'align' => 'center', 
-	'valign' => 'bottom'
+    'font-size' => 8,
+    'color' => 'navy',
+    'background-color' => '#C3C6C3',
+    'align' => 'center',
+    'valign' => 'bottom'
 ));
 ?>
 <!DOCTYPE html
@@ -58,28 +58,28 @@ $ui2->setStringAttributes(array(
 <title>Multiple Vertical ProgressBar example</title>
 <style type="text/css">
 <!--
-<?php 
+<?php
 echo $bar1->getStyle();
 echo $bar2->getStyle();
 ?>
 
 body {
-	background-color: #C3C6C3;
-	color: #000000;
-	font-family: Verdana, Arial;
+    background-color: #C3C6C3;
+    color: #000000;
+    font-family: Verdana, Arial;
 }
 
 a:visited, a:active, a:link {
-	color: navy;
+    color: navy;
 }
 
 table.container {
-	border: 1;
-	border-color: navy;
-	border-style: dotted;
-	cell-spacing: 4;
-	cell-padding: 10;
-	width: 25%;
+    border: 1;
+    border-color: navy;
+    border-style: dotted;
+    cell-spacing: 4;
+    cell-padding: 10;
+    width: 25%;
 // -->
 </style>
 <script type="text/javascript">
@@ -89,7 +89,7 @@ table.container {
 </script>
 </head>
 <body>
-<h1><?php echo basename(__FILE__); ?></h1>
+
 
 <table class="container">
 <tr>
@@ -102,7 +102,7 @@ table.container {
 </tr>
 </table>
 
-<?php 
+<?php
 
 do {
     $bar1->display();
@@ -118,8 +118,6 @@ do {
     $bar2->incValue();
 } while(1);
 ?>
-
-<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>
 
 </body>
 </html>

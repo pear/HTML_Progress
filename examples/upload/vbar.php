@@ -1,13 +1,13 @@
 <?php
-@include '../include_path.php';
 /**
  * Progress meter is running in indeterminate mode while a file upload operation.
- * This example may work with HTML_Progress 1.1 
+ * This example may work with HTML_Progress 1.1
  * but version 1.2.0 or better allows more easy facilities.
  *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress.php';
@@ -33,7 +33,7 @@ function myFunctionHandler($progressValue, &$obj)
     global $version;
     global $stop;
     $semaphore = './uploads/'.$_GET['ID'];
-    
+
     if (file_exists($semaphore)) {
         $stop = file_get_contents($semaphore);
         $obj->setValue(100);
@@ -69,10 +69,10 @@ $ui = & $progress->getUI();
 $ui->setCellCount(20);
 $ui->setBorderAttributes('width=1 color=#000000');
 $ui->setCellAttributes(array(
-        'active-color' => '#970038',
-        'inactive-color' => '#FFDDAA',
-        'width' => 20,
-        'height' => 20
+    'active-color' => '#970038',
+    'inactive-color' => '#FFDDAA',
+    'width' => 20,
+    'height' => 20
 ));
 ?>
 <!DOCTYPE html
@@ -84,10 +84,10 @@ $ui->setCellAttributes(array(
 <style type="text/css">
 <!--
 body {
-	background-color: White;
-	color: red;
-	font-family: Verdana, Arial;
-	font-size: 10px;
+    background-color: White;
+    color: red;
+    font-family: Verdana, Arial;
+    font-size: 10px;
 }
 <?php echo $progress->getStyle(); ?>
 // -->
@@ -100,8 +100,8 @@ body {
 </head>
 <body>
 
-<?php 
-echo $progress->toHtml(); 
+<?php
+echo $progress->toHtml();
 
 if (isset($_GET['ID'])) {
 
@@ -127,7 +127,7 @@ if (isset($_GET['ID'])) {
     } else {
         echo '<b>Upload Complete...</b>';
     }
-}	
+}
 ?>
 
 </body>

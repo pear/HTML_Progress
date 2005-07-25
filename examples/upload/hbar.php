@@ -1,13 +1,13 @@
 <?php
-@include '../include_path.php';
 /**
  * Progress meter is running in indeterminate mode while a file upload operation.
- * This example may work with HTML_Progress 1.1 
+ * This example may work with HTML_Progress 1.1
  * but version 1.2.0 or better allows more easy facilities.
  *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress.php';
@@ -16,7 +16,7 @@ require_once 'HTML/Progress/observer.php';
 class logsUpload extends HTML_Progress_Observer
 {
     var $_console;
-    
+
     function logsUpload()
     {
         $isodate = date('Y-m-d');
@@ -60,7 +60,7 @@ function myFunctionHandler($progressValue, &$obj)
     global $version;
     global $stop;
     $semaphore = './uploads/'.$_GET['ID'];
-    
+
     if (file_exists($semaphore)) {
         $stop = file_get_contents($semaphore);
         $obj->setValue(100);
@@ -119,9 +119,9 @@ $ui->setStringAttributes(array(
 <style type="text/css">
 <!--
 body {
-	background-color: #C3C6C3;
-	color: #000000;
-	font-family: Verdana, Arial;
+    background-color: #C3C6C3;
+    color: #000000;
+    font-family: Verdana, Arial;
 }
 <?php echo $progress->getStyle(); ?>
 // -->
@@ -134,13 +134,13 @@ body {
 </head>
 <body>
 
-<?php 
-echo $progress->toHtml(); 
+<?php
+echo $progress->toHtml();
 
 if (isset($_GET['ID'])) {
 
     if ($version > 1.1) {
-	$progress->run();    // run method is born on version 1.2.0RC3
+        $progress->run();    // run method is born on version 1.2.0RC3
     } else {
         // do the same as run() method
         do {
@@ -161,7 +161,7 @@ if (isset($_GET['ID'])) {
     } else {
         echo '<b>Upload Complete...</b>';
     }
-}	
+}
 ?>
 
 </body>
