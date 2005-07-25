@@ -1,5 +1,4 @@
 <?php
-@include '../include_path.php';
 /**
  * Generator usage example using Default QF renderer
  * without any changes (all default options are used).
@@ -7,6 +6,7 @@
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress/generator.php';
