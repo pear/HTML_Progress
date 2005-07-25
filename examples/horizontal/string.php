@@ -1,29 +1,29 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
  * Horizontal String ProgressBar example.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress.php';
 
-$pkg = array('PEAR', 'Archive_Tar', 'Config', 
-    'HTML_QuickForm', 'HTML_CSS', 'HTML_Page', 'HTML_Template_Sigma', 
+$pkg = array('PEAR', 'Archive_Tar', 'Config',
+    'HTML_QuickForm', 'HTML_CSS', 'HTML_Page', 'HTML_Template_Sigma',
     'Log', 'MDB', 'PHPUnit');
 
 function myFunctionHandler($progressValue, &$obj)
 {
     global $pkg;
-    
+
     $obj->sleep();
     $i = floor($progressValue / 10);
     if ($progressValue == 100) {
-    	$msg = '';
+        $msg = '';
     } else {
-    	$msg = "&nbsp; installing package ($progressValue %) ... : ".$pkg[$i];
+        $msg = "&nbsp; installing package ($progressValue %) ... : ".$pkg[$i];
     }
     $obj->setString($msg);
 }
@@ -36,6 +36,7 @@ $bar->setString('');                   // but don't paint it
 $bar->setProgressHandler('myFunctionHandler');
 
 $ui =& $bar->getUI();
+$ui->setTab('    ');
 $ui->setStringAttributes('width=350 align=left');
 ?>
 <html>
@@ -46,13 +47,13 @@ $ui->setStringAttributes('width=350 align=left');
 <?php echo $bar->getStyle(); ?>
 
 body {
-	background-color: #FFFFFF;
-	color: #000000;
-	font-family: Verdana, Arial;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: Verdana, Arial;
 }
 
 a:visited, a:active, a:link {
-	color: navy;
+    color: navy;
 }
 // -->
 </style>
@@ -63,15 +64,12 @@ a:visited, a:active, a:link {
 </script>
 </head>
 <body>
-<h1><?php echo basename(__FILE__); ?></h1>
 
-<?php 
-echo $bar->toHtml(); 
+<?php
+echo $bar->toHtml();
 $bar->run();
 $bar->display();  // to display the last custom string (blank)
 ?>
-
-<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>
 
 </body>
 </html>

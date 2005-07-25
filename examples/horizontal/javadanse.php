@@ -1,11 +1,11 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
  * 20 cells Reverse Horizontal ProgressBar example with JavaScript customization.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress.php';
@@ -16,6 +16,7 @@ $bar->setIncrement(5);
 $bar->setBorderPainted(true);
 
 $ui =& $bar->getUI();
+$ui->setTab('    ');
 $ui->setFillWay('reverse');
 $ui->setCellCount(20);
 $ui->setCellAttributes('active-color=#970038 inactive-color=#FFDDAA width=20 height=20');
@@ -45,27 +46,24 @@ foreach (range(7,9) as $index) {
 <?php echo $bar->getStyle(); ?>
 
 body {
-	background-color: #FFFFFF;
-	color: #000000;
-	font-family: Verdana, Arial;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: Verdana, Arial;
 }
 
 a:visited, a:active, a:link {
-	color: navy;
+    color: navy;
 }
 // -->
 </style>
 <script type="text/javascript" src="<?php echo $bar->getScript(); ?>"></script>
 </head>
 <body>
-<h1><?php echo basename(__FILE__); ?></h1>
 
-<?php 
-echo $bar->toHtml(); 
+<?php
+echo $bar->toHtml();
 $bar->run();
 ?>
-
-<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>
 
 </body>
 </html>

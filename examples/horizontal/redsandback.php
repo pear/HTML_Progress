@@ -1,12 +1,12 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
  * 5 cells Reverse Horizontal ProgressBar example with red skin.
  * See also ProgressMaker usage with pre-set UI model 'RedSandBack'.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress.php';
@@ -17,6 +17,7 @@ $bar->setIncrement(10);
 $bar->setBorderPainted(true);
 
 $ui =& $bar->getUI();
+$ui->setTab('    ');
 $ui->setFillWay('reverse');
 $ui->setCellCount(5);
 $ui->setCellAttributes('active-color=#970038 inactive-color=#FFDDAA width=20');
@@ -35,13 +36,13 @@ $ui->setStringAttributes('font-size=14 color=#FF0000 align=left valign=bottom');
 <?php echo $bar->getStyle(); ?>
 
 body {
-	background-color: #FFFFFF;
-	color: #000000;
-	font-family: Verdana, Arial;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: Verdana, Arial;
 }
 
 a:visited, a:active, a:link {
-	color: navy;
+    color: navy;
 }
 // -->
 </style>
@@ -52,14 +53,11 @@ a:visited, a:active, a:link {
 </script>
 </head>
 <body>
-<h1><?php echo basename(__FILE__); ?></h1>
 
-<?php 
-echo $bar->toHtml(); 
+<?php
+echo $bar->toHtml();
 $bar->run();
 ?>
-
-<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>
 
 </body>
 </html>

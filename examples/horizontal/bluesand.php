@@ -1,12 +1,12 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
  * Natural Horizontal ProgressBar example with blue skin.
  * See also ProgressMaker usage with pre-set UI model 'BlueSand'.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/Progress.php';
@@ -17,6 +17,7 @@ $bar->setIncrement(10);
 $bar->setBorderPainted(true);
 
 $ui =& $bar->getUI();
+$ui->setTab('    ');
 $ui->setCellAttributes('active-color=#3874B4 inactive-color=#EEEECC width=10');
 $ui->setBorderAttributes('width=1 color=navy');
 $ui->setStringAttributes('width=60 font-size=14 background-color=#EEEEEE align=center');
@@ -33,13 +34,13 @@ $ui->setStringAttributes('width=60 font-size=14 background-color=#EEEEEE align=c
 <?php echo $bar->getStyle(); ?>
 
 body {
-	background-color: #EEEEEE;
-	color: #000000;
-	font-family: Verdana, Arial;
+    background-color: #EEEEEE;
+    color: #000000;
+    font-family: Verdana, Arial;
 }
 
 a:visited, a:active, a:link {
-	color: navy;
+    color: navy;
 }
 // -->
 </style>
@@ -50,14 +51,11 @@ a:visited, a:active, a:link {
 </script>
 </head>
 <body>
-<h1><?php echo basename(__FILE__); ?></h1>
 
-<?php 
-echo $bar->toHtml(); 
+<?php
+echo $bar->toHtml();
 $bar->run();
 ?>
-
-<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>
 
 </body>
 </html>

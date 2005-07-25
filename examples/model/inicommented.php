@@ -1,12 +1,12 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
  * Easy set options of a progress meter with PEAR::Config package
  * and a configuration container style 'iniCommented'.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require 'HTML/Progress.php';
@@ -33,21 +33,21 @@ if (HTML_Progress::hasErrors()) {
 </style>
 <script type="text/javascript">
 <!--
-<?php 
-$js = $bar->getScript(); 
+<?php
+$js = $bar->getScript();
 if (is_file($js)) {
     echo file_get_contents($js);
 } else {
     echo $js;
-}   
+}
 ?>
 //-->
 </script>
 </head>
 <body>
 
-<?php 
-echo $bar->toHtml(); 
+<?php
+echo $bar->toHtml();
 $bar->run();
 ?>
 

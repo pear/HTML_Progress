@@ -32,10 +32,10 @@
 
 <a name="intro">
 <h2><img src="../images/info.gif"/> Introduction</h2>
-		
+
 <p>This example requires :
 <ul>
-<li>PEAR::HTML_Progress 1.2.0RC3 or better.</li>
+<li>PEAR::HTML_Progress 1.2.2 or better.</li>
 </ul>
 </p>
 
@@ -44,9 +44,9 @@
 It will also show you how to print something inside cells with an external javascript
 (replaced internal code).</b></p>
 
-<p>Percent text info is centered on a 60 pixels width area, 
+<p>Percent text info is centered on a 60 pixels width area,
 on right side of the progress bar.</p>
-	
+
 <p>[<a href="#top">Top</a>]</p>
 
 
@@ -92,20 +92,20 @@ function setprogress(pIdent, pValue, pString, pDeterminate)
             prog = document.all[pIdent+'installationProgress'];
         if (isNS4)
             prog = document.layers[pIdent+'installationProgress'];
-	if (prog != null) 
-	    prog.innerHTML = pString;
+        if (prog != null)
+            prog.innerHTML = pString;
 
         if (pValue == pDeterminate) {
-	    for (i=0; i < cellCount; i++) {
-                showCell(i, pIdent, "hidden");	
+            for (i=0; i < cellCount; i++) {
+                showCell(i, pIdent, "hidden");
             }
         }
         if ((pDeterminate > 0) && (pValue > 0)) {
             i = (pValue-1) % cellCount;
-            showCell(i, pIdent, "visible");	
+            showCell(i, pIdent, "visible");
         } else {
             for (i=pValue-1; i >=0; i--) {
-                showCell(i, pIdent, "visible");	
+                showCell(i, pIdent, "visible");
                 if (isDom)
                     document.getElementById(pIdent+'progressCell'+i+'A').innerHTML = i;
                 if (isIE)
@@ -113,17 +113,17 @@ function setprogress(pIdent, pValue, pString, pDeterminate)
                 if (isNS4)
                     document.layers[pIdent+'progressCell'+i+'A'].innerHTML = i;
             }
-	}
+    }
 }
 
 function showCell(pCell, pIdent, pVisibility)
 {
-	if (isDom)
-	    document.getElementById(pIdent+'progressCell'+pCell+'A').style.visibility = pVisibility;
-	if (isIE)
-	    document.all[pIdent+'progressCell'+pCell+'A'].style.visibility = pVisibility;
-	if (isNS4)
-	    document.layers[pIdent+'progressCell'+pCell+'A'].style.visibility = pVisibility;
+    if (isDom)
+        document.getElementById(pIdent+'progressCell'+pCell+'A').style.visibility = pVisibility;
+    if (isIE)
+        document.all[pIdent+'progressCell'+pCell+'A'].style.visibility = pVisibility;
+    if (isNS4)
+        document.layers[pIdent+'progressCell'+pCell+'A'].style.visibility = pVisibility;
 
 }
 </pre>
@@ -137,7 +137,7 @@ function showCell(pCell, pIdent, pVisibility)
 <h3>Screenshot </h3>
 <p><img src="../screenshots/bluesandplus.png"/></p>
 <p>[<a href="#top">Top</a>]</p>
-		
+
 
 <a name="source">
 <h2><img src="../images/source.gif"/>&nbsp;PHP source syntax highlight</h2>
