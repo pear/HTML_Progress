@@ -1,12 +1,12 @@
-<?php 
-@include '../include_path.php';
+<?php
 /**
- * Display a horizontal progress meter 
- * embedded into a ITX template system file. 
- * 
+ * Display a horizontal progress meter
+ * embedded into a ITX template system file.
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @subpackage Examples
  */
 
 require_once 'HTML/QuickForm.php';
@@ -16,7 +16,7 @@ require_once 'HTML/Progress.php';
 
 function myFunctionHandler($progressValue, &$bar)
 {
-    $bar->sleep();  
+    $bar->sleep();
     $str = ' ';
 
     if ($progressValue > 25) {
@@ -33,8 +33,8 @@ function myFunctionHandler($progressValue, &$bar)
 
 $tpl = new HTML_Template_ITX('.');
 $tpl->loadTemplateFile('installing.html');
-        
-$vars = array (	
+
+$vars = array (
     "L_SETUP_APP_TITLE"    => "SW4P",
     "L_APPNAME"            => basename(__FILE__),
     "L_APPCOPYRIGHT"       => "&copy 2003 SW4P Team ",
@@ -45,11 +45,11 @@ $form = new HTML_QuickForm('form');
 $form->addElement('submit', 'launch', 'Launch', 'style="width:100px;"');
 
 $styles = array('none' => 'none',
-  'solid'  => 'solid',
-  'dashed' => 'dashed',
-  'dotted' => 'dotted',
-  'inset'  => 'inset',
-  'outset' => 'outset'
+    'solid'  => 'solid',
+    'dashed' => 'dashed',
+    'dotted' => 'dotted',
+    'inset'  => 'inset',
+    'outset' => 'outset'
 );
 $form->addElement('select','border','border style:',$styles);
 
@@ -82,16 +82,16 @@ $bar->setProgressHandler('myFunctionHandler');
 $ui =& $bar->getUI();
 $ui->setCellAttributes('active-color=#7B7B88 inactive-color=#D0D0D0 width=10');
 $ui->setBorderAttributes(array(
-	'width' => 2,
-	'color' => $color,
-	'style' => $border
+    'width' => 2,
+    'color' => $color,
+    'style' => $border
 ));
 $ui->setStringAttributes(array(
-	'width' => 320,
-	'font-size' => 10,
-        'align' => 'left',
-        'valign' => 'bottom',
-	'background-color' => '#D0D0D0'  // make it transparent, see style #MainWindow
+    'width' => 320,
+    'font-size' => 10,
+    'align' => 'left',
+    'valign' => 'bottom',
+    'background-color' => '#D0D0D0'  // make it transparent, see style #MainWindow
 ));
 $ui->setProgressAttributes('width=320');
 
@@ -105,7 +105,5 @@ $form->accept($renderer);
 $tpl->show();
 
 $bar->run();
-
-echo '<p>&lt;&lt; <a href="../index.html">Back examples TOC</a></p>';
-
+$bar->display();  // to display the last custom string
 ?>
