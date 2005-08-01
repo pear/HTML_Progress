@@ -26,7 +26,7 @@ Release notes for the newest version are in Release-1.2.2
 1.2.2 is out, a stable release
 
 To learn how to do, read online APIdoc and tutorials in many formats at
-http://pear.laurent-laville.org/HTML/Progress/apidoc/
+http://pear.laurent-laville.org/HTML_Progress/apidoc/
 
 If you find a bug please send me a mail with subject HTML_Progress at:
 <pear@laurent-laville.org>
@@ -40,8 +40,8 @@ General Notes
 HTML_Progress is hosted at http://pear.laurent-laville.org, with downloads and
 online documentation
 
-Project page:   http://pear.laurent-laville.org/HTML/Progress
-Documentation:  http://pear.laurent-laville.org/HTML/Progress/apidoc/
+Project page:   http://pear.laurent-laville.org/HTML_Progress
+Documentation:  http://pear.laurent-laville.org/HTML_Progress/apidoc/
 
 
 HTML_Progress 1.2.2 is released under the PHP License version 3.0, text is in
