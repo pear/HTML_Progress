@@ -54,11 +54,14 @@ $notes = <<<NOTE
   Return may be float (default) or integer.
 - removed HTML_CSS dependency
 
+* improvements
+- generation of stylesheet is (average) 20 times faster without HTML_CSS
+
 * QA
 - Updates headers comment block on all files
 - Dependencies has been revisited to higher level
-- Examples were removed from main package and moved into the optional package
-  available at http://pear.laurent-laville.org/HTML_Progress/
+- Fix wrong project links into documentation (README, ReleaseVersion)
+  Thanks to Christian Roy to have noticed me.
 
 NOTE;
 
@@ -72,6 +75,7 @@ $options = array(
     'version'           => $version,
     'packagedirectory'  => '.',
     'dir_roles'         => array('docs' => 'doc',
+                                 'examples' => 'doc',
                                  'tests' => 'test',
                                  'Progress' => 'php',
                                 ),
@@ -83,7 +87,8 @@ $options = array(
     'ignore'            => array('package.xml', 'package.php',
                                  'examples.xml', 'examples.php',
                                  'Thumbs.db',
-                                 'cache/', 'examples/'
+                                 'cache/',
+                                 'Error/'
                                 ),
     'cleardependencies' => true
 );
