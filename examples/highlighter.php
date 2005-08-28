@@ -23,7 +23,7 @@
 $ok = false;
 if (isset($_GET['file'])) {
     $file = trim($_GET['file']);
-    if ((stristr($file, '../') == false) && 
+    if ((stristr($file, '../') == false) &&
         (substr($file, 0,2) == './') && (file_exists($file))) {
         $ok = true;
     }
