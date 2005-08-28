@@ -31,6 +31,10 @@ require_once 'HTML/Progress/generator/ITDynamic.php';
       'ActionDisplay' ('HTML/Progress/generator/default.php')
       will be used.
  */
+
+/**
+ * @ignore
+ */
 class MyDisplayHandler extends HTML_QuickForm_Action_Display
 {
     function _renderForm(&$page)
@@ -80,6 +84,10 @@ class MyDisplayHandler extends HTML_QuickForm_Action_Display
       If your 'MyProcessHandler' class is not defined, then default
       'ActionProcess' ('HTML/Progress/generator/process.php')
       will be used.
+ */
+
+/**
+ * @ignore
  */
 class MyProcessHandler extends HTML_QuickForm_Action
 {

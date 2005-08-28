@@ -13,6 +13,9 @@
 require_once 'HTML/Progress.php';
 require_once 'HTML/Progress/observer.php';
 
+/**
+ * @ignore
+ */
 class logsUpload extends HTML_Progress_Observer
 {
     var $_console;

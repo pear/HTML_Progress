@@ -13,6 +13,9 @@ require_once 'HTML/Progress/monitor.php';
 require_once 'HTML/QuickForm/Renderer/ITDynamic.php';
 require_once 'HTML/Template/ITX.php';
 
+/**
+ * @ignore
+ */
 class Progress_ITDynamic extends HTML_Progress_UI
 {
     function Progress_ITDynamic()
@@ -26,6 +29,9 @@ class Progress_ITDynamic extends HTML_Progress_UI
     }
 }
 
+/**
+ * @ignore
+ */
 class my2ClassHandler
 {
     function my1Method($progressValue, &$bar)

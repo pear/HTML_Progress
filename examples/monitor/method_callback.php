@@ -11,6 +11,9 @@
 
 require_once 'HTML/Progress/monitor.php';
 
+/**
+ * @ignore
+ */
 class Progress_Default2 extends HTML_Progress_UI
 {
     function Progress_Default2()
@@ -23,6 +26,9 @@ class Progress_Default2 extends HTML_Progress_UI
     }
 }
 
+/**
+ * @ignore
+ */
 class myClassHandler
 {
     function myMethodHandler($progressValue, &$bar)

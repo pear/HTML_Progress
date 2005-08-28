@@ -11,6 +11,9 @@
 require_once 'HTML/Progress.php';
 require_once 'HTML/Progress/observer.php';
 
+/**
+ * @ignore
+ */
 // 1. Defines ProgressBar observer
 class MyObserver extends HTML_Progress_Observer
 {
@@ -37,7 +40,7 @@ class MyObserver extends HTML_Progress_Observer
             error_log("$msg \n", 3, $this->_console);
         } else {
             print ("$msg <br />\n");
-    }
+        }
     }
 }
 

@@ -10,6 +10,9 @@
 
 require_once 'HTML/Progress.php';
 
+/**
+ * @ignore
+ */
 class TimerProgress extends HTML_Progress_DM
 {
     function TimerProgress()

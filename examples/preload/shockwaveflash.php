@@ -15,6 +15,9 @@ require_once 'HTTP/Request.php';
 require_once 'HTTP/Request/Listener.php';
 require_once 'HTML/Progress.php';
 
+/**
+ * @ignore
+ */
 class HTTP_Request_DownloadListener extends HTTP_Request_Listener
 {
    /**

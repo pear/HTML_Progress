@@ -11,6 +11,9 @@
 
 require_once 'HTML/Progress/monitor.php';
 
+/**
+ * @ignore
+ */
 class Progress_ITDynamic extends HTML_Progress_UI
 {
     function Progress_ITDynamic()
