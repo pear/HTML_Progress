@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>HTML_Progress::sleep</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">HTML_Progress</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+  		  [ <a href="../classtrees_HTML_Progress.html" class="menu">class tree: HTML_Progress</a> ]
+		  [ <a href="../elementindex_HTML_Progress.html" class="menu">index: HTML_Progress</a> ]
+		  [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="10%" align="left" valign="bottom"><a href=
+"../HTML_Progress/tutorial_progress.toarray.pkg.html">Prev</a></td>
+<td width="80%" align="center" valign="bottom"></td>
+<td width="10%" align="right" valign="bottom"><a href=
+"../HTML_Progress/tutorial_progress.setprogresshandler.pkg.html">Next</a></td>
+</tr>
+</table>
+<div><a name=""></a><div class="ref-title-box"><div class="ref-title"><span class="function">HTML_Progress::sleep</span></div>
+  <div class="ref-purpose">delays execution of the progress meter</div></div>
+
+ <span><a name="synopsis"></a><h2 class="title">Synopsis</h2><div class="ref-synopsis"><p class="func-synopsis">require_once 'HTML/Progress.php';</p>
+   void <span class="function">HTML_Progress::sleep</span>()</div></span>
+
+ <span><a name="description"></a><h2 class="title">Description</h2><p>This method is used to delay execution of the progress meter.</p>
+  <p>This is the default user callback called by <a href="../HTML_Progress/tutorial_progress.process.pkg.html">HTML_Progress::process</a> in
+   the do-while loop of the <a href="../HTML_Progress/tutorial_progress.run.pkg.html">HTML_Progress::run</a> method.</p></span>
+
+ <span><a name="note"></a><h2 class="title">Note</h2>( HTML_Progress &gt;= 1.2.0RC3 )<br />
+  <p><table class="note"><tr><td class="note_img"><img src="../media/important.png"></td><td class="note_text">This function can not be called statically.</td></tr></table></p>
+  <p><table class="note"><tr><td class="note_img"><img src="../media/tip.png"></td><td class="note_text">Useful when you want to show some demonstrations. In real world, there is no need
+    to delay execution because the user-task (process) should be long enough to make 
+    a smooth animation. If it was not the case, then use the HTML_Progress::setAnimSpeed method.</td></tr></table></p>
+  <p><table class="note"><tr><td class="note_img"><img src="../media/note.png"></td><td class="note_text">The function <a href="http://www.php.net/manual/en/function.usleep.php">http://www.php.net/manual/en/function.usleep.php</a>
+    did not work on Windows systems until PHP 5.0.0;
+    For PHP4 on Windows platform, HTML_Progress uses a empty-for loop to delay execution.</td></tr></table></p></span>
+
+ <span><a name="see"></a><h2 class="title">See</h2><p><a href="../HTML_Progress/tutorial_progress.setanimspeed.pkg.html">HTML_Progress::setAnimSpeed</a>,
+   <a href="../HTML_Progress/tutorial_progress.process.pkg.html">HTML_Progress::process</a>,
+   <a href="../HTML_Progress/tutorial_progress.run.pkg.html">HTML_Progress::run</a>,
+   <a href="../HTML_Progress/tutorial_progress.setprogresshandler.pkg.html">HTML_Progress::setProgressHandler</a></p></span>
+
+ <span><a name="example"></a><h2 class="title">Example</h2><p>Example below (that requires HTML_Progress &gt;= 1.2.0RC3) demonstrates usage of 
+    a simple user callback (lines 10 to 13, and 18), which only wait 1 second (line 16).<br />
+   <p><div class="listing"><pre><ol><li><span class="src-php">&lt;?php</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-comm">/*</span></li>
+<li><span class="src-comm">    user callback: job to do while the progress meter is running</span></li>
+<li>&nbsp;</li>
+<li><span class="src-comm">    $obj is an instance of the progress meter object (see line 13)</span></li>
+<li><span class="src-comm">    $progressValue contains the current value of the progress meter</span></li>
+<li><span class="src-comm"> */</span></li>
+<li><span class="src-key">function </span><span class="src-id">myFunctionHandler</span><span class="src-sym">(</span><span class="src-var">$progressValue</span><span class="src-sym">, </span><span class="src-sym">&amp;</span><span class="src-var">$obj</span><span class="src-sym">)</span></li>
+<li><span class="src-sym">{</span></li>
+<li>    <span class="src-var">$obj</span><span class="src-sym">-&gt;</span><a href="http://www.php.net/sleep">sleep</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;  </span><span class="src-comm">// nothing to do here, except sleep a bit ...</span></li>
+<li><span class="src-sym">}</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$progress </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setAnimSpeed</span><span class="src-sym">(</span><span class="src-num">1000</span><span class="src-sym">)</span><span class="src-sym">;    </span><span class="src-comm">// defines delay of one second</span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setIncrement</span><span class="src-sym">(</span><span class="src-num">10</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setProgressHandler</span><span class="src-sym">(</span><span class="src-str">'myFunctionHandler'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&lt;html&gt;</li>
+<li>&lt;head&gt;</li>
+<li>&lt;style type=&quot;text/css&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$progress</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetStyle">getStyle</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>// --&gt;</li>
+<li>&lt;/style&gt;</li>
+<li>&lt;script type=&quot;text/javascript&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$progress</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetScript">getScript</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>//--&gt;</li>
+<li>&lt;/script&gt;</li>
+<li>&lt;/head&gt;</li>
+<li>&lt;body&gt;</li>
+<li>&nbsp;</li>
+<li><span class="src-php">&lt;?php </span></li>
+<li>echo <span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">toHtml</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;  </span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">run</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&nbsp;</li>
+<li>&lt;/body&gt;</li>
+<li>&lt;/html&gt;</li>
+</ol></pre></div></p></p></span></div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="33%" align="left" valign="top"><a href="../HTML_Progress/tutorial_progress.toarray.pkg.html">Prev</a></td>
+<td width="34%" align="center" valign="top"><a href=
+"../HTML_Progress/tutorial_part3-reference.pkg.html">Up</a></td>
+<td width="33%" align="right" valign="top"><a href=
+"../HTML_Progress/tutorial_progress.setprogresshandler.pkg.html">Next</a></td>
+</tr>
+
+<tr>
+<td width="33%" align="left" valign="top"><span class="function">HTML_Progress::toArray</span></td>
+<td width="34%" align="center" valign="top">Reference Guide</td>
+<td width="33%" align="right" valign="top"><span class="function">HTML_Progress::setProgressHandler</span></td>
+</tr>
+</table>
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Sun, 12 Sep 2004 20:23:01 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

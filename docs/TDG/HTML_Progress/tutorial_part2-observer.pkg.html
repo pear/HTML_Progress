@@ -1,0 +1,318 @@
+<html>
+<head>
+<title>Observer pattern</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">HTML_Progress</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+  		  [ <a href="../classtrees_HTML_Progress.html" class="menu">class tree: HTML_Progress</a> ]
+		  [ <a href="../elementindex_HTML_Progress.html" class="menu">index: HTML_Progress</a> ]
+		  [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="10%" align="left" valign="bottom"><a href=
+"../HTML_Progress/tutorial_part2-indeterminate.pkg.html">Prev</a></td>
+<td width="80%" align="center" valign="bottom"></td>
+<td width="10%" align="right" valign="bottom"><a href=
+"../HTML_Progress/tutorial_part2-monitor.pkg.html">Next</a></td>
+</tr>
+</table>
+<div><a name=""></a><div class="ref-title-box"><div class="ref-title">Observer pattern</div>
+  <div class="ref-purpose">implementation of the observer pattern</div></div>
+
+ <h1 align="center">Table of Contents</h1>
+<ul>
+
+<a href="../HTML_Progress/tutorial_part2-observer.pkg.html#intro">Introduction</a><br />
+
+<a href="../HTML_Progress/tutorial_part2-observer.pkg.html#useit">Basic concept</a><br />
+
+<a href="../HTML_Progress/tutorial_part2-observer.pkg.html#useit">Using Progress Observers</a><br />
+
+&nbsp;&nbsp;&nbsp;<a href="../HTML_Progress/tutorial_part2-observer.pkg.html#useit.observer-basic">Basic Observer</a><br />
+
+&nbsp;&nbsp;&nbsp;<a href="../HTML_Progress/tutorial_part2-observer.pkg.html#useit.observer-complex">Complex Observer</a><br />
+</ul>
+
+
+ <span><a name="intro"></a><h2 class="title">Introduction</h2><p>The <i><b>HTML_Progress_Observer</b></i> class provides an implementation 
+   of the observer pattern. In the content of the HTML_Progress package, they provide a mechanism 
+   which you can examine each important event as it is happened. 
+   This allows the implementation of special behaviour based on the value of the progress element.</p></span>
+
+ <span><a name="useit"></a><h2 class="title">Basic concept</h2><p>Creating a progress observer involves implementing a subclass of the 
+   <i><b>HTML_Progress_Observer</b></i> class. The subclass must override the base class 
+   <strong>HTML_Progress_Observer::notify</strong> method. This method is passed a hash 
+   containing event name and progress value.</p>
+  <p>Now we will learn how to catch and manage specific events and respond to them
+   in a specific way.</p></span>
+
+ <span><a name="useit"></a><h2 class="title">Using Progress Observers</h2><p><a name="useit.observer-basic"></a><h3 class="title">Basic Observer</h3><p>If you creates an instance <i><b>HTML_Progress_Observer</b></i> class without 
+     subclass, then default behaviour is to to write events (setminimum, setmaximum, setvalue) 
+     into a file progress_observer.log in current directory.
+     This file contains for each event observed a PHP serialize (<a href="http://www.php.net/manual/en/function.serialize.php">http://www.php.net/manual/en/function.serialize.php</a>)
+      output result.<br /></p>
+    <p><strong>Basic Observer</strong><div class="listing"><pre><ol><li><span class="src-php">&lt;?php </span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress.php'</span><span class="src-sym">;</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress/observer.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li><span class="src-var">$bar </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setAnimSpeed</span><span class="src-sym">(</span><span class="src-num">100</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setBorderPainted</span><span class="src-sym">(</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setIncrement</span><span class="src-sym">(</span><span class="src-num">10</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$observer </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/Progress_Observer/HTML_Progress_Observer.html">HTML_Progress_Observer</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$ok </span>= <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">addListener</span><span class="src-sym">(</span><span class="src-var">$observer</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-key">if </span><span class="src-sym">(</span><span class="src-sym">!</span><span class="src-var">$ok</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li>    <span class="src-key">die </span><span class="src-sym">(</span><span class="src-str">&quot;Cannot add a valid listener to progress bar !&quot;</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-sym">}</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$ui </span>=<span class="src-sym">&amp; </span><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">getUI</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-comm">//    border: 2px, solid, #000000</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetBorderAttributes">setBorderAttributes</a><span class="src-sym">(</span><span class="src-str">'width = 2'</span><span class="src-sym">)</span><span class="src-sym">; </span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><span class="src-id">setComment</span><span class="src-sym">(</span><span class="src-str">'Standard Observer ProgressBar example'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&lt;!DOCTYPE html</li>
+<li>    PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot;</li>
+<li>    &quot;http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</li>
+<li>&nbsp;</li>
+<li>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot;&gt;</li>
+<li>&lt;head&gt;</li>
+<li>&lt;title&gt;Standard Observer &lt;/title&gt;</li>
+<li>&lt;style type=&quot;text/css&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetStyle">getStyle</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>&nbsp;</li>
+<li>body {</li>
+<li>    background-color: #FFFFFF;</li>
+<li>    color: #000000;</li>
+<li>    font-family: Verdana, Arial;</li>
+<li>}</li>
+<li>// --&gt;</li>
+<li>&lt;/style&gt;</li>
+<li>&lt;script type=&quot;text/javascript&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetScript">getScript</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>//--&gt;</li>
+<li>&lt;/script&gt;</li>
+<li>&lt;/head&gt;</li>
+<li>&lt;body&gt;</li>
+<li>&nbsp;</li>
+<li><span class="src-php">&lt;?php </span></li>
+<li>echo <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">toHTML</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">run</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&nbsp;</li>
+<li>&lt;/body&gt;</li>
+<li>&lt;/html&gt;</li>
+</ol></pre></div></p>
+    <p>Example above produces such results:
+     <p><pre class="screen">a:2:{s:3:&quot;log&quot;;s:8:&quot;incValue&quot;;s:5:&quot;value&quot;;i:10;} 
+a:2:{s:3:&quot;log&quot;;s:8:&quot;incValue&quot;;s:5:&quot;value&quot;;i:20;} 
+a:2:{s:3:&quot;log&quot;;s:8:&quot;incValue&quot;;s:5:&quot;value&quot;;i:30;} 
+a:2:{s:3:&quot;log&quot;;s:8:&quot;incValue&quot;;s:5:&quot;value&quot;;i:40;} 
+a:2:{s:3:&quot;log&quot;;s:8:&quot;incValue&quot;;s:5:&quot;value&quot;;i:50;} 
+a:2:{s:3:&quot;log&quot;;s:8:&quot;incValue&quot;;s:5:&quot;value&quot;;i:60;} 
+a:2:{s:3:&quot;log&quot;;s:8:&quot;incValue&quot;;s:5:&quot;value&quot;;i:70;} 
+a:2:{s:3:&quot;log&quot;;s:8:&quot;incValue&quot;;s:5:&quot;value&quot;;i:80;} 
+a:2:{s:3:&quot;log&quot;;s:8:&quot;incValue&quot;;s:5:&quot;value&quot;;i:90;} 
+a:2:{s:3:&quot;log&quot;;s:8:&quot;incValue&quot;;s:5:&quot;value&quot;;i:100;}</pre></p></p><hr />
+   <a name="useit.observer-complex"></a><h3 class="title">Complex Observer</h3><p>In this example, we will produces a dual progress meter which will simulate
+     a software installation. One progress bar (left side) for each file copy, and one progress
+     bar (right side) for global progress.
+     On each left bar loop (100%), right bar will be increased by 25%.
+     Example below will display something like :<br />
+     <p><table class="note"><tr><td><img src="../media/example.png"></td><td><img src = "../media/screenshots/observer_complex.png"/></td></tr></table></p>
+     <p><strong>Complex Observer</strong><div class="listing"><pre><ol><li><span class="src-php">&lt;?php </span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress.php'</span><span class="src-sym">;</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress/observer.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-key">class </span><span class="src-id">Bar1Observer </span><span class="src-key">extends </span><a href="../HTML_Progress/Progress_Observer/HTML_Progress_Observer.html">HTML_Progress_Observer</a></li>
+<li><span class="src-sym">{</span></li>
+<li>    <span class="src-key">function </span><span class="src-id">Bar1Observer</span><span class="src-sym">(</span><span class="src-sym">)</span></li>
+<li>    <span class="src-sym">{</span></li>
+<li>        <span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-id">HTML_Progress_Observer</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>    <span class="src-sym">}</span></li>
+<li>&nbsp;</li>
+<li>    <span class="src-key">function </span><span class="src-id">notify</span><span class="src-sym">(</span><span class="src-var">$event</span><span class="src-sym">)</span></li>
+<li>    <span class="src-sym">{</span></li>
+<li>        <span class="src-key">global </span><span class="src-var">$bar1</span><span class="src-sym">, </span><span class="src-var">$bar2</span><span class="src-sym">;</span></li>
+<li>        </li>
+<li>        <span class="src-key">if </span><span class="src-sym">(</span><a href="http://www.php.net/is_array">is_array</a><span class="src-sym">(</span><span class="src-var">$event</span><span class="src-sym">)) </span><span class="src-sym">{</span></li>
+<li>            <span class="src-var">$log </span>= <span class="src-var">$event</span><span class="src-sym">[</span><span class="src-str">'log'</span><span class="src-sym">]</span><span class="src-sym">;</span></li>
+<li>            <span class="src-var">$val </span>= <span class="src-var">$event</span><span class="src-sym">[</span><span class="src-str">'value'</span><span class="src-sym">]</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li>            <span class="src-key">switch </span><span class="src-sym">(</span><a href="http://www.php.net/strtolower">strtolower</a><span class="src-sym">(</span><span class="src-var">$log</span><span class="src-sym">)) </span><span class="src-sym">{</span></li>
+<li>             <span class="src-key">case </span><span class="src-str">'incvalue'</span>:</li>
+<li>                 <span class="src-var">$bar1</span><span class="src-sym">-&gt;</span><span class="src-id">sleep</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;  </span><span class="src-comm">// process to do on PB1</span></li>
+<li>                 <span class="src-key">break</span><span class="src-sym">;</span></li>
+<li>             <span class="src-key">case </span><span class="src-str">'setvalue'</span>:</li>
+<li>                 <span class="src-key">if </span><span class="src-sym">(</span><span class="src-var">$val </span>== <span class="src-num">0</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li>                     <span class="src-var">$bar2</span><span class="src-sym">-&gt;</span><span class="src-id">incValue</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>                     <span class="src-var">$bar2</span><span class="src-sym">-&gt;</span><span class="src-id">display</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>                 <span class="src-sym">}</span></li>
+<li>             <span class="src-key">default</span>:</li>
+<li>            <span class="src-sym">}</span></li>
+<li>        <span class="src-sym">}</span></li>
+<li>    <span class="src-sym">}</span></li>
+<li><span class="src-sym">}</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$bar1 </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">(</span><span class="src-id"><a href="../HTML_Progress/_Progress_Progress_php.html#defineHTML_PROGRESS_BAR_VERTICAL">HTML_PROGRESS_BAR_VERTICAL</a></span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar1</span><span class="src-sym">-&gt;</span><span class="src-id">setAnimSpeed</span><span class="src-sym">(</span><span class="src-num">100</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar1</span><span class="src-sym">-&gt;</span><span class="src-id">setIncrement</span><span class="src-sym">(</span><span class="src-num">10</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar1</span><span class="src-sym">-&gt;</span><span class="src-id">setIdent</span><span class="src-sym">(</span><span class="src-str">'PB1'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$bar2 </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">(</span><span class="src-id"><a href="../HTML_Progress/_Progress_Progress_php.html#defineHTML_PROGRESS_BAR_VERTICAL">HTML_PROGRESS_BAR_VERTICAL</a></span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar2</span><span class="src-sym">-&gt;</span><span class="src-id">setAnimSpeed</span><span class="src-sym">(</span><span class="src-num">100</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar2</span><span class="src-sym">-&gt;</span><span class="src-id">setIncrement</span><span class="src-sym">(</span><span class="src-num">25</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar2</span><span class="src-sym">-&gt;</span><span class="src-id">setIdent</span><span class="src-sym">(</span><span class="src-str">'PB2'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar2</span><span class="src-sym">-&gt;</span><span class="src-id">setBorderPainted</span><span class="src-sym">(</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$observer </span>= <span class="src-key">new </span><span class="src-id">Bar1Observer</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$ok </span>= <span class="src-var">$bar1</span><span class="src-sym">-&gt;</span><span class="src-id">addListener</span><span class="src-sym">(</span><span class="src-var">$observer</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-key">if </span><span class="src-sym">(</span><span class="src-sym">!</span><span class="src-var">$ok</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li>    <span class="src-key">die </span><span class="src-sym">(</span><span class="src-str">&quot;Cannot add a valid listener to progress bar !&quot;</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-sym">}</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$ui1 </span>=<span class="src-sym">&amp; </span><span class="src-var">$bar1</span><span class="src-sym">-&gt;</span><span class="src-id">getUI</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui1</span><span class="src-sym">-&gt;</span><span class="src-id">setComment</span><span class="src-sym">(</span><span class="src-str">'Complex Observer example'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui1</span><span class="src-sym">-&gt;</span><span class="src-id">setTabOffset</span><span class="src-sym">(</span><span class="src-num">1</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui1</span><span class="src-sym">-&gt;</span><span class="src-id">setProgressAttributes</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'background-color' </span>=&gt; <span class="src-str">'#e0e0e0'</span></li>
+<li>    <span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui1</span><span class="src-sym">-&gt;</span><span class="src-id">setStringAttributes</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'valign' </span>=&gt; <span class="src-str">'left'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'color'  </span>=&gt; <span class="src-str">'red'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'background-color' </span>=&gt; <span class="src-str">'lightblue'</span></li>
+<li>    <span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$ui2 </span>=<span class="src-sym">&amp; </span><span class="src-var">$bar2</span><span class="src-sym">-&gt;</span><span class="src-id">getUI</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui2</span><span class="src-sym">-&gt;</span><span class="src-id">setTabOffset</span><span class="src-sym">(</span><span class="src-num">1</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui2</span><span class="src-sym">-&gt;</span><span class="src-id">setBorderAttributes</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'width' </span>=&gt; <span class="src-num">1</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'style' </span>=&gt; <span class="src-str">'solid'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'color' </span>=&gt; <span class="src-str">'navy'</span></li>
+<li>    <span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui2</span><span class="src-sym">-&gt;</span><span class="src-id">setCellAttributes</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'active-color' </span>=&gt; <span class="src-str">'#3874B4'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'inactive-color' </span>=&gt; <span class="src-str">'#EEEECC'</span></li>
+<li>    <span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui2</span><span class="src-sym">-&gt;</span><span class="src-id">setStringAttributes</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'width'  </span>=&gt; <span class="src-str">'100'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'align'  </span>=&gt; <span class="src-str">'center'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'valign' </span>=&gt; <span class="src-str">'right'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'color'  </span>=&gt; <span class="src-str">'yellow'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'background-color' </span>=&gt; <span class="src-str">'lightblue'</span></li>
+<li>    <span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&lt;!DOCTYPE html</li>
+<li>    PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot;</li>
+<li>    &quot;http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</li>
+<li>&nbsp;</li>
+<li>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot;&gt;</li>
+<li>&lt;head&gt;</li>
+<li>&lt;title&gt;Complex Observer &lt;/title&gt;</li>
+<li>&lt;style type=&quot;text/css&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php</span></li>
+<li>echo <span class="src-var">$bar1</span><span class="src-sym">-&gt;</span><span class="src-id">getStyle</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>echo <span class="src-var">$bar2</span><span class="src-sym">-&gt;</span><span class="src-id">getStyle</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>table.container {</li>
+<li>    background-color: lightblue;</li>
+<li>    border: 2;</li>
+<li>    border-color: navy;</li>
+<li>    border-style: dashed;</li>
+<li>    cell-spacing: 4;</li>
+<li>    cell-padding: 8;</li>
+<li>    width: 50%;</li>
+<li>}</li>
+<li>// --&gt;</li>
+<li>&lt;/style&gt;</li>
+<li>&lt;script type=&quot;text/javascript&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$bar1</span><span class="src-sym">-&gt;</span><span class="src-id">getScript</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>//--&gt;</li>
+<li>&lt;/script&gt;</li>
+<li>&lt;/head&gt;</li>
+<li>&lt;body&gt;</li>
+<li>&nbsp;</li>
+<li>&lt;table class=&quot;container&quot;&gt;</li>
+<li>&lt;tr&gt;</li>
+<li>    &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt;</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$bar1</span><span class="src-sym">-&gt;</span><span class="src-id">toHTML</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>    &lt;/td&gt;</li>
+<li>    &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt;</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$bar2</span><span class="src-sym">-&gt;</span><span class="src-id">toHTML</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>    &lt;/td&gt;</li>
+<li>&lt;/tr&gt;</li>
+<li>&lt;/table&gt;</li>
+<li>&nbsp;</li>
+<li><span class="src-php">&lt;?php</span></li>
+<li>do <span class="src-sym">{</span></li>
+<li>    <span class="src-var">$bar1</span><span class="src-sym">-&gt;</span><span class="src-id">display</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>    <span class="src-key">if </span><span class="src-sym">(</span><span class="src-var">$bar1</span><span class="src-sym">-&gt;</span><span class="src-id">getPercentComplete</span><span class="src-sym">(</span><span class="src-sym">) </span>== <span class="src-num">1</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li>        <span class="src-var">$bar1</span><span class="src-sym">-&gt;</span><span class="src-id">setValue</span><span class="src-sym">(</span><span class="src-num">0</span><span class="src-sym">)</span><span class="src-sym">; </span></li>
+<li>    <span class="src-sym">} </span><span class="src-key">else </span><span class="src-sym">{</span></li>
+<li>        <span class="src-var">$bar1</span><span class="src-sym">-&gt;</span><span class="src-id">incValue</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span></li>
+<li>    <span class="src-sym">}</span></li>
+<li><span class="src-sym">} </span><span class="src-key">while</span><span class="src-sym">(</span><span class="src-var">$bar2</span><span class="src-sym">-&gt;</span><span class="src-id">getPercentComplete</span><span class="src-sym">(</span><span class="src-sym">) </span>&lt; <span class="src-num">1</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&nbsp;</li>
+<li>&lt;/body&gt;</li>
+<li>&lt;/html&gt;</li>
+</ol></pre></div></p>
+     Lets considers the most important lines:
+     The do-while loop (<strong>lines 128 to 135</strong>) manage the reinitialization
+      of left bar PB1 when this one reachs 100%.<br />
+     Changes on right bar PB2 are made by notify method of <i><b>Bar1Observer</b></i> 
+      class when event catched is &quot;setValue&quot; and value is equal zero (<strong>lines 24 to 27</strong>), 
+      raised by <a href="../HTML_Progress/tutorial_dm.setvalue.pkg.html">HTML_Progress::setValue</a> method on <strong>line 131</strong>.<br /></p><hr /></p></span></div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="33%" align="left" valign="top"><a href="../HTML_Progress/tutorial_part2-indeterminate.pkg.html">Prev</a></td>
+<td width="34%" align="center" valign="top"><a href=
+"../HTML_Progress/tutorial_part2-gettingstarted.pkg.html">Up</a></td>
+<td width="33%" align="right" valign="top"><a href=
+"../HTML_Progress/tutorial_part2-monitor.pkg.html">Next</a></td>
+</tr>
+
+<tr>
+<td width="33%" align="left" valign="top">Using Indeterminate Mode</td>
+<td width="34%" align="center" valign="top">Getting Started</td>
+<td width="33%" align="right" valign="top">Monitoring functions v2</td>
+</tr>
+</table>
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Sun, 12 Sep 2004 20:22:51 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

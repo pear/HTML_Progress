@@ -1,0 +1,152 @@
+<html>
+<head>
+<title>HTML_Progress_UI::setFillWay</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">HTML_Progress</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+  		  [ <a href="../classtrees_HTML_Progress.html" class="menu">class tree: HTML_Progress</a> ]
+		  [ <a href="../elementindex_HTML_Progress.html" class="menu">index: HTML_Progress</a> ]
+		  [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="10%" align="left" valign="bottom"><a href=
+"../HTML_Progress/tutorial_ui.getfillway.pkg.html">Prev</a></td>
+<td width="80%" align="center" valign="bottom"></td>
+<td width="10%" align="right" valign="bottom"><a href=
+"../HTML_Progress/tutorial_ui.getcellcount.pkg.html">Next</a></td>
+</tr>
+</table>
+<div><a name=""></a><div class="ref-title-box"><div class="ref-title"><span class="function">HTML_Progress_UI::setFillWay</span></div>
+  <div class="ref-purpose">decides how the progress meter will be filled</div></div>
+
+ <span><a name="synopsis"></a><h2 class="title">Synopsis</h2><div class="ref-synopsis"><p><p class="func-synopsis">require_once 'HTML/Progress/UI.php';</p>
+    void <span class="function">HTML_Progress_UI::setFillWay</span>(
+     string <i>$way</i>)</p></div></span>
+
+ <span><a name="description"></a><h2 class="title">Description</h2><p>This method is used to change the fill way of the progress meter.</p>
+  <p>It could be <strong>natural</strong> (left to right for horizontal progress bar),
+   (down to up for vertical progress bar) or <strong>reverse</strong> 
+   (right to left for horizontal progress bar), (up to down for vertical progress bar).</p></span>
+
+ <span><a name="parameter"></a><h2 class="title">Parameter</h2><p><ul class="parameter"><dl><dt>string
+      <i>$way</i><dd>
+     <li><p>the new progress meter fill way.</p></li></dl></ul></p></span>
+
+ <span><a name="throws"></a><h2 class="title">Throws</h2><p><table frame = "border"><p><strong>Possible PEAR_Error values</strong></p><colgroup span = "4"/><thead><tr><td>Error level</td>
+       <td>Error code</td>
+       <td>Error message</td>
+       <td>Solution</td></tr></thead>
+     <tbody><tr><td>exception</td>
+       <td><b>HTML_PROGRESS_ERROR_INVALID_INPUT</b></td>
+       <td>invalid input, parameter #1 &quot;<i>$way</i>&quot; was expecting &quot;string&quot;</td>
+       <td>Fixed the cast of parameter</td></tr>
+      <tr><td>error</td>
+       <td><b>HTML_PROGRESS_ERROR_INVALID_INPUT</b></td>
+       <td>invalid input, parameter #1 &quot;<i>$way</i>&quot; was expecting &quot;natural|reverse&quot;</td>
+       <td>Choose one of both label</td></tr></tbody></table></p></span>
+
+ <span><a name="note"></a><h2 class="title">Note</h2>( HTML_Progress &gt;= 1.0 )<br />
+  <p><table class="note"><tr><td class="note_img"><img src="../media/important.png"></td><td class="note_text">This function can not be called statically.</td></tr></table></p></span>
+
+ <span><a name="see"></a><h2 class="title">See</h2><p><a href="../HTML_Progress/tutorial_ui.getfillway.pkg.html">HTML_Progress_UI::getFillWay</a></p></span>
+
+ <span><a name="example"></a><h2 class="title">Example</h2><p>Example below (that requires HTML_Progress &gt;= 1.2.0RC3) will produced a vertical progress bar 
+    with only 5 cells filled in reverse order (see line 12).
+    It's a dynamic example, the progress bar will run.<br />
+   <p><table class="note"><tr><td><img src="../media/example.png"></td><td><img src = "../media/screenshots/vertical2.png"/></td></tr></table></p>
+   <p><div class="listing"><pre><ol><li><span class="src-php">&lt;?php</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$bar </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">(</span><span class="src-id"><a href="../HTML_Progress/_Progress_Progress_php.html#defineHTML_PROGRESS_BAR_VERTICAL">HTML_PROGRESS_BAR_VERTICAL</a></span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setAnimSpeed</span><span class="src-sym">(</span><span class="src-num">100</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setIdent</span><span class="src-sym">(</span><span class="src-str">'PB1'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setIncrement</span><span class="src-sym">(</span><span class="src-num">10</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$ui </span>=<span class="src-sym">&amp; </span><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">getUI</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><span class="src-id">setComment</span><span class="src-sym">(</span><span class="src-str">'Reverse ProgressBar example'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><span class="src-id">setTabOffset</span><span class="src-sym">(</span><span class="src-num">1</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetFillWay">setFillWay</a><span class="src-sym">(</span><span class="src-str">'reverse'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetCellCount">setCellCount</a><span class="src-sym">(</span><span class="src-num">5</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetProgressAttributes">setProgressAttributes</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'background-color' </span>=&gt; <span class="src-str">'#e0e0e0'</span></li>
+<li><span class="src-sym">))</span><span class="src-sym">;        </span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetStringAttributes">setStringAttributes</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'valign' </span>=&gt; <span class="src-str">'left'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'color'  </span>=&gt; <span class="src-str">'red'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'background-color' </span>=&gt; <span class="src-str">'lightblue'</span></li>
+<li>    <span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&lt;html&gt;</li>
+<li>&lt;head&gt;</li>
+<li>&lt;title&gt;setFillWay example&lt;/title&gt;</li>
+<li>&lt;style type=&quot;text/css&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetStyle">getStyle</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>&nbsp;</li>
+<li>body {</li>
+<li>    background-color: lightblue;</li>
+<li>    color: #000000;</li>
+<li>    font-family: Verdana, Arial;</li>
+<li>}</li>
+<li>// --&gt;</li>
+<li>&lt;/style&gt;</li>
+<li>&lt;script type=&quot;text/javascript&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetScript">getScript</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>//--&gt;</li>
+<li>&lt;/script&gt;</li>
+<li>&lt;/head&gt;</li>
+<li>&lt;body&gt;</li>
+<li>&nbsp;</li>
+<li><span class="src-php">&lt;?php </span></li>
+<li>echo <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">toHtml</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">run</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&nbsp;</li>
+<li>&lt;/body&gt;</li>
+<li>&lt;/html&gt;</li>
+</ol></pre></div></p></p></span></div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="33%" align="left" valign="top"><a href="../HTML_Progress/tutorial_ui.getfillway.pkg.html">Prev</a></td>
+<td width="34%" align="center" valign="top"><a href=
+"../HTML_Progress/tutorial_part3-reference.pkg.html">Up</a></td>
+<td width="33%" align="right" valign="top"><a href=
+"../HTML_Progress/tutorial_ui.getcellcount.pkg.html">Next</a></td>
+</tr>
+
+<tr>
+<td width="33%" align="left" valign="top"><span class="function">HTML_Progress_UI::getFillWay</span></td>
+<td width="34%" align="center" valign="top">Reference Guide</td>
+<td width="33%" align="right" valign="top"><span class="function">HTML_Progress_UI::getCellCount</span></td>
+</tr>
+</table>
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Sun, 12 Sep 2004 20:23:20 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

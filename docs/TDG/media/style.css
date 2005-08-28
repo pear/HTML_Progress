@@ -1,0 +1,269 @@
+.php {
+	padding: 1em;
+}
+/* This will not be executed by IE, so now we have a fix! */
+*[class="php-src"], *[class="php"], *[class="listing"] {
+	line-height:    0px;
+}
+
+body
+{
+  color:              #000000;
+  background-color:   #ffffff;
+  font-family:        tahoma, verdana, arial, sans-serif;
+  font-size:          10pt;
+  margin:             0;
+  padding:            0;
+}
+
+a:link {
+    color: #006600;
+}
+
+a:visited {
+    color: #030;
+}
+
+a:hover {
+    color: #003300;
+}
+
+a.menu
+{
+  color:              #ffffff;
+  background-color:   transparent;
+}
+
+table.note {
+  border:             1px solid #006600;
+  width:              100%;
+}
+td.note_img {
+  background-color:   lightgrey;
+  width:              50px;
+}
+td.note_text {
+  background-color:   lightyellow;
+  color:              black;
+}
+
+td
+{
+  font-size:          10pt;
+}
+
+td.header_top
+{
+  background-image: url("pear.gif");
+  background-repeat: no-repeat;
+  color:              #ffffff;
+  background-color:   rgb(51,153,0);
+  font-size:          16pt;
+  font-weight:        bold;
+  text-align:         right;
+  padding:            10px;
+  height: 60px;
+}
+
+td.header_line
+{
+  color:              #ffffff;
+  background-color:   black;
+}
+
+td.header_menu
+{
+  color:              #ffffff;
+  background-color:   rgb(0,102,0);
+  font-size:          8pt;
+  text-align:         right;
+  padding:            2px;
+  padding-right:      5px;
+}
+
+td.menu
+{
+  padding:            2px;
+  padding-left:       5px;
+  width: 141px;
+}
+
+td.code_border
+{
+  color:              #000000;
+  background-color:   #c0c0c0;
+}
+
+td.code
+{
+  color:              #000000;
+  background-color:   #f0f0f0;
+}
+
+td.type
+{
+  font-style:         italic;
+}
+
+thead {
+  font-weight: bold;
+  background-color:   #f0f0f0;
+}
+
+pre.screen {
+  padding:            10px;
+  border:             1px dotted #c0c0c0;
+  background-color:   #ffffff;
+  font-family:        courier, verdana, arial, sans-serif;
+}
+
+div.credit
+{
+  font-size:          8pt;
+  text-align:         center;
+}
+
+div.package
+{
+  padding-left:       5px;
+}
+
+div.tags
+{
+  padding-left:       15px;
+}
+
+p.func-synopsis
+{
+  color:              #000000;
+  background-color:   #f0f0f0;
+}
+
+span.function
+{
+  padding-left:       15px;
+  font-weight:        bold;
+}
+
+ul.parameter {
+  list-style-type: none;
+}
+
+div.top
+{
+  font-size:          8pt;
+}
+
+div.warning
+{
+  color:              #ff0000;
+  background-color:   transparent;
+}
+
+div.description
+{
+  padding-left:       15px;
+}
+
+hr
+{
+  height:             1px;
+  border-style:       solid;
+  border-color:       #c0c0c0;
+  margin-top:         10px;
+  margin-bottom:      10px;
+}
+
+span.smalllinenumber
+{
+  font-size:          8pt;
+}
+
+ul {
+	margin-left:		0px;
+	padding-left:		8px;
+}
+
+
+h2.title {
+    border-bottom:              1px solid #006600;
+}
+
+h1 {
+    font-family: verdana,arial,helvetica,sans-serif;
+    font-size: 140%;
+    font-weight: bold;
+    color: #006600;
+}
+
+h2 {
+    font-family: verdana,arial,helvetica,sans-serif;
+    font-size: 125%;
+    font-weight: bold;
+    color: #006600;
+}
+
+h3 {
+    font-family: verdana,arial,helvetica,sans-serif;
+    font-size: 110%;
+    font-weight: bold;
+    color: #006600;
+}
+
+/* Syntax highlighting */
+
+.src-code { background-color: #f5f5f5; border: 1px solid #ccc9a4; padding: 0px; margin : 0px}
+
+.src-comm { color: #666666; }
+.src-id   { color: #0000BB; }
+.src-inc  { color: #7F007F; }
+.src-key  { color: #7F007F; }
+.src-num  { color: #CC0000; }
+.src-str  { color: #007F00; }
+.src-sym  { color: #7F007F; }
+.src-var  { color: #0000BB; }
+.src-php  { color: #0000BB; }
+
+.src-doc { color: #009999 }
+.src-doc-close-template { color: #0000FF }
+.src-doc-coretag { color: #0099FF; font-weight: bold }
+.src-doc-inlinetag { color: #0099FF }
+.src-doc-internal { color: #6699cc }
+.src-doc-tag { color: #0080CC }
+.src-doc-template { color: #0000FF }
+.src-doc-type { font-style: italic }
+.src-doc-var { font-style: italic }
+
+.tute-tag { color: #009999 }
+.tute-attribute-name { color: #0000FF }
+.tute-attribute-value { color: #0099FF }
+.tute-entity { font-weight: bold; }
+.tute-comment { font-style: italic }
+.tute-inline-tag { color: #636311; font-weight: bold }
+
+/* tutorial */
+
+.example { border: 1px dashed #999999; background-color: #EEEEEE; padding: .25em; }
+.listing { border: 1px dashed #999999; background-color: #EEEEEE; padding: .25em; }
+.notes, .release-info { padding-left: 30px; }
+.ref-title-box { padding-left: 15px;}
+.ref-title {  
+    font-family: verdana,arial,helvetica,sans-serif;
+    font-size: 140%;
+    font-weight: bold;
+    color: #006600;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+.ref-purpose {
+    font-size: 110%;
+    font-weight: bold;
+    margin-left: 0px;
+    padding-left: 15px;
+}
+.ref-synopsis {  }
+.cmd-synopsis { margin: 1em 0em }
+.cmd-title { font-weight: bold }
+.toc { margin-left: 2em; padding-left: 0em }
+
+ol.upperalpha { list-style-type: upper-alpha; }

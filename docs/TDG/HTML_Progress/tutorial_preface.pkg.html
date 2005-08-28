@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>Preface</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">HTML_Progress</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+  		  [ <a href="../classtrees_HTML_Progress.html" class="menu">class tree: HTML_Progress</a> ]
+		  [ <a href="../elementindex_HTML_Progress.html" class="menu">index: HTML_Progress</a> ]
+		  [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="10%" align="left" valign="bottom"><a href=
+"../HTML_Progress/tutorial_HTML_Progress.pkg.html">Prev</a></td>
+<td width="80%" align="center" valign="bottom"></td>
+<td width="10%" align="right" valign="bottom"><a href=
+"../HTML_Progress/tutorial_part1-introduction.pkg.html">Next</a></td>
+</tr>
+</table>
+<div><a name=""></a><div class="ref-title-box"><div class="ref-title">Preface</div></div>
+
+ <p><strong>HTML_Progress</strong> makes it easy to build and display a progress meter on XHTML document
+  of your choice, and allows user to wait and see status during a long process 
+  such a software installation. You get a more or less decent result with just the basic settings, 
+  but it’s also highly configurable, so you can almost get what you want.</p>
+ <p>The core class assigns context sensitive default values for most of the parameters 
+  which minimizes the learning part. The features are there when you need it.</p>
+
+ <h1 align="center">Table of Contents</h1>
+<ul>
+
+<a href="../HTML_Progress/tutorial_preface.pkg.html#audience">Intended Audience</a><br />
+
+<a href="../HTML_Progress/tutorial_preface.pkg.html#why-use-it">Why use HTML_Progress ?</a><br />
+
+&nbsp;&nbsp;&nbsp;<a href="../HTML_Progress/tutorial_preface.pkg.html#why-use-it.features">Features</a><br />
+
+<a href="../HTML_Progress/tutorial_preface.pkg.html#pre-requisites">Pre-requisites</a><br />
+
+<a href="../HTML_Progress/tutorial_preface.pkg.html#what-is-new">What is new ?</a><br />
+
+<a href="../HTML_Progress/tutorial_preface.pkg.html#pkg-overview">Package Overview</a><br />
+
+&nbsp;&nbsp;&nbsp;<a href="../HTML_Progress/tutorial_preface.pkg.html#pkg-overview.class-bar">Global classes</a><br />
+
+&nbsp;&nbsp;&nbsp;<a href="../HTML_Progress/tutorial_preface.pkg.html#pkg-overview.class-dm">Data Model class</a><br />
+
+&nbsp;&nbsp;&nbsp;<a href="../HTML_Progress/tutorial_preface.pkg.html#pkg-overview.class-ui">User Interface classes</a><br />
+
+&nbsp;&nbsp;&nbsp;<a href="../HTML_Progress/tutorial_preface.pkg.html#pkg-overview.class-observer">Observers classes</a><br />
+
+<a href="../HTML_Progress/tutorial_preface.pkg.html#getdoc">Getting this documentation</a><br />
+
+<a href="../HTML_Progress/tutorial_preface.pkg.html#getexamples">Getting examples</a><br />
+</ul>
+
+
+ <span><a name="audience"></a><h2 class="title">Intended Audience</h2><p>This document is written as a guide to and reference for the HTML_Progress package, for both
+   beginner and expert users.</p></span>
+
+ <span><a name="why-use-it"></a><h2 class="title">Why use HTML_Progress ?</h2><p>There are some classes that exists, but never none of them as such degree of customization.
+   You can produce all kind of progress indicator you want: from basic horizontal bar, vertical bar,
+   to circle, ellipse, and even free polygonal shape.</p>
+  <a name="why-use-it.features"></a><h3 class="title">Features</h3><p><ul><li>create horizontal, vertival bar and also circle, ellipse and polygons (square, rectangle)</li>
+     <li>allows usage of existing external StyleSheet and/or JavaScript</li>
+     <li>all elements (progress, cells, string) are customizable by their html properties</li>
+     <li>percent/string is floating all around the progress meter</li>
+     <li>compliant with all CSS/XHMTL standards</li>
+     <li>integration with all template engines is very easy</li>
+     <li>implements Observer design pattern. It is possible to add Listeners</li>
+     <li>adds a customizable UI monitor pattern to display a progress bar. User-end can abort progress at any time.</li>
+     <li>Look and feel can be sets by internal API or external config file</li>
+     <li>Allows many progress meter on same page without uses of iframe solution</li>
+     <li>HTML_Progress 1.2.0 works with PHP 5</li></ul></p><hr /></span>
+
+ <span><a name="pre-requisites"></a><h2 class="title">Pre-requisites</h2><p>It is assumed that you have installed both PHP and PEAR, and that you have rudimentary 
+   knowledge of PHP, HTML and JavaScript. If you are not a PEAR user, don't worry you may
+   use HTML_Progress since 1.2.0 without a PEAR installation, with some features restrictions.
+   See <a href="../HTML_Progress/tutorial_A_install.pkg.html">Appendix A. Installation</a> for details.</p>
+  <p>It is also assumed that your PHP scripts are correctly interpreted by your web server. 
+   In most case it will be probably Apache, but you may also have IIS. HTML_Progress runs both
+   on Windows and *nix.</p></span>
+
+ <span><a name="what-is-new"></a><h2 class="title">What is new ?</h2><p>First publish release of HTML_Progress on 
+   <a href="http://pear.php.net/package/HTML_Progress/">PEAR website</a> was on August 1st, 2003.
+   Its introduced the first attempt of stable API version. But as i wanted HTML_Progress 
+   more open to future evolutions, i've redevelopped a second API more robust.
+   So versions 0.4.x, 0.5.x and 0.6.x are all incompatible with the new API introduced first 
+   in version 1.0</p>
+   <ul><li><strong>2003-11-16 (version 1.0)</strong>
+     <p>First attempt to:
+      <ul><li>create a <strong>Progress Monitor</strong> solution.</li>
+       <li>interactive tools to build progress bar (<strong>Progress Maker</strong>).</li></ul></p></li>
+    <li><strong>2004-02-14 (version 1.1)</strong> 
+     <p><ul><li>Second version of <strong>Progress Monitor</strong>, using the QuickForm rendering system.</li>
+       <li><strong>Progress Uploader</strong> was born: a web-ftp file uploads solution.</li>
+       <li><strong>Progress Generator</strong> became the next generation of Progress Maker.</li></ul></p></li>
+    <li><strong>2004-09-12 (version 1.2.0)</strong> 
+     <p><ul><li>new shapes such as <strong>circle, ellipse, square, rectangle</strong> are allowed.</li>
+       <li><strong>error plugin architecture</strong> to allows all error handler you might want.</li>
+       <li><strong>Progress Uploader</strong> was removed</li>
+       <li><i><b>HTML_Progress_Model</b></i> class was removed, but feature still exist.</li></ul></p></li></ul></span>
+
+ <span><a name="pkg-overview"></a><h2 class="title">Package Overview</h2><p>HTML_Progress provides seven classes to help you use progress bars:</p>
+  <a name="pkg-overview.class-bar"></a><h3 class="title">Global classes</h3><p><ul><li><i><b>HTML_Progress</b></i>
+      <p>Main component to graphically display how much of a total task has completed.
+       See (Using Determinate Progress Bars) for information and an example of using a typical
+       progress bar. The section indeterminate.pkg tells you how to animate a progress
+       bar to show activity before the task's scope is known.</p></li></ul></p><hr />
+  <a name="pkg-overview.class-dm"></a><h3 class="title">Data Model class</h3><p><ul><li><i><b>HTML_Progress_DM</b></i>
+      <p>This class handles any mathematical issues arising from assigning faulty values.</p></li></ul></p><hr />
+  <a name="pkg-overview.class-ui"></a><h3 class="title">User Interface classes</h3><p><ul><li><i><b>HTML_Common</b></i>
+      <p>This class provides methods for html code display and attributes handling.
+       It is a base class for other HTML classes and can be downloaded at PEAR under 
+       <a href="http://pear.php.net/package/HTML_Common">HTML_Common</a> package.</p></li>
+     <li><i><b>HTML_Progress_UI</b></i>
+      <p>This class provides a basic look and feel implementation of a progress bar.</p></li>
+     <li><i><b>HTML_Progress_Generator</b></i>
+      <p>This class provides an easy way to build and run demo of your own progress bar.
+       You can also save final PHP and/or CSS source-code.
+       <strong>HTML_Progress_Generator</strong> become the next generation of 
+       interactive tools after <strong>ProgressMaker</strong> (included in HTML_Progress 1.0)</p></li></ul></p><hr />
+  <a name="pkg-overview.class-observer"></a><h3 class="title">Observers classes</h3><p><ul><li><i><b>HTML_Progress_Observer</b></i>
+      <p>This class implements the observer pattern for watching progress bar activity 
+       and taking actions on exceptional events.</p></li>
+     <li><i><b>HTML_Progress_Monitor</b></i>
+      <p>This class allow an easy way to display progress in a dialog. The user can cancel 
+       the task.
+       It requires another PEAR package, the 
+       <a href="http://pear.php.net/package/HTML_QuickForm">HTML_QuickForm</a> package which 
+       provides methods for creating, validating, processing HTML forms.</p></li></ul></p><hr /></span>
+
+ <span><a name="getdoc"></a><h2 class="title">Getting this documentation</h2><p>In the HTML_Progress 1.2.0 bundle you will find a windows help file (chm) and also a
+   portable document file (pdf) reading by acrobat reader.</p>
+  <p>You may also read this <strong>Definitive Guide</strong> online in HTML format at 
+   <a href="http://pear.laurent-laville.org/HTML_Progress/apidoc/HTML/">http://pear.laurent-laville.org/HTML_Progress/apidoc/HTML/</a>.</p></span>
+
+ <span><a name="getexamples"></a><h2 class="title">Getting examples</h2><p>All of these documentation examples are included into the HTML_Progress package bundle. 
+   You can get the most up-to-date examples from the web site: 
+   <a href="http://pear.laurent-laville.org/HTML_Progress/examples/">http://pear.laurent-laville.org/HTML_Progress/examples/</a></p></span></div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="33%" align="left" valign="top"><a href="../HTML_Progress/tutorial_HTML_Progress.pkg.html">Prev</a></td>
+<td width="34%" align="center" valign="top"><a href=
+"../HTML_Progress/tutorial_HTML_Progress.pkg.html">Up</a></td>
+<td width="33%" align="right" valign="top"><a href=
+"../HTML_Progress/tutorial_part1-introduction.pkg.html">Next</a></td>
+</tr>
+
+<tr>
+<td width="33%" align="left" valign="top">HTML_Progress 1.x</td>
+<td width="34%" align="center" valign="top">HTML_Progress 1.x</td>
+<td width="33%" align="right" valign="top">Introduction</td>
+</tr>
+</table>
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Sun, 12 Sep 2004 20:22:36 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

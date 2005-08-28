@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>HTML_Progress::hasErrors</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">HTML_Progress</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+  		  [ <a href="../classtrees_HTML_Progress.html" class="menu">class tree: HTML_Progress</a> ]
+		  [ <a href="../elementindex_HTML_Progress.html" class="menu">index: HTML_Progress</a> ]
+		  [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="10%" align="left" valign="bottom"><a href=
+"../HTML_Progress/tutorial_progress.raiseerror.pkg.html">Prev</a></td>
+<td width="80%" align="center" valign="bottom"></td>
+<td width="10%" align="right" valign="bottom"><a href=
+"../HTML_Progress/tutorial_progress.geterror.pkg.html">Next</a></td>
+</tr>
+</table>
+<div><a name=""></a><div class="ref-title-box"><div class="ref-title"><span class="function">HTML_Progress::hasErrors</span></div>
+  <div class="ref-purpose">returns count of API error</div></div>
+
+ <span><a name="synopsis"></a><h2 class="title">Synopsis</h2><div class="ref-synopsis"><p><p class="func-synopsis">require_once 'HTML/Progress.php';</p>
+    integer <span class="function">HTML_Progress::hasErrors</span>()</p></div></span>
+
+ <span><a name="description"></a><h2 class="title">Description</h2><p>This method tell whether there are errors into HTML_Progress stack, and how much.</p></span>
+
+ <span><a name="note"></a><h2 class="title">Note</h2>( HTML_Progress &gt;= 1.2.0RC3 )<br />
+  <p><table class="note"><tr><td class="note_img"><img src="../media/important.png"></td><td class="note_text">This function can be called statically.</td></tr></table></p>
+  <p><table class="note"><tr><td class="note_img"><img src="../media/tip.png"></td><td class="note_text">The HTML_Progress error stack follows the same PEAR_ErrorStack structure: associative array
+    with keys 'code', 'params', 'package', 'level', 'time', 'context'.</td></tr></table></p></span>
+
+ <span><a name="see"></a><h2 class="title">See</h2><p><a href="../HTML_Progress/tutorial_progress.raiseerror.pkg.html">HTML_Progress::raiseError</a>,
+   <a href="../HTML_Progress/tutorial_progress.geterror.pkg.html">HTML_Progress::getError</a></p></span>
+
+ <span><a name="example"></a><h2 class="title">Example</h2><p>Example below will produce a such output on browser:<br />
+   <p><pre class="screen"><strong>Error</strong>: invalid input, parameter #1 &quot;$delay&quot; was expecting &quot;less or equal 1000&quot;, instead got &quot;10000&quot;
+---------------------------------------------------------------------------------------------------
+<strong>Function</strong>: html_progress::setanimspeed
+<strong>File</strong>: d:\php\pear\html_progress\tutorials\html_progress\examples\display_errors-p6.php
+<strong>Line</strong>: 55 
+
+<strong>Catch HTML_Progress error</strong> 
+invalid input, parameter #1 &quot;$delay&quot; was expecting &quot;less or equal 1000&quot;, instead got &quot;10000&quot;</pre></p>
+   <p><div class="listing"><pre><ol><li><span class="src-php">&lt;?php </span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-key">function </span><span class="src-id">_pushCallback</span><span class="src-sym">(</span><span class="src-var">$err</span><span class="src-sym">)</span></li>
+<li><span class="src-sym">{</span></li>
+<li>    <span class="src-comm">// now don't die if the error is an exception, it will be ignored</span></li>
+<li>    <span class="src-key">if </span><span class="src-sym">(</span><span class="src-var">$err</span><span class="src-sym">[</span><span class="src-str">'level'</span><span class="src-sym">] </span>== <span class="src-str">'exception'</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li>        <span class="src-key">return </span><span class="src-id"><a href="../HTML_Progress/_Progress_Progress_php.html#defineHTML_PROGRESS_ERRORSTACK_IGNORE">HTML_PROGRESS_ERRORSTACK_IGNORE</a></span><span class="src-sym">;</span></li>
+<li>    <span class="src-sym">}</span></li>
+<li><span class="src-sym">}</span></li>
+<li><span class="src-key">function </span><span class="src-id">_errorHandler</span><span class="src-sym">(</span><span class="src-var">$err</span><span class="src-sym">)</span></li>
+<li><span class="src-sym">{</span></li>
+<li>    <span class="src-key">global </span><span class="src-var">$options</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li>    <span class="src-var">$display_errors </span>= <a href="http://www.php.net/ini_get">ini_get</a><span class="src-sym">(</span><span class="src-str">'display_errors'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li>    <span class="src-key">if </span><span class="src-sym">(</span><span class="src-var">$display_errors</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li>        <span class="src-var">$lineFormat </span>= <span class="src-var">$options</span><span class="src-sym">[</span><span class="src-str">'lineFormat'</span><span class="src-sym">]</span><span class="src-sym">;</span></li>
+<li>        <span class="src-var">$contextFormat </span>= <span class="src-var">$options</span><span class="src-sym">[</span><span class="src-str">'contextFormat'</span><span class="src-sym">]</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li>        <span class="src-var">$file  </span>= <span class="src-var">$err</span><span class="src-sym">[</span><span class="src-str">'context'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'file'</span><span class="src-sym">]</span><span class="src-sym">;</span></li>
+<li>        <span class="src-var">$line  </span>= <span class="src-var">$err</span><span class="src-sym">[</span><span class="src-str">'context'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'line'</span><span class="src-sym">]</span><span class="src-sym">;</span></li>
+<li>        <span class="src-var">$func  </span>= <span class="src-var">$err</span><span class="src-sym">[</span><span class="src-str">'context'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'class'</span><span class="src-sym">]</span><span class="src-sym">;</span></li>
+<li>        <span class="src-var">$func </span>.= <span class="src-var">$err</span><span class="src-sym">[</span><span class="src-str">'context'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'type'</span><span class="src-sym">]</span><span class="src-sym">;</span></li>
+<li>        <span class="src-var">$func </span>.= <span class="src-var">$err</span><span class="src-sym">[</span><span class="src-str">'context'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'function'</span><span class="src-sym">]</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li>        <span class="src-var">$context </span>= <a href="http://www.php.net/sprintf">sprintf</a><span class="src-sym">(</span><span class="src-var">$contextFormat</span><span class="src-sym">, </span><span class="src-var">$file</span><span class="src-sym">, </span><span class="src-var">$line</span><span class="src-sym">, </span><span class="src-var">$func</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li>        <a href="http://www.php.net/printf">printf</a><span class="src-sym">(</span><span class="src-var">$lineFormat</span>.<span class="src-str">&quot;&lt;br /&gt;\n&quot;</span><span class="src-sym">, </span><a href="http://www.php.net/ucfirst">ucfirst</a><span class="src-sym">(</span><span class="src-var">$err</span><span class="src-sym">[</span><span class="src-str">'level'</span><span class="src-sym">]</span><span class="src-sym">)</span><span class="src-sym">, </span><span class="src-var">$err</span><span class="src-sym">[</span><span class="src-str">'message'</span><span class="src-sym">]</span><span class="src-sym">, </span><span class="src-var">$context</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>    <span class="src-sym">}</span></li>
+<li><span class="src-sym">}</span></li>
+<li><span class="src-var">$logger</span><span class="src-sym">[</span><span class="src-str">'push_callback'</span><span class="src-sym">] </span>= <span class="src-str">'_pushCallback'</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$logger</span><span class="src-sym">[</span><span class="src-str">'error_handler'</span><span class="src-sym">] </span>= <span class="src-str">'_errorHandler'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$options </span>= <span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'lineFormat' </span>=&gt; <span class="src-str">'&lt;b&gt;%1$s&lt;/b&gt;: %2$s &lt;hr&gt;%3$s'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'contextFormat' </span>=&gt; <span class="src-str">'&lt;b&gt;Function&lt;/b&gt;: %3$s&lt;br/&gt;&lt;b&gt;File&lt;/b&gt;: %1$s&lt;br/&gt;&lt;b&gt;Line&lt;/b&gt;: %2$s'</span></li>
+<li><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$logger</span><span class="src-sym">[</span><span class="src-str">'handler'</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-str">'display'</span><span class="src-sym">] </span>= <span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'conf' </span>=&gt; <span class="src-var">$options</span><span class="src-sym">)</span><span class="src-sym">;   </span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$bar </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">(</span><span class="src-var">$logger</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$e </span>= <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setAnimSpeed</span><span class="src-sym">(</span><span class="src-str">'100'</span><span class="src-sym">)</span><span class="src-sym">;   </span><span class="src-comm">// &lt; - - - will generate an API exception</span></li>
+<li>&nbsp;</li>
+<li><span class="src-key">if </span><span class="src-sym">(</span><a href="http://www.php.net/is_object">is_object</a><span class="src-sym">(</span><span class="src-var">$e</span><span class="src-sym">)) </span><span class="src-sym">{</span></li>
+<li>    <span class="src-key">if </span><span class="src-sym">(</span><a href="http://www.php.net/is_a">is_a</a><span class="src-sym">(</span><span class="src-var">$e</span><span class="src-sym">,</span><span class="src-str">'PEAR_Error'</span><span class="src-sym">)) </span><span class="src-sym">{</span></li>
+<li>        <span class="src-key">die</span><span class="src-sym">(</span><span class="src-str">'&lt;h1&gt;Catch PEAR_Error API exception&lt;/h1&gt;'</span>. <span class="src-var">$e</span><span class="src-sym">-&gt;</span><span class="src-id">toString</span><span class="src-sym">(</span><span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li>    <span class="src-sym">}</span></li>
+<li><span class="src-sym">}</span></li>
+<li><span class="src-key">if </span><span class="src-sym">(</span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">::</span><a href="../HTML_Progress/HTML_Progress.html#methodhasErrors">hasErrors</a><span class="src-sym">(</span><span class="src-sym">)) </span><span class="src-sym">{</span></li>
+<li>    <span class="src-var">$err </span>= <span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">::</span><a href="../HTML_Progress/HTML_Progress.html#methodgetError">getError</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>    echo <span class="src-str">'&lt;pre&gt;'</span><span class="src-sym">;</span></li>
+<li>    <a href="http://www.php.net/print_r">print_r</a><span class="src-sym">(</span><span class="src-var">$err</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>    echo <span class="src-str">'&lt;/pre&gt;'</span><span class="src-sym">;</span></li>
+<li>    <span class="src-key">die</span><span class="src-sym">(</span><span class="src-str">'&lt;h1&gt;Catch HTML_Progress exception&lt;/h1&gt;'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-sym">}</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$e </span>= <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setAnimSpeed</span><span class="src-sym">(</span><span class="src-num">10000</span><span class="src-sym">)</span><span class="src-sym">;   </span><span class="src-comm">// &lt; - - - will generate an API error</span></li>
+<li>&nbsp;</li>
+<li><span class="src-key">if </span><span class="src-sym">(</span><a href="http://www.php.net/is_object">is_object</a><span class="src-sym">(</span><span class="src-var">$e</span><span class="src-sym">)) </span><span class="src-sym">{</span></li>
+<li>    <span class="src-key">if </span><span class="src-sym">(</span><a href="http://www.php.net/is_a">is_a</a><span class="src-sym">(</span><span class="src-var">$e</span><span class="src-sym">,</span><span class="src-str">'PEAR_Error'</span><span class="src-sym">)) </span><span class="src-sym">{</span></li>
+<li>        <span class="src-key">die</span><span class="src-sym">(</span><span class="src-str">'&lt;h1&gt;Catch PEAR_Error API error&lt;/h1&gt;'</span>. <span class="src-var">$e</span><span class="src-sym">-&gt;</span><span class="src-id">toString</span><span class="src-sym">(</span><span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li>    <span class="src-sym">}</span></li>
+<li><span class="src-sym">}</span></li>
+<li><span class="src-key">if </span><span class="src-sym">(</span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">::</span><a href="../HTML_Progress/HTML_Progress.html#methodhasErrors">hasErrors</a><span class="src-sym">(</span><span class="src-sym">)) </span><span class="src-sym">{</span></li>
+<li>    <span class="src-var">$err </span>= <span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">::</span><a href="../HTML_Progress/HTML_Progress.html#methodgetError">getError</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>    <span class="src-key">die</span><span class="src-sym">(</span><span class="src-str">'&lt;h1&gt;Catch HTML_Progress error&lt;/h1&gt;'</span>.<span class="src-var">$err</span><span class="src-sym">[</span><span class="src-str">'message'</span><span class="src-sym">]</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-sym">}</span></li>
+<li><span class="src-php">?&gt;</span></li>
+</ol></pre></div></p></p></span></div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="33%" align="left" valign="top"><a href="../HTML_Progress/tutorial_progress.raiseerror.pkg.html">Prev</a></td>
+<td width="34%" align="center" valign="top"><a href=
+"../HTML_Progress/tutorial_part3-reference.pkg.html">Up</a></td>
+<td width="33%" align="right" valign="top"><a href=
+"../HTML_Progress/tutorial_progress.geterror.pkg.html">Next</a></td>
+</tr>
+
+<tr>
+<td width="33%" align="left" valign="top"><span class="function">HTML_Progress::raiseError</span></td>
+<td width="34%" align="center" valign="top">Reference Guide</td>
+<td width="33%" align="right" valign="top"><span class="function">HTML_Progress::getError</span></td>
+</tr>
+</table>
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Sun, 12 Sep 2004 20:23:14 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

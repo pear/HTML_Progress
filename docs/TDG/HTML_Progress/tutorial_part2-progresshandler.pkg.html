@@ -1,0 +1,328 @@
+<html>
+<head>
+<title>Progress Handler</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">HTML_Progress</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+  		  [ <a href="../classtrees_HTML_Progress.html" class="menu">class tree: HTML_Progress</a> ]
+		  [ <a href="../elementindex_HTML_Progress.html" class="menu">index: HTML_Progress</a> ]
+		  [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="10%" align="left" valign="bottom"><a href=
+"../HTML_Progress/tutorial_part2-firstprogressmeter.pkg.html">Prev</a></td>
+<td width="80%" align="center" valign="bottom"></td>
+<td width="10%" align="right" valign="bottom"><a href=
+"../HTML_Progress/tutorial_part2-errorhandling.pkg.html">Next</a></td>
+</tr>
+</table>
+<div><a name=""></a><div class="ref-title-box"><div class="ref-title">Progress Handler</div>
+  <div class="ref-purpose">how to control your progress meter</div></div>
+
+ <p>You have a long task to execute, and you want to display a progress meter that show the
+  progress of the task. How can you do it ?</p>
+ <p>There are two main way: 
+  <ol><li>your task is master and the progress meter is slave (never use a progress callback)</li>
+   <li>your task is slave and the progress meter is master (use a progress callback)</li></ol></p>
+
+ <h1 align="center">Table of Contents</h1>
+<ul>
+
+<a href="../HTML_Progress/tutorial_part2-progresshandler.pkg.html#without-progress-callback">Without Progress callback</a><br />
+
+<a href="../HTML_Progress/tutorial_part2-progresshandler.pkg.html#wit-progress-callback">Use a Progress callback</a><br />
+</ul>
+
+
+ <span><a name="without-progress-callback"></a><h2 class="title">Without Progress callback</h2><p>Goal of this example is to simulate packages download (user task). Here is a screenshot
+   of what we will produces :
+   <p><img src = "../media/screenshots/scratch22.png"/></p>
+   <p>On left frame we find a form used to select what package the user want to download.
+   On right frame we show an horizontal progress bar with results of download process.</p>
+   <p><strong>Code listing 2.2: a package select-download demonstration</strong><div class="listing"><pre><ol><li><span class="src-php">&lt;?</span><span class="src-id">xml version</span>=<span class="src-str">&quot;1.0&quot; </span><span class="src-id">encoding</span>=<span class="src-str">&quot;utf-8&quot;</span><span class="src-php">?&gt;</span></li>
+<li>&lt;!DOCTYPE html</li>
+<li>    PUBLIC &quot;-//W3C//DTD XHTML 1.0 Frameset//EN&quot;</li>
+<li>    &quot;http://www.w3c.org/TR/xhtml1/DTD/xhtml1-frameset.dtd&quot;&gt;</li>
+<li>&nbsp;</li>
+<li>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot;&gt;</li>
+<li>  &lt;head&gt;</li>
+<li>    &lt;meta name=&quot;robots&quot; content=&quot;noindex, nofollow&quot; /&gt;</li>
+<li>    &lt;meta name=&quot;keywords&quot; content&quot;=&quot;HTML_Progress, PEAR, progress meter&quot; /&gt;</li>
+<li>    &lt;meta name=&quot;description&quot; content&quot;=&quot;HTML_Progress &quot; /&gt;</li>
+<li>    &lt;meta name=&quot;author&quot; content=&quot;Laurent Laville&quot; /&gt;</li>
+<li>    &lt;title&gt;Code listing 2.2: a software installation &lt;/title&gt;</li>
+<li>    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;</li>
+<li>  &lt;/head&gt;</li>
+<li>  &lt;frameset cols=&quot;300, *&quot;&gt;</li>
+<li>    &lt;frame  name=&quot;files&quot; src=&quot;listing-2.2.1.php&quot; /&gt;</li>
+<li>    &lt;frame  name=&quot;meter&quot; src=&quot;listing-2.2.2.php&quot; scrolling=&quot;no&quot; /&gt;</li>
+<li>    &lt;noframes&gt;</li>
+<li>      &lt;body&gt;</li>
+<li>        &lt;p&gt;Your browser does not support frames.&lt;/p&gt;</li>
+<li>      &lt;/body&gt;</li>
+<li>    &lt;/noframes&gt;</li>
+<li>  &lt;/frameset&gt;</li>
+<li>&lt;/html&gt;</li>
+</ol></pre></div></p>
+   <p>Here is the main page: a frameset which contains the two frames : 
+    Left (see code listing 2.2.1) and 
+    Right (see code listing 2.2.2).</p>
+   <p><strong>Code listing 2.2.1: a package selection</strong><div class="listing"><pre><ol><li><span class="src-php">&lt;?php   </span><span class="src-comm">// listing-2.2.1.php</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/QuickForm.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$form </span>=<span class="src-sym">&amp; </span><span class="src-key">new </span><span class="src-id">HTML_QuickForm</span><span class="src-sym">(</span><span class="src-str">'installer'</span><span class="src-sym">, </span><span class="src-str">'post'</span><span class="src-sym">, </span><span class="src-var">$_SERVER</span><span class="src-sym">[</span><span class="src-str">'PHP_SELF'</span><span class="src-sym">]</span><span class="src-sym">, </span><span class="src-str">'meter'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$form</span><span class="src-sym">-&gt;</span><span class="src-id">addElement</span><span class="src-sym">(</span><span class="src-str">'header'</span><span class="src-sym">, </span><span class="src-id">null</span><span class="src-sym">, </span><span class="src-str">'Choose PEAR packages to download'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$checkbox</span><span class="src-sym">[</span><span class="src-sym">] </span>= <span class="src-sym">&amp;</span><span class="src-id">HTML_QuickForm</span><span class="src-sym">::</span><span class="src-id">createElement</span><span class="src-sym">(</span><span class="src-str">'checkbox'</span><span class="src-sym">, </span><span class="src-str">'Archive_Tar'</span><span class="src-sym">, </span><span class="src-id">null</span><span class="src-sym">, </span><span class="src-str">'Archive_Tar'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$checkbox</span><span class="src-sym">[</span><span class="src-sym">] </span>= <span class="src-sym">&amp;</span><span class="src-id">HTML_QuickForm</span><span class="src-sym">::</span><span class="src-id">createElement</span><span class="src-sym">(</span><span class="src-str">'checkbox'</span><span class="src-sym">, </span><span class="src-str">'Config'</span><span class="src-sym">, </span><span class="src-id">null</span><span class="src-sym">, </span><span class="src-str">'Config'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$checkbox</span><span class="src-sym">[</span><span class="src-sym">] </span>= <span class="src-sym">&amp;</span><span class="src-id">HTML_QuickForm</span><span class="src-sym">::</span><span class="src-id">createElement</span><span class="src-sym">(</span><span class="src-str">'checkbox'</span><span class="src-sym">, </span><span class="src-str">'HTML_QuickForm'</span><span class="src-sym">, </span><span class="src-id">null</span><span class="src-sym">, </span><span class="src-str">'HTML_QuickForm'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$checkbox</span><span class="src-sym">[</span><span class="src-sym">] </span>= <span class="src-sym">&amp;</span><span class="src-id">HTML_QuickForm</span><span class="src-sym">::</span><span class="src-id">createElement</span><span class="src-sym">(</span><span class="src-str">'checkbox'</span><span class="src-sym">, </span><span class="src-str">'HTML_CSS'</span><span class="src-sym">, </span><span class="src-id">null</span><span class="src-sym">, </span><span class="src-str">'HTML_CSS'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$checkbox</span><span class="src-sym">[</span><span class="src-sym">] </span>= <span class="src-sym">&amp;</span><span class="src-id">HTML_QuickForm</span><span class="src-sym">::</span><span class="src-id">createElement</span><span class="src-sym">(</span><span class="src-str">'checkbox'</span><span class="src-sym">, </span><span class="src-str">'HTML_Page'</span><span class="src-sym">, </span><span class="src-id">null</span><span class="src-sym">, </span><span class="src-str">'HTML_Page'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$checkbox</span><span class="src-sym">[</span><span class="src-sym">] </span>= <span class="src-sym">&amp;</span><span class="src-id">HTML_QuickForm</span><span class="src-sym">::</span><span class="src-id">createElement</span><span class="src-sym">(</span><span class="src-str">'checkbox'</span><span class="src-sym">, </span><span class="src-str">'HTML_Template_Sigma'</span><span class="src-sym">, </span><span class="src-id">null</span><span class="src-sym">, </span><span class="src-str">'HTML_Template_Sigma'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$checkbox</span><span class="src-sym">[</span><span class="src-sym">] </span>= <span class="src-sym">&amp;</span><span class="src-id">HTML_QuickForm</span><span class="src-sym">::</span><span class="src-id">createElement</span><span class="src-sym">(</span><span class="src-str">'checkbox'</span><span class="src-sym">, </span><span class="src-str">'Log'</span><span class="src-sym">, </span><span class="src-id">null</span><span class="src-sym">, </span><span class="src-str">'Log'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$checkbox</span><span class="src-sym">[</span><span class="src-sym">] </span>= <span class="src-sym">&amp;</span><span class="src-id">HTML_QuickForm</span><span class="src-sym">::</span><span class="src-id">createElement</span><span class="src-sym">(</span><span class="src-str">'checkbox'</span><span class="src-sym">, </span><span class="src-str">'MDB'</span><span class="src-sym">, </span><span class="src-id">null</span><span class="src-sym">, </span><span class="src-str">'MDB'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$checkbox</span><span class="src-sym">[</span><span class="src-sym">] </span>= <span class="src-sym">&amp;</span><span class="src-id">HTML_QuickForm</span><span class="src-sym">::</span><span class="src-id">createElement</span><span class="src-sym">(</span><span class="src-str">'checkbox'</span><span class="src-sym">, </span><span class="src-str">'PHPUnit'</span><span class="src-sym">, </span><span class="src-id">null</span><span class="src-sym">, </span><span class="src-str">'PHPUnit'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$form</span><span class="src-sym">-&gt;</span><span class="src-id">addGroup</span><span class="src-sym">(</span><span class="src-var">$checkbox</span><span class="src-sym">, </span><span class="src-str">'packages'</span><span class="src-sym">, </span><span class="src-str">'Packages:'</span><span class="src-sym">, </span><span class="src-str">'&lt;br /&gt;'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$form</span><span class="src-sym">-&gt;</span><span class="src-id">addElement</span><span class="src-sym">(</span><span class="src-str">'submit'</span><span class="src-sym">, </span><span class="src-str">'submit'</span><span class="src-sym">, </span><span class="src-str">'Download'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-key">if </span><span class="src-sym">(</span><span class="src-var">$form</span><span class="src-sym">-&gt;</span><span class="src-id">validate</span><span class="src-sym">(</span><span class="src-sym">)) </span><span class="src-sym">{</span></li>
+<li>&nbsp;</li>
+<li>    <span class="src-inc">include_once </span><span class="src-str">'listing-2.2.2.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li>    <span class="src-var">$packages </span>= <span class="src-var">$form</span><span class="src-sym">-&gt;</span><span class="src-id">exportValue</span><span class="src-sym">(</span><span class="src-str">'packages'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>    <span class="src-var">$percent </span>= <span class="src-num">0</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li>    echo <span class="src-str">'&lt;p&gt;&lt;font face=&quot;Courier&quot;&gt;'</span><span class="src-sym">;</span></li>
+<li>    <span class="src-key">foreach </span><span class="src-sym">(</span><span class="src-var">$packages </span><span class="src-key">as </span><span class="src-var">$pkg </span>=&gt; <span class="src-var">$bool</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li>&nbsp;</li>
+<li>        <span class="src-var">$msg </span>= <a href="http://www.php.net/str_pad">str_pad</a><span class="src-sym">(</span><span class="src-str">&quot;</span><span class="src-id">Downloading package</span>: <span class="src-var">$pkg</span><span class="src-str">&quot;</span><span class="src-sym">, </span><a href="http://www.php.net/max">max</a><span class="src-sym">(</span><span class="src-num">50</span><span class="src-sym">,</span><span class="src-num">21</span>+<a href="http://www.php.net/strlen">strlen</a><span class="src-sym">(</span><span class="src-var">$pkg</span><span class="src-sym">)</span>+<span class="src-num">4</span><span class="src-sym">)</span><span class="src-sym">, </span><span class="src-str">'.'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>        print <span class="src-var">$msg</span><span class="src-sym">;</span></li>
+<li>        <span class="src-comm">/* Here you have to the job : download the package  */</span></li>
+<li>        <a href="http://www.php.net/sleep">sleep</a><span class="src-sym">(</span><span class="src-num">1</span><span class="src-sym">)</span><span class="src-sym">;    </span><span class="src-comm">// but as it's a tutorial we do nothing else than wait ...</span></li>
+<li>&nbsp;</li>
+<li>        print <span class="src-str">&quot; OK&lt;br/&gt;\n&quot;</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li>        <span class="src-var">$percent </span>+= <a href="http://www.php.net/intval">intval</a><span class="src-sym">(</span><a href="http://www.php.net/round">round</a><span class="src-sym">(</span><span class="src-num">100 </span>/ <a href="http://www.php.net/count">count</a><span class="src-sym">(</span><span class="src-var">$packages</span><span class="src-sym">)))</span><span class="src-sym">;</span></li>
+<li>        <span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setValue</span><span class="src-sym">(</span><span class="src-var">$percent</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>        <span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">display</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>    <span class="src-sym">}</span></li>
+<li>    echo <span class="src-str">'&lt;/font&gt;&lt;/p&gt;'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li>    <span class="src-key">if </span><span class="src-sym">(</span><span class="src-var">$percent </span>&lt; <span class="src-num">100</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li>        <span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setValue</span><span class="src-sym">(</span><span class="src-num">100</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>        <span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">display</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>    <span class="src-sym">}</span></li>
+<li>&nbsp;</li>
+<li><span class="src-sym">} </span><span class="src-key">else </span><span class="src-sym">{</span></li>
+<li>    <span class="src-var">$form</span><span class="src-sym">-&gt;</span><span class="src-id">display</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-sym">}</span></li>
+<li><span class="src-php">?&gt;</span></li>
+</ol></pre></div></p>
+   <p>The form that allows to select what package to download, was built with help 
+    of <a href="http://pear.php.net/package/HTML_QuickForm">PEAR::HTML_QuickForm</a> package. 
+    If you don't know it, i suggest you to read the
+    <a href="http://pear.php.net/manual/en/package.html.html-quickform.php">QuickForm Manual</a> 
+    on PEAR website.</p>
+   <p>Let's consider now the important lines in this script:
+    <p><strong>Line 4</strong>, the form target is the right frame 
+     (meter: see line 17 of code listing 2.2). 
+     That will allows results of lines 23 thru 47 to be display in the good place.</p>
+    <p><strong>Line 21</strong>, the form is validate. 
+     Next (<strong>line 25</strong>) we extract data to know your package-selection.</p>
+    <p>On <strong>lines 29 to 41</strong>, we find the master process: download simulation. 
+     If we have a real download operation, it should replace the sleep function at line 34.
+     <strong>Lines 31 and 32</strong> prepare the result of operation which is given at line 36.</p>
+    <p><strong>Line 38</strong> we compute the next value of the progress bar. 
+     We make changes at <strong>line 39</strong> 
+     and refresh the progress bar at <strong>line 40</strong>.</p></p>
+   <p><strong>Code listing 2.2.2: slave-progress pattern</strong><div class="listing"><pre><ol><li><span class="src-php">&lt;?php   </span><span class="src-comm">// listing-2.2.2.php</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$progress </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$ui </span>= <span class="src-sym">&amp; </span><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">getUI</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetCellCount">setCellCount</a><span class="src-sym">(</span><span class="src-num">20</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetBorderAttributes">setBorderAttributes</a><span class="src-sym">(</span><span class="src-str">'width=1 color=#000000'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetCellAttributes">setCellAttributes</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>        <span class="src-str">'active-color' </span>=&gt; <span class="src-str">'#970038'</span><span class="src-sym">,</span></li>
+<li>        <span class="src-str">'inactive-color' </span>=&gt; <span class="src-str">'#FFDDAA'</span><span class="src-sym">,</span></li>
+<li>        <span class="src-str">'width' </span>=&gt; <span class="src-num">20</span><span class="src-sym">,</span></li>
+<li>        <span class="src-str">'height' </span>=&gt; <span class="src-num">20</span></li>
+<li><span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&lt;!DOCTYPE html</li>
+<li>    PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot;</li>
+<li>    &quot;http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</li>
+<li>&nbsp;</li>
+<li>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot;&gt;</li>
+<li>&lt;head&gt;</li>
+<li>&lt;style type=&quot;text/css&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$progress</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetStyle">getStyle</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>&nbsp;</li>
+<li>body {</li>
+<li>    background-color: #FFFFFF;</li>
+<li>    color: #000000;</li>
+<li>    font-family: Verdana, Arial;</li>
+<li>}</li>
+<li>// --&gt;</li>
+<li>&lt;/style&gt;</li>
+<li>&lt;script type=&quot;text/javascript&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$progress</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetScript">getScript</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>//--&gt;</li>
+<li>&lt;/script&gt;</li>
+<li>&lt;/head&gt;</li>
+<li>&lt;body&gt;</li>
+<li>&nbsp;</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">toHtml</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>&nbsp;</li>
+<li>&lt;/body&gt;</li>
+<li>&lt;/html&gt;</li>
+</ol></pre></div></p>
+   <p>There are not so many changes on this script since <a href="../HTML_Progress/tutorial_part2-firstprogressmeter.pkg.html">Your first Progress Meter</a>.
+    You may notice at least four important differences.
+    <ul><li>No need to slow progress bar animation with <a href="../HTML_Progress/tutorial_progress.setanimspeed.pkg.html">HTML_Progress::setAnimSpeed</a></li>
+     <li>The progress bar has 20 cells long rather than 10 (line 7)</li>
+     <li>We use W3C doctype lines 16 to 20 to avoid IE box model break rules, 
+      because we have choosen to display a progress bar with a border (line 8).</li>
+     <li>The cells got a new layout (lines 9 to 14)</li></ul></p></p></span>
+
+ <span><a name="wit-progress-callback"></a><h2 class="title">Use a Progress callback</h2><p>Sometimes you can't immediately determine the length of a long-running task.
+   Goal of this example is to display a progress meter in indeterminate mode 
+   (while you determines the length of the task), and then switch back in determinate mode 
+   to finish the works.</p>
+  <p><strong>Code listing 2.3: master-progress pattern</strong><div class="listing"><pre><ol><li><span class="src-php">&lt;?php </span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-key">function </span><span class="src-id">myProgressHandler</span><span class="src-sym">(</span><span class="src-var">$progressValue</span><span class="src-sym">, </span><span class="src-sym">&amp;</span><span class="src-var">$bar</span><span class="src-sym">)</span></li>
+<li><span class="src-sym">{</span></li>
+<li>    <span class="src-key">static </span><span class="src-var">$c</span><span class="src-sym">;</span></li>
+<li>    </li>
+<li>    <span class="src-key">if </span><span class="src-sym">(</span><span class="src-sym">!</span>isset<span class="src-sym">(</span><span class="src-var">$c</span><span class="src-sym">)) </span><span class="src-sym">{ </span></li>
+<li>        <span class="src-var">$c </span>= <span class="src-num">0</span><span class="src-sym">;</span></li>
+<li>    <span class="src-sym">}</span></li>
+<li>&nbsp;</li>
+<li>    <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><a href="http://www.php.net/sleep">sleep</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;  </span><span class="src-comm">// wait 0.5 second</span></li>
+<li>&nbsp;</li>
+<li>    <span class="src-key">if </span><span class="src-sym">(</span><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">isIndeterminate</span><span class="src-sym">(</span><span class="src-sym">)) </span><span class="src-sym">{</span></li>
+<li>&nbsp;</li>
+<li>        <span class="src-key">if </span><span class="src-sym">(</span><span class="src-var">$progressValue </span>== <span class="src-num">100</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li>            <span class="src-var">$c</span>++<span class="src-sym">;</span></li>
+<li>            echo <span class="src-str">&quot;</span><span class="src-str"><span class="src-id">myProgressHandler</span> -&gt; <span class="src-id">loop</span> #<span class="src-var">$c</span> &lt;<span class="src-id">br</span>/&gt;\n</span><span class="src-str">&quot;</span><span class="src-sym">;</span></li>
+<li>        <span class="src-sym">}</span></li>
+<li>&nbsp;</li>
+<li>        <span class="src-comm">/* switch back from indeterminate to determinate mode </span></li>
+<li><span class="src-comm">           after 3 full loops */</span></li>
+<li>         */</li>
+<li>        <span class="src-key">if </span><span class="src-sym">(</span><span class="src-var">$c </span>== <span class="src-num">3</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li>            <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setIndeterminate</span><span class="src-sym">(</span><span class="src-id">false</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>            <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setValue</span><span class="src-sym">(</span><span class="src-num">0</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>            <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setString</span><span class="src-sym">(</span><span class="src-id">null</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-comm">// re-show percent info</span></li>
+<li>        <span class="src-sym">}</span></li>
+<li>    <span class="src-sym">}</span></li>
+<li><span class="src-sym">}</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$progress </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui </span>= <span class="src-sym">&amp; </span><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">getUI</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetProgressAttributes">setProgressAttributes</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'background-color' </span>=&gt; <span class="src-str">'#e0e0e0'</span></li>
+<li><span class="src-sym">))</span><span class="src-sym">;        </span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetStringAttributes">setStringAttributes</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'color'  </span>=&gt; <span class="src-str">'#996'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'background-color' </span>=&gt; <span class="src-str">'#CCCC99'</span></li>
+<li><span class="src-sym">))</span><span class="src-sym">;        </span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetCellAttributes">setCellAttributes</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'active-color' </span>=&gt; <span class="src-str">'#996'</span></li>
+<li><span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setAnimSpeed</span><span class="src-sym">(</span><span class="src-num">500</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setIncrement</span><span class="src-sym">(</span><span class="src-num">10</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setStringPainted</span><span class="src-sym">(</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;     </span><span class="src-comm">// get space for the string</span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setString</span><span class="src-sym">(</span><span class="src-str">&quot;&quot;</span><span class="src-sym">)</span><span class="src-sym">;              </span><span class="src-comm">// but don't paint it</span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setIndeterminate</span><span class="src-sym">(</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;     </span><span class="src-comm">// Progress start in indeterminate mode</span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setProgressHandler</span><span class="src-sym">(</span><span class="src-str">'myProgressHandler'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&lt;html&gt;</li>
+<li>&lt;head&gt;</li>
+<li>&lt;title&gt;Listing 2.3 &lt;/title&gt;</li>
+<li>&lt;style type=&quot;text/css&quot;&gt;</li>
+<li>&lt;!--</li>
+<li>body {</li>
+<li>    background-color: #CCCC99;</li>
+<li>    color: #996;</li>
+<li>    font-family: Verdana, Arial;</li>
+<li>}</li>
+<li>&nbsp;</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$progress</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetStyle">getStyle</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>// --&gt;</li>
+<li>&lt;/style&gt;</li>
+<li>&lt;script type=&quot;text/javascript&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$progress</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetScript">getScript</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>//--&gt;</li>
+<li>&lt;/script&gt;</li>
+<li>&lt;/head&gt;</li>
+<li>&lt;body&gt;</li>
+<li>&nbsp;</li>
+<li><span class="src-php">&lt;?php </span></li>
+<li>echo <span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">toHtml</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">run</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&nbsp;</li>
+<li>&lt;/body&gt;</li>
+<li>&lt;/html&gt;</li>
+</ol></pre></div></p>
+  <p>The user callback 'myProgressHandler' defined on <strong>lines 4 thru 30</strong>,
+   present the user-task. We informs HTML_Progress at <strong>line 50</strong> to use
+   this user callback.</p>
+  <p>The progress meter will run in indeterminate mode for 3 full loops (equivalent to 300%).
+   This rule is given at <strong>line 24</strong>.</p>
+  <p>Process go back in determinate mode at <strong>line 25</strong>.
+   Next (<strong>lines 26 and 27</strong>) we finish the works with a standard behavior.</p></span></div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="33%" align="left" valign="top"><a href="../HTML_Progress/tutorial_part2-firstprogressmeter.pkg.html">Prev</a></td>
+<td width="34%" align="center" valign="top"><a href=
+"../HTML_Progress/tutorial_part2-gettingstarted.pkg.html">Up</a></td>
+<td width="33%" align="right" valign="top"><a href=
+"../HTML_Progress/tutorial_part2-errorhandling.pkg.html">Next</a></td>
+</tr>
+
+<tr>
+<td width="33%" align="left" valign="top">Your first Progress Meter</td>
+<td width="34%" align="center" valign="top">Getting Started</td>
+<td width="33%" align="right" valign="top">Advanced Error Handling</td>
+</tr>
+</table>
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Sun, 12 Sep 2004 20:22:40 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

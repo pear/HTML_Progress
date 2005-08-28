@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>Your first Progress Meter</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">HTML_Progress</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+  		  [ <a href="../classtrees_HTML_Progress.html" class="menu">class tree: HTML_Progress</a> ]
+		  [ <a href="../elementindex_HTML_Progress.html" class="menu">index: HTML_Progress</a> ]
+		  [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="10%" align="left" valign="bottom"><a href=
+"../HTML_Progress/tutorial_part2-gettingstarted.pkg.html">Prev</a></td>
+<td width="80%" align="center" valign="bottom"></td>
+<td width="10%" align="right" valign="bottom"><a href=
+"../HTML_Progress/tutorial_part2-progresshandler.pkg.html">Next</a></td>
+</tr>
+</table>
+<div><a name=""></a><div class="ref-title-box"><div class="ref-title">Your first Progress Meter</div>
+  <div class="ref-purpose">first steps in the HTML_Progress World</div></div>
+
+ <p>We will start by creating a very simple progress meter. Copy the following code to a file, 
+   give it a .php extension, and display it in your browser.
+   <p><strong>code listing 2.1: a very simple progress meter</strong><div class="listing"><pre><ol><li><span class="src-php">&lt;?php</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$bar </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setAnimSpeed</span><span class="src-sym">(</span><span class="src-num">50</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&lt;html&gt;</li>
+<li>&lt;head&gt;</li>
+<li>&lt;title&gt;Code listing 2.1 &lt;/title&gt;</li>
+<li>&lt;style type=&quot;text/css&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetStyle">getStyle</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>// --&gt;</li>
+<li>&lt;/style&gt;</li>
+<li>&lt;script type=&quot;text/javascript&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetScript">getScript</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>//--&gt;</li>
+<li>&lt;/script&gt;</li>
+<li>&lt;/head&gt;</li>
+<li>&lt;body&gt;</li>
+<li>&nbsp;</li>
+<li><span class="src-php">&lt;?php </span></li>
+<li>echo <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">toHtml</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">run</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&nbsp;</li>
+<li>&lt;/body&gt;</li>
+<li>&lt;/html&gt;</li>
+</ol></pre></div></p>
+   Loading this file in your browser will simply show something like that after few seconds :
+   <p><p><table class="note"><tr><td><img src="../media/example.png"></td><td><img src = "../media/screenshots/scratch21.png"/></td></tr></table></p></p>
+   <p>Not particulary exciting, but this does show that HTML_Progress is installed correctly 
+    and working. If it's not, have a look at the FAQ page to know if your problem is identified.</p>
+   <p>Let's consider the lines individually:</p>
+   <p><strong>Line 2</strong> loads the class definitions. 
+    Next (<strong>line 4</strong>) we instanciate an HTML_Progress object.</p>
+   <p><strong>Line 5</strong>, we slow a bit the animation, to see something. By default animation speed is set to 
+    zero, and we can think in such case that the progress meter did not run, or just jump from
+    0 to 100 without doing nothing else. It's false!</p>
+   <p>Stylesheet produced by PEAR::HTML_CSS package is put between style html tags in 
+    <strong>line 12</strong>.</p>
+   <p>Javascript is put between script html tags in <strong>line 17</strong>.</p>
+   <p>In <strong>line 24</strong>, we produces all the html code necessary 
+    to display the progress meter.</p>
+   <p>Finally, the <strong>line 25</strong> makes it happen. 
+    This display the horizontal progress bar and run it from 0% to 100%, one percent step by step.</p>
+   <p>Of course, in this example there isn't anything the user can do, so let's create a more complex
+    example.</p></p></div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="33%" align="left" valign="top"><a href="../HTML_Progress/tutorial_part2-gettingstarted.pkg.html">Prev</a></td>
+<td width="34%" align="center" valign="top"><a href=
+"../HTML_Progress/tutorial_part2-gettingstarted.pkg.html">Up</a></td>
+<td width="33%" align="right" valign="top"><a href=
+"../HTML_Progress/tutorial_part2-progresshandler.pkg.html">Next</a></td>
+</tr>
+
+<tr>
+<td width="33%" align="left" valign="top">Getting Started</td>
+<td width="34%" align="center" valign="top">Getting Started</td>
+<td width="33%" align="right" valign="top">Progress Handler</td>
+</tr>
+</table>
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Sun, 12 Sep 2004 20:22:37 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

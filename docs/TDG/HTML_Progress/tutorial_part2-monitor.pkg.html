@@ -1,0 +1,328 @@
+<html>
+<head>
+<title>Monitoring functions v2</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">HTML_Progress</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+  		  [ <a href="../classtrees_HTML_Progress.html" class="menu">class tree: HTML_Progress</a> ]
+		  [ <a href="../elementindex_HTML_Progress.html" class="menu">index: HTML_Progress</a> ]
+		  [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="10%" align="left" valign="bottom"><a href=
+"../HTML_Progress/tutorial_part2-observer.pkg.html">Prev</a></td>
+<td width="80%" align="center" valign="bottom"></td>
+<td width="10%" align="right" valign="bottom"><a href=
+"../HTML_Progress/tutorial_part3-reference.pkg.html">Next</a></td>
+</tr>
+</table>
+<div><a name=""></a><div class="ref-title-box"><div class="ref-title">Monitoring functions v2</div>
+  <div class="ref-purpose">displays a progress bar inside a dialog box</div></div>
+
+ <h1 align="center">Table of Contents</h1>
+<ul>
+
+<a href="../HTML_Progress/tutorial_part2-monitor.pkg.html#intro">Introduction</a><br />
+
+<a href="../HTML_Progress/tutorial_part2-monitor.pkg.html#basic-concept">Basic concept</a><br />
+
+<a href="../HTML_Progress/tutorial_part2-monitor.pkg.html#useit">Using Progress Monitor</a><br />
+
+&nbsp;&nbsp;&nbsp;<a href="../HTML_Progress/tutorial_part2-monitor.pkg.html#useit.renderer-default">Default renderer</a><br />
+
+&nbsp;&nbsp;&nbsp;<a href="../HTML_Progress/tutorial_part2-monitor.pkg.html#useit.renderer-improved">Default improved renderer</a><br />
+
+&nbsp;&nbsp;&nbsp;<a href="../HTML_Progress/tutorial_part2-monitor.pkg.html#useit.renderer-template">Template engine integration</a><br />
+</ul>
+
+
+ <span><a name="intro"></a><h2 class="title">Introduction</h2><p>On February 15, 2004 and for release 1.1 of HTML_Progress, the <i><b>HTML_Progress_Monitor</b></i> 
+   class improved a lot. Features are :
+   <ul><li>both modes determinate/indeterminate supported for the progress meter</li>
+    <li>easy communication with your user-process</li>
+    <li>follow standard of QuickForm rendering</li>
+    <li>buttons size, dialog box and buttons title, all are customizable</li>
+    <li>different captions on user-process progress are allowed</li></ul>
+   User-end command actions to begin and cancel process. The progress bar won't start if the user
+   did not click on the 'Start' button. Once the process begun the start button is disabled.</p></span>
+
+ <span><a name="basic-concept"></a><h2 class="title">Basic concept</h2><p>Form and progress bar output are now contained in classes that extend 
+   <i><b>HTML_QuickForm_Renderer</b></i>. Design pattern is much easier to manage 
+   and change, and you can choose your favorite template engine.</p>
+  <p>There are 8 renderers available since release 3.1.1 of QuickForm. The following template engines
+   are directly suported: Smarty, HTML_Template_Sigma, HTML_Template_IT, HTML_Template_Flexy. 
+   Among these 8 renderers, we will have a look on 3 examples in next chapters :
+   'default', 'default improved', 'template integration'.</p></span>
+
+ <span><a name="useit"></a><h2 class="title">Using Progress Monitor</h2><p><a name="useit.renderer-default"></a><h3 class="title">Default renderer</h3><p>Without any changes, you may obtains a decent dialog box with a default progress meter
+     such as :
+     <p><table class="note"><tr><td><img src="../media/example.png"></td><td><img src = "../media/screenshots/monitor_default1.png"/></td></tr></table></p><br /></p>
+    <p><strong>Default renderer</strong><div class="listing"><pre><ol><li><span class="src-php">&lt;?php</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress/monitor.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$monitor </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/Progress_Observer/HTML_Progress_Monitor.html">HTML_Progress_Monitor</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$bar </span>=<span class="src-sym">&amp; </span><span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><span class="src-id">getProgressElement</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setAnimSpeed</span><span class="src-sym">(</span><span class="src-num">50</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setIncrement</span><span class="src-sym">(</span><span class="src-num">10</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&lt;html&gt;</li>
+<li>&lt;head&gt;</li>
+<li>&lt;title&gt;Progress Monitor - default renderer &lt;/title&gt;</li>
+<li>&lt;style type=&quot;text/css&quot;&gt;</li>
+<li>&lt;!--</li>
+<li>.progressStatus {</li>
+<li>    color:#000000; </li>
+<li>    font-size:10px;</li>
+<li>}</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetStyle">getStyle</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>// --&gt;</li>
+<li>&lt;/style&gt;</li>
+<li>&lt;script type=&quot;text/javascript&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetScript">getScript</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>//--&gt;</li>
+<li>&lt;/script&gt;</li>
+<li>&lt;/head&gt;</li>
+<li>&lt;body&gt;</li>
+<li>&nbsp;</li>
+<li><span class="src-php">&lt;?php </span></li>
+<li>echo <span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><span class="src-id">toHtml</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><span class="src-id">run</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;   </span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&nbsp;</li>
+<li>&lt;/body&gt;</li>
+<li>&lt;/html&gt;</li>
+</ol></pre></div></p>
+    <p><table class="note"><tr><td class="note_img"><img src="../media/note.png"></td><td class="note_text">CSS class 'progressStatus' is for caption display (see <a href="../HTML_Progress/tutorial_monitor.setcaption.pkg.html">HTML_Progress_Monitor::setCaption</a>).</td></tr></table></p><hr />
+   <a name="useit.renderer-improved"></a><h3 class="title">Default improved renderer</h3><p>With some class constructor options and a QF renderer, we will improves a lot in few lines,
+     the decent but poor graphic first example. Enjoy the new result :
+     <p><table class="note"><tr><td><img src="../media/example.png"></td><td><img src = "../media/screenshots/monitor_function_callback.png"/></td></tr></table></p><br /></p>
+    <p><strong>Default improved renderer</strong><div class="listing"><pre><ol><li><span class="src-php">&lt;?php</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress/monitor.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-key">function </span><span class="src-id">myFunctionHandler</span><span class="src-sym">(</span><span class="src-var">$progressValue</span><span class="src-sym">, </span><span class="src-sym">&amp;</span><span class="src-var">$obj</span><span class="src-sym">)</span></li>
+<li><span class="src-sym">{</span></li>
+<li>    <span class="src-var">$bar </span>=<span class="src-sym">&amp; </span><span class="src-var">$obj</span><span class="src-sym">-&gt;</span><span class="src-id">getProgressElement</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>    <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><a href="http://www.php.net/sleep">sleep</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>    <span class="src-key">if </span><span class="src-sym">(</span><span class="src-sym">!</span><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">isIndeterminate</span><span class="src-sym">(</span><span class="src-sym">)) </span><span class="src-sym">{</span></li>
+<li>        <span class="src-key">if </span><span class="src-sym">(</span><a href="http://www.php.net/fmod">fmod</a><span class="src-sym">(</span><span class="src-var">$progressValue</span><span class="src-sym">,</span><span class="src-num">10</span><span class="src-sym">) </span>== <span class="src-num">0</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li>            <span class="src-var">$obj</span><span class="src-sym">-&gt;</span><span class="src-id">setCaption</span><span class="src-sym">(</span><span class="src-str">&quot;</span><span class="src-str"><span class="src-id">myFunctionHandler</span> -&gt; <span class="src-id">progress</span> <span class="src-id">value</span> <span class="src-id">is</span> = <span class="src-var">$progressValue</span></span><span class="src-str">&quot;</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>        <span class="src-sym">}</span></li>
+<li>    <span class="src-sym">} </span><span class="src-key">else </span><span class="src-sym">{</span></li>
+<li>        <span class="src-comm">/* in case we have attached an indeterminate progress bar to the monitor ($obj)</span></li>
+<li><span class="src-comm">           after a first pass that reached 60%, </span></li>
+<li><span class="src-comm">           we swap from indeterminate mode to determinate mode</span></li>
+<li><span class="src-comm">           and run a standard progress bar from 0 to 100%</span></li>
+<li><span class="src-comm">        */   </span></li>
+<li>        <span class="src-key">if </span><span class="src-sym">(</span><span class="src-var">$progressValue </span>== <span class="src-num">60</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li>            <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setIndeterminate</span><span class="src-sym">(</span><span class="src-id">false</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>            <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setString</span><span class="src-sym">(</span><span class="src-id">null</span><span class="src-sym">)</span><span class="src-sym">;  </span><span class="src-comm">// show percent-info</span></li>
+<li>            <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setValue</span><span class="src-sym">(</span><span class="src-num">0</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>        <span class="src-sym">}</span></li>
+<li>    <span class="src-sym">}</span></li>
+<li><span class="src-sym">}</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$monitor </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/Progress_Observer/HTML_Progress_Monitor.html">HTML_Progress_Monitor</a></span><span class="src-sym">(</span><span class="src-str">'frmMonitor4'</span><span class="src-sym">, </span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'button' </span>=&gt; <span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'style' </span>=&gt; <span class="src-str">'width:80px;'</span><span class="src-sym">)</span></li>
+<li>    <span class="src-sym">)</span></li>
+<li><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><span class="src-id">setProgressHandler</span><span class="src-sym">(</span><span class="src-str">'myFunctionHandler'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$progress </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setAnimSpeed</span><span class="src-sym">(</span><span class="src-num">20</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setStringPainted</span><span class="src-sym">(</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;  </span><span class="src-comm">// get space for the string</span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setString</span><span class="src-sym">(</span><span class="src-str">&quot;&quot;</span><span class="src-sym">)</span><span class="src-sym">;           </span><span class="src-comm">// but don't paint it</span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setIndeterminate</span><span class="src-sym">(</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;  </span><span class="src-comm">// Progress start in indeterminate mode</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$ui </span>=<span class="src-sym">&amp; </span><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">getUI</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetCellCount">setCellCount</a><span class="src-sym">(</span><span class="src-num">20</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetProgressAttributes">setProgressAttributes</a><span class="src-sym">(</span><span class="src-str">'background-color=#EEE'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetStringAttributes">setStringAttributes</a><span class="src-sym">(</span><span class="src-str">'background-color=#EEE color=navy'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetCellAttributes">setCellAttributes</a><span class="src-sym">(</span><span class="src-str">'inactive-color=#FFF active-color=#444444'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><span class="src-id">setProgressElement</span><span class="src-sym">(</span><span class="src-var">$progress</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&lt;html&gt;</li>
+<li>&lt;head&gt;</li>
+<li>&lt;title&gt;Progress Monitor - default improved renderer &lt;/title&gt;</li>
+<li>&lt;style type=&quot;text/css&quot;&gt;</li>
+<li>&lt;!--</li>
+<li>body {</li>
+<li>    background-color: lightgrey;</li>
+<li>    font-family: Verdana, Arial;</li>
+<li>}</li>
+<li>.progressStatus {</li>
+<li>    color: navy; </li>
+<li>    font-size:10px;</li>
+<li>}</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetStyle">getStyle</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>// --&gt;</li>
+<li>&lt;/style&gt;</li>
+<li>&lt;script type=&quot;text/javascript&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetScript">getScript</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>//--&gt;</li>
+<li>&lt;/script&gt;</li>
+<li>&lt;/head&gt;</li>
+<li>&lt;body&gt;</li>
+<li>&nbsp;</li>
+<li><span class="src-php">&lt;?php </span></li>
+<li><span class="src-var">$renderer </span>=<span class="src-sym">&amp; </span><span class="src-id">HTML_QuickForm</span><span class="src-sym">::</span><span class="src-id">defaultRenderer</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$renderer</span><span class="src-sym">-&gt;</span><span class="src-id">setFormTemplate</span><span class="src-sym">(</span><span class="src-str">'</span></li>
+<li><span class="src-str">  &lt;table width=&quot;450&quot; border=&quot;0&quot; cellpadding=&quot;3&quot; cellspacing=&quot;2&quot; bgcolor=&quot;#EEEEEE&quot;&gt;</span></li>
+<li><span class="src-str">  &lt;form{attributes}&gt;{content}</span></li>
+<li><span class="src-str">  &lt;/form&gt;</span></li>
+<li><span class="src-str">  &lt;/table&gt;</span></li>
+<li><span class="src-str">'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$renderer</span><span class="src-sym">-&gt;</span><span class="src-id">setHeaderTemplate</span><span class="src-sym">(</span><span class="src-str">'</span></li>
+<li><span class="src-str">  &lt;tr&gt;</span></li>
+<li><span class="src-str">    &lt;td style=&quot;white-space:nowrap;background:#7B7B88;color:#ffc;&quot; align=&quot;left&quot; colspan=&quot;2&quot;&gt;</span></li>
+<li><span class="src-str">        &lt;b&gt;{header}&lt;/b&gt;</span></li>
+<li><span class="src-str">    &lt;/td&gt;</span></li>
+<li><span class="src-str">  &lt;/tr&gt;</span></li>
+<li><span class="src-str">'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><span class="src-id">accept</span><span class="src-sym">(</span><span class="src-var">$renderer</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li>echo <span class="src-var">$renderer</span><span class="src-sym">-&gt;</span><span class="src-id">toHtml</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><span class="src-id">run</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;   </span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&nbsp;</li>
+<li>&lt;/body&gt;</li>
+<li>&lt;/html&gt;</li>
+</ol></pre></div></p>
+    <p>To make it possible, we have changed buttons size and internal QuickForm name 
+     on <strong>lines 26 to 29</strong> (class constructor options), and written the
+     QF renderer on <strong>lines 71 to 84</strong>. 
+     The progress bar look and feel is defined on <strong>lines 38 to 42</strong>. 
+     Our user-process which run an indeterminate progress switching back to determinate mode
+      is defined by the 'myFunctionHandler' function (<strong>lines 4 to 24</strong>),
+      linked to the monitor on <strong>line 30</strong>.<br /></p><hr />
+   <a name="useit.renderer-template"></a><h3 class="title">Template engine integration</h3><p>Using Progress Monitor with a template engine supported by QF rendering system is very easy.
+     We will show you how to do with ITx (<a href="http://pear.php.net/package/HTML_Template_IT">http://pear.php.net/package/HTML_Template_IT</a>).
+     Example below will simulate a picture upload operation (3 steps: picture 1 at 10%,
+     picture 2 at 45%, picture 3 at 70%).
+     <p><table class="note"><tr><td><img src="../media/example.png"></td><td><img src = "../media/screenshots/monitor_itdynamic.png"/></td></tr></table></p><br /></p>
+    <p><strong>ITDynamic renderer</strong><div class="listing"><pre><ol><li><span class="src-php">&lt;?php</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress/monitor.php'</span><span class="src-sym">;</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/QuickForm/Renderer/ITDynamic.php'</span><span class="src-sym">;</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Template/ITX.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-key">class </span><span class="src-id">my2ClassHandler</span></li>
+<li><span class="src-sym">{</span></li>
+<li>    <span class="src-key">function </span><span class="src-id">my1Method</span><span class="src-sym">(</span><span class="src-var">$progressValue</span><span class="src-sym">, </span><span class="src-sym">&amp;</span><span class="src-var">$obj</span><span class="src-sym">)</span></li>
+<li>    <span class="src-sym">{</span></li>
+<li>        <span class="src-key">switch </span><span class="src-sym">(</span><span class="src-var">$progressValue</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li>         <span class="src-key">case </span><span class="src-num">10</span>:</li>
+<li>            <span class="src-var">$pic </span>= <span class="src-str">'picture1.jpg'</span><span class="src-sym">;</span></li>
+<li>            <span class="src-key">break</span><span class="src-sym">;</span></li>
+<li>         <span class="src-key">case </span><span class="src-num">45</span>:</li>
+<li>            <span class="src-var">$pic </span>= <span class="src-str">'picture2.jpg'</span><span class="src-sym">;</span></li>
+<li>            <span class="src-key">break</span><span class="src-sym">;</span></li>
+<li>         <span class="src-key">case </span><span class="src-num">70</span>:</li>
+<li>            <span class="src-var">$pic </span>= <span class="src-str">'picture3.jpg'</span><span class="src-sym">;</span></li>
+<li>            <span class="src-key">break</span><span class="src-sym">;</span></li>
+<li>         <span class="src-key">default</span>:</li>
+<li>            <span class="src-var">$pic </span>= <span class="src-id">null</span><span class="src-sym">;</span></li>
+<li>        <span class="src-sym">}</span></li>
+<li>        <span class="src-key">if </span><span class="src-sym">(</span><span class="src-sym">!</span><a href="http://www.php.net/is_null">is_null</a><span class="src-sym">(</span><span class="src-var">$pic</span><span class="src-sym">)) </span><span class="src-sym">{</span></li>
+<li>            <span class="src-var">$obj</span><span class="src-sym">-&gt;</span><span class="src-id">setCaption</span><span class="src-sym">(</span><span class="src-str">'upload &lt;b&gt;%file%&lt;/b&gt; in progress ... Start at %percent%%'</span><span class="src-sym">,</span></li>
+<li>                              <span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'file'</span>=&gt;<span class="src-var">$pic</span><span class="src-sym">, </span><span class="src-str">'percent'</span>=&gt;<span class="src-var">$progressValue</span><span class="src-sym">)</span></li>
+<li>                             <span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>        <span class="src-sym">}</span></li>
+<li>        <span class="src-var">$bar </span>=<span class="src-sym">&amp; </span><span class="src-var">$obj</span><span class="src-sym">-&gt;</span><span class="src-id">getProgressElement</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>        <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">sleep</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;  </span><span class="src-comm">// slow animation because we do noting else</span></li>
+<li>    <span class="src-sym">}</span></li>
+<li><span class="src-sym">}</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$monitor </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/Progress_Observer/HTML_Progress_Monitor.html">HTML_Progress_Monitor</a></span><span class="src-sym">(</span><span class="src-str">'frmMonitor5'</span><span class="src-sym">, </span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'title'  </span>=&gt; <span class="src-str">'Upload your pictures'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'start'  </span>=&gt; <span class="src-str">'Upload'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'cancel' </span>=&gt; <span class="src-str">'Stop'</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'button' </span>=&gt; <span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'style' </span>=&gt; <span class="src-str">'width:80px;'</span><span class="src-sym">)</span></li>
+<li>    <span class="src-sym">)</span></li>
+<li><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><span class="src-id">setProgressHandler</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'my2ClassHandler'</span><span class="src-sym">,</span><span class="src-str">'my1Method'</span><span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$progress </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">setAnimSpeed</span><span class="src-sym">(</span><span class="src-num">50</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$ui </span>=<span class="src-sym">&amp; </span><span class="src-var">$progress</span><span class="src-sym">-&gt;</span><span class="src-id">getUI</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><span class="src-id">setCellCount</span><span class="src-sym">(</span><span class="src-num">20</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><span class="src-id">setProgressAttributes</span><span class="src-sym">(</span><span class="src-str">'background-color=#EEE'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><span class="src-id">setStringAttributes</span><span class="src-sym">(</span><span class="src-str">'background-color=#EEE color=navy'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><span class="src-id">setCellAttributes</span><span class="src-sym">(</span><span class="src-str">'inactive-color=#FFF active-color=#444444'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><span class="src-id">setProgressElement</span><span class="src-sym">(</span><span class="src-var">$progress</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$tpl </span>=<span class="src-sym">&amp; </span><span class="src-key">new </span><span class="src-id">HTML_Template_ITX</span><span class="src-sym">(</span><span class="src-str">'.'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$tpl</span><span class="src-sym">-&gt;</span><span class="src-id">loadTemplateFile</span><span class="src-sym">(</span><span class="src-str">'monitor_itdynamic.html'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$tpl</span><span class="src-sym">-&gt;</span><span class="src-id">setVariable</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'qf_style'  </span>=&gt; <span class="src-str">&quot;body {font-family: Verdana, Arial; } \n&quot; </span>. <span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><span class="src-id">getStyle</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,</span></li>
+<li>    <span class="src-str">'qf_script' </span>=&gt; <span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><span class="src-id">getScript</span><span class="src-sym">(</span><span class="src-sym">)</span></li>
+<li>    <span class="src-sym">)</span></li>
+<li><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$renderer </span>=<span class="src-sym">&amp; </span><span class="src-key">new </span><span class="src-id">HTML_QuickForm_Renderer_ITDynamic</span><span class="src-sym">(</span><span class="src-var">$tpl</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$renderer</span><span class="src-sym">-&gt;</span><span class="src-id">setElementBlock</span><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></li>
+<li>    <span class="src-str">'buttons'     </span>=&gt; <span class="src-str">'qf_buttons'</span></li>
+<li><span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><span class="src-id">accept</span><span class="src-sym">(</span><span class="src-var">$renderer</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$tpl</span><span class="src-sym">-&gt;</span><span class="src-id">show</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$monitor</span><span class="src-sym">-&gt;</span><span class="src-id">run</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;   </span></li>
+<li><span class="src-php">?&gt;</span></li>
+</ol></pre></div></p>
+    <p><i><b>HTML_Progress_Monitor</b></i> class constructor options (<strong>lines 33 to 39</strong>)
+     allows to change buttons name and size, the dialog box title, and the internal QuickForm name.
+     User-process is now defined by a method-class on <strong>lines 6 to 31</strong>, and
+      linked to the monitor on <strong>line 40</strong>.<br /> 
+     The ITx template engine is initialized <strong>line 53</strong>, and loaded with template
+      <a href="http://pear.laurent-laville.org/HTML_Progress/apidoc/HTML/monitor_itdynamic_tpl.php">monitor_itdynamic.html</a> 
+      (<strong>line 54</strong>).<br /> 
+     Finally we get the QF renderer on <strong>lines 61 to 64</strong>.<br /></p><hr /></p></span></div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="33%" align="left" valign="top"><a href="../HTML_Progress/tutorial_part2-observer.pkg.html">Prev</a></td>
+<td width="34%" align="center" valign="top"><a href=
+"../HTML_Progress/tutorial_part2-gettingstarted.pkg.html">Up</a></td>
+<td width="33%" align="right" valign="top"><a href=
+"../HTML_Progress/tutorial_part3-reference.pkg.html">Next</a></td>
+</tr>
+
+<tr>
+<td width="33%" align="left" valign="top">Observer pattern</td>
+<td width="34%" align="center" valign="top">Getting Started</td>
+<td width="33%" align="right" valign="top">Reference Guide</td>
+</tr>
+</table>
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Sun, 12 Sep 2004 20:22:55 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

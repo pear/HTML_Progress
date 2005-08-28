@@ -1,0 +1,140 @@
+<html>
+<head>
+<title>HTML_Progress_UI::setCellCount</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">HTML_Progress</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+  		  [ <a href="../classtrees_HTML_Progress.html" class="menu">class tree: HTML_Progress</a> ]
+		  [ <a href="../elementindex_HTML_Progress.html" class="menu">index: HTML_Progress</a> ]
+		  [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="10%" align="left" valign="bottom"><a href=
+"../HTML_Progress/tutorial_ui.getcellcount.pkg.html">Prev</a></td>
+<td width="80%" align="center" valign="bottom"></td>
+<td width="10%" align="right" valign="bottom"><a href=
+"../HTML_Progress/tutorial_ui.getcellattributes.pkg.html">Next</a></td>
+</tr>
+</table>
+<div><a name=""></a><div class="ref-title-box"><div class="ref-title"><span class="function">HTML_Progress_UI::setCellCount</span></div>
+  <div class="ref-purpose">sets the new number of cell in a progress bar</div></div>
+
+ <span><a name="synopsis"></a><h2 class="title">Synopsis</h2><div class="ref-synopsis"><p><p class="func-synopsis">require_once 'HTML/Progress/UI.php';</p>
+    void <span class="function">HTML_Progress_UI::setCellCount</span>(
+     int <i>$cells</i>)</p></div></span>
+
+ <span><a name="description"></a><h2 class="title">Description</h2><p>This method is used to set the new number of cell in the progress bar.</p></span>
+ 
+ <span><a name="parameter"></a><h2 class="title">Parameter</h2><p><ul class="parameter"><dl><dt>integer
+      <i>$cells</i><dd>
+     <li><p>the new count of cell in the progress bar.</p></li></dl></ul></p></span>
+
+ <span><a name="throws"></a><h2 class="title">Throws</h2><p><table frame = "border"><p><strong>Possible PEAR_Error values</strong></p><colgroup span = "4"/><thead><tr><td>Error level</td>
+       <td>Error code</td>
+       <td>Error message</td>
+       <td>Solution</td></tr></thead>
+     <tbody><tr><td>exception</td>
+       <td><b>HTML_PROGRESS_ERROR_INVALID_INPUT</b></td>
+       <td>invalid input, parameter #1 &quot;<i>$cells</i>&quot; was expecting &quot;integer&quot;</td>
+       <td>Fixed the cast of parameter</td></tr>
+      <tr><td>error</td>
+       <td><b>HTML_PROGRESS_ERROR_INVALID_INPUT</b></td>
+       <td>invalid input, parameter #1 &quot;<i>$cells</i>&quot; was expecting &quot;greater or equal 1&quot;</td>
+       <td>Give an integer greater than one</td></tr></tbody></table></p></span>
+
+ <span><a name="note"></a><h2 class="title">Note</h2>( HTML_Progress &gt;= 1.0 )<br />
+  <p><table class="note"><tr><td class="note_img"><img src="../media/important.png"></td><td class="note_text">This function can not be called statically.</td></tr></table></p></span>
+
+ <span><a name="see"></a><h2 class="title">See</h2><p><a href="../HTML_Progress/tutorial_ui.getcellcount.pkg.html">HTML_Progress_UI::getCellCount</a></p></span>
+
+ <span><a name="example"></a><h2 class="title">Example</h2><p>Example below (that requires HTML_Progress &gt;= 1.2.0RC3) will produced a progress bar 
+    with less than ten default cells (see line 11). 
+    It's a dynamic example, the progress bar will run.<br />
+   <p><table class="note"><tr><td><img src="../media/example.png"></td><td><img src = "../media/screenshots/redsandback.png"/></td></tr></table></p>
+   <p><div class="listing"><pre><ol><li><span class="src-php">&lt;?php</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$bar </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setAnimSpeed</span><span class="src-sym">(</span><span class="src-num">100</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setIncrement</span><span class="src-sym">(</span><span class="src-num">10</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setBorderPainted</span><span class="src-sym">(</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$ui </span>=<span class="src-sym">&amp; </span><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">getUI</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetFillWay">setFillWay</a><span class="src-sym">(</span><span class="src-str">'reverse'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetCellCount">setCellCount</a><span class="src-sym">(</span><span class="src-num">5</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetCellAttributes">setCellAttributes</a><span class="src-sym">(</span><span class="src-str">'active-color=#970038 inactive-color=#FFDDAA width=20'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetBorderAttributes">setBorderAttributes</a><span class="src-sym">(</span><span class="src-str">'width=1 color=#000000'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$ui</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodsetStringAttributes">setStringAttributes</a><span class="src-sym">(</span><span class="src-str">'font-size=14 color=#FF0000 align=left valign=bottom'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&lt;!DOCTYPE html</li>
+<li>    PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot;</li>
+<li>    &quot;http://www.w3c.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</li>
+<li>&nbsp;</li>
+<li>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot;&gt;</li>
+<li>&lt;head&gt;</li>
+<li>&lt;title&gt;setCellCount example&lt;/title&gt;</li>
+<li>&lt;style type=&quot;text/css&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetStyle">getStyle</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>// --&gt;</li>
+<li>&lt;/style&gt;</li>
+<li>&lt;script type=&quot;text/javascript&quot;&gt;</li>
+<li>&lt;!--</li>
+<li><span class="src-php">&lt;?php </span>echo <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><a href="../HTML_Progress/Progress_UI/HTML_Progress_UI.html#methodgetScript">getScript</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span><span class="src-php">?&gt;</span></li>
+<li>//--&gt;</li>
+<li>&lt;/script&gt;</li>
+<li>&lt;/head&gt;</li>
+<li>&lt;body&gt;</li>
+<li>&nbsp;</li>
+<li><span class="src-php">&lt;?php </span></li>
+<li>echo <span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">toHtml</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">; </span></li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">run</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+<li>&nbsp;</li>
+<li>&lt;/body&gt;</li>
+<li>&lt;/html&gt;</li>
+</ol></pre></div></p></p></span></div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="33%" align="left" valign="top"><a href="../HTML_Progress/tutorial_ui.getcellcount.pkg.html">Prev</a></td>
+<td width="34%" align="center" valign="top"><a href=
+"../HTML_Progress/tutorial_part3-reference.pkg.html">Up</a></td>
+<td width="33%" align="right" valign="top"><a href=
+"../HTML_Progress/tutorial_ui.getcellattributes.pkg.html">Next</a></td>
+</tr>
+
+<tr>
+<td width="33%" align="left" valign="top"><span class="function">HTML_Progress_UI::getCellCount</span></td>
+<td width="34%" align="center" valign="top">Reference Guide</td>
+<td width="33%" align="right" valign="top"><span class="function">HTML_Progress_UI::getCellAttributes</span></td>
+</tr>
+</table>
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Sun, 12 Sep 2004 20:23:22 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

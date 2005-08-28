@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>HTML_Progress::isStringPainted</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">HTML_Progress</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+  		  [ <a href="../classtrees_HTML_Progress.html" class="menu">class tree: HTML_Progress</a> ]
+		  [ <a href="../elementindex_HTML_Progress.html" class="menu">index: HTML_Progress</a> ]
+		  [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="10%" align="left" valign="bottom"><a href=
+"../HTML_Progress/tutorial_progress.setdm.pkg.html">Prev</a></td>
+<td width="80%" align="center" valign="bottom"></td>
+<td width="10%" align="right" valign="bottom"><a href=
+"../HTML_Progress/tutorial_progress.setstringpainted.pkg.html">Next</a></td>
+</tr>
+</table>
+<div><a name=""></a><div class="ref-title-box"><div class="ref-title"><span class="function">HTML_Progress::isStringPainted</span></div>
+  <div class="ref-purpose">determines whether the progress meter string is painted or not</div></div>
+
+ <span><a name="synopsis"></a><h2 class="title">Synopsis</h2><div class="ref-synopsis"><p class="func-synopsis">require_once 'HTML/Progress.php';</p>
+   bool <span class="function">HTML_Progress::isStringPainted</span>()</div></span>
+
+ <span><a name="description"></a><h2 class="title">Description</h2><p>This method is used to know whether the progress meter string is painted or not.</p>
+  If returns value is FALSE, the progress meter displays the value returned by 
+   <a href="../HTML_Progress/HTML_Progress.html#methodgetPercentComplete">HTML_Progress::getPercentComplete()</a> method formatted as a percent such as 33%.<br /></span>
+
+ <span><a name="note"></a><h2 class="title">Note</h2>( HTML_Progress &gt;= 1.0 )<br />
+  <p><table class="note"><tr><td class="note_img"><img src="../media/important.png"></td><td class="note_text">This function can not be called statically.</td></tr></table></p></span>
+
+ <span><a name="see"></a><h2 class="title">See</h2><p><a href="../HTML_Progress/tutorial_progress.setstringpainted.pkg.html">HTML_Progress::setStringPainted</a></p></span>
+
+ <span><a name="example"></a><h2 class="title">Example</h2><p><div class="listing"><pre><ol><li><span class="src-php">&lt;?php</span></li>
+<li><span class="src-inc">require_once </span><span class="src-str">'HTML/Progress.php'</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$bar </span>= <span class="src-key">new </span><span class="src-id"><a href="../HTML_Progress/HTML_Progress.html">HTML_Progress</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-var">$test </span>= <span class="src-str">&quot;\$res = \$bar-&gt;isStringPainted() ? 'yes':'no';&quot;</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li>eval<span class="src-sym">(</span><span class="src-var">$test</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a href="http://www.php.net/printf">printf</a><span class="src-sym">(</span><span class="src-str">'is custom string painted ? %s &lt;br/&gt;'</span><span class="src-sym">, </span><span class="src-var">$res</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>&nbsp;</li>
+<li><span class="src-var">$bar</span><span class="src-sym">-&gt;</span><span class="src-id">setStringPainted</span><span class="src-sym">(</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li>eval<span class="src-sym">(</span><span class="src-var">$test</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a href="http://www.php.net/printf">printf</a><span class="src-sym">(</span><span class="src-str">'and now, is custom string painted ? %s'</span><span class="src-sym">, </span><span class="src-var">$res</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><span class="src-php">?&gt;</span></li>
+</ol></pre></div></p></span></div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="33%" align="left" valign="top"><a href="../HTML_Progress/tutorial_progress.setdm.pkg.html">Prev</a></td>
+<td width="34%" align="center" valign="top"><a href=
+"../HTML_Progress/tutorial_part3-reference.pkg.html">Up</a></td>
+<td width="33%" align="right" valign="top"><a href=
+"../HTML_Progress/tutorial_progress.setstringpainted.pkg.html">Next</a></td>
+</tr>
+
+<tr>
+<td width="33%" align="left" valign="top"><span class="function">HTML_Progress::setDM</span></td>
+<td width="34%" align="center" valign="top">Reference Guide</td>
+<td width="33%" align="right" valign="top"><span class="function">HTML_Progress::setStringPainted</span></td>
+</tr>
+</table>
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Sun, 12 Sep 2004 20:23:08 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
