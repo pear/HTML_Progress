@@ -1,5 +1,12 @@
 $Id$
 
+-------------------------Release 1.2.3------------------------
+2005-08-28  Laurent Laville <pear@laurent-laville.org>
+    Quality-Assurance:
+    * API documentation auto-generation is back (no more 404 error on PEAR website)
+    * improved API doc reading and removed unnecessary stuff (unit testcases, ...)
+    * online documentation links were changed (see README)
+
 -------------------------Release 1.2.2------------------------
 2005-07-25  Laurent Laville <pear@laurent-laville.org>
     * fix bug#4885 setMaximum highter than 200 will stop progress monitor
