@@ -11,6 +11,9 @@
 
 require_once 'PHPUnit.php';
 
+/**
+ * @ignore
+ */
 class TestUnit extends PHPUnit
 {
     function &run(&$suite, $listener)

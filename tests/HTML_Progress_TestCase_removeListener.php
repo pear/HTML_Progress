@@ -99,14 +99,18 @@ class HTML_Progress_TestCase_removeListener extends PHPUnit_TestCase
 }
 
 require_once ('HTML/Progress/observer.php');
-
+/**
+ * @ignore
+ */
 class logit2 extends HTML_Progress_Observer
 {
     function logit2()
     {
     }
 }
-
+/**
+ * @ignore
+ */
 class log_progress2
 {
 }
