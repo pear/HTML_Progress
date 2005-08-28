@@ -19,7 +19,6 @@
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  * @version    CVS: $Id$
  * @link       http://pear.php.net/package/HTML_Progress
- * @tutorial   HTML_Progress.pkg
  */
 
 require_once 'HTML/Progress/DM.php';
@@ -513,7 +512,6 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        setIndeterminate()
-     * @tutorial   progress.isindeterminate.pkg
      */
     function isIndeterminate()
     {
@@ -534,7 +532,6 @@ class HTML_Progress
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        isIndeterminate()
-     * @tutorial   progress.setindeterminate.pkg
      */
     function setIndeterminate($continuous)
     {
@@ -556,7 +553,6 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        setBorderPainted()
-     * @tutorial   progress.isborderpainted.pkg
      */
     function isBorderPainted()
     {
@@ -574,7 +570,6 @@ class HTML_Progress
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        isBorderPainted()
-     * @tutorial   progress.setborderpainted.pkg
      */
     function setBorderPainted($paint)
     {
@@ -599,7 +594,6 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        setStringPainted(), setString()
-     * @tutorial   progress.isstringpainted.pkg
      */
     function isStringPainted()
     {
@@ -617,7 +611,6 @@ class HTML_Progress
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        isStringPainted(), setString()
-     * @tutorial   progress.setstringpainted.pkg
      */
     function setStringPainted($paint)
     {
@@ -640,7 +633,6 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        setString(), isStringPainted()
-     * @tutorial   progress.getstring.pkg
      */
     function getString()
     {
@@ -664,7 +656,6 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        getString(), isStringPainted(), setStringPainted()
-     * @tutorial   progress.setstring.pkg
      */
     function setString($str)
     {
@@ -726,7 +717,6 @@ class HTML_Progress
      * @access     public
      * @see        setMinimum(),
      *             HTML_Progress_DM::getMinimum()
-     * @tutorial   dm.getminimum.pkg
      */
     function getMinimum()
     {
@@ -745,7 +735,6 @@ class HTML_Progress
      * @access     public
      * @see        getMinimum(),
      *             HTML_Progress_DM::setMinimum()
-     * @tutorial   dm.setminimum.pkg
      */
     function setMinimum($min)
     {
@@ -767,7 +756,6 @@ class HTML_Progress
      * @access     public
      * @see        setMaximum(),
      *             HTML_Progress_DM::getMaximum()
-     * @tutorial   dm.getmaximum.pkg
      */
     function getMaximum()
     {
@@ -786,7 +774,6 @@ class HTML_Progress
      * @access     public
      * @see        getMaximum(),
      *             HTML_Progress_DM::setMaximum()
-     * @tutorial   dm.setmaximum.pkg
      */
     function setMaximum($max)
     {
@@ -808,7 +795,6 @@ class HTML_Progress
      * @access     public
      * @see        setIncrement(),
      *             HTML_Progress_DM::getIncrement()
-     * @tutorial   dm.getincrement.pkg
      */
     function getIncrement()
     {
@@ -825,7 +811,6 @@ class HTML_Progress
      * @access     public
      * @see        getIncrement(),
      *             HTML_Progress_DM::setIncrement()
-     * @tutorial   dm.setincrement.pkg
      */
     function setIncrement($inc)
     {
@@ -843,7 +828,6 @@ class HTML_Progress
      * @access     public
      * @see        setValue(), incValue(),
      *             HTML_Progress_DM::getValue()
-     * @tutorial   dm.getvalue.pkg
      */
     function getValue()
     {
@@ -862,7 +846,6 @@ class HTML_Progress
      * @access     public
      * @see        getValue(), incValue(),
      *             HTML_Progress_DM::setValue()
-     * @tutorial   dm.setvalue.pkg
      */
     function setValue($val)
     {
@@ -884,7 +867,6 @@ class HTML_Progress
      * @access     public
      * @see        getValue(), setValue(),
      *             HTML_Progress_DM::incValue()
-     * @tutorial   dm.incvalue.pkg
      */
     function incValue()
     {
@@ -903,7 +885,6 @@ class HTML_Progress
      * @access     public
      * @see        getValue(), getMaximum(),
      *             HTML_Progress_DM::getPercentComplete()
-     * @tutorial   dm.getpercentcomplete.pkg
      */
     function getPercentComplete($float = true)
     {
@@ -967,7 +948,6 @@ class HTML_Progress
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        setUI()
-     * @tutorial   progress.setmodel.pkg
      */
     function setModel($file, $type)
     {
@@ -1065,7 +1045,6 @@ class HTML_Progress
      * @since      1.2.0RC1
      * @access     public
      * @see        setAnimSpeed()
-     * @tutorial   progress.getanimspeed.pkg
      */
     function getAnimSpeed()
     {
@@ -1082,7 +1061,6 @@ class HTML_Progress
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        getAnimSpeed()
-     * @tutorial   progress.setanimspeed.pkg
      */
     function setAnimSpeed($delay)
     {
@@ -1117,7 +1095,6 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        HTML_Progress_UI::getStyle()
-     * @tutorial   ui.getstyle.pkg
      */
     function getStyle()
     {
@@ -1137,7 +1114,6 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        HTML_Progress_UI::getScript()
-     * @tutorial   ui.getscript.pkg
      */
     function getScript()
     {
@@ -1494,7 +1470,6 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        addListener(), removeListener()
-     * @tutorial   progress.getlisteners.pkg
      */
     function getListeners()
     {
@@ -1512,7 +1487,6 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        getListeners(), removeListener()
-     * @tutorial   progress.addlistener.pkg
      */
     function addListener($observer)
     {
@@ -1534,7 +1508,6 @@ class HTML_Progress
      * @since      1.0
      * @access     public
      * @see        getListeners(), addListener()
-     * @tutorial   progress.removelistener.pkg
      */
     function removeListener($observer)
     {

@@ -300,7 +300,6 @@ class HTML_Progress_UI extends HTML_Common
      * @since      1.0
      * @access     public
      * @see        setOrientation()
-     * @tutorial   ui.getorientation.pkg
      */
     function getOrientation()
     {
@@ -319,7 +318,6 @@ class HTML_Progress_UI extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        getOrientation()
-     * @tutorial   ui.setorientation.pkg
      */
     function setOrientation($orient)
     {
@@ -371,7 +369,6 @@ class HTML_Progress_UI extends HTML_Common
      * @since      1.0
      * @access     public
      * @see        setFillWay()
-     * @tutorial   ui.getfillway.pkg
      */
     function getFillWay()
     {
@@ -389,7 +386,6 @@ class HTML_Progress_UI extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        getFillWay()
-     * @tutorial   ui.setfillway.pkg
      */
     function setFillWay($way)
     {
@@ -417,7 +413,6 @@ class HTML_Progress_UI extends HTML_Common
      * @since      1.0
      * @access     public
      * @see        setCellCount()
-     * @tutorial   ui.getcellcount.pkg
      */
     function getCellCount()
     {
@@ -434,7 +429,6 @@ class HTML_Progress_UI extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        getCellCount()
-     * @tutorial   ui.setcellcount.pkg
      */
     function setCellCount($cells)
     {
@@ -467,7 +461,6 @@ class HTML_Progress_UI extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        setCellAttributes()
-     * @tutorial   ui.getcellattributes.pkg
      */
     function getCellAttributes($asString = false)
     {
@@ -525,7 +518,6 @@ class HTML_Progress_UI extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        getCellAttributes(), getCellCount()
-     * @tutorial   ui.setcellattributes.pkg
      */
     function setCellAttributes($attributes, $cell = null)
     {
@@ -679,7 +671,6 @@ class HTML_Progress_UI extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        setBorderAttributes()
-     * @tutorial   ui.getborderattributes.pkg
      */
     function getBorderAttributes($asString = false)
     {
@@ -717,7 +708,6 @@ class HTML_Progress_UI extends HTML_Common
      * @since      1.0
      * @access     public
      * @see        getBorderAttributes(), HTML_Progress::setBorderPainted()
-     * @tutorial   ui.setborderattributes.pkg
      */
     function setBorderAttributes($attributes)
     {
@@ -736,7 +726,6 @@ class HTML_Progress_UI extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        setStringAttributes()
-     * @tutorial   ui.getstringattributes.pkg
      */
     function getStringAttributes($asString = false)
     {
@@ -785,7 +774,6 @@ class HTML_Progress_UI extends HTML_Common
      * @since      1.0
      * @access     public
      * @see        getStringAttributes(), HTML_Progress::setStringPainted()
-     * @tutorial   ui.setstringattributes.pkg
      */
     function setStringAttributes($attributes)
     {
@@ -802,7 +790,6 @@ class HTML_Progress_UI extends HTML_Common
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        setProgressAttributes()
-     * @tutorial   ui.getprogressattributes.pkg
      */
     function getProgressAttributes($asString = false)
     {
@@ -849,7 +836,6 @@ class HTML_Progress_UI extends HTML_Common
      * @since      1.0
      * @access     public
      * @see        getProgressAttributes()
-     * @tutorial   ui.setprogressattributes.pkg
      */
     function setProgressAttributes($attributes)
     {
@@ -863,7 +849,6 @@ class HTML_Progress_UI extends HTML_Common
      * @since      0.5
      * @access     public
      * @see        setScript()
-     * @tutorial   ui.getscript.pkg
      * @author     Stefan Neufeind <pear.neufeind@speedpartner.de> Contributor.
      *             See details on thanks section of README file.
      * @author     Christian Wenz <wenz@php.net> Helper.
@@ -956,7 +941,6 @@ JS;
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        getScript()
-     * @tutorial   ui.setscript.pkg
      */
     function setScript($url)
     {
@@ -991,7 +975,6 @@ JS;
      * @return     string
      * @since      0.2
      * @access     public
-     * @tutorial   ui.getstyle.pkg
      * @author     Stefan Neufeind <pear.neufeind@speedpartner.de> Contributor.
      *             See details on thanks section of README file.
      */

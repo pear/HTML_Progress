@@ -247,7 +247,6 @@ class HTML_Progress_DM
      * @since      1.0
      * @access     public
      * @see        setMinimum()
-     * @tutorial   dm.getminimum.pkg
      */
     function getMinimum()
     {
@@ -264,7 +263,6 @@ class HTML_Progress_DM
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        getMinimum()
-     * @tutorial   dm.setminimum.pkg
      */
     function setMinimum($min)
     {
@@ -304,7 +302,6 @@ class HTML_Progress_DM
      * @since      1.0
      * @access     public
      * @see        setMaximum()
-     * @tutorial   dm.getmaximum.pkg
      */
     function getMaximum()
     {
@@ -321,7 +318,6 @@ class HTML_Progress_DM
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        getMaximum()
-     * @tutorial   dm.setmaximum.pkg
      */
     function setMaximum($max)
     {
@@ -361,7 +357,6 @@ class HTML_Progress_DM
      * @since      1.0
      * @access     public
      * @see        setIncrement()
-     * @tutorial   dm.getincrement.pkg
      */
     function getIncrement()
     {
@@ -378,7 +373,6 @@ class HTML_Progress_DM
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        getIncrement()
-     * @tutorial   dm.setincrement.pkg
      */
     function setIncrement($inc)
     {
@@ -408,7 +402,6 @@ class HTML_Progress_DM
      * @since      1.0
      * @access     public
      * @see        setValue()
-     * @tutorial   dm.getvalue.pkg
      */
     function getValue()
     {
@@ -427,7 +420,6 @@ class HTML_Progress_DM
      * @access     public
      * @throws     HTML_PROGRESS_ERROR_INVALID_INPUT
      * @see        getValue()
-     * @tutorial   dm.setvalue.pkg
      */
     function setValue($val)
     {
@@ -462,7 +454,6 @@ class HTML_Progress_DM
      * @since      1.0
      * @access     public
      * @see        getValue(), setValue()
-     * @tutorial   dm.incvalue.pkg
      */
     function incValue()
     {
@@ -482,7 +473,6 @@ class HTML_Progress_DM
      * @access     public
      * @throws     HTML_PROGRESS2_ERROR_INVALID_INPUT
      * @see        getValue(), getMaximum()
-     * @tutorial   dm.getpercentcomplete.pkg
      */
     function getPercentComplete($float = true)
     {
