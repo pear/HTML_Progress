@@ -40,28 +40,26 @@ DESCR;
 $summary = 'How to include a loading bar in your XHTML documents quickly and easily.';
 
 // New version and state of the package
-$version = '1.2.2';
+$version = '1.2.3';
 $state   = 'stable';
 
 // Notes about this new release
 $notes = <<<NOTE
-* bugs
-- fixed setMaximum with value higher than 200 when using a progress monitor (bug #4885)
-- fixed call time pass by reference error in progress monitor
+*IMPORTANT*
+  This release should be the last one of the branch 1 of HTML_Progress, unless
+  bugs are found. There are NO CODE CHANGES since version 1.2.2
 
 * changes
-- getPercentComplete() method has an optional parameter.
-  Return may be float (default) or integer.
-- removed HTML_CSS dependency
+- online documentation links were changed:
+  . API (only) can be view at URI http://pear.laurent-laville.org/HTML_Progress/docs/API/
+  . User Guide can be view at URI http://pear.laurent-laville.org/HTML_Progress/docs/TDG/
+- The User Guide also called The Definitive Guide (TDG) is an old version, but
+  the HTML (many pages) and Windows Help Compiled versions are now included
+  in the binary distribution (see docs/ directory).
 
-* improvements
-- generation of stylesheet is (average) 20 times faster without HTML_CSS
-
-* QA
-- Updates headers comment block on all files
-- Dependencies has been revisited to higher level
-- Fix wrong project links into documentation (README, ReleaseVersion)
-  Thanks to Christian Roy to have noticed me.
+* Quality Assurance
+- API documentation auto-generation is back (no more 404 error on PEAR website)
+- improved API doc reading and removed unnecessary stuff (unit testcases, ...)
 
 NOTE;
 
@@ -79,6 +77,13 @@ $options = array(
                                  'tests' => 'test',
                                  'Progress' => 'php',
                                 ),
+    'exceptions'        => array('ChangeLog' => 'doc',
+                                 'HISTORY' => 'doc',
+                                 'INSTALL' => 'doc',
+                                 'README' => 'doc',
+                                 'LICENSE' => 'doc',
+                                 'Release-1.2.3' => 'doc'
+                                ),
     'state'             => $state,
     'filelistgenerator' => 'cvs',
     'changelogoldtonew' => false,
@@ -88,7 +93,10 @@ $options = array(
                                  'examples.xml', 'examples.php',
                                  'Thumbs.db',
                                  'cache/',
-                                 'Error/'
+                                 'Error/',
+                                 'tutorials/',
+                                 'Release-0*', 'Release-1.0', 'Release-1.1',
+                                 'Release-1.2.0*', 'Release-1.2.2'
                                 ),
     'cleardependencies' => true
 );
