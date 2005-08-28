@@ -1,10 +1,11 @@
 <?php
 /**
  * API setValue Unit tests for HTML_Progress_DM class.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @ignore
  */
 
 class HTML_Progress_TestCase_DM_new extends PHPUnit_TestCase
@@ -53,7 +54,7 @@ class HTML_Progress_TestCase_DM_new extends PHPUnit_TestCase
             $this->assertTrue(false, $err['message']);
         } else {
             $this->assertTrue(true);
-	}
+        }
     }
 
     /**

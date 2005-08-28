@@ -1,11 +1,12 @@
 <?php
 /**
  * BUG #28 regression test for HTML_Progress class.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
  * @link       http://pear.php.net/bugs/bug.php?id=28
+ * @ignore
  */
 
 error_reporting(E_ALL);

@@ -1,10 +1,11 @@
 <?php
 /**
  * API setOrientation Unit tests for HTML_Progress_UI class.
- * 
+ *
  * @version    $Id$
  * @author     Laurent Laville <pear@laurent-laville.org>
  * @package    HTML_Progress
+ * @ignore
  */
 
 class HTML_Progress_TestCase_UI_setOrientation extends PHPUnit_TestCase
@@ -41,7 +42,7 @@ class HTML_Progress_TestCase_UI_setOrientation extends PHPUnit_TestCase
         return preg_replace('/\\s+/', '', $str);
     }
 
-    function _methodExists($name) 
+    function _methodExists($name)
     {
         if (substr(PHP_VERSION,0,1) < '5') {
             $n = strtolower($name);
@@ -68,9 +69,9 @@ class HTML_Progress_TestCase_UI_setOrientation extends PHPUnit_TestCase
             $this->assertTrue(false, $err['message']);
         } else {
             $this->assertTrue(true);
-	}
+        }
     }
-   
+
     /**
      * TestCases for method setOrientation.
      *
@@ -100,7 +101,7 @@ class HTML_Progress_TestCase_UI_setOrientation extends PHPUnit_TestCase
         }
         $this->ui->setOrientation(HTML_PROGRESS_BAR_VERTICAL);
 
-        $this->assertEquals(24, $this->ui->_progress['progress']['width'], 
+        $this->assertEquals(24, $this->ui->_progress['progress']['width'],
             'default-size VERTICAL no-border : w=24 h=172.');
     }
 
@@ -111,7 +112,7 @@ class HTML_Progress_TestCase_UI_setOrientation extends PHPUnit_TestCase
         }
         $this->ui->setOrientation(HTML_PROGRESS_BAR_VERTICAL);
 
-        $this->assertEquals(172, $this->ui->_progress['progress']['height'], 
+        $this->assertEquals(172, $this->ui->_progress['progress']['height'],
             'default-size VERTICAL no-border : w=24 h=172.');
     }
 
@@ -122,7 +123,7 @@ class HTML_Progress_TestCase_UI_setOrientation extends PHPUnit_TestCase
         }
         $this->ui->setOrientation(HTML_PROGRESS_BAR_VERTICAL);
 
-        $this->assertEquals(20, $this->ui->_progress['cell']['width'], 
+        $this->assertEquals(20, $this->ui->_progress['cell']['width'],
             'default-cell-size VERTICAL : w=20 h=15.');
     }
 
@@ -133,7 +134,7 @@ class HTML_Progress_TestCase_UI_setOrientation extends PHPUnit_TestCase
         }
         $this->ui->setOrientation(HTML_PROGRESS_BAR_VERTICAL);
 
-        $this->assertEquals(15, $this->ui->_progress['cell']['height'], 
+        $this->assertEquals(15, $this->ui->_progress['cell']['height'],
             'default-cell-size VERTICAL : w=20 h=15.');
     }
 
