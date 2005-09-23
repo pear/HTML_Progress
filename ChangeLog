@@ -1,5 +1,14 @@
 $Id$
 
+-------------------------Release 1.2.4------------------------
+2005-10-01  Laurent Laville <pear@laurent-laville.org>
+    * Quality-Assurance: updates headers comment blocks
+
+    * bugs fixes:
+      setBorderPainted(false) inefficient with setBorderAttributes()
+      and a positive width attribute value. Always show a border
+      arround the progress bar.
+
 -------------------------Release 1.2.3------------------------
 2005-08-28  Laurent Laville <pear@laurent-laville.org>
     Quality-Assurance:
