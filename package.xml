@@ -39,25 +39,22 @@ Features:
     </maintainer>
   </maintainers>
   <release>
-    <version>1.2.3</version>
-    <date>2005-08-28</date>
+    <version>1.2.4</version>
+    <date>2005-10-01</date>
     <license>PHP License 3.0</license>
     <state>stable</state>
-    <notes>*IMPORTANT*
-  This release should be the last one of the branch 1 of HTML_Progress, unless
-  bugs are found. There are NO CODE CHANGES since version 1.2.2
+    <notes>* IMPORTANT
+- Version 1.2.4 is considered as deprecated in favour of HTML_Progress2 2.0.0
+  A migration guide (and much more) exists in The Definitive (User) Guide available online
+  at URI http://www.laurent-laville.org/pear/HTML_Progress2/docs/TDG/en/index.html
 
-* changes
-- online documentation links were changed:
-  . API (only) can be view at URI http://pear.laurent-laville.org/HTML_Progress/docs/API/
-  . User Guide can be view at URI http://pear.laurent-laville.org/HTML_Progress/docs/TDG/
-- The User Guide also called The Definitive Guide (TDG) is an old version, but
-  the HTML (many pages) and Windows Help Compiled versions are now included
-  in the binary distribution (see docs/ directory).
+* bugs
+- setBorderPainted(false) inefficient with setBorderAttributes()
+  and a positive width attribute value. Always show a border
+  arround the progress bar.
 
 * Quality Assurance
-- API documentation auto-generation is back (no more 404 error on PEAR website)
-- improved API doc reading and removed unnecessary stuff (unit testcases, ...)
+- updates headers comment blocks
 </notes>
     <deps>
       <dep type="php" rel="ge" version="4.2.0" optional="no"/>
@@ -73,543 +70,512 @@ Features:
       <dep type="pkg" rel="ge" version="1.10" optional="yes">Config</dep>
       <dep type="ext" rel="has" optional="yes">gd</dep>
     </deps>
-    <provides type="class" name="HTML_Progress_DM" />
-    <provides type="function" name="HTML_Progress_DM::getMinimum" />
-    <provides type="function" name="HTML_Progress_DM::setMinimum" />
-    <provides type="function" name="HTML_Progress_DM::getMaximum" />
-    <provides type="function" name="HTML_Progress_DM::setMaximum" />
-    <provides type="function" name="HTML_Progress_DM::getIncrement" />
-    <provides type="function" name="HTML_Progress_DM::setIncrement" />
-    <provides type="function" name="HTML_Progress_DM::getValue" />
-    <provides type="function" name="HTML_Progress_DM::setValue" />
-    <provides type="function" name="HTML_Progress_DM::incValue" />
-    <provides type="function" name="HTML_Progress_DM::getPercentComplete" />
-    <provides type="class" name="HTML_Progress_Generator" extends="HTML_QuickForm_Controller" />
-    <provides type="function" name="HTML_Progress_Generator::createTabs" />
-    <provides type="function" name="HTML_Progress_Generator::createButtons" />
-    <provides type="function" name="HTML_Progress_Generator::enableButton" />
-    <provides type="function" name="HTML_Progress_Generator::disableButton" />
-    <provides type="function" name="HTML_Progress_Generator::createProgressBar" />
-    <provides type="class" name="HTML_Progress_Model" extends="HTML_Progress_UI" />
-    <provides type="class" name="HTML_Progress_Monitor" />
-    <provides type="function" name="HTML_Progress_Monitor::notify" />
-    <provides type="function" name="HTML_Progress_Monitor::setProgressHandler" />
-    <provides type="function" name="HTML_Progress_Monitor::callProgressHandler" />
-    <provides type="function" name="HTML_Progress_Monitor::isStarted" />
-    <provides type="function" name="HTML_Progress_Monitor::isCanceled" />
-    <provides type="function" name="HTML_Progress_Monitor::run" />
-    <provides type="function" name="HTML_Progress_Monitor::setProgressElement" />
-    <provides type="function" name="HTML_Progress_Monitor::getProgressElement" />
-    <provides type="function" name="HTML_Progress_Monitor::getStyle" />
-    <provides type="function" name="HTML_Progress_Monitor::getScript" />
-    <provides type="function" name="HTML_Progress_Monitor::toHtml" />
-    <provides type="function" name="HTML_Progress_Monitor::accept" />
-    <provides type="function" name="HTML_Progress_Monitor::setCaption" />
-    <provides type="class" name="HTML_Progress_Observer" />
-    <provides type="function" name="HTML_Progress_Observer::notify" />
-    <provides type="class" name="HTML_Progress_UI" extends="HTML_Common" />
-    <provides type="function" name="HTML_Progress_UI::getOrientation" />
-    <provides type="function" name="HTML_Progress_UI::setOrientation" />
-    <provides type="function" name="HTML_Progress_UI::getFillWay" />
-    <provides type="function" name="HTML_Progress_UI::setFillWay" />
-    <provides type="function" name="HTML_Progress_UI::getCellCount" />
-    <provides type="function" name="HTML_Progress_UI::setCellCount" />
-    <provides type="function" name="HTML_Progress_UI::getCellAttributes" />
-    <provides type="function" name="HTML_Progress_UI::setCellAttributes" />
-    <provides type="function" name="HTML_Progress_UI::getCellCoordinates" />
-    <provides type="function" name="HTML_Progress_UI::setCellCoordinates" />
-    <provides type="function" name="HTML_Progress_UI::getBorderAttributes" />
-    <provides type="function" name="HTML_Progress_UI::setBorderAttributes" />
-    <provides type="function" name="HTML_Progress_UI::getStringAttributes" />
-    <provides type="function" name="HTML_Progress_UI::setStringAttributes" />
-    <provides type="function" name="HTML_Progress_UI::getProgressAttributes" />
-    <provides type="function" name="HTML_Progress_UI::setProgressAttributes" />
-    <provides type="function" name="HTML_Progress_UI::getScript" />
-    <provides type="function" name="HTML_Progress_UI::setScript" />
-    <provides type="function" name="HTML_Progress_UI::getStyle" />
-    <provides type="function" name="HTML_Progress_UI::drawCircleSegments" />
-    <provides type="class" name="ActionDisplay" extends="HTML_QuickForm_Action_Display" />
-    <provides type="class" name="Property1" extends="HTML_QuickForm_Page" />
-    <provides type="class" name="Property2" extends="HTML_QuickForm_Page" />
-    <provides type="class" name="Property3" extends="HTML_QuickForm_Page" />
-    <provides type="class" name="Property4" extends="HTML_QuickForm_Page" />
-    <provides type="class" name="Preview" extends="HTML_QuickForm_Page" />
-    <provides type="class" name="Save" extends="HTML_QuickForm_Page" />
-    <provides type="function" name="Property1::buildForm" />
-    <provides type="function" name="Property2::buildForm" />
-    <provides type="function" name="Property3::buildForm" />
-    <provides type="function" name="Property4::buildForm" />
-    <provides type="function" name="Preview::buildForm" />
-    <provides type="function" name="Save::buildForm" />
-    <provides type="class" name="ActionPreview" extends="HTML_QuickForm_Action" />
-    <provides type="function" name="ActionPreview::perform" />
-    <provides type="class" name="ActionProcess" extends="HTML_QuickForm_Action" />
-    <provides type="function" name="ActionProcess::perform" />
-    <provides type="function" name="ActionProcess::exportOutput" />
-    <provides type="class" name="HTML_Progress" />
-    <provides type="function" name="HTML_Progress::apiVersion" />
-    <provides type="function" name="HTML_Progress::isIndeterminate" />
-    <provides type="function" name="HTML_Progress::setIndeterminate" />
-    <provides type="function" name="HTML_Progress::isBorderPainted" />
-    <provides type="function" name="HTML_Progress::setBorderPainted" />
-    <provides type="function" name="HTML_Progress::isStringPainted" />
-    <provides type="function" name="HTML_Progress::setStringPainted" />
-    <provides type="function" name="HTML_Progress::getString" />
-    <provides type="function" name="HTML_Progress::setString" />
-    <provides type="function" name="HTML_Progress::getDM" />
-    <provides type="function" name="HTML_Progress::setDM" />
-    <provides type="function" name="HTML_Progress::getMinimum" />
-    <provides type="function" name="HTML_Progress::setMinimum" />
-    <provides type="function" name="HTML_Progress::getMaximum" />
-    <provides type="function" name="HTML_Progress::setMaximum" />
-    <provides type="function" name="HTML_Progress::getIncrement" />
-    <provides type="function" name="HTML_Progress::setIncrement" />
-    <provides type="function" name="HTML_Progress::getValue" />
-    <provides type="function" name="HTML_Progress::setValue" />
-    <provides type="function" name="HTML_Progress::incValue" />
-    <provides type="function" name="HTML_Progress::getPercentComplete" />
-    <provides type="function" name="HTML_Progress::getUI" />
-    <provides type="function" name="HTML_Progress::setUI" />
-    <provides type="function" name="HTML_Progress::setModel" />
-    <provides type="function" name="HTML_Progress::getAnimSpeed" />
-    <provides type="function" name="HTML_Progress::setAnimSpeed" />
-    <provides type="function" name="HTML_Progress::getStyle" />
-    <provides type="function" name="HTML_Progress::getScript" />
-    <provides type="function" name="HTML_Progress::toArray" />
-    <provides type="function" name="HTML_Progress::toHtml" />
     <filelist>
-      <file role="doc" baseinstalldir="HTML" name="docs/HTML_Progress-1.chm"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/classtrees_HTML_Progress.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/elementindex.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/elementindex_HTML_Progress.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/index.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/li_HTML_Progress.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/todolist.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/HTML_Progress.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_A_install.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_B_migration12.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_C_faq.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_dm.getincrement.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_dm.getmaximum.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_dm.getminimum.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_dm.getpercentcomplete.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_dm.getvalue.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_dm.incvalue.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_dm.setincrement.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_dm.setmaximum.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_dm.setminimum.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_dm.setvalue.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_HTML_Progress.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_monitor.accept.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_monitor.callprogresshandler.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_monitor.getprogresselement.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_monitor.getscript.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_monitor.getstyle.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_monitor.iscanceled.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_monitor.isstarted.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_monitor.notify.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_monitor.run.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_monitor.setcaption.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_monitor.setprogresselement.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_monitor.setprogresshandler.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_monitor.tohtml.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_part1-introduction.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_part2-errorhandling.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_part2-firstprogressmeter.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_part2-gettingstarted.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_part2-indeterminate.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_part2-monitor.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_part2-observer.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_part2-progresshandler.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_part3-reference.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_part4-appendixes.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_preface.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.addlistener.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.apiversion.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.constants.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.display.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.getanimspeed.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.getdm.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.geterror.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.getident.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.getlisteners.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.getstring.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.getui.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.haserrors.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.hide.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.isborderpainted.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.isindeterminate.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.isstringpainted.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.process.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.raiseerror.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.removelistener.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.run.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.setanimspeed.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.setborderpainted.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.setdm.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.setident.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.setindeterminate.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.setmodel.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.setprogresshandler.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.setstring.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.setstringpainted.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.setui.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.sleep.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.toarray.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_progress.tohtml.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.drawcirclesegments.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.getborderattributes.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.getcellattributes.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.getcellcoordinates.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.getcellcount.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.getfillway.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.getorientation.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.getprogressattributes.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.getscript.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.getstringattributes.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.getstyle.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.setborderattributes.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.setcellattributes.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.setcellcoordinates.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.setcellcount.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.setfillway.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.setorientation.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.setprogressattributes.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.setscript.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/tutorial_ui.setstringattributes.pkg.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/_Progress_Progress_php.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_DM/HTML_Progress_DM.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_DM/_Progress_Progress_DM_php.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_Observer/HTML_Progress_Monitor.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_Observer/HTML_Progress_Observer.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_Observer/_Progress_Progress_monitor_php.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_Observer/_Progress_Progress_observer_php.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/ActionDisplay.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/ActionPreview.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/ActionProcess.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/HTML_Progress_Generator.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/HTML_Progress_UI.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/_Progress_Progress_generator_default_php.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/_Progress_Progress_generator_HTMLPage_php.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/_Progress_Progress_generator_ITDynamic_php.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/_Progress_Progress_generator_pages_php.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/_Progress_Progress_generator_php.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/_Progress_Progress_generator_preview_php.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/_Progress_Progress_generator_process_php.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/_Progress_Progress_generator_SmartyDynamic_php.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/HTML_Progress/Progress_UI/_Progress_Progress_UI_php.html"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/background.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/caution.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/empty.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/example.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/important.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/manual.css"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/note.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/pear.gif"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/style.css"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/tip.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/warning.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/ancestor.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/bgimages.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/bluesand.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/bluesandplus.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/border.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/border1.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/border2.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/border3.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/bullit.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/circle080.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/default.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/determinate.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/inahurry.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/indeterminate.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/indeterminate_basic.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/javadanse.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/monitor_complex.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/monitor_default1.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/monitor_function_callback.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/monitor_itdynamic.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/monitor_simple.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/nostring.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/observer_complex.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/progressmaker.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/rect64.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/redsandback.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/scratch1.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/scratch21.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/scratch22.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/smallest.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/square.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/string.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/string1.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/template.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/vertical1.png"/>
-      <file role="doc" baseinstalldir="HTML" name="docs/TDG/media/screenshots/vertical2.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/examples.css"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/highlighter.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/index.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/pear-power.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/ancestor.ini"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/bgimages.ini"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/bluesand.ini"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/bullit.ini"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/custom.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/default.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/default.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/embedded.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/embedded.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/htmlpage.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/htmlpage.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/itdynamic.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/redsandback.ini"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/smallest.ini"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/generator/smartydynamic.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/ancestor.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/ancestor.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bgimages.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bgimages.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bluesand.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bluesand.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bluesandplus.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bluesandplus.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bullit.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/bullit.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/download.gif"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/javadanse.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/javadanse.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/model.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/model.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/nostring.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/nostring.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/progress_number.js"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/redsandback.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/redsandback.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/smallest.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/smallest.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/string.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/horizontal/string.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/images/config.gif"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/images/hands.gif"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/images/home.gif"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/images/image.gif"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/images/info.gif"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/images/run.gif"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/images/source.gif"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/indeterminate/half_basic.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/indeterminate/half_basic.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/indeterminate/half_monitor.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/indeterminate/half_monitor.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/model/inicommented.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/model/inicommented.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/model/javadanse.ini"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/default1.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/default1.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/default2.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/default2.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/function_callback.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/function_callback.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/htmlpage.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/htmlpage.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/itdynamic.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/itdynamic.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/method_callback.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/monitor/method_callback.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/multiple/vertical.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/multiple/vertical.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/circleback.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/circleback.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/circleplain.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/circleplain.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/ellipse.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/ellipse.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/rectangle.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/rectangle.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/rectangleback.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/rectangleback.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/square.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/square.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/squareback.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/newshape/squareback.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/observer/complex.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/observer/complex.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/observer/default.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/observer/default.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/observer/simple.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/observer/simple.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/preload/hidden.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/preload/hidden.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/preload/shockwaveflash.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/preload/shockwaveflash.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/preload/sw4p.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/ancestor.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/bgimages.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/bluesand.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/bluesandplus.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/bullit.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/cb010.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/cb060.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/cb100.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/circle000.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/circle040.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/circle080.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/circle100.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/default.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/e000.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/e040.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/e080.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/e100.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/generator_embedded.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/generator_standard.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/horizontal.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/indeterminate.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/indeterminate_half_basic.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/itxstatic.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/javadanse.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/model.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/monitor_complex.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/monitor_default1.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/monitor_function_callback.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/monitor_itdynamic.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/monitor_method_callback.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/monitor_simple.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/monitor_template.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/nostring.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/observer_complex.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/observer_simple.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/observer_standard.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/rect64.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/rect153.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/redsandback.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/smallest.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/square.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/square44.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/string.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/string1.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/template.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/upload_ftp.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/upload_logs.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/upload_mixed.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/upload_popup.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/upload_selfref.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/vertical1.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/vertical2.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/vertical3.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/vertical4.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/screenshots/vumeter.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/templates/cross.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/templates/installing.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/templates/itdynamic.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/templates/itdynamic_generator.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/templates/itdynamic_monitor.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/templates/itdynamic_uploader.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/templates/itdynamic_uploader2.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/templates/itxstatic.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/templates/itxstatic.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/templates/smarty-dynamic.tpl"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/templates/wizard.png"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/download.gif"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/formbasic.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/formpopup.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/formselfref.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/ftp.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/ftpupload.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/ftpupload.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/hbar.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/http1.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/http2.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/http3.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/http4.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/logsupload.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/mixedupload.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/mixedupload.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/progressbar.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/selfref.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/upload/vbar.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/vertical/basic.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/vertical/basic.php"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/vertical/limit.html"/>
-      <file role="doc" baseinstalldir="HTML" name="examples/vertical/limit.php"/>
-      <file role="php" baseinstalldir="HTML" name="Progress/DM.php"/>
-      <file role="php" baseinstalldir="HTML" name="Progress/generator.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress/model.php"/>
-      <file role="php" baseinstalldir="HTML" name="Progress/monitor.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress/observer.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress/UI.php"/>
-      <file role="php" baseinstalldir="HTML" name="Progress/generator/default.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress/generator/HTMLPage.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress/generator/ITDynamic.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress/generator/pages.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress/generator/preview.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress/generator/process.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="php" baseinstalldir="HTML" name="Progress/generator/SmartyDynamic.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="test" baseinstalldir="HTML" name="tests/ancestor.ini"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_Bug28.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_addListener.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_DM_new.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_DM_setIncrement.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_DM_setMaximum.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_DM_setMinimum.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_DM_setValue.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_getDM.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_getString.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_getUI.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_removeListener.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_setAnimSpeed.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_setBorderPainted.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_setDM.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_setIndeterminate.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_setModel.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_setString.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_setStringPainted.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_setUI.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_UI_getBorderAttributes.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_UI_getCellAttributes.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_UI_getProgressAttributes.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_UI_getStringAttributes.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_UI_new.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_UI_setCellAttributes.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_UI_setCellCoordinates.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_UI_setCellCount.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_UI_setFillWay.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_UI_setOrientation.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_Progress_TestCase_UI_setScript.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/HTML_TestListener.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/progress3.js"/>
-      <file role="test" baseinstalldir="HTML" name="tests/stylesheet.css"/>
-      <file role="test" baseinstalldir="HTML" name="tests/testsuite.php"/>
-      <file role="test" baseinstalldir="HTML" name="tests/TestUnit.php"/>
-      <file role="doc" baseinstalldir="HTML" name="ChangeLog"/>
-      <file role="doc" baseinstalldir="HTML" name="HISTORY"/>
-      <file role="doc" baseinstalldir="HTML" name="INSTALL"/>
-      <file role="doc" baseinstalldir="HTML" name="LICENSE"/>
-      <file role="php" baseinstalldir="HTML" name="Progress.php">
-        <replace type="package-info" from="@package_version@" to="version"/>
-      </file>
-      <file role="doc" baseinstalldir="HTML" name="README"/>
-      <file role="doc" baseinstalldir="HTML" name="Release-1.2.3"/>
+      <dir baseinstalldir="HTML" name="/">
+       <dir name="docs">
+        <file role="doc" name="HTML_Progress-1.chm"/>
+        <dir name="TDG">
+         <file role="doc" name="classtrees_HTML_Progress.html"/>
+         <file role="doc" name="elementindex.html"/>
+         <file role="doc" name="elementindex_HTML_Progress.html"/>
+         <file role="doc" name="index.html"/>
+         <file role="doc" name="li_HTML_Progress.html"/>
+         <file role="doc" name="todolist.html"/>
+         <dir name="HTML_Progress">
+          <file role="doc" name="HTML_Progress.html"/>
+          <file role="doc" name="tutorial_A_install.pkg.html"/>
+          <file role="doc" name="tutorial_B_migration12.pkg.html"/>
+          <file role="doc" name="tutorial_C_faq.pkg.html"/>
+          <file role="doc" name="tutorial_dm.getincrement.pkg.html"/>
+          <file role="doc" name="tutorial_dm.getmaximum.pkg.html"/>
+          <file role="doc" name="tutorial_dm.getminimum.pkg.html"/>
+          <file role="doc" name="tutorial_dm.getpercentcomplete.pkg.html"/>
+          <file role="doc" name="tutorial_dm.getvalue.pkg.html"/>
+          <file role="doc" name="tutorial_dm.incvalue.pkg.html"/>
+          <file role="doc" name="tutorial_dm.setincrement.pkg.html"/>
+          <file role="doc" name="tutorial_dm.setmaximum.pkg.html"/>
+          <file role="doc" name="tutorial_dm.setminimum.pkg.html"/>
+          <file role="doc" name="tutorial_dm.setvalue.pkg.html"/>
+          <file role="doc" name="tutorial_HTML_Progress.pkg.html"/>
+          <file role="doc" name="tutorial_monitor.accept.pkg.html"/>
+          <file role="doc" name="tutorial_monitor.callprogresshandler.pkg.html"/>
+          <file role="doc" name="tutorial_monitor.getprogresselement.pkg.html"/>
+          <file role="doc" name="tutorial_monitor.getscript.pkg.html"/>
+          <file role="doc" name="tutorial_monitor.getstyle.pkg.html"/>
+          <file role="doc" name="tutorial_monitor.iscanceled.pkg.html"/>
+          <file role="doc" name="tutorial_monitor.isstarted.pkg.html"/>
+          <file role="doc" name="tutorial_monitor.notify.pkg.html"/>
+          <file role="doc" name="tutorial_monitor.run.pkg.html"/>
+          <file role="doc" name="tutorial_monitor.setcaption.pkg.html"/>
+          <file role="doc" name="tutorial_monitor.setprogresselement.pkg.html"/>
+          <file role="doc" name="tutorial_monitor.setprogresshandler.pkg.html"/>
+          <file role="doc" name="tutorial_monitor.tohtml.pkg.html"/>
+          <file role="doc" name="tutorial_part1-introduction.pkg.html"/>
+          <file role="doc" name="tutorial_part2-errorhandling.pkg.html"/>
+          <file role="doc" name="tutorial_part2-firstprogressmeter.pkg.html"/>
+          <file role="doc" name="tutorial_part2-gettingstarted.pkg.html"/>
+          <file role="doc" name="tutorial_part2-indeterminate.pkg.html"/>
+          <file role="doc" name="tutorial_part2-monitor.pkg.html"/>
+          <file role="doc" name="tutorial_part2-observer.pkg.html"/>
+          <file role="doc" name="tutorial_part2-progresshandler.pkg.html"/>
+          <file role="doc" name="tutorial_part3-reference.pkg.html"/>
+          <file role="doc" name="tutorial_part4-appendixes.pkg.html"/>
+          <file role="doc" name="tutorial_preface.pkg.html"/>
+          <file role="doc" name="tutorial_progress.addlistener.pkg.html"/>
+          <file role="doc" name="tutorial_progress.apiversion.pkg.html"/>
+          <file role="doc" name="tutorial_progress.constants.pkg.html"/>
+          <file role="doc" name="tutorial_progress.display.pkg.html"/>
+          <file role="doc" name="tutorial_progress.getanimspeed.pkg.html"/>
+          <file role="doc" name="tutorial_progress.getdm.pkg.html"/>
+          <file role="doc" name="tutorial_progress.geterror.pkg.html"/>
+          <file role="doc" name="tutorial_progress.getident.pkg.html"/>
+          <file role="doc" name="tutorial_progress.getlisteners.pkg.html"/>
+          <file role="doc" name="tutorial_progress.getstring.pkg.html"/>
+          <file role="doc" name="tutorial_progress.getui.pkg.html"/>
+          <file role="doc" name="tutorial_progress.haserrors.pkg.html"/>
+          <file role="doc" name="tutorial_progress.hide.pkg.html"/>
+          <file role="doc" name="tutorial_progress.isborderpainted.pkg.html"/>
+          <file role="doc" name="tutorial_progress.isindeterminate.pkg.html"/>
+          <file role="doc" name="tutorial_progress.isstringpainted.pkg.html"/>
+          <file role="doc" name="tutorial_progress.process.pkg.html"/>
+          <file role="doc" name="tutorial_progress.raiseerror.pkg.html"/>
+          <file role="doc" name="tutorial_progress.removelistener.pkg.html"/>
+          <file role="doc" name="tutorial_progress.run.pkg.html"/>
+          <file role="doc" name="tutorial_progress.setanimspeed.pkg.html"/>
+          <file role="doc" name="tutorial_progress.setborderpainted.pkg.html"/>
+          <file role="doc" name="tutorial_progress.setdm.pkg.html"/>
+          <file role="doc" name="tutorial_progress.setident.pkg.html"/>
+          <file role="doc" name="tutorial_progress.setindeterminate.pkg.html"/>
+          <file role="doc" name="tutorial_progress.setmodel.pkg.html"/>
+          <file role="doc" name="tutorial_progress.setprogresshandler.pkg.html"/>
+          <file role="doc" name="tutorial_progress.setstring.pkg.html"/>
+          <file role="doc" name="tutorial_progress.setstringpainted.pkg.html"/>
+          <file role="doc" name="tutorial_progress.setui.pkg.html"/>
+          <file role="doc" name="tutorial_progress.sleep.pkg.html"/>
+          <file role="doc" name="tutorial_progress.toarray.pkg.html"/>
+          <file role="doc" name="tutorial_progress.tohtml.pkg.html"/>
+          <file role="doc" name="tutorial_ui.drawcirclesegments.pkg.html"/>
+          <file role="doc" name="tutorial_ui.getborderattributes.pkg.html"/>
+          <file role="doc" name="tutorial_ui.getcellattributes.pkg.html"/>
+          <file role="doc" name="tutorial_ui.getcellcoordinates.pkg.html"/>
+          <file role="doc" name="tutorial_ui.getcellcount.pkg.html"/>
+          <file role="doc" name="tutorial_ui.getfillway.pkg.html"/>
+          <file role="doc" name="tutorial_ui.getorientation.pkg.html"/>
+          <file role="doc" name="tutorial_ui.getprogressattributes.pkg.html"/>
+          <file role="doc" name="tutorial_ui.getscript.pkg.html"/>
+          <file role="doc" name="tutorial_ui.getstringattributes.pkg.html"/>
+          <file role="doc" name="tutorial_ui.getstyle.pkg.html"/>
+          <file role="doc" name="tutorial_ui.setborderattributes.pkg.html"/>
+          <file role="doc" name="tutorial_ui.setcellattributes.pkg.html"/>
+          <file role="doc" name="tutorial_ui.setcellcoordinates.pkg.html"/>
+          <file role="doc" name="tutorial_ui.setcellcount.pkg.html"/>
+          <file role="doc" name="tutorial_ui.setfillway.pkg.html"/>
+          <file role="doc" name="tutorial_ui.setorientation.pkg.html"/>
+          <file role="doc" name="tutorial_ui.setprogressattributes.pkg.html"/>
+          <file role="doc" name="tutorial_ui.setscript.pkg.html"/>
+          <file role="doc" name="tutorial_ui.setstringattributes.pkg.html"/>
+          <file role="doc" name="_Progress_Progress_php.html"/>
+          <dir name="Progress_DM">
+           <file role="doc" name="HTML_Progress_DM.html"/>
+           <file role="doc" name="_Progress_Progress_DM_php.html"/>
+          </dir> <!-- docs/TDG/HTML_Progress/Progress_DM -->
+          <dir name="Progress_Observer">
+           <file role="doc" name="HTML_Progress_Monitor.html"/>
+           <file role="doc" name="HTML_Progress_Observer.html"/>
+           <file role="doc" name="_Progress_Progress_monitor_php.html"/>
+           <file role="doc" name="_Progress_Progress_observer_php.html"/>
+          </dir> <!-- docs/TDG/HTML_Progress/Progress_Observer -->
+          <dir name="Progress_UI">
+           <file role="doc" name="ActionDisplay.html"/>
+           <file role="doc" name="ActionPreview.html"/>
+           <file role="doc" name="ActionProcess.html"/>
+           <file role="doc" name="HTML_Progress_Generator.html"/>
+           <file role="doc" name="HTML_Progress_UI.html"/>
+           <file role="doc" name="_Progress_Progress_generator_default_php.html"/>
+           <file role="doc" name="_Progress_Progress_generator_HTMLPage_php.html"/>
+           <file role="doc" name="_Progress_Progress_generator_ITDynamic_php.html"/>
+           <file role="doc" name="_Progress_Progress_generator_pages_php.html"/>
+           <file role="doc" name="_Progress_Progress_generator_php.html"/>
+           <file role="doc" name="_Progress_Progress_generator_preview_php.html"/>
+           <file role="doc" name="_Progress_Progress_generator_process_php.html"/>
+           <file role="doc" name="_Progress_Progress_generator_SmartyDynamic_php.html"/>
+           <file role="doc" name="_Progress_Progress_UI_php.html"/>
+          </dir> <!-- docs/TDG/HTML_Progress/Progress_UI -->
+         </dir> <!-- docs/TDG/HTML_Progress -->
+         <dir name="media">
+          <file role="doc" name="background.png"/>
+          <file role="doc" name="caution.png"/>
+          <file role="doc" name="empty.png"/>
+          <file role="doc" name="example.png"/>
+          <file role="doc" name="important.png"/>
+          <file role="doc" name="manual.css"/>
+          <file role="doc" name="note.png"/>
+          <file role="doc" name="pear.gif"/>
+          <file role="doc" name="style.css"/>
+          <file role="doc" name="tip.png"/>
+          <file role="doc" name="warning.png"/>
+          <dir name="screenshots">
+           <file role="doc" name="ancestor.png"/>
+           <file role="doc" name="bgimages.png"/>
+           <file role="doc" name="bluesand.png"/>
+           <file role="doc" name="bluesandplus.png"/>
+           <file role="doc" name="border.png"/>
+           <file role="doc" name="border1.png"/>
+           <file role="doc" name="border2.png"/>
+           <file role="doc" name="border3.png"/>
+           <file role="doc" name="bullit.png"/>
+           <file role="doc" name="circle080.png"/>
+           <file role="doc" name="default.png"/>
+           <file role="doc" name="determinate.png"/>
+           <file role="doc" name="inahurry.png"/>
+           <file role="doc" name="indeterminate.png"/>
+           <file role="doc" name="indeterminate_basic.png"/>
+           <file role="doc" name="javadanse.png"/>
+           <file role="doc" name="monitor_complex.png"/>
+           <file role="doc" name="monitor_default1.png"/>
+           <file role="doc" name="monitor_function_callback.png"/>
+           <file role="doc" name="monitor_itdynamic.png"/>
+           <file role="doc" name="monitor_simple.png"/>
+           <file role="doc" name="nostring.png"/>
+           <file role="doc" name="observer_complex.png"/>
+           <file role="doc" name="progressmaker.png"/>
+           <file role="doc" name="rect64.png"/>
+           <file role="doc" name="redsandback.png"/>
+           <file role="doc" name="scratch1.png"/>
+           <file role="doc" name="scratch21.png"/>
+           <file role="doc" name="scratch22.png"/>
+           <file role="doc" name="smallest.png"/>
+           <file role="doc" name="square.png"/>
+           <file role="doc" name="string.png"/>
+           <file role="doc" name="string1.png"/>
+           <file role="doc" name="template.png"/>
+           <file role="doc" name="vertical1.png"/>
+           <file role="doc" name="vertical2.png"/>
+          </dir> <!-- docs/TDG/media/screenshots -->
+         </dir> <!-- docs/TDG/media -->
+        </dir> <!-- docs/TDG -->
+       </dir> <!-- docs -->
+       <dir name="examples">
+        <file role="doc" name="examples.css"/>
+        <file role="doc" name="highlighter.php"/>
+        <file role="doc" name="index.html"/>
+        <file role="doc" name="pear-power.png"/>
+        <dir name="generator">
+         <file role="doc" name="ancestor.ini"/>
+         <file role="doc" name="bgimages.ini"/>
+         <file role="doc" name="bluesand.ini"/>
+         <file role="doc" name="bullit.ini"/>
+         <file role="doc" name="custom.php"/>
+         <file role="doc" name="default.html"/>
+         <file role="doc" name="default.php"/>
+         <file role="doc" name="embedded.html"/>
+         <file role="doc" name="embedded.php"/>
+         <file role="doc" name="htmlpage.html"/>
+         <file role="doc" name="htmlpage.php"/>
+         <file role="doc" name="itdynamic.php"/>
+         <file role="doc" name="redsandback.ini"/>
+         <file role="doc" name="smallest.ini"/>
+         <file role="doc" name="smartydynamic.php"/>
+        </dir> <!-- examples/generator -->
+        <dir name="horizontal">
+         <file role="doc" name="ancestor.html"/>
+         <file role="doc" name="ancestor.php"/>
+         <file role="doc" name="bgimages.html"/>
+         <file role="doc" name="bgimages.php"/>
+         <file role="doc" name="bluesand.html"/>
+         <file role="doc" name="bluesand.php"/>
+         <file role="doc" name="bluesandplus.html"/>
+         <file role="doc" name="bluesandplus.php"/>
+         <file role="doc" name="bullit.html"/>
+         <file role="doc" name="bullit.php"/>
+         <file role="doc" name="download.gif"/>
+         <file role="doc" name="javadanse.html"/>
+         <file role="doc" name="javadanse.php"/>
+         <file role="doc" name="model.html"/>
+         <file role="doc" name="model.php"/>
+         <file role="doc" name="nostring.html"/>
+         <file role="doc" name="nostring.php"/>
+         <file role="doc" name="progress_number.js"/>
+         <file role="doc" name="redsandback.html"/>
+         <file role="doc" name="redsandback.php"/>
+         <file role="doc" name="smallest.html"/>
+         <file role="doc" name="smallest.php"/>
+         <file role="doc" name="string.html"/>
+         <file role="doc" name="string.php"/>
+        </dir> <!-- examples/horizontal -->
+        <dir name="images">
+         <file role="doc" name="config.gif"/>
+         <file role="doc" name="hands.gif"/>
+         <file role="doc" name="home.gif"/>
+         <file role="doc" name="image.gif"/>
+         <file role="doc" name="info.gif"/>
+         <file role="doc" name="run.gif"/>
+         <file role="doc" name="source.gif"/>
+        </dir> <!-- examples/images -->
+        <dir name="indeterminate">
+         <file role="doc" name="half_basic.html"/>
+         <file role="doc" name="half_basic.php"/>
+         <file role="doc" name="half_monitor.html"/>
+         <file role="doc" name="half_monitor.php"/>
+        </dir> <!-- examples/indeterminate -->
+        <dir name="model">
+         <file role="doc" name="inicommented.html"/>
+         <file role="doc" name="inicommented.php"/>
+         <file role="doc" name="javadanse.ini"/>
+        </dir> <!-- examples/model -->
+        <dir name="monitor">
+         <file role="doc" name="default1.html"/>
+         <file role="doc" name="default1.php"/>
+         <file role="doc" name="default2.html"/>
+         <file role="doc" name="default2.php"/>
+         <file role="doc" name="function_callback.html"/>
+         <file role="doc" name="function_callback.php"/>
+         <file role="doc" name="htmlpage.html"/>
+         <file role="doc" name="htmlpage.php"/>
+         <file role="doc" name="itdynamic.html"/>
+         <file role="doc" name="itdynamic.php"/>
+         <file role="doc" name="method_callback.html"/>
+         <file role="doc" name="method_callback.php"/>
+        </dir> <!-- examples/monitor -->
+        <dir name="multiple">
+         <file role="doc" name="vertical.html"/>
+         <file role="doc" name="vertical.php"/>
+        </dir> <!-- examples/multiple -->
+        <dir name="newshape">
+         <file role="doc" name="circleback.html"/>
+         <file role="doc" name="circleback.php"/>
+         <file role="doc" name="circleplain.html"/>
+         <file role="doc" name="circleplain.php"/>
+         <file role="doc" name="ellipse.html"/>
+         <file role="doc" name="ellipse.php"/>
+         <file role="doc" name="rectangle.html"/>
+         <file role="doc" name="rectangle.php"/>
+         <file role="doc" name="rectangleback.html"/>
+         <file role="doc" name="rectangleback.php"/>
+         <file role="doc" name="square.html"/>
+         <file role="doc" name="square.php"/>
+         <file role="doc" name="squareback.html"/>
+         <file role="doc" name="squareback.php"/>
+        </dir> <!-- examples/newshape -->
+        <dir name="observer">
+         <file role="doc" name="complex.html"/>
+         <file role="doc" name="complex.php"/>
+         <file role="doc" name="default.html"/>
+         <file role="doc" name="default.php"/>
+         <file role="doc" name="simple.html"/>
+         <file role="doc" name="simple.php"/>
+        </dir> <!-- examples/observer -->
+        <dir name="preload">
+         <file role="doc" name="hidden.html"/>
+         <file role="doc" name="hidden.php"/>
+         <file role="doc" name="shockwaveflash.html"/>
+         <file role="doc" name="shockwaveflash.php"/>
+         <file role="doc" name="sw4p.html"/>
+        </dir> <!-- examples/preload -->
+        <dir name="screenshots">
+         <file role="doc" name="ancestor.png"/>
+         <file role="doc" name="bgimages.png"/>
+         <file role="doc" name="bluesand.png"/>
+         <file role="doc" name="bluesandplus.png"/>
+         <file role="doc" name="bullit.png"/>
+         <file role="doc" name="cb010.png"/>
+         <file role="doc" name="cb060.png"/>
+         <file role="doc" name="cb100.png"/>
+         <file role="doc" name="circle000.png"/>
+         <file role="doc" name="circle040.png"/>
+         <file role="doc" name="circle080.png"/>
+         <file role="doc" name="circle100.png"/>
+         <file role="doc" name="default.png"/>
+         <file role="doc" name="e000.png"/>
+         <file role="doc" name="e040.png"/>
+         <file role="doc" name="e080.png"/>
+         <file role="doc" name="e100.png"/>
+         <file role="doc" name="generator_embedded.png"/>
+         <file role="doc" name="generator_standard.png"/>
+         <file role="doc" name="horizontal.png"/>
+         <file role="doc" name="indeterminate.png"/>
+         <file role="doc" name="indeterminate_half_basic.png"/>
+         <file role="doc" name="itxstatic.png"/>
+         <file role="doc" name="javadanse.png"/>
+         <file role="doc" name="model.png"/>
+         <file role="doc" name="monitor_complex.png"/>
+         <file role="doc" name="monitor_default1.png"/>
+         <file role="doc" name="monitor_function_callback.png"/>
+         <file role="doc" name="monitor_itdynamic.png"/>
+         <file role="doc" name="monitor_method_callback.png"/>
+         <file role="doc" name="monitor_simple.png"/>
+         <file role="doc" name="monitor_template.png"/>
+         <file role="doc" name="nostring.png"/>
+         <file role="doc" name="observer_complex.png"/>
+         <file role="doc" name="observer_simple.png"/>
+         <file role="doc" name="observer_standard.png"/>
+         <file role="doc" name="rect64.png"/>
+         <file role="doc" name="rect153.png"/>
+         <file role="doc" name="redsandback.png"/>
+         <file role="doc" name="smallest.png"/>
+         <file role="doc" name="square.png"/>
+         <file role="doc" name="square44.png"/>
+         <file role="doc" name="string.png"/>
+         <file role="doc" name="string1.png"/>
+         <file role="doc" name="template.png"/>
+         <file role="doc" name="upload_ftp.png"/>
+         <file role="doc" name="upload_logs.png"/>
+         <file role="doc" name="upload_mixed.png"/>
+         <file role="doc" name="upload_popup.png"/>
+         <file role="doc" name="upload_selfref.png"/>
+         <file role="doc" name="vertical1.png"/>
+         <file role="doc" name="vertical2.png"/>
+         <file role="doc" name="vertical3.png"/>
+         <file role="doc" name="vertical4.png"/>
+         <file role="doc" name="vumeter.png"/>
+        </dir> <!-- examples/screenshots -->
+        <dir name="templates">
+         <file role="doc" name="cross.png"/>
+         <file role="doc" name="installing.html"/>
+         <file role="doc" name="itdynamic.html"/>
+         <file role="doc" name="itdynamic_generator.html"/>
+         <file role="doc" name="itdynamic_monitor.html"/>
+         <file role="doc" name="itdynamic_uploader.html"/>
+         <file role="doc" name="itdynamic_uploader2.html"/>
+         <file role="doc" name="itxstatic.html"/>
+         <file role="doc" name="itxstatic.php"/>
+         <file role="doc" name="smarty-dynamic.tpl"/>
+         <file role="doc" name="wizard.png"/>
+        </dir> <!-- examples/templates -->
+        <dir name="upload">
+         <file role="doc" name="download.gif"/>
+         <file role="doc" name="formbasic.php"/>
+         <file role="doc" name="formpopup.php"/>
+         <file role="doc" name="formselfref.php"/>
+         <file role="doc" name="ftp.html"/>
+         <file role="doc" name="ftpupload.html"/>
+         <file role="doc" name="ftpupload.php"/>
+         <file role="doc" name="hbar.php"/>
+         <file role="doc" name="http1.html"/>
+         <file role="doc" name="http2.html"/>
+         <file role="doc" name="http3.html"/>
+         <file role="doc" name="http4.html"/>
+         <file role="doc" name="logsupload.html"/>
+         <file role="doc" name="mixedupload.html"/>
+         <file role="doc" name="mixedupload.php"/>
+         <file role="doc" name="progressbar.php"/>
+         <file role="doc" name="selfref.html"/>
+         <file role="doc" name="vbar.php"/>
+        </dir> <!-- examples/upload -->
+        <dir name="vertical">
+         <file role="doc" name="basic.html"/>
+         <file role="doc" name="basic.php"/>
+         <file role="doc" name="limit.html"/>
+         <file role="doc" name="limit.php"/>
+        </dir> <!-- examples/vertical -->
+       </dir> <!-- examples -->
+       <dir name="Progress">
+        <file role="php" name="DM.php"/>
+        <file role="php" name="generator.php">
+          <replace type="package-info" from="@package_version@" to="version"/>
+        </file>
+        <file role="php" name="model.php"/>
+        <file role="php" name="monitor.php">
+          <replace type="package-info" from="@package_version@" to="version"/>
+        </file>
+        <file role="php" name="observer.php">
+          <replace type="package-info" from="@package_version@" to="version"/>
+        </file>
+        <file role="php" name="UI.php"/>
+        <dir name="generator">
+         <file role="php" name="default.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+         <file role="php" name="HTMLPage.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+         <file role="php" name="ITDynamic.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+         <file role="php" name="pages.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+         <file role="php" name="preview.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+         <file role="php" name="process.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+         <file role="php" name="SmartyDynamic.php">
+           <replace type="package-info" from="@package_version@" to="version"/>
+         </file>
+        </dir> <!-- Progress/generator -->
+       </dir> <!-- Progress -->
+       <dir name="tests">
+        <file role="test" name="ancestor.ini"/>
+        <file role="test" name="HTML_Progress_Bug28.php"/>
+        <file role="test" name="HTML_Progress_TestCase_addListener.php"/>
+        <file role="test" name="HTML_Progress_TestCase_DM_new.php"/>
+        <file role="test" name="HTML_Progress_TestCase_DM_setIncrement.php"/>
+        <file role="test" name="HTML_Progress_TestCase_DM_setMaximum.php"/>
+        <file role="test" name="HTML_Progress_TestCase_DM_setMinimum.php"/>
+        <file role="test" name="HTML_Progress_TestCase_DM_setValue.php"/>
+        <file role="test" name="HTML_Progress_TestCase_getDM.php"/>
+        <file role="test" name="HTML_Progress_TestCase_getString.php"/>
+        <file role="test" name="HTML_Progress_TestCase_getUI.php"/>
+        <file role="test" name="HTML_Progress_TestCase_removeListener.php"/>
+        <file role="test" name="HTML_Progress_TestCase_setAnimSpeed.php"/>
+        <file role="test" name="HTML_Progress_TestCase_setBorderPainted.php"/>
+        <file role="test" name="HTML_Progress_TestCase_setDM.php"/>
+        <file role="test" name="HTML_Progress_TestCase_setIndeterminate.php"/>
+        <file role="test" name="HTML_Progress_TestCase_setModel.php"/>
+        <file role="test" name="HTML_Progress_TestCase_setString.php"/>
+        <file role="test" name="HTML_Progress_TestCase_setStringPainted.php"/>
+        <file role="test" name="HTML_Progress_TestCase_setUI.php"/>
+        <file role="test" name="HTML_Progress_TestCase_UI_getBorderAttributes.php"/>
+        <file role="test" name="HTML_Progress_TestCase_UI_getCellAttributes.php"/>
+        <file role="test" name="HTML_Progress_TestCase_UI_getProgressAttributes.php"/>
+        <file role="test" name="HTML_Progress_TestCase_UI_getStringAttributes.php"/>
+        <file role="test" name="HTML_Progress_TestCase_UI_new.php"/>
+        <file role="test" name="HTML_Progress_TestCase_UI_setCellAttributes.php"/>
+        <file role="test" name="HTML_Progress_TestCase_UI_setCellCoordinates.php"/>
+        <file role="test" name="HTML_Progress_TestCase_UI_setCellCount.php"/>
+        <file role="test" name="HTML_Progress_TestCase_UI_setFillWay.php"/>
+        <file role="test" name="HTML_Progress_TestCase_UI_setOrientation.php"/>
+        <file role="test" name="HTML_Progress_TestCase_UI_setScript.php"/>
+        <file role="test" name="HTML_TestListener.php"/>
+        <file role="test" name="progress3.js"/>
+        <file role="test" name="stylesheet.css"/>
+        <file role="test" name="testsuite.php"/>
+        <file role="test" name="TestUnit.php"/>
+       </dir> <!-- tests -->
+       <file role="doc" name="ChangeLog"/>
+       <file role="doc" name="HISTORY"/>
+       <file role="doc" name="INSTALL"/>
+       <file role="doc" name="LICENSE"/>
+       <file role="php" name="Progress.php">
+         <replace type="package-info" from="@package_version@" to="version"/>
+       </file>
+       <file role="doc" name="README"/>
+       <file role="doc" name="Release-1.2.4"/>
+      </dir> <!-- / -->
     </filelist>
   </release>
   <changelog>
+    <release>
+      <version>1.2.4</version>
+      <date>2005-10-01</date>
+      <license>PHP License 3.0</license>
+      <state>stable</state>
+      <notes>* IMPORTANT
+- Version 1.2.4 is considered as deprecated in favour of HTML_Progress2 2.0.0
+  A migration guide (and much more) exists in The Definitive (User) Guide available online
+  at URI http://www.laurent-laville.org/pear/HTML_Progress2/docs/TDG/en/index.html
+
+* bugs
+- setBorderPainted(false) inefficient with setBorderAttributes()
+  and a positive width attribute value. Always show a border
+  arround the progress bar.
+
+* Quality Assurance
+- updates headers comment blocks
+</notes>
+    </release>
     <release>
       <version>1.2.3</version>
       <date>2005-08-28</date>
@@ -629,8 +595,7 @@ Features:
 
 * Quality Assurance
 - API documentation auto-generation is back (no more 404 error on PEAR website)
-- improved API doc reading and removed unnecessary stuff (unit testcases, ...)
-</notes>
+- improved API doc reading and removed unnecessary stuff (unit testcases, ...)</notes>
     </release>
     <release>
       <version>1.2.2</version>
