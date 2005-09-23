@@ -40,26 +40,23 @@ DESCR;
 $summary = 'How to include a loading bar in your XHTML documents quickly and easily.';
 
 // New version and state of the package
-$version = '1.2.3';
+$version = '1.2.4';
 $state   = 'stable';
 
 // Notes about this new release
 $notes = <<<NOTE
-*IMPORTANT*
-  This release should be the last one of the branch 1 of HTML_Progress, unless
-  bugs are found. There are NO CODE CHANGES since version 1.2.2
+* IMPORTANT
+- Version 1.2.4 is considered as deprecated in favour of HTML_Progress2 2.0.0
+  A migration guide (and much more) exists in The Definitive (User) Guide available online
+  at URI http://www.laurent-laville.org/pear/HTML_Progress2/docs/TDG/en/index.html
 
-* changes
-- online documentation links were changed:
-  . API (only) can be view at URI http://pear.laurent-laville.org/HTML_Progress/docs/API/
-  . User Guide can be view at URI http://pear.laurent-laville.org/HTML_Progress/docs/TDG/
-- The User Guide also called The Definitive Guide (TDG) is an old version, but
-  the HTML (many pages) and Windows Help Compiled versions are now included
-  in the binary distribution (see docs/ directory).
+* bugs
+- setBorderPainted(false) inefficient with setBorderAttributes()
+  and a positive width attribute value. Always show a border
+  arround the progress bar.
 
 * Quality Assurance
-- API documentation auto-generation is back (no more 404 error on PEAR website)
-- improved API doc reading and removed unnecessary stuff (unit testcases, ...)
+- updates headers comment blocks
 
 NOTE;
 
@@ -82,12 +79,12 @@ $options = array(
                                  'INSTALL' => 'doc',
                                  'README' => 'doc',
                                  'LICENSE' => 'doc',
-                                 'Release-1.2.3' => 'doc'
+                                 'Release-1.2.4' => 'doc'
                                 ),
     'state'             => $state,
     'filelistgenerator' => 'cvs',
     'changelogoldtonew' => false,
-//    'simpleoutput'      => true,       // see bug#4604
+    'simpleoutput'      => true,
     'notes'             => $notes,
     'ignore'            => array('package.xml', 'package.php',
                                  'examples.xml', 'examples.php',
@@ -96,7 +93,7 @@ $options = array(
                                  'Error/',
                                  'tutorials/',
                                  'Release-0*', 'Release-1.0', 'Release-1.1',
-                                 'Release-1.2.0*', 'Release-1.2.2'
+                                 'Release-1.2.0*', 'Release-1.2.2', 'Release-1.2.3'
                                 ),
     'cleardependencies' => true
 );
