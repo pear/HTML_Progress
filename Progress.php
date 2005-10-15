@@ -1115,7 +1115,7 @@ class HTML_Progress
     function getScript()
     {
         $ui = $this->getUI();
-        $js =& $ui->getScript();
+        $js = $ui->getScript();
         return $js;
     }
 
