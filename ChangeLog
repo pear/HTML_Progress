@@ -1,5 +1,13 @@
 $Id$
 
+-------------------------Release 1.2.5------------------------
+2005-11-01  Laurent Laville <pear@laurent-laville.org>
+    * bugs fixes:
+      #5654  'Passing by reference' notice under PHP 4.4.0
+
+      HTML_Progress 1.2.x is now compatible PHP 4.3.x, PHP 4.4.x
+      See details in PHP 4.4.0 release info at http://www.php.net/release_4_4_0.php
+
 -------------------------Release 1.2.4------------------------
 2005-10-01  Laurent Laville <pear@laurent-laville.org>
     * Quality-Assurance: updates headers comment blocks
