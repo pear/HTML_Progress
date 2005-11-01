@@ -39,22 +39,17 @@ Features:
     </maintainer>
   </maintainers>
   <release>
-    <version>1.2.4</version>
-    <date>2005-10-01</date>
+    <version>1.2.5</version>
+    <date>2005-11-01</date>
     <license>PHP License 3.0</license>
     <state>stable</state>
     <notes>* IMPORTANT
-- Version 1.2.4 is considered as deprecated in favour of HTML_Progress2 2.0.0
+- Version 1.2.4 or better is considered as deprecated in favour of HTML_Progress2 2.0.0
   A migration guide (and much more) exists in The Definitive (User) Guide available online
   at URI http://www.laurent-laville.org/pear/HTML_Progress2/docs/TDG/en/index.html
 
 * bugs
-- setBorderPainted(false) inefficient with setBorderAttributes()
-  and a positive width attribute value. Always show a border
-  arround the progress bar.
-
-* Quality Assurance
-- updates headers comment blocks
+- fixed bug #5654 : 'Passing by reference' notice error under PHP 4.4.0
 </notes>
     <deps>
       <dep type="php" rel="ge" version="4.2.0" optional="no"/>
@@ -63,7 +58,7 @@ Features:
       <dep type="pkg" rel="gt" version="3.2.4" optional="yes">HTML_QuickForm</dep>
       <dep type="pkg" rel="ge" version="1.0.4" optional="yes">HTML_QuickForm_Controller</dep>
       <dep type="pkg" rel="ge" version="1.0.1" optional="yes">Image_Color</dep>
-      <dep type="pkg" rel="ge" version="0.5.0" optional="yes">HTML_Page2</dep>
+      <dep type="pkg" rel="ge" version="0.5.0beta" optional="yes">HTML_Page2</dep>
       <dep type="pkg" rel="ge" version="1.1" optional="yes">HTML_Template_IT</dep>
       <dep type="pkg" rel="ge" version="1.1.2" optional="yes">HTML_Template_Sigma</dep>
       <dep type="pkg" rel="ge" version="1.8.7" optional="yes">Log</dep>
@@ -552,11 +547,25 @@ Features:
          <replace type="package-info" from="@package_version@" to="version"/>
        </file>
        <file role="doc" name="README"/>
-       <file role="doc" name="Release-1.2.4"/>
+       <file role="doc" name="Release-1.2.5"/>
       </dir> <!-- / -->
     </filelist>
   </release>
   <changelog>
+    <release>
+      <version>1.2.5</version>
+      <date>2005-11-01</date>
+      <license>PHP License 3.0</license>
+      <state>stable</state>
+      <notes>* IMPORTANT
+- Version 1.2.4 or better is considered as deprecated in favour of HTML_Progress2 2.0.0
+  A migration guide (and much more) exists in The Definitive (User) Guide available online
+  at URI http://www.laurent-laville.org/pear/HTML_Progress2/docs/TDG/en/index.html
+
+* bugs
+- fixed bug #5654 : 'Passing by reference' notice error under PHP 4.4.0
+</notes>
+    </release>
     <release>
       <version>1.2.4</version>
       <date>2005-10-01</date>
@@ -573,8 +582,7 @@ Features:
   arround the progress bar.
 
 * Quality Assurance
-- updates headers comment blocks
-</notes>
+- updates headers comment blocks</notes>
     </release>
     <release>
       <version>1.2.3</version>

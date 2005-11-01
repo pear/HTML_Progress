@@ -40,23 +40,18 @@ DESCR;
 $summary = 'How to include a loading bar in your XHTML documents quickly and easily.';
 
 // New version and state of the package
-$version = '1.2.4';
+$version = '1.2.5';
 $state   = 'stable';
 
 // Notes about this new release
 $notes = <<<NOTE
 * IMPORTANT
-- Version 1.2.4 is considered as deprecated in favour of HTML_Progress2 2.0.0
+- Version 1.2.4 or better is considered as deprecated in favour of HTML_Progress2 2.0.0
   A migration guide (and much more) exists in The Definitive (User) Guide available online
   at URI http://www.laurent-laville.org/pear/HTML_Progress2/docs/TDG/en/index.html
 
 * bugs
-- setBorderPainted(false) inefficient with setBorderAttributes()
-  and a positive width attribute value. Always show a border
-  arround the progress bar.
-
-* Quality Assurance
-- updates headers comment blocks
+- fixed bug #5654 : 'Passing by reference' notice error under PHP 4.4.0
 
 NOTE;
 
@@ -79,7 +74,7 @@ $options = array(
                                  'INSTALL' => 'doc',
                                  'README' => 'doc',
                                  'LICENSE' => 'doc',
-                                 'Release-1.2.4' => 'doc'
+                                 'Release-1.2.5' => 'doc'
                                 ),
     'state'             => $state,
     'filelistgenerator' => 'cvs',
@@ -93,7 +88,8 @@ $options = array(
                                  'Error/',
                                  'tutorials/',
                                  'Release-0*', 'Release-1.0', 'Release-1.1',
-                                 'Release-1.2.0*', 'Release-1.2.2', 'Release-1.2.3'
+                                 'Release-1.2.0*', 'Release-1.2.2', 'Release-1.2.3',
+                                 'Release-1.2.4'
                                 ),
     'cleardependencies' => true
 );
@@ -139,7 +135,7 @@ $e = $pkg->addDependency('HTML_QuickForm_Controller', '1.0.4', 'ge', 'pkg', true
 handleError($e);
 $e = $pkg->addDependency('Image_Color', '1.0.1', 'ge', 'pkg', true);
 handleError($e);
-$e = $pkg->addDependency('HTML_Page2', '0.5.0', 'ge', 'pkg', true);
+$e = $pkg->addDependency('HTML_Page2', '0.5.0beta', 'ge', 'pkg', true);
 handleError($e);
 $e = $pkg->addDependency('HTML_Template_IT', '1.1', 'ge', 'pkg', true);
 handleError($e);
