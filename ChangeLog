@@ -1,5 +1,12 @@
 $Id$
 
+-------------------------Release 1.2.6------------------------
+2008-07-24  Laurent Laville <pear@laurent-laville.org>
+    * Quality-Assurance: introduce the package xml version 2
+      ready for PEAR2/Pyrus, as required by the PEAR Group
+
+      Upgrade PEAR dependency to fix security vulnerability in PEAR installer
+
 -------------------------Release 1.2.5------------------------
 2005-11-01  Laurent Laville <pear@laurent-laville.org>
     * bugs fixes:
