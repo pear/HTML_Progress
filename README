@@ -12,7 +12,7 @@ Installation
 
 Installation for HTML_Progress is as simple as any other PEAR classes.
 Just enter on command line:  pear install (tarball)
-where (tarball) is an archive file like  HTML_Progress-1.2.5.tgz
+where (tarball) is an archive file like  HTML_Progress-1.2.6.tgz
 
 If you need more detailed help, check out INSTALL
 
@@ -21,9 +21,9 @@ If you need more detailed help, check out INSTALL
 Release Notes
 ********************************************************************************
 
-Release notes for the newest version are in Release-1.2.5
+Release notes for the newest version are in Release-1.2.6
 
-1.2.5 is out, a stable and bug fixes release
+1.2.6 is out, a stable and bug fixes release
 
 To learn how to do, read online user-end documentation at URI
 http://pear.laurent-laville.org/HTML_Progress/docs/TDG/
@@ -44,7 +44,7 @@ Project page:            http://pear.laurent-laville.org/HTML_Progress
 API Documentation:       http://pear.laurent-laville.org/HTML_Progress/docs/API/
 User-end Documentation:  http://pear.laurent-laville.org/HTML_Progress/docs/TDG/
 
-HTML_Progress 1.2.5 is released under the PHP License version 3.0, text is in
+HTML_Progress 1.2.6 is released under the PHP License version 3.0, text is in
 LICENSE file
 
 
