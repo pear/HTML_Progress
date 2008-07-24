@@ -41,9 +41,9 @@ Features:
   <active>yes</active>
  </helper>
  <date>2008-07-24</date>
- <time>21:21:04</time>
+ <time>21:50:04</time>
  <version>
-  <release>1.2.5</release>
+  <release>1.2.6</release>
   <api>1.2.5</api>
  </version>
  <stability>
@@ -51,14 +51,14 @@ Features:
   <api>stable</api>
  </stability>
  <license>PHP License 3.0</license>
- <notes>* IMPORTANT
-- Version 1.2.4 or better is considered as deprecated in favour of HTML_Progress2 2.0.0
-  A migration guide (and much more) exists in The Definitive (User) Guide available online
-  at URI http://www.laurent-laville.org/pear/HTML_Progress2/docs/TDG/en/index.html
+ <notes>QA RELEASE
 
-* bugs
-- fixed bug #5654 : &apos;Passing by reference&apos; notice error under PHP 4.4.0
+As version 1 of the package.xml files will no longer be supported with
+the introduction of PEAR2/Pyrus, the PEAR Group required all packages
+be converted to version 2 by September 1st, 2008
 
+This version only add a version 2 of package.xml and upgrade some old dependencies.
+There are no new features or bug fixes.
  </notes>
  <contents>
   <dir name="/">
@@ -441,7 +441,6 @@ Features:
      <file baseinstalldir="HTML" name="http2.html" role="doc" />
      <file baseinstalldir="HTML" name="http3.html" role="doc" />
      <file baseinstalldir="HTML" name="http4.html" role="doc" />
-     <file baseinstalldir="HTML" name="logsupload.html" role="doc" />
      <file baseinstalldir="HTML" name="mixedupload.html" role="doc" />
      <file baseinstalldir="HTML" name="mixedupload.php" role="doc" />
      <file baseinstalldir="HTML" name="progressbar.php" role="doc" />
@@ -542,7 +541,7 @@ Features:
     <tasks:replace from="@package_version@" to="version" type="package-info" />
    </file>
    <file baseinstalldir="HTML" name="README" role="doc" />
-   <file baseinstalldir="HTML" name="Release-1.2.5" role="doc" />
+   <file baseinstalldir="HTML" name="Release-1.2.6" role="doc" />
   </dir> <!-- / -->
  </contents>
  <dependencies>
@@ -551,7 +550,7 @@ Features:
     <min>4.2.0</min>
    </php>
    <pearinstaller>
-    <min>1.4.0b1</min>
+    <min>1.5.4</min>
    </pearinstaller>
    <package>
     <name>HTML_Common</name>
@@ -563,7 +562,7 @@ Features:
    <package>
     <name>PEAR</name>
     <channel>pear.php.net</channel>
-    <min>1.3.5</min>
+    <min>1.5.4</min>
    </package>
    <package>
     <name>HTML_QuickForm</name>
@@ -613,6 +612,27 @@ Features:
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>1.2.6</release>
+    <api>1.2.5</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2008-07-24</date>
+   <license uri="http://www.example.com">PHP License 3.0</license>
+   <notes>QA RELEASE
+
+As version 1 of the package.xml files will no longer be supported with
+the introduction of PEAR2/Pyrus, the PEAR Group required all packages
+be converted to version 2 by September 1st, 2008
+
+This version only add a version 2 of package.xml and upgrade some old dependencies.
+There are no new features or bug fixes.
+   </notes>
+  </release>
   <release>
    <version>
     <release>1.2.5</release>
