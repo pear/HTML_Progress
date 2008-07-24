@@ -1,0 +1,924 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.7.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+http://pear.php.net/dtd/tasks-1.0.xsd
+http://pear.php.net/dtd/package-2.0
+http://pear.php.net/dtd/package-2.0.xsd">
+ <name>HTML_Progress</name>
+ <channel>pear.php.net</channel>
+ <summary>How to include a loading bar in your XHTML documents quickly and easily.</summary>
+ <description>This package provides a way to add a loading bar fully customizable in existing XHTML documents.
+Your browser should accept DHTML feature.
+
+Features:
+- create horizontal, vertival bar and also circle, ellipse and polygons (square, rectangle).
+- allows usage of existing external StyleSheet and/or JavaScript.
+- all elements (progress, cells, labels) are customizable by their html properties.
+- percent/labels are floating all around the progress meter.
+- compliant with all CSS/XHMTL standards.
+- integration with all template engines is very easy.
+- implements Observer design pattern. It is possible to add Listeners.
+- adds a customizable monitor pattern to display a progress bar.
+  User-end can abort progress at any time.
+- Look and feel can be sets by internal API or external config file
+- allows many progress meter on same page without uses of iframe solution.
+ </description>
+ <lead>
+  <name>Laurent Laville</name>
+  <user>farell</user>
+  <email>pear@laurent-laville.org</email>
+  <active>yes</active>
+ </lead>
+ <contributor>
+  <name>Stefan Neufeind</name>
+  <user>neufeind</user>
+  <email>pear.neufeind@speedpartner.de</email>
+  <active>yes</active>
+ </contributor>
+ <helper>
+  <name>Christian Wenz</name>
+  <user>wenz</user>
+  <email>wenz@php.net</email>
+  <active>yes</active>
+ </helper>
+ <date>2008-07-24</date>
+ <time>21:21:04</time>
+ <version>
+  <release>1.2.5</release>
+  <api>1.2.5</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license>PHP License 3.0</license>
+ <notes>* IMPORTANT
+- Version 1.2.4 or better is considered as deprecated in favour of HTML_Progress2 2.0.0
+  A migration guide (and much more) exists in The Definitive (User) Guide available online
+  at URI http://www.laurent-laville.org/pear/HTML_Progress2/docs/TDG/en/index.html
+
+* bugs
+- fixed bug #5654 : &apos;Passing by reference&apos; notice error under PHP 4.4.0
+
+ </notes>
+ <contents>
+  <dir name="/">
+   <dir name="docs">
+    <dir name="TDG">
+     <dir name="HTML_Progress">
+      <dir name="Progress_DM">
+       <file baseinstalldir="HTML" name="HTML_Progress_DM.html" role="doc" />
+       <file baseinstalldir="HTML" name="_Progress_Progress_DM_php.html" role="doc" />
+      </dir> <!-- /docs/TDG/HTML_Progress/Progress_DM -->
+      <dir name="Progress_Observer">
+       <file baseinstalldir="HTML" name="HTML_Progress_Monitor.html" role="doc" />
+       <file baseinstalldir="HTML" name="HTML_Progress_Observer.html" role="doc" />
+       <file baseinstalldir="HTML" name="_Progress_Progress_monitor_php.html" role="doc" />
+       <file baseinstalldir="HTML" name="_Progress_Progress_observer_php.html" role="doc" />
+      </dir> <!-- /docs/TDG/HTML_Progress/Progress_Observer -->
+      <dir name="Progress_UI">
+       <file baseinstalldir="HTML" name="ActionDisplay.html" role="doc" />
+       <file baseinstalldir="HTML" name="ActionPreview.html" role="doc" />
+       <file baseinstalldir="HTML" name="ActionProcess.html" role="doc" />
+       <file baseinstalldir="HTML" name="HTML_Progress_Generator.html" role="doc" />
+       <file baseinstalldir="HTML" name="HTML_Progress_UI.html" role="doc" />
+       <file baseinstalldir="HTML" name="_Progress_Progress_generator_default_php.html" role="doc" />
+       <file baseinstalldir="HTML" name="_Progress_Progress_generator_HTMLPage_php.html" role="doc" />
+       <file baseinstalldir="HTML" name="_Progress_Progress_generator_ITDynamic_php.html" role="doc" />
+       <file baseinstalldir="HTML" name="_Progress_Progress_generator_pages_php.html" role="doc" />
+       <file baseinstalldir="HTML" name="_Progress_Progress_generator_php.html" role="doc" />
+       <file baseinstalldir="HTML" name="_Progress_Progress_generator_preview_php.html" role="doc" />
+       <file baseinstalldir="HTML" name="_Progress_Progress_generator_process_php.html" role="doc" />
+       <file baseinstalldir="HTML" name="_Progress_Progress_generator_SmartyDynamic_php.html" role="doc" />
+       <file baseinstalldir="HTML" name="_Progress_Progress_UI_php.html" role="doc" />
+      </dir> <!-- /docs/TDG/HTML_Progress/Progress_UI -->
+      <file baseinstalldir="HTML" name="HTML_Progress.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_A_install.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_B_migration12.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_C_faq.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_dm.getincrement.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_dm.getmaximum.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_dm.getminimum.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_dm.getpercentcomplete.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_dm.getvalue.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_dm.incvalue.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_dm.setincrement.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_dm.setmaximum.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_dm.setminimum.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_dm.setvalue.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_HTML_Progress.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_monitor.accept.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_monitor.callprogresshandler.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_monitor.getprogresselement.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_monitor.getscript.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_monitor.getstyle.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_monitor.iscanceled.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_monitor.isstarted.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_monitor.notify.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_monitor.run.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_monitor.setcaption.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_monitor.setprogresselement.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_monitor.setprogresshandler.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_monitor.tohtml.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_part1-introduction.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_part2-errorhandling.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_part2-firstprogressmeter.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_part2-gettingstarted.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_part2-indeterminate.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_part2-monitor.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_part2-observer.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_part2-progresshandler.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_part3-reference.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_part4-appendixes.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_preface.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.addlistener.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.apiversion.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.constants.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.display.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.getanimspeed.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.getdm.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.geterror.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.getident.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.getlisteners.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.getstring.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.getui.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.haserrors.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.hide.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.isborderpainted.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.isindeterminate.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.isstringpainted.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.process.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.raiseerror.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.removelistener.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.run.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.setanimspeed.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.setborderpainted.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.setdm.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.setident.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.setindeterminate.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.setmodel.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.setprogresshandler.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.setstring.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.setstringpainted.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.setui.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.sleep.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.toarray.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_progress.tohtml.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.drawcirclesegments.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.getborderattributes.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.getcellattributes.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.getcellcoordinates.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.getcellcount.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.getfillway.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.getorientation.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.getprogressattributes.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.getscript.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.getstringattributes.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.getstyle.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.setborderattributes.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.setcellattributes.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.setcellcoordinates.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.setcellcount.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.setfillway.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.setorientation.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.setprogressattributes.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.setscript.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="tutorial_ui.setstringattributes.pkg.html" role="doc" />
+      <file baseinstalldir="HTML" name="_Progress_Progress_php.html" role="doc" />
+     </dir> <!-- /docs/TDG/HTML_Progress -->
+     <dir name="media">
+      <dir name="screenshots">
+       <file baseinstalldir="HTML" name="ancestor.png" role="doc" />
+       <file baseinstalldir="HTML" name="bgimages.png" role="doc" />
+       <file baseinstalldir="HTML" name="bluesand.png" role="doc" />
+       <file baseinstalldir="HTML" name="bluesandplus.png" role="doc" />
+       <file baseinstalldir="HTML" name="border.png" role="doc" />
+       <file baseinstalldir="HTML" name="border1.png" role="doc" />
+       <file baseinstalldir="HTML" name="border2.png" role="doc" />
+       <file baseinstalldir="HTML" name="border3.png" role="doc" />
+       <file baseinstalldir="HTML" name="bullit.png" role="doc" />
+       <file baseinstalldir="HTML" name="circle080.png" role="doc" />
+       <file baseinstalldir="HTML" name="default.png" role="doc" />
+       <file baseinstalldir="HTML" name="determinate.png" role="doc" />
+       <file baseinstalldir="HTML" name="inahurry.png" role="doc" />
+       <file baseinstalldir="HTML" name="indeterminate.png" role="doc" />
+       <file baseinstalldir="HTML" name="indeterminate_basic.png" role="doc" />
+       <file baseinstalldir="HTML" name="javadanse.png" role="doc" />
+       <file baseinstalldir="HTML" name="monitor_complex.png" role="doc" />
+       <file baseinstalldir="HTML" name="monitor_default1.png" role="doc" />
+       <file baseinstalldir="HTML" name="monitor_function_callback.png" role="doc" />
+       <file baseinstalldir="HTML" name="monitor_itdynamic.png" role="doc" />
+       <file baseinstalldir="HTML" name="monitor_simple.png" role="doc" />
+       <file baseinstalldir="HTML" name="nostring.png" role="doc" />
+       <file baseinstalldir="HTML" name="observer_complex.png" role="doc" />
+       <file baseinstalldir="HTML" name="progressmaker.png" role="doc" />
+       <file baseinstalldir="HTML" name="rect64.png" role="doc" />
+       <file baseinstalldir="HTML" name="redsandback.png" role="doc" />
+       <file baseinstalldir="HTML" name="scratch1.png" role="doc" />
+       <file baseinstalldir="HTML" name="scratch21.png" role="doc" />
+       <file baseinstalldir="HTML" name="scratch22.png" role="doc" />
+       <file baseinstalldir="HTML" name="smallest.png" role="doc" />
+       <file baseinstalldir="HTML" name="square.png" role="doc" />
+       <file baseinstalldir="HTML" name="string.png" role="doc" />
+       <file baseinstalldir="HTML" name="string1.png" role="doc" />
+       <file baseinstalldir="HTML" name="template.png" role="doc" />
+       <file baseinstalldir="HTML" name="vertical1.png" role="doc" />
+       <file baseinstalldir="HTML" name="vertical2.png" role="doc" />
+      </dir> <!-- /docs/TDG/media/screenshots -->
+      <file baseinstalldir="HTML" name="background.png" role="doc" />
+      <file baseinstalldir="HTML" name="caution.png" role="doc" />
+      <file baseinstalldir="HTML" name="empty.png" role="doc" />
+      <file baseinstalldir="HTML" name="example.png" role="doc" />
+      <file baseinstalldir="HTML" name="important.png" role="doc" />
+      <file baseinstalldir="HTML" name="manual.css" role="doc" />
+      <file baseinstalldir="HTML" name="note.png" role="doc" />
+      <file baseinstalldir="HTML" name="pear.gif" role="doc" />
+      <file baseinstalldir="HTML" name="style.css" role="doc" />
+      <file baseinstalldir="HTML" name="tip.png" role="doc" />
+      <file baseinstalldir="HTML" name="warning.png" role="doc" />
+     </dir> <!-- /docs/TDG/media -->
+     <file baseinstalldir="HTML" name="classtrees_HTML_Progress.html" role="doc" />
+     <file baseinstalldir="HTML" name="elementindex.html" role="doc" />
+     <file baseinstalldir="HTML" name="elementindex_HTML_Progress.html" role="doc" />
+     <file baseinstalldir="HTML" name="index.html" role="doc" />
+     <file baseinstalldir="HTML" name="li_HTML_Progress.html" role="doc" />
+     <file baseinstalldir="HTML" name="todolist.html" role="doc" />
+    </dir> <!-- /docs/TDG -->
+    <file baseinstalldir="HTML" name="HTML_Progress-1.chm" role="doc" />
+   </dir> <!-- /docs -->
+   <dir name="examples">
+    <dir name="generator">
+     <file baseinstalldir="HTML" name="ancestor.ini" role="doc" />
+     <file baseinstalldir="HTML" name="bgimages.ini" role="doc" />
+     <file baseinstalldir="HTML" name="bluesand.ini" role="doc" />
+     <file baseinstalldir="HTML" name="bullit.ini" role="doc" />
+     <file baseinstalldir="HTML" name="custom.php" role="doc" />
+     <file baseinstalldir="HTML" name="default.html" role="doc" />
+     <file baseinstalldir="HTML" name="default.php" role="doc" />
+     <file baseinstalldir="HTML" name="embedded.html" role="doc" />
+     <file baseinstalldir="HTML" name="embedded.php" role="doc" />
+     <file baseinstalldir="HTML" name="htmlpage.html" role="doc" />
+     <file baseinstalldir="HTML" name="htmlpage.php" role="doc" />
+     <file baseinstalldir="HTML" name="itdynamic.php" role="doc" />
+     <file baseinstalldir="HTML" name="redsandback.ini" role="doc" />
+     <file baseinstalldir="HTML" name="smallest.ini" role="doc" />
+     <file baseinstalldir="HTML" name="smartydynamic.php" role="doc" />
+    </dir> <!-- /examples/generator -->
+    <dir name="horizontal">
+     <file baseinstalldir="HTML" name="ancestor.html" role="doc" />
+     <file baseinstalldir="HTML" name="ancestor.php" role="doc" />
+     <file baseinstalldir="HTML" name="bgimages.html" role="doc" />
+     <file baseinstalldir="HTML" name="bgimages.php" role="doc" />
+     <file baseinstalldir="HTML" name="bluesand.html" role="doc" />
+     <file baseinstalldir="HTML" name="bluesand.php" role="doc" />
+     <file baseinstalldir="HTML" name="bluesandplus.html" role="doc" />
+     <file baseinstalldir="HTML" name="bluesandplus.php" role="doc" />
+     <file baseinstalldir="HTML" name="bullit.html" role="doc" />
+     <file baseinstalldir="HTML" name="bullit.php" role="doc" />
+     <file baseinstalldir="HTML" name="download.gif" role="doc" />
+     <file baseinstalldir="HTML" name="javadanse.html" role="doc" />
+     <file baseinstalldir="HTML" name="javadanse.php" role="doc" />
+     <file baseinstalldir="HTML" name="model.html" role="doc" />
+     <file baseinstalldir="HTML" name="model.php" role="doc" />
+     <file baseinstalldir="HTML" name="nostring.html" role="doc" />
+     <file baseinstalldir="HTML" name="nostring.php" role="doc" />
+     <file baseinstalldir="HTML" name="progress_number.js" role="doc" />
+     <file baseinstalldir="HTML" name="redsandback.html" role="doc" />
+     <file baseinstalldir="HTML" name="redsandback.php" role="doc" />
+     <file baseinstalldir="HTML" name="smallest.html" role="doc" />
+     <file baseinstalldir="HTML" name="smallest.php" role="doc" />
+     <file baseinstalldir="HTML" name="string.html" role="doc" />
+     <file baseinstalldir="HTML" name="string.php" role="doc" />
+    </dir> <!-- /examples/horizontal -->
+    <dir name="images">
+     <file baseinstalldir="HTML" name="config.gif" role="doc" />
+     <file baseinstalldir="HTML" name="hands.gif" role="doc" />
+     <file baseinstalldir="HTML" name="home.gif" role="doc" />
+     <file baseinstalldir="HTML" name="image.gif" role="doc" />
+     <file baseinstalldir="HTML" name="info.gif" role="doc" />
+     <file baseinstalldir="HTML" name="run.gif" role="doc" />
+     <file baseinstalldir="HTML" name="source.gif" role="doc" />
+    </dir> <!-- /examples/images -->
+    <dir name="indeterminate">
+     <file baseinstalldir="HTML" name="half_basic.html" role="doc" />
+     <file baseinstalldir="HTML" name="half_basic.php" role="doc" />
+     <file baseinstalldir="HTML" name="half_monitor.html" role="doc" />
+     <file baseinstalldir="HTML" name="half_monitor.php" role="doc" />
+    </dir> <!-- /examples/indeterminate -->
+    <dir name="model">
+     <file baseinstalldir="HTML" name="inicommented.html" role="doc" />
+     <file baseinstalldir="HTML" name="inicommented.php" role="doc" />
+     <file baseinstalldir="HTML" name="javadanse.ini" role="doc" />
+    </dir> <!-- /examples/model -->
+    <dir name="monitor">
+     <file baseinstalldir="HTML" name="default1.html" role="doc" />
+     <file baseinstalldir="HTML" name="default1.php" role="doc" />
+     <file baseinstalldir="HTML" name="default2.html" role="doc" />
+     <file baseinstalldir="HTML" name="default2.php" role="doc" />
+     <file baseinstalldir="HTML" name="function_callback.html" role="doc" />
+     <file baseinstalldir="HTML" name="function_callback.php" role="doc" />
+     <file baseinstalldir="HTML" name="htmlpage.html" role="doc" />
+     <file baseinstalldir="HTML" name="htmlpage.php" role="doc" />
+     <file baseinstalldir="HTML" name="itdynamic.html" role="doc" />
+     <file baseinstalldir="HTML" name="itdynamic.php" role="doc" />
+     <file baseinstalldir="HTML" name="method_callback.html" role="doc" />
+     <file baseinstalldir="HTML" name="method_callback.php" role="doc" />
+    </dir> <!-- /examples/monitor -->
+    <dir name="multiple">
+     <file baseinstalldir="HTML" name="vertical.html" role="doc" />
+     <file baseinstalldir="HTML" name="vertical.php" role="doc" />
+    </dir> <!-- /examples/multiple -->
+    <dir name="newshape">
+     <file baseinstalldir="HTML" name="circleback.html" role="doc" />
+     <file baseinstalldir="HTML" name="circleback.php" role="doc" />
+     <file baseinstalldir="HTML" name="circleplain.html" role="doc" />
+     <file baseinstalldir="HTML" name="circleplain.php" role="doc" />
+     <file baseinstalldir="HTML" name="ellipse.html" role="doc" />
+     <file baseinstalldir="HTML" name="ellipse.php" role="doc" />
+     <file baseinstalldir="HTML" name="rectangle.html" role="doc" />
+     <file baseinstalldir="HTML" name="rectangle.php" role="doc" />
+     <file baseinstalldir="HTML" name="rectangleback.html" role="doc" />
+     <file baseinstalldir="HTML" name="rectangleback.php" role="doc" />
+     <file baseinstalldir="HTML" name="square.html" role="doc" />
+     <file baseinstalldir="HTML" name="square.php" role="doc" />
+     <file baseinstalldir="HTML" name="squareback.html" role="doc" />
+     <file baseinstalldir="HTML" name="squareback.php" role="doc" />
+    </dir> <!-- /examples/newshape -->
+    <dir name="observer">
+     <file baseinstalldir="HTML" name="complex.html" role="doc" />
+     <file baseinstalldir="HTML" name="complex.php" role="doc" />
+     <file baseinstalldir="HTML" name="default.html" role="doc" />
+     <file baseinstalldir="HTML" name="default.php" role="doc" />
+     <file baseinstalldir="HTML" name="simple.html" role="doc" />
+     <file baseinstalldir="HTML" name="simple.php" role="doc" />
+    </dir> <!-- /examples/observer -->
+    <dir name="preload">
+     <file baseinstalldir="HTML" name="hidden.html" role="doc" />
+     <file baseinstalldir="HTML" name="hidden.php" role="doc" />
+     <file baseinstalldir="HTML" name="shockwaveflash.html" role="doc" />
+     <file baseinstalldir="HTML" name="shockwaveflash.php" role="doc" />
+     <file baseinstalldir="HTML" name="sw4p.html" role="doc" />
+    </dir> <!-- /examples/preload -->
+    <dir name="screenshots">
+     <file baseinstalldir="HTML" name="ancestor.png" role="doc" />
+     <file baseinstalldir="HTML" name="bgimages.png" role="doc" />
+     <file baseinstalldir="HTML" name="bluesand.png" role="doc" />
+     <file baseinstalldir="HTML" name="bluesandplus.png" role="doc" />
+     <file baseinstalldir="HTML" name="bullit.png" role="doc" />
+     <file baseinstalldir="HTML" name="cb010.png" role="doc" />
+     <file baseinstalldir="HTML" name="cb060.png" role="doc" />
+     <file baseinstalldir="HTML" name="cb100.png" role="doc" />
+     <file baseinstalldir="HTML" name="circle000.png" role="doc" />
+     <file baseinstalldir="HTML" name="circle040.png" role="doc" />
+     <file baseinstalldir="HTML" name="circle080.png" role="doc" />
+     <file baseinstalldir="HTML" name="circle100.png" role="doc" />
+     <file baseinstalldir="HTML" name="default.png" role="doc" />
+     <file baseinstalldir="HTML" name="e000.png" role="doc" />
+     <file baseinstalldir="HTML" name="e040.png" role="doc" />
+     <file baseinstalldir="HTML" name="e080.png" role="doc" />
+     <file baseinstalldir="HTML" name="e100.png" role="doc" />
+     <file baseinstalldir="HTML" name="generator_embedded.png" role="doc" />
+     <file baseinstalldir="HTML" name="generator_standard.png" role="doc" />
+     <file baseinstalldir="HTML" name="horizontal.png" role="doc" />
+     <file baseinstalldir="HTML" name="indeterminate.png" role="doc" />
+     <file baseinstalldir="HTML" name="indeterminate_half_basic.png" role="doc" />
+     <file baseinstalldir="HTML" name="itxstatic.png" role="doc" />
+     <file baseinstalldir="HTML" name="javadanse.png" role="doc" />
+     <file baseinstalldir="HTML" name="model.png" role="doc" />
+     <file baseinstalldir="HTML" name="monitor_complex.png" role="doc" />
+     <file baseinstalldir="HTML" name="monitor_default1.png" role="doc" />
+     <file baseinstalldir="HTML" name="monitor_function_callback.png" role="doc" />
+     <file baseinstalldir="HTML" name="monitor_itdynamic.png" role="doc" />
+     <file baseinstalldir="HTML" name="monitor_method_callback.png" role="doc" />
+     <file baseinstalldir="HTML" name="monitor_simple.png" role="doc" />
+     <file baseinstalldir="HTML" name="monitor_template.png" role="doc" />
+     <file baseinstalldir="HTML" name="nostring.png" role="doc" />
+     <file baseinstalldir="HTML" name="observer_complex.png" role="doc" />
+     <file baseinstalldir="HTML" name="observer_simple.png" role="doc" />
+     <file baseinstalldir="HTML" name="observer_standard.png" role="doc" />
+     <file baseinstalldir="HTML" name="rect64.png" role="doc" />
+     <file baseinstalldir="HTML" name="rect153.png" role="doc" />
+     <file baseinstalldir="HTML" name="redsandback.png" role="doc" />
+     <file baseinstalldir="HTML" name="smallest.png" role="doc" />
+     <file baseinstalldir="HTML" name="square.png" role="doc" />
+     <file baseinstalldir="HTML" name="square44.png" role="doc" />
+     <file baseinstalldir="HTML" name="string.png" role="doc" />
+     <file baseinstalldir="HTML" name="string1.png" role="doc" />
+     <file baseinstalldir="HTML" name="template.png" role="doc" />
+     <file baseinstalldir="HTML" name="upload_ftp.png" role="doc" />
+     <file baseinstalldir="HTML" name="upload_logs.png" role="doc" />
+     <file baseinstalldir="HTML" name="upload_mixed.png" role="doc" />
+     <file baseinstalldir="HTML" name="upload_popup.png" role="doc" />
+     <file baseinstalldir="HTML" name="upload_selfref.png" role="doc" />
+     <file baseinstalldir="HTML" name="vertical1.png" role="doc" />
+     <file baseinstalldir="HTML" name="vertical2.png" role="doc" />
+     <file baseinstalldir="HTML" name="vertical3.png" role="doc" />
+     <file baseinstalldir="HTML" name="vertical4.png" role="doc" />
+     <file baseinstalldir="HTML" name="vumeter.png" role="doc" />
+    </dir> <!-- /examples/screenshots -->
+    <dir name="templates">
+     <file baseinstalldir="HTML" name="cross.png" role="doc" />
+     <file baseinstalldir="HTML" name="installing.html" role="doc" />
+     <file baseinstalldir="HTML" name="itdynamic.html" role="doc" />
+     <file baseinstalldir="HTML" name="itdynamic_generator.html" role="doc" />
+     <file baseinstalldir="HTML" name="itdynamic_monitor.html" role="doc" />
+     <file baseinstalldir="HTML" name="itdynamic_uploader.html" role="doc" />
+     <file baseinstalldir="HTML" name="itdynamic_uploader2.html" role="doc" />
+     <file baseinstalldir="HTML" name="itxstatic.html" role="doc" />
+     <file baseinstalldir="HTML" name="itxstatic.php" role="doc" />
+     <file baseinstalldir="HTML" name="smarty-dynamic.tpl" role="doc" />
+     <file baseinstalldir="HTML" name="wizard.png" role="doc" />
+    </dir> <!-- /examples/templates -->
+    <dir name="upload">
+     <file baseinstalldir="HTML" name="download.gif" role="doc" />
+     <file baseinstalldir="HTML" name="formbasic.php" role="doc" />
+     <file baseinstalldir="HTML" name="formpopup.php" role="doc" />
+     <file baseinstalldir="HTML" name="formselfref.php" role="doc" />
+     <file baseinstalldir="HTML" name="ftp.html" role="doc" />
+     <file baseinstalldir="HTML" name="ftpupload.html" role="doc" />
+     <file baseinstalldir="HTML" name="ftpupload.php" role="doc" />
+     <file baseinstalldir="HTML" name="hbar.php" role="doc" />
+     <file baseinstalldir="HTML" name="http1.html" role="doc" />
+     <file baseinstalldir="HTML" name="http2.html" role="doc" />
+     <file baseinstalldir="HTML" name="http3.html" role="doc" />
+     <file baseinstalldir="HTML" name="http4.html" role="doc" />
+     <file baseinstalldir="HTML" name="logsupload.html" role="doc" />
+     <file baseinstalldir="HTML" name="mixedupload.html" role="doc" />
+     <file baseinstalldir="HTML" name="mixedupload.php" role="doc" />
+     <file baseinstalldir="HTML" name="progressbar.php" role="doc" />
+     <file baseinstalldir="HTML" name="selfref.html" role="doc" />
+     <file baseinstalldir="HTML" name="vbar.php" role="doc" />
+    </dir> <!-- /examples/upload -->
+    <dir name="vertical">
+     <file baseinstalldir="HTML" name="basic.html" role="doc" />
+     <file baseinstalldir="HTML" name="basic.php" role="doc" />
+     <file baseinstalldir="HTML" name="limit.html" role="doc" />
+     <file baseinstalldir="HTML" name="limit.php" role="doc" />
+    </dir> <!-- /examples/vertical -->
+    <file baseinstalldir="HTML" name="examples.css" role="doc" />
+    <file baseinstalldir="HTML" name="highlighter.php" role="doc" />
+    <file baseinstalldir="HTML" name="index.html" role="doc" />
+    <file baseinstalldir="HTML" name="pear-power.png" role="doc" />
+   </dir> <!-- /examples -->
+   <dir name="Progress">
+    <dir name="generator">
+     <file baseinstalldir="HTML" name="default.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="HTML" name="HTMLPage.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="HTML" name="ITDynamic.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="HTML" name="pages.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="HTML" name="preview.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="HTML" name="process.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file baseinstalldir="HTML" name="SmartyDynamic.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir> <!-- /Progress/generator -->
+    <file baseinstalldir="HTML" name="DM.php" role="php" />
+    <file baseinstalldir="HTML" name="generator.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="HTML" name="model.php" role="php" />
+    <file baseinstalldir="HTML" name="monitor.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="HTML" name="observer.php" role="php">
+     <tasks:replace from="@package_version@" to="version" type="package-info" />
+    </file>
+    <file baseinstalldir="HTML" name="UI.php" role="php" />
+   </dir> <!-- /Progress -->
+   <dir name="tests">
+    <file baseinstalldir="HTML" name="ancestor.ini" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_Bug28.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_addListener.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_DM_new.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_DM_setIncrement.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_DM_setMaximum.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_DM_setMinimum.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_DM_setValue.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_getDM.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_getString.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_getUI.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_removeListener.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_setAnimSpeed.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_setBorderPainted.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_setDM.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_setIndeterminate.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_setModel.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_setString.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_setStringPainted.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_setUI.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_UI_getBorderAttributes.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_UI_getCellAttributes.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_UI_getProgressAttributes.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_UI_getStringAttributes.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_UI_new.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_UI_setCellAttributes.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_UI_setCellCoordinates.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_UI_setCellCount.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_UI_setFillWay.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_UI_setOrientation.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_Progress_TestCase_UI_setScript.php" role="test" />
+    <file baseinstalldir="HTML" name="HTML_TestListener.php" role="test" />
+    <file baseinstalldir="HTML" name="progress3.js" role="test" />
+    <file baseinstalldir="HTML" name="stylesheet.css" role="test" />
+    <file baseinstalldir="HTML" name="testsuite.php" role="test" />
+    <file baseinstalldir="HTML" name="TestUnit.php" role="test" />
+   </dir> <!-- /tests -->
+   <file baseinstalldir="HTML" name="ChangeLog" role="doc" />
+   <file baseinstalldir="HTML" name="HISTORY" role="doc" />
+   <file baseinstalldir="HTML" name="INSTALL" role="doc" />
+   <file baseinstalldir="HTML" name="LICENSE" role="doc" />
+   <file baseinstalldir="HTML" name="Progress.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info" />
+   </file>
+   <file baseinstalldir="HTML" name="README" role="doc" />
+   <file baseinstalldir="HTML" name="Release-1.2.5" role="doc" />
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>4.2.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0b1</min>
+   </pearinstaller>
+   <package>
+    <name>HTML_Common</name>
+    <channel>pear.php.net</channel>
+    <min>1.2.1</min>
+   </package>
+  </required>
+  <optional>
+   <package>
+    <name>PEAR</name>
+    <channel>pear.php.net</channel>
+    <min>1.3.5</min>
+   </package>
+   <package>
+    <name>HTML_QuickForm</name>
+    <channel>pear.php.net</channel>
+    <min>3.2.4</min>
+    <exclude>3.2.4</exclude>
+   </package>
+   <package>
+    <name>HTML_QuickForm_Controller</name>
+    <channel>pear.php.net</channel>
+    <min>1.0.4</min>
+   </package>
+   <package>
+    <name>Image_Color</name>
+    <channel>pear.php.net</channel>
+    <min>1.0.1</min>
+   </package>
+   <package>
+    <name>HTML_Page2</name>
+    <channel>pear.php.net</channel>
+    <min>0.5.0beta</min>
+   </package>
+   <package>
+    <name>HTML_Template_IT</name>
+    <channel>pear.php.net</channel>
+    <min>1.1</min>
+   </package>
+   <package>
+    <name>HTML_Template_Sigma</name>
+    <channel>pear.php.net</channel>
+    <min>1.1.2</min>
+   </package>
+   <package>
+    <name>Log</name>
+    <channel>pear.php.net</channel>
+    <min>1.8.7</min>
+   </package>
+   <package>
+    <name>Config</name>
+    <channel>pear.php.net</channel>
+    <min>1.10</min>
+   </package>
+   <extension>
+    <name>gd</name>
+   </extension>
+  </optional>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>1.2.5</release>
+    <api>1.2.5</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2005-11-01</date>
+   <license uri="http://www.example.com">PHP License 3.0</license>
+   <notes>* IMPORTANT
+- Version 1.2.4 or better is considered as deprecated in favour of HTML_Progress2 2.0.0
+  A migration guide (and much more) exists in The Definitive (User) Guide available online
+  at URI http://www.laurent-laville.org/pear/HTML_Progress2/docs/TDG/en/index.html
+
+* bugs
+- fixed bug #5654 : &apos;Passing by reference&apos; notice error under PHP 4.4.0
+
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.4</release>
+    <api>1.2.4</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2005-10-01</date>
+   <license uri="http://www.example.com">PHP License 3.0</license>
+   <notes>* IMPORTANT
+- Version 1.2.4 is considered as deprecated in favour of HTML_Progress2 2.0.0
+  A migration guide (and much more) exists in The Definitive (User) Guide available online
+  at URI http://www.laurent-laville.org/pear/HTML_Progress2/docs/TDG/en/index.html
+
+* bugs
+- setBorderPainted(false) inefficient with setBorderAttributes()
+  and a positive width attribute value. Always show a border
+  arround the progress bar.
+
+* Quality Assurance
+- updates headers comment blocks
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.3</release>
+    <api>1.2.3</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2005-08-28</date>
+   <license uri="http://www.example.com">PHP License 3.0</license>
+   <notes>*IMPORTANT*
+  This release should be the last one of the branch 1 of HTML_Progress, unless
+  bugs are found. There are NO CODE CHANGES since version 1.2.2
+
+* changes
+- online documentation links were changed:
+  . API (only) can be view at URI http://pear.laurent-laville.org/HTML_Progress/docs/API/
+  . User Guide can be view at URI http://pear.laurent-laville.org/HTML_Progress/docs/TDG/
+- The User Guide also called The Definitive Guide (TDG) is an old version, but
+  the HTML (many pages) and Windows Help Compiled versions are now included
+  in the binary distribution (see docs/ directory).
+
+* Quality Assurance
+- API documentation auto-generation is back (no more 404 error on PEAR website)
+- improved API doc reading and removed unnecessary stuff (unit testcases, ...)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.2</release>
+    <api>1.2.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2005-08-01</date>
+   <license uri="http://www.example.com">PHP License 3.0</license>
+   <notes>* bugs
+- fixed setMaximum with value higher than 200 when using a progress monitor (bug #4885)
+- fixed call time pass by reference error in progress monitor
+
+* changes
+- getPercentComplete() method has an optional parameter.
+  Return may be float (default) or integer.
+- removed HTML_CSS dependency
+
+* improvements
+- generation of stylesheet is (average) 20 times faster without HTML_CSS
+
+* QA
+- Updates headers comment block on all files
+- Dependencies has been revisited to higher level
+- Fix wrong project links into documentation (README, ReleaseVersion)
+  Thanks to Christian Roy to have noticed me.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.1</release>
+    <api>1.2.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2005-05-16</date>
+   <license uri="http://www.example.com">PHP License 3.0</license>
+   <notes>Very few changes since 1.2.0
+
+* changes
+- fixed gd dependency check in pear install procedure
+  explains are behind  http://marc.theaimsgroup.com/?l=pear-dev&amp;m=110924162309851&amp;w=2
+- fixed bug#2577 Call time pass by reference error
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.0</release>
+    <api>1.2.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2004-09-12</date>
+   <license uri="http://www.example.com">PHP License 3.0</license>
+   <notes>* changes
+- PEAR_ErrorStack was replaced by a simple way to plug in any error handling system
+you might want (default used PEAR_Error object)
+- Log package dependency was removed (no more used for logging)
+- HTML_Progress_Model and HTML_Progress_Uploader classes were removed
+
+* improvements
+- HTML_Progress::sleep() method use now in most case the PHP usleep() function
+
+* news
+- The Definitive Guide:
+  http://pear.laurent-laville.org/HTML_Progress/apidoc/
+         HTML/ read it online the html version
+         CHM/  download (190 kb) the Windows Help Compiled version
+         PDF/  download (757 kb) the Acrobat Reader version
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.0RC3</release>
+    <api>1.2.0RC3</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-07-06</date>
+   <license uri="http://www.example.com">PHP License 3.0</license>
+   <notes>* QA
+- package.xml should not contain md5sum or provides for readability
+
+* changes
+- suite of PHPUnit TestCases are now fully compatible with PHP5
+- method raiseError has a new optional parameter ( $msg: static message )
+
+* bugs fixes
+- missing ident class in stylesheet production in HTML_Progress::getStyle()
+- sometimes circle, ellipse segments pictures were generated with horiz. bottom line
+  (it&apos;s no more exists)
+
+* new features
+- 2 new methods to easily manage API errors ( hasErrors(), getError() )
+- 1 new method to hide a progress meter when necessary ( request by JH Szeto )
+- 2 new methods to simplify your job: sleep(), run()
+- 2 new methods to introduce user-callback: process(), setProgressHandler()
+
+* to do
+- preload segments pictures before progress meter (circle, ellipse) start
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.0RC2</release>
+    <api>1.2.0RC2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-05-05</date>
+   <license uri="http://www.example.com">PHP License 3.0</license>
+   <notes>* important
+- unless someone found a new bug, this release candidate will be the last before
+  publication of stable version
+
+* changes
+- suite of PHPUnit TestCases are now fully compatible with PEAR_ErrorStack
+- completed API docs with PHPDocumentor 1.3.0RC3
+
+* bug fixes
+- css problem for progress circle, ellipse. Thanks to Olivier Hondermarck
+  (webmaster of http://www.toutjavascript.com)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.0RC1</release>
+    <api>1.2.0RC1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-04-18</date>
+   <license uri="http://www.example.com">PHP License 3.0</license>
+   <notes>* TODO
+- this 1st RC is still marked as beta due to status of packages :
+  . Net_FTP 1.3.0
+  . PEAR_ErrorStack in PEAR 1.3.1
+
+  and of course due to first try to generate Progress Circle as new shape with GD extension.
+  PLEASE, i need feedback, and tests results on different platform, before a stable version
+  is publish !
+- Make suite of PHPUnit TestCase compatible with PEAR_ErrorStack
+
+* changes
+- new error manager (PEAR_ErrorStack) replace previous Error_Raise package
+- Net_FTP package with observer pattern is used to replace my Progress/FTP/Upload class
+- new method HTML_Progress_UI::setCellCoordinates to manage polygonal cells coordinates
+- new method HTML_Progress_UI::drawCircleSegments to create circle pictures collection
+- HTML_Progress_Monitor::setAnimSpeed() method is now deprecated.
+  Use HTML_Progress::setAnimSpeed() instead.
+- full API docs - reference guide - made with phpDocumentor 1.3.0RC3
+
+* feature additions
+- HTML_Progress now display new shapes like: circle, ellipse, square and rectangle.
+
+* dependencies
+- Net_FTP 1.3 or greater, to manage ftp communications for HTML_Progress_Uploader
+- PEAR 1.3.1 or greater for PEAR_ErrorStack, to manage errors
+  instead of previous solution: Error_Raise
+- Log 1.8.0 or greater, to logs internal HTML_Progress errors
+- Image_Color 1.0.0 or greater to define circle segment colors
+- GD 2.0.1 or greater to use imagefilledarc function to draw circle segments
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.1</release>
+    <api>1.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2004-02-15</date>
+   <license uri="http://www.example.com">PHP License 3.0</license>
+   <notes>* changes
+- HTML_Progress_Generator become the next generation of interactive tools
+  to dynamically build, run demo and save source-code of your own progress bar.
+- HTML_Progress (Monitor, Generator, Uploader) support now the QF renderer system
+  for a better and easy presentation.
+
+* feature additions
+- HTML_Progress now implements a file upload solution trough a ftp connection,
+  called HTML_Progress_Uploader.
+
+* dependencies
+- PHP 4.3 or greater, and ftp extension loaded is required if you use HTML_Progress_Uploader
+- HTML_CSS parser function in version 0.3.1 is required for HTML_Progress_Generator
+
+* credit
+- Tomas VV Cox for reused idea and part of his HTTP_Upload package code.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0</release>
+    <api>1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2003-11-15</date>
+   <license uri="http://www.example.com">PHP License 3.0</license>
+   <notes>* changes
+- Errors are managed by Error_Raise package (by Greg Beaver).
+- ProgressMaker got some pre-sets UI models as example.
+- better compatibility with older PHP versions; requires PHP 4.1.0 or better.
+- HTML_Page package is now only necessary for some examples.
+- HTML_CSS package is optional. Easy way to generate a progress stylesheet.
+- CSS id and class selectors are customizable.
+- phpUnits test were added for API.
+
+* feature additions
+- HTML_Progress now implements a Observer design pattern. It is possible to add Listeners.
+- HTML_Progress now adds a customizable UI monitor pattern to display a progress bar.
+  User-end can abort progress at any time.
+- Look and feel can be sets by internal API or external config file.
+- Allows many progress bar on same page without uses of iframe solution.
+   </notes>
+  </release>
+ </changelog>
+</package>
