@@ -229,7 +229,7 @@ class MyProcessHandler extends HTML_QuickForm_Action
                 $strPHP .= "'$attr'=>'$val', ";
             }
         }
-        $strPHP = ereg_replace(', $', '', $strPHP);
+        $strPHP = preg_replace('/, $/', '', $strPHP);
         $strPHP .= '));';
         return $strPHP;
     }

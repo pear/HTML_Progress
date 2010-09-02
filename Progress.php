@@ -1099,7 +1099,7 @@ class HTML_Progress
         $style = str_replace('{%pIdent%}', '.'.$this->getIdent(), $style);
 
         if (!$this->isBorderPainted()) {
-            $style = ereg_replace('border-width: [0-9]+px;', 'border-width: 0;', $style);
+            $style = preg_replace('/border-width: [0-9]+px;/', 'border-width: 0;', $style);
         }
         return $style;
     }
