@@ -1,4 +1,7 @@
 <?php
+
+require_once dirname(__FILE__) . '/helper.inc';
+
 /**
  * API addListener Unit tests for HTML_Progress class.
  *
@@ -8,68 +11,8 @@
  * @ignore
  */
 
-class HTML_Progress_TestCase_addListener extends PHPUnit_TestCase
+class HTML_Progress_TestCase_addListener extends HTML_Progress_TestCase
 {
-    /**
-     * HTML_Progress instance
-     *
-     * @var        object
-     */
-    var $progress;
-
-    function HTML_Progress_TestCase_addListener($name)
-    {
-        $this->PHPUnit_TestCase($name);
-    }
-
-    function setUp()
-    {
-        error_reporting(E_ALL & ~E_NOTICE);
-
-        $logger['push_callback'] = array(&$this, '_pushCallback'); // don't die when an exception is thrown
-        $this->progress = new HTML_Progress($logger);
-    }
-
-    function tearDown()
-    {
-        unset($this->progress);
-    }
-
-    function _stripWhitespace($str)
-    {
-        return preg_replace('/\\s+/', '', $str);
-    }
-
-    function _methodExists($name)
-    {
-        if (substr(PHP_VERSION,0,1) < '5') {
-            $n = strtolower($name);
-        } else {
-            $n = $name;
-        }
-        if (in_array($n, get_class_methods($this->progress))) {
-            return true;
-        }
-        $this->assertTrue(false, 'method '. $name . ' not implemented in ' . get_class($this->progress));
-        return false;
-    }
-
-    function _pushCallback($err)
-    {
-        // don't die if the error is an exception (as default callback)
-        return HTML_PROGRESS_ERRORSTACK_PUSH;
-    }
-
-    function _getResult()
-    {
-        if ($this->progress->hasErrors()) {
-            $err = $this->progress->getError();
-            $this->assertTrue(false, $err['message']);
-        } else {
-            $this->assertTrue(true);
-        }
-    }
-
     /**
      * TestCases for method addListener.
      *
@@ -82,7 +25,7 @@ class HTML_Progress_TestCase_addListener extends PHPUnit_TestCase
         $observer = 'logit';
         $monitor = $this->progress->addListener($observer);
 
-        $this->assertTrue($monitor, $observer .' is not a valid listener ');
+        $this->assertFalse($monitor, 'Expected invalid listener ');
     }
 
     function test_addListener()

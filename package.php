@@ -77,7 +77,7 @@ $options = array(
                                  'Release-1.2.5' => 'doc'
                                 ),
     'state'             => $state,
-    'filelistgenerator' => 'cvs',
+    'filelistgenerator' => 'svn',
     'changelogoldtonew' => false,
     'simpleoutput'      => true,
     'notes'             => $notes,
@@ -102,22 +102,25 @@ handleError($e);
 
 // Replaces version number only in necessary files
 $phpfiles = array(
-    'Progress.php',
-    'Progress/monitor.php',
-    'Progress/observer.php',
-    'Progress/generator.php',
-    'Progress/generator/default.php',
-    'Progress/generator/HTMLPage.php',
-    'Progress/generator/ITDynamic.php',
-    'Progress/generator/pages.php',
-    'Progress/generator/preview.php',
-    'Progress/generator/process.php',
-    'Progress/generator/SmartyDynamic.php'
+    'HTML/Progress.php',
+    'HTML/Progress/monitor.php',
+    'HTML/Progress/observer.php',
+    'HTML/Progress/generator.php',
+    'HTML/Progress/generator/default.php',
+    'HTML/Progress/generator/HTMLPage.php',
+    'HTML/Progress/generator/ITDynamic.php',
+    'HTML/Progress/generator/pages.php',
+    'HTML/Progress/generator/preview.php',
+    'HTML/Progress/generator/process.php',
+    'HTML/Progress/generator/SmartyDynamic.php'
 );
 foreach ($phpfiles as $file) {
     $e = $pkg->addReplacement($file, 'package-info', '@package_version@', 'version');
     handleError($e);
 }
+$e = $pkg->addReplacement('tests/helper.inc', 'pear-config', '@php_dir@', 'php_dir');
+handleError($e);
+
 // Maintainers List
 $e = $pkg->addMaintainer( 'farell', 'lead', 'Laurent Laville', 'pear@laurent-laville.org' );
 handleError($e);
